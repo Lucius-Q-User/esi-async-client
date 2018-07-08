@@ -69,6 +69,11 @@ abstract class ApiClientBase {
         inflightRefresh = null;
     }
 
+    private SsoApi ssoApi = new SsoApi((ApiClient)this);
+    public SsoApi getSsoApi() {
+        return ssoApi;
+    }
+
     private synchronized CompletableFuture<String> getAuth() {
         if (inflightRefresh != null) {
             return inflightRefresh;
@@ -97,6 +102,8 @@ abstract class ApiClientBase {
         return inflightRefresh;
     }
 
+
+
     private static final AsyncHttpClient asyncHttpClient = Dsl.asyncHttpClient();
 
     private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, Function<String, T> responseParser) {
@@ -117,29 +124,29 @@ abstract class ApiClientBase {
 
     <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(String url, Map<String, String> parametersInHeaders, Map<String, String> parametersInUrl, Map<String, String> parametersInQuery, String body, String method,
             boolean needsAuth, Function<String, T> responseParser) {
-                for (Entry<String, String> e : parametersInUrl.entrySet()) {
-                    url = url.replace("{" + e.getKey() + "}", e.getValue());
-                }
-                RequestBuilder builder = Dsl.request(method, url);
-                for (Entry<String, String> e : parametersInQuery.entrySet()) {
-                    builder = builder.addQueryParam(e.getKey(), e.getValue());
-                }
-                for (Entry<String, String> e : parametersInHeaders.entrySet()) {
-                    builder = builder.addHeader(e.getKey(), e.getValue());
-                }
-                if (body != null) {
-                    builder = builder.setBody(body);
-                }
-                //fixing the "local var must be effectively final"
-                RequestBuilder builder0 = builder;
-                if (!needsAuth) {
-                    return invokeApi(builder0, responseParser);
-                }
-                return getAuth().thenCompose((authToken) -> {
-                    builder0.addHeader("Authorization", "Bearer " + authToken);
-                    return invokeApi(builder0, responseParser);
-                });
-            }
+        for (Entry<String, String> e : parametersInUrl.entrySet()) {
+            url = url.replace("{" + e.getKey() + "}", e.getValue());
+        }
+        RequestBuilder builder = Dsl.request(method, url);
+        for (Entry<String, String> e : parametersInQuery.entrySet()) {
+            builder = builder.addQueryParam(e.getKey(), e.getValue());
+        }
+        for (Entry<String, String> e : parametersInHeaders.entrySet()) {
+            builder = builder.addHeader(e.getKey(), e.getValue());
+        }
+        if (body != null) {
+            builder = builder.setBody(body);
+        }
+        //fixing the "local var must be effectively final"
+        RequestBuilder builder0 = builder;
+        if (!needsAuth) {
+            return invokeApi(builder0, responseParser);
+        }
+        return getAuth().thenCompose((authToken) -> {
+            builder0.addHeader("Authorization", "Bearer " + authToken);
+            return invokeApi(builder0, responseParser);
+        });
+    }
 
     private static Map<String, List<String>> headersToMap(HttpHeaders hdr) {
         Map<String, List<String>> ret = new HashMap<>();
