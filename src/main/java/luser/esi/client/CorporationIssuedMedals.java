@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class CorporationIssuedMedals {
     public int getCharacterId() {
         return characterId;
     }
-    private String issuedAt;
-    public void setIssuedAt(String val) {
+    private Instant issuedAt;
+    public void setIssuedAt(Instant val) {
         issuedAt = val;
     }
-    public String getIssuedAt() {
+    public Instant getIssuedAt() {
         return issuedAt;
     }
     private int issuerId;
@@ -57,7 +58,7 @@ public class CorporationIssuedMedals {
         CorporationIssuedMedals self = new CorporationIssuedMedals();
         Map<String, Json> js = json.asJsonMap();
         self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.issuedAt = ApiClientBase.optGetString(js.get("issued_at"));
+        self.issuedAt = ApiClientBase.optGetInstant(js.get("issued_at"));
         self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
         self.medalId = ApiClientBase.optGetInteger(js.get("medal_id"));
         self.reason = ApiClientBase.optGetString(js.get("reason"));

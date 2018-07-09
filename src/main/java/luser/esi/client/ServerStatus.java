@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class ServerStatus {
     public String getServerVersion() {
         return serverVersion;
     }
-    private String startTime;
-    public void setStartTime(String val) {
+    private Instant startTime;
+    public void setStartTime(Instant val) {
         startTime = val;
     }
-    public String getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
     private Boolean vip;
@@ -44,7 +45,7 @@ public class ServerStatus {
         Map<String, Json> js = json.asJsonMap();
         self.players = ApiClientBase.optGetInteger(js.get("players"));
         self.serverVersion = ApiClientBase.optGetString(js.get("server_version"));
-        self.startTime = ApiClientBase.optGetString(js.get("start_time"));
+        self.startTime = ApiClientBase.optGetInstant(js.get("start_time"));
         self.vip = ApiClientBase.optGetBoolean(js.get("vip"));
         return self;
     }

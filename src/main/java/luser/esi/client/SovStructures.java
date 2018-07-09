@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -43,18 +44,18 @@ public class SovStructures {
     public Float getVulnerabilityOccupancyLevel() {
         return vulnerabilityOccupancyLevel;
     }
-    private String vulnerableEndTime;
-    public void setVulnerableEndTime(String val) {
+    private Instant vulnerableEndTime;
+    public void setVulnerableEndTime(Instant val) {
         vulnerableEndTime = val;
     }
-    public String getVulnerableEndTime() {
+    public Instant getVulnerableEndTime() {
         return vulnerableEndTime;
     }
-    private String vulnerableStartTime;
-    public void setVulnerableStartTime(String val) {
+    private Instant vulnerableStartTime;
+    public void setVulnerableStartTime(Instant val) {
         vulnerableStartTime = val;
     }
-    public String getVulnerableStartTime() {
+    public Instant getVulnerableStartTime() {
         return vulnerableStartTime;
     }
     static SovStructures fromJson(Json json) {
@@ -68,8 +69,8 @@ public class SovStructures {
         self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
         self.structureTypeId = ApiClientBase.optGetInteger(js.get("structure_type_id"));
         self.vulnerabilityOccupancyLevel = ApiClientBase.optGetFloat(js.get("vulnerability_occupancy_level"));
-        self.vulnerableEndTime = ApiClientBase.optGetString(js.get("vulnerable_end_time"));
-        self.vulnerableStartTime = ApiClientBase.optGetString(js.get("vulnerable_start_time"));
+        self.vulnerableEndTime = ApiClientBase.optGetInstant(js.get("vulnerable_end_time"));
+        self.vulnerableStartTime = ApiClientBase.optGetInstant(js.get("vulnerable_start_time"));
         return self;
     }
 }

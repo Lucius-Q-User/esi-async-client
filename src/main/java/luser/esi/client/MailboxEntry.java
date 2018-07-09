@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -50,11 +51,11 @@ public class MailboxEntry {
     public String getSubject() {
         return subject;
     }
-    private String timestamp;
-    public void setTimestamp(String val) {
+    private Instant timestamp;
+    public void setTimestamp(Instant val) {
         timestamp = val;
     }
-    public String getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
     static MailboxEntry fromJson(Json json) {
@@ -78,13 +79,12 @@ public class MailboxEntry {
             List<Json> jl = js.get("recipients").asJsonList();
             List<MailRecipient> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, MailRecipient.fromJson(jl.get(i)));
+                rt.add(MailRecipient.fromJson(jl.get(i)));
             }
             self.recipients = rt;
         }
-
         self.subject = ApiClientBase.optGetString(js.get("subject"));
-        self.timestamp = ApiClientBase.optGetString(js.get("timestamp"));
+        self.timestamp = ApiClientBase.optGetInstant(js.get("timestamp"));
         return self;
     }
 }

@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -50,11 +51,11 @@ public class ContainerLogEntry {
     public long getLocationId() {
         return locationId;
     }
-    private String loggedAt;
-    public void setLoggedAt(String val) {
+    private Instant loggedAt;
+    public void setLoggedAt(Instant val) {
         loggedAt = val;
     }
-    public String getLoggedAt() {
+    public Instant getLoggedAt() {
         return loggedAt;
     }
     private Integer newConfigBitmask;
@@ -104,7 +105,7 @@ public class ContainerLogEntry {
         self.containerTypeId = ApiClientBase.optGetInteger(js.get("container_type_id"));
         self.locationFlag = LocationFlagEnum.fromString(ApiClientBase.optGetString(js.get("location_flag")));
         self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.loggedAt = ApiClientBase.optGetString(js.get("logged_at"));
+        self.loggedAt = ApiClientBase.optGetInstant(js.get("logged_at"));
         self.newConfigBitmask = ApiClientBase.optGetInteger(js.get("new_config_bitmask"));
         self.oldConfigBitmask = ApiClientBase.optGetInteger(js.get("old_config_bitmask"));
         self.passwordType = PasswordTypeEnum.fromString(ApiClientBase.optGetString(js.get("password_type")));

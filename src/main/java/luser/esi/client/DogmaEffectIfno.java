@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -178,11 +179,10 @@ public class DogmaEffectIfno {
             List<Json> jl = js.get("modifiers").asJsonList();
             List<DgmEffectModifier> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, DgmEffectModifier.fromJson(jl.get(i)));
+                rt.add(DgmEffectModifier.fromJson(jl.get(i)));
             }
             self.modifiers = rt;
         }
-
         self.name = ApiClientBase.optGetString(js.get("name"));
         self.postExpression = ApiClientBase.optGetInteger(js.get("post_expression"));
         self.preExpression = ApiClientBase.optGetInteger(js.get("pre_expression"));

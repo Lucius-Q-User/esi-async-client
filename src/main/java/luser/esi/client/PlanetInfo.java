@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import mjson.Json;
 
 @SuppressWarnings("unused")
 public class PlanetInfo {
-    private String lastUpdate;
-    public void setLastUpdate(String val) {
+    private Instant lastUpdate;
+    public void setLastUpdate(Instant val) {
         lastUpdate = val;
     }
-    public String getLastUpdate() {
+    public Instant getLastUpdate() {
         return lastUpdate;
     }
     private int numPins;
@@ -63,7 +64,7 @@ public class PlanetInfo {
         }
         PlanetInfo self = new PlanetInfo();
         Map<String, Json> js = json.asJsonMap();
-        self.lastUpdate = ApiClientBase.optGetString(js.get("last_update"));
+        self.lastUpdate = ApiClientBase.optGetInstant(js.get("last_update"));
         self.numPins = ApiClientBase.optGetInteger(js.get("num_pins"));
         self.ownerId = ApiClientBase.optGetInteger(js.get("owner_id"));
         self.planetId = ApiClientBase.optGetInteger(js.get("planet_id"));

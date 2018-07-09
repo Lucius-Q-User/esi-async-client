@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,18 +23,18 @@ public class CloneInfo {
     public List<JumpCloneContents> getJumpClones() {
         return jumpClones;
     }
-    private String lastCloneJumpDate;
-    public void setLastCloneJumpDate(String val) {
+    private Instant lastCloneJumpDate;
+    public void setLastCloneJumpDate(Instant val) {
         lastCloneJumpDate = val;
     }
-    public String getLastCloneJumpDate() {
+    public Instant getLastCloneJumpDate() {
         return lastCloneJumpDate;
     }
-    private String lastStationChangeDate;
-    public void setLastStationChangeDate(String val) {
+    private Instant lastStationChangeDate;
+    public void setLastStationChangeDate(Instant val) {
         lastStationChangeDate = val;
     }
-    public String getLastStationChangeDate() {
+    public Instant getLastStationChangeDate() {
         return lastStationChangeDate;
     }
     static CloneInfo fromJson(Json json) {
@@ -47,13 +48,12 @@ public class CloneInfo {
             List<Json> jl = js.get("jump_clones").asJsonList();
             List<JumpCloneContents> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, JumpCloneContents.fromJson(jl.get(i)));
+                rt.add(JumpCloneContents.fromJson(jl.get(i)));
             }
             self.jumpClones = rt;
         }
-
-        self.lastCloneJumpDate = ApiClientBase.optGetString(js.get("last_clone_jump_date"));
-        self.lastStationChangeDate = ApiClientBase.optGetString(js.get("last_station_change_date"));
+        self.lastCloneJumpDate = ApiClientBase.optGetInstant(js.get("last_clone_jump_date"));
+        self.lastStationChangeDate = ApiClientBase.optGetInstant(js.get("last_station_change_date"));
         return self;
     }
 }

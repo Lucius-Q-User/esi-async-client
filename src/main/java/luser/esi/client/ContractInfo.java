@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -50,32 +51,32 @@ public class ContractInfo {
     public int getContractId() {
         return contractId;
     }
-    private String dateAccepted;
-    public void setDateAccepted(String val) {
+    private Instant dateAccepted;
+    public void setDateAccepted(Instant val) {
         dateAccepted = val;
     }
-    public String getDateAccepted() {
+    public Instant getDateAccepted() {
         return dateAccepted;
     }
-    private String dateCompleted;
-    public void setDateCompleted(String val) {
+    private Instant dateCompleted;
+    public void setDateCompleted(Instant val) {
         dateCompleted = val;
     }
-    public String getDateCompleted() {
+    public Instant getDateCompleted() {
         return dateCompleted;
     }
-    private String dateExpired;
-    public void setDateExpired(String val) {
+    private Instant dateExpired;
+    public void setDateExpired(Instant val) {
         dateExpired = val;
     }
-    public String getDateExpired() {
+    public Instant getDateExpired() {
         return dateExpired;
     }
-    private String dateIssued;
-    public void setDateIssued(String val) {
+    private Instant dateIssued;
+    public void setDateIssued(Instant val) {
         dateIssued = val;
     }
-    public String getDateIssued() {
+    public Instant getDateIssued() {
         return dateIssued;
     }
     private Integer daysToComplete;
@@ -174,10 +175,10 @@ public class ContractInfo {
         self.buyout = ApiClientBase.optGetDouble(js.get("buyout"));
         self.collateral = ApiClientBase.optGetDouble(js.get("collateral"));
         self.contractId = ApiClientBase.optGetInteger(js.get("contract_id"));
-        self.dateAccepted = ApiClientBase.optGetString(js.get("date_accepted"));
-        self.dateCompleted = ApiClientBase.optGetString(js.get("date_completed"));
-        self.dateExpired = ApiClientBase.optGetString(js.get("date_expired"));
-        self.dateIssued = ApiClientBase.optGetString(js.get("date_issued"));
+        self.dateAccepted = ApiClientBase.optGetInstant(js.get("date_accepted"));
+        self.dateCompleted = ApiClientBase.optGetInstant(js.get("date_completed"));
+        self.dateExpired = ApiClientBase.optGetInstant(js.get("date_expired"));
+        self.dateIssued = ApiClientBase.optGetInstant(js.get("date_issued"));
         self.daysToComplete = ApiClientBase.optGetInteger(js.get("days_to_complete"));
         self.endLocationId = ApiClientBase.optGetLong(js.get("end_location_id"));
         self.forCorporation = ApiClientBase.optGetBoolean(js.get("for_corporation"));

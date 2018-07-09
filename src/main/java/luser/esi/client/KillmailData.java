@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class KillmailData {
     public int getKillmailId() {
         return killmailId;
     }
-    private String killmailTime;
-    public void setKillmailTime(String val) {
+    private Instant killmailTime;
+    public void setKillmailTime(Instant val) {
         killmailTime = val;
     }
-    public String getKillmailTime() {
+    public Instant getKillmailTime() {
         return killmailTime;
     }
     private Integer moonId;
@@ -67,13 +68,12 @@ public class KillmailData {
             List<Json> jl = js.get("attackers").asJsonList();
             List<KillAttacker> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, KillAttacker.fromJson(jl.get(i)));
+                rt.add(KillAttacker.fromJson(jl.get(i)));
             }
             self.attackers = rt;
         }
-
         self.killmailId = ApiClientBase.optGetInteger(js.get("killmail_id"));
-        self.killmailTime = ApiClientBase.optGetString(js.get("killmail_time"));
+        self.killmailTime = ApiClientBase.optGetInstant(js.get("killmail_time"));
         self.moonId = ApiClientBase.optGetInteger(js.get("moon_id"));
         self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
         self.victim = KillVictim.fromJson(js.get("victim"));

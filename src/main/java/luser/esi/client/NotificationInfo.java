@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -43,11 +44,11 @@ public class NotificationInfo {
     public String getText() {
         return text;
     }
-    private String timestamp;
-    public void setTimestamp(String val) {
+    private Instant timestamp;
+    public void setTimestamp(Instant val) {
         timestamp = val;
     }
-    public String getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
     private TypeEnum type;
@@ -68,7 +69,7 @@ public class NotificationInfo {
         self.senderId = ApiClientBase.optGetInteger(js.get("sender_id"));
         self.senderType = SenderTypeEnum.fromString(ApiClientBase.optGetString(js.get("sender_type")));
         self.text = ApiClientBase.optGetString(js.get("text"));
-        self.timestamp = ApiClientBase.optGetString(js.get("timestamp"));
+        self.timestamp = ApiClientBase.optGetInstant(js.get("timestamp"));
         self.type = TypeEnum.fromString(ApiClientBase.optGetString(js.get("type")));
         return self;
     }

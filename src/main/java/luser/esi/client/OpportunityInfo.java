@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import mjson.Json;
 
 @SuppressWarnings("unused")
 public class OpportunityInfo {
-    private String completedAt;
-    public void setCompletedAt(String val) {
+    private Instant completedAt;
+    public void setCompletedAt(Instant val) {
         completedAt = val;
     }
-    public String getCompletedAt() {
+    public Instant getCompletedAt() {
         return completedAt;
     }
     private int taskId;
@@ -28,7 +29,7 @@ public class OpportunityInfo {
         }
         OpportunityInfo self = new OpportunityInfo();
         Map<String, Json> js = json.asJsonMap();
-        self.completedAt = ApiClientBase.optGetString(js.get("completed_at"));
+        self.completedAt = ApiClientBase.optGetInstant(js.get("completed_at"));
         self.taskId = ApiClientBase.optGetInteger(js.get("task_id"));
         return self;
     }

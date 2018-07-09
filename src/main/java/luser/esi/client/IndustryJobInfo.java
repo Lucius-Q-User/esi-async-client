@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -43,11 +44,11 @@ public class IndustryJobInfo {
     public Integer getCompletedCharacterId() {
         return completedCharacterId;
     }
-    private String completedDate;
-    public void setCompletedDate(String val) {
+    private Instant completedDate;
+    public void setCompletedDate(Instant val) {
         completedDate = val;
     }
-    public String getCompletedDate() {
+    public Instant getCompletedDate() {
         return completedDate;
     }
     private Double cost;
@@ -64,11 +65,11 @@ public class IndustryJobInfo {
     public int getDuration() {
         return duration;
     }
-    private String endDate;
-    public void setEndDate(String val) {
+    private Instant endDate;
+    public void setEndDate(Instant val) {
         endDate = val;
     }
-    public String getEndDate() {
+    public Instant getEndDate() {
         return endDate;
     }
     private long facilityId;
@@ -106,11 +107,11 @@ public class IndustryJobInfo {
     public long getOutputLocationId() {
         return outputLocationId;
     }
-    private String pauseDate;
-    public void setPauseDate(String val) {
+    private Instant pauseDate;
+    public void setPauseDate(Instant val) {
         pauseDate = val;
     }
-    public String getPauseDate() {
+    public Instant getPauseDate() {
         return pauseDate;
     }
     private Float probability;
@@ -134,11 +135,11 @@ public class IndustryJobInfo {
     public int getRuns() {
         return runs;
     }
-    private String startDate;
-    public void setStartDate(String val) {
+    private Instant startDate;
+    public void setStartDate(Instant val) {
         startDate = val;
     }
-    public String getStartDate() {
+    public Instant getStartDate() {
         return startDate;
     }
     private long stationId;
@@ -173,20 +174,20 @@ public class IndustryJobInfo {
         self.blueprintLocationId = ApiClientBase.optGetLong(js.get("blueprint_location_id"));
         self.blueprintTypeId = ApiClientBase.optGetInteger(js.get("blueprint_type_id"));
         self.completedCharacterId = ApiClientBase.optGetInteger(js.get("completed_character_id"));
-        self.completedDate = ApiClientBase.optGetString(js.get("completed_date"));
+        self.completedDate = ApiClientBase.optGetInstant(js.get("completed_date"));
         self.cost = ApiClientBase.optGetDouble(js.get("cost"));
         self.duration = ApiClientBase.optGetInteger(js.get("duration"));
-        self.endDate = ApiClientBase.optGetString(js.get("end_date"));
+        self.endDate = ApiClientBase.optGetInstant(js.get("end_date"));
         self.facilityId = ApiClientBase.optGetLong(js.get("facility_id"));
         self.installerId = ApiClientBase.optGetInteger(js.get("installer_id"));
         self.jobId = ApiClientBase.optGetInteger(js.get("job_id"));
         self.licensedRuns = ApiClientBase.optGetInteger(js.get("licensed_runs"));
         self.outputLocationId = ApiClientBase.optGetLong(js.get("output_location_id"));
-        self.pauseDate = ApiClientBase.optGetString(js.get("pause_date"));
+        self.pauseDate = ApiClientBase.optGetInstant(js.get("pause_date"));
         self.probability = ApiClientBase.optGetFloat(js.get("probability"));
         self.productTypeId = ApiClientBase.optGetInteger(js.get("product_type_id"));
         self.runs = ApiClientBase.optGetInteger(js.get("runs"));
-        self.startDate = ApiClientBase.optGetString(js.get("start_date"));
+        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
         self.stationId = ApiClientBase.optGetLong(js.get("station_id"));
         self.status = StatusEnum.fromString(ApiClientBase.optGetString(js.get("status")));
         self.successfulRuns = ApiClientBase.optGetInteger(js.get("successful_runs"));

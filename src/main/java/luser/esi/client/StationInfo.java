@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class StationInfo {
             List<Json> jl = js.get("services").asJsonList();
             List<ServicesEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, ServicesEnum.fromString(jl.get(i).asString()));
+                rt.add(ServicesEnum.fromString(jl.get(i).asString()));
             }
             self.services = rt;
         }

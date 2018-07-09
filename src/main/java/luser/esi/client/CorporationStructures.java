@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,18 +16,18 @@ public class CorporationStructures {
     public int getCorporationId() {
         return corporationId;
     }
-    private String fuelExpires;
-    public void setFuelExpires(String val) {
+    private Instant fuelExpires;
+    public void setFuelExpires(Instant val) {
         fuelExpires = val;
     }
-    public String getFuelExpires() {
+    public Instant getFuelExpires() {
         return fuelExpires;
     }
-    private String nextReinforceApply;
-    public void setNextReinforceApply(String val) {
+    private Instant nextReinforceApply;
+    public void setNextReinforceApply(Instant val) {
         nextReinforceApply = val;
     }
-    public String getNextReinforceApply() {
+    public Instant getNextReinforceApply() {
         return nextReinforceApply;
     }
     private Integer nextReinforceHour;
@@ -78,18 +79,18 @@ public class CorporationStructures {
     public StateEnum getState() {
         return state;
     }
-    private String stateTimerEnd;
-    public void setStateTimerEnd(String val) {
+    private Instant stateTimerEnd;
+    public void setStateTimerEnd(Instant val) {
         stateTimerEnd = val;
     }
-    public String getStateTimerEnd() {
+    public Instant getStateTimerEnd() {
         return stateTimerEnd;
     }
-    private String stateTimerStart;
-    public void setStateTimerStart(String val) {
+    private Instant stateTimerStart;
+    public void setStateTimerStart(Instant val) {
         stateTimerStart = val;
     }
-    public String getStateTimerStart() {
+    public Instant getStateTimerStart() {
         return stateTimerStart;
     }
     private long structureId;
@@ -113,11 +114,11 @@ public class CorporationStructures {
     public int getTypeId() {
         return typeId;
     }
-    private String unanchorsAt;
-    public void setUnanchorsAt(String val) {
+    private Instant unanchorsAt;
+    public void setUnanchorsAt(Instant val) {
         unanchorsAt = val;
     }
-    public String getUnanchorsAt() {
+    public Instant getUnanchorsAt() {
         return unanchorsAt;
     }
     static CorporationStructures fromJson(Json json) {
@@ -127,8 +128,8 @@ public class CorporationStructures {
         CorporationStructures self = new CorporationStructures();
         Map<String, Json> js = json.asJsonMap();
         self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.fuelExpires = ApiClientBase.optGetString(js.get("fuel_expires"));
-        self.nextReinforceApply = ApiClientBase.optGetString(js.get("next_reinforce_apply"));
+        self.fuelExpires = ApiClientBase.optGetInstant(js.get("fuel_expires"));
+        self.nextReinforceApply = ApiClientBase.optGetInstant(js.get("next_reinforce_apply"));
         self.nextReinforceHour = ApiClientBase.optGetInteger(js.get("next_reinforce_hour"));
         self.nextReinforceWeekday = ApiClientBase.optGetInteger(js.get("next_reinforce_weekday"));
         self.profileId = ApiClientBase.optGetInteger(js.get("profile_id"));
@@ -138,18 +139,17 @@ public class CorporationStructures {
             List<Json> jl = js.get("services").asJsonList();
             List<StructureSerivec> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, StructureSerivec.fromJson(jl.get(i)));
+                rt.add(StructureSerivec.fromJson(jl.get(i)));
             }
             self.services = rt;
         }
-
         self.state = StateEnum.fromString(ApiClientBase.optGetString(js.get("state")));
-        self.stateTimerEnd = ApiClientBase.optGetString(js.get("state_timer_end"));
-        self.stateTimerStart = ApiClientBase.optGetString(js.get("state_timer_start"));
+        self.stateTimerEnd = ApiClientBase.optGetInstant(js.get("state_timer_end"));
+        self.stateTimerStart = ApiClientBase.optGetInstant(js.get("state_timer_start"));
         self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
         self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
         self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.unanchorsAt = ApiClientBase.optGetString(js.get("unanchors_at"));
+        self.unanchorsAt = ApiClientBase.optGetInstant(js.get("unanchors_at"));
         return self;
     }
     public static enum StateEnum {

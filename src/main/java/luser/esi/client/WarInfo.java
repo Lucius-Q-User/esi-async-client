@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class WarInfo {
     public List<WarAllyInfo> getAllies() {
         return allies;
     }
-    private String declared;
-    public void setDeclared(String val) {
+    private Instant declared;
+    public void setDeclared(Instant val) {
         declared = val;
     }
-    public String getDeclared() {
+    public Instant getDeclared() {
         return declared;
     }
     private WarParticipantInfo defender;
@@ -36,11 +37,11 @@ public class WarInfo {
     public WarParticipantInfo getDefender() {
         return defender;
     }
-    private String finished;
-    public void setFinished(String val) {
+    private Instant finished;
+    public void setFinished(Instant val) {
         finished = val;
     }
-    public String getFinished() {
+    public Instant getFinished() {
         return finished;
     }
     private int id;
@@ -64,18 +65,18 @@ public class WarInfo {
     public boolean getOpenForAllies() {
         return openForAllies;
     }
-    private String retracted;
-    public void setRetracted(String val) {
+    private Instant retracted;
+    public void setRetracted(Instant val) {
         retracted = val;
     }
-    public String getRetracted() {
+    public Instant getRetracted() {
         return retracted;
     }
-    private String started;
-    public void setStarted(String val) {
+    private Instant started;
+    public void setStarted(Instant val) {
         started = val;
     }
-    public String getStarted() {
+    public Instant getStarted() {
         return started;
     }
     static WarInfo fromJson(Json json) {
@@ -89,19 +90,18 @@ public class WarInfo {
             List<Json> jl = js.get("allies").asJsonList();
             List<WarAllyInfo> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, WarAllyInfo.fromJson(jl.get(i)));
+                rt.add(WarAllyInfo.fromJson(jl.get(i)));
             }
             self.allies = rt;
         }
-
-        self.declared = ApiClientBase.optGetString(js.get("declared"));
+        self.declared = ApiClientBase.optGetInstant(js.get("declared"));
         self.defender = WarParticipantInfo.fromJson(js.get("defender"));
-        self.finished = ApiClientBase.optGetString(js.get("finished"));
+        self.finished = ApiClientBase.optGetInstant(js.get("finished"));
         self.id = ApiClientBase.optGetInteger(js.get("id"));
         self.mutual = ApiClientBase.optGetBoolean(js.get("mutual"));
         self.openForAllies = ApiClientBase.optGetBoolean(js.get("open_for_allies"));
-        self.retracted = ApiClientBase.optGetString(js.get("retracted"));
-        self.started = ApiClientBase.optGetString(js.get("started"));
+        self.retracted = ApiClientBase.optGetInstant(js.get("retracted"));
+        self.started = ApiClientBase.optGetInstant(js.get("started"));
         return self;
     }
 }

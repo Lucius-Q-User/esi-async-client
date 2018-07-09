@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class CharacterInfo {
     public Integer getAncestryId() {
         return ancestryId;
     }
-    private String birthday;
-    public void setBirthday(String val) {
+    private Instant birthday;
+    public void setBirthday(Instant val) {
         birthday = val;
     }
-    public String getBirthday() {
+    public Instant getBirthday() {
         return birthday;
     }
     private int bloodlineId;
@@ -93,7 +94,7 @@ public class CharacterInfo {
         Map<String, Json> js = json.asJsonMap();
         self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
         self.ancestryId = ApiClientBase.optGetInteger(js.get("ancestry_id"));
-        self.birthday = ApiClientBase.optGetString(js.get("birthday"));
+        self.birthday = ApiClientBase.optGetInstant(js.get("birthday"));
         self.bloodlineId = ApiClientBase.optGetInteger(js.get("bloodline_id"));
         self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
         self.description = ApiClientBase.optGetString(js.get("description"));

@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import mjson.Json;
 
 @SuppressWarnings("unused")
 public class CorporationMedals {
-    private String createdAt;
-    public void setCreatedAt(String val) {
+    private Instant createdAt;
+    public void setCreatedAt(Instant val) {
         createdAt = val;
     }
-    public String getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
     private int creatorId;
@@ -49,7 +50,7 @@ public class CorporationMedals {
         }
         CorporationMedals self = new CorporationMedals();
         Map<String, Json> js = json.asJsonMap();
-        self.createdAt = ApiClientBase.optGetString(js.get("created_at"));
+        self.createdAt = ApiClientBase.optGetInstant(js.get("created_at"));
         self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
         self.description = ApiClientBase.optGetString(js.get("description"));
         self.medalId = ApiClientBase.optGetInteger(js.get("medal_id"));

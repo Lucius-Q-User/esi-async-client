@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -36,11 +37,11 @@ public class WalletJournalEntry {
     public ContextIdTypeEnum getContextIdType() {
         return contextIdType;
     }
-    private String date;
-    public void setDate(String val) {
+    private Instant date;
+    public void setDate(Instant val) {
         date = val;
     }
-    public String getDate() {
+    public Instant getDate() {
         return date;
     }
     private String description;
@@ -109,7 +110,7 @@ public class WalletJournalEntry {
         self.balance = ApiClientBase.optGetDouble(js.get("balance"));
         self.contextId = ApiClientBase.optGetLong(js.get("context_id"));
         self.contextIdType = ContextIdTypeEnum.fromString(ApiClientBase.optGetString(js.get("context_id_type")));
-        self.date = ApiClientBase.optGetString(js.get("date"));
+        self.date = ApiClientBase.optGetInstant(js.get("date"));
         self.description = ApiClientBase.optGetString(js.get("description"));
         self.firstPartyId = ApiClientBase.optGetInteger(js.get("first_party_id"));
         self.id = ApiClientBase.optGetLong(js.get("id"));

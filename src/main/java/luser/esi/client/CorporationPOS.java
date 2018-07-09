@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,18 +16,18 @@ public class CorporationPOS {
     public Integer getMoonId() {
         return moonId;
     }
-    private String onlinedSince;
-    public void setOnlinedSince(String val) {
+    private Instant onlinedSince;
+    public void setOnlinedSince(Instant val) {
         onlinedSince = val;
     }
-    public String getOnlinedSince() {
+    public Instant getOnlinedSince() {
         return onlinedSince;
     }
-    private String reinforcedUntil;
-    public void setReinforcedUntil(String val) {
+    private Instant reinforcedUntil;
+    public void setReinforcedUntil(Instant val) {
         reinforcedUntil = val;
     }
-    public String getReinforcedUntil() {
+    public Instant getReinforcedUntil() {
         return reinforcedUntil;
     }
     private long starbaseId;
@@ -57,11 +58,11 @@ public class CorporationPOS {
     public int getTypeId() {
         return typeId;
     }
-    private String unanchorAt;
-    public void setUnanchorAt(String val) {
+    private Instant unanchorAt;
+    public void setUnanchorAt(Instant val) {
         unanchorAt = val;
     }
-    public String getUnanchorAt() {
+    public Instant getUnanchorAt() {
         return unanchorAt;
     }
     static CorporationPOS fromJson(Json json) {
@@ -71,13 +72,13 @@ public class CorporationPOS {
         CorporationPOS self = new CorporationPOS();
         Map<String, Json> js = json.asJsonMap();
         self.moonId = ApiClientBase.optGetInteger(js.get("moon_id"));
-        self.onlinedSince = ApiClientBase.optGetString(js.get("onlined_since"));
-        self.reinforcedUntil = ApiClientBase.optGetString(js.get("reinforced_until"));
+        self.onlinedSince = ApiClientBase.optGetInstant(js.get("onlined_since"));
+        self.reinforcedUntil = ApiClientBase.optGetInstant(js.get("reinforced_until"));
         self.starbaseId = ApiClientBase.optGetLong(js.get("starbase_id"));
         self.state = StateEnum.fromString(ApiClientBase.optGetString(js.get("state")));
         self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
         self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.unanchorAt = ApiClientBase.optGetString(js.get("unanchor_at"));
+        self.unanchorAt = ApiClientBase.optGetInstant(js.get("unanchor_at"));
         return self;
     }
     public static enum StateEnum {

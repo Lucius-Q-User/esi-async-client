@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class CharacterMedal {
     public int getCorporationId() {
         return corporationId;
     }
-    private String date;
-    public void setDate(String val) {
+    private Instant date;
+    public void setDate(Instant val) {
         date = val;
     }
-    public String getDate() {
+    public Instant getDate() {
         return date;
     }
     private String description;
@@ -78,17 +79,16 @@ public class CharacterMedal {
         CharacterMedal self = new CharacterMedal();
         Map<String, Json> js = json.asJsonMap();
         self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.date = ApiClientBase.optGetString(js.get("date"));
+        self.date = ApiClientBase.optGetInstant(js.get("date"));
         self.description = ApiClientBase.optGetString(js.get("description"));
         {
             List<Json> jl = js.get("graphics").asJsonList();
             List<MedalGraphic> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, MedalGraphic.fromJson(jl.get(i)));
+                rt.add(MedalGraphic.fromJson(jl.get(i)));
             }
             self.graphics = rt;
         }
-
         self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
         self.medalId = ApiClientBase.optGetInteger(js.get("medal_id"));
         self.reason = ApiClientBase.optGetString(js.get("reason"));

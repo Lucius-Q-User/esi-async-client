@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -39,29 +40,26 @@ public class PlanetContents {
             List<Json> jl = js.get("links").asJsonList();
             List<PILink> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, PILink.fromJson(jl.get(i)));
+                rt.add(PILink.fromJson(jl.get(i)));
             }
             self.links = rt;
         }
-
         {
             List<Json> jl = js.get("pins").asJsonList();
             List<PIPin> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, PIPin.fromJson(jl.get(i)));
+                rt.add(PIPin.fromJson(jl.get(i)));
             }
             self.pins = rt;
         }
-
         {
             List<Json> jl = js.get("routes").asJsonList();
             List<PIRoute> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, PIRoute.fromJson(jl.get(i)));
+                rt.add(PIRoute.fromJson(jl.get(i)));
             }
             self.routes = rt;
         }
-
         return self;
     }
 }

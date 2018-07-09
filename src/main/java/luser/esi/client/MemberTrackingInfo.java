@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -29,18 +30,18 @@ public class MemberTrackingInfo {
     public Long getLocationId() {
         return locationId;
     }
-    private String logoffDate;
-    public void setLogoffDate(String val) {
+    private Instant logoffDate;
+    public void setLogoffDate(Instant val) {
         logoffDate = val;
     }
-    public String getLogoffDate() {
+    public Instant getLogoffDate() {
         return logoffDate;
     }
-    private String logonDate;
-    public void setLogonDate(String val) {
+    private Instant logonDate;
+    public void setLogonDate(Instant val) {
         logonDate = val;
     }
-    public String getLogonDate() {
+    public Instant getLogonDate() {
         return logonDate;
     }
     private Integer shipTypeId;
@@ -50,11 +51,11 @@ public class MemberTrackingInfo {
     public Integer getShipTypeId() {
         return shipTypeId;
     }
-    private String startDate;
-    public void setStartDate(String val) {
+    private Instant startDate;
+    public void setStartDate(Instant val) {
         startDate = val;
     }
-    public String getStartDate() {
+    public Instant getStartDate() {
         return startDate;
     }
     static MemberTrackingInfo fromJson(Json json) {
@@ -66,10 +67,10 @@ public class MemberTrackingInfo {
         self.baseId = ApiClientBase.optGetInteger(js.get("base_id"));
         self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
         self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.logoffDate = ApiClientBase.optGetString(js.get("logoff_date"));
-        self.logonDate = ApiClientBase.optGetString(js.get("logon_date"));
+        self.logoffDate = ApiClientBase.optGetInstant(js.get("logoff_date"));
+        self.logonDate = ApiClientBase.optGetInstant(js.get("logon_date"));
         self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        self.startDate = ApiClientBase.optGetString(js.get("start_date"));
+        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
         return self;
     }
 }

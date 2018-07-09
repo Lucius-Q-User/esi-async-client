@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -32,11 +33,10 @@ public class InsurancePrices {
             List<Json> jl = js.get("levels").asJsonList();
             List<IsurancePrices> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, IsurancePrices.fromJson(jl.get(i)));
+                rt.add(IsurancePrices.fromJson(jl.get(i)));
             }
             self.levels = rt;
         }
-
         self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
         return self;
     }

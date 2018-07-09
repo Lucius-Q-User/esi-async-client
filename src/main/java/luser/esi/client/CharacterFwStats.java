@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class CharacterFwStats {
     public Integer getCurrentRank() {
         return currentRank;
     }
-    private String enlistedOn;
-    public void setEnlistedOn(String val) {
+    private Instant enlistedOn;
+    public void setEnlistedOn(Instant val) {
         enlistedOn = val;
     }
-    public String getEnlistedOn() {
+    public Instant getEnlistedOn() {
         return enlistedOn;
     }
     private Integer factionId;
@@ -57,7 +58,7 @@ public class CharacterFwStats {
         CharacterFwStats self = new CharacterFwStats();
         Map<String, Json> js = json.asJsonMap();
         self.currentRank = ApiClientBase.optGetInteger(js.get("current_rank"));
-        self.enlistedOn = ApiClientBase.optGetString(js.get("enlisted_on"));
+        self.enlistedOn = ApiClientBase.optGetInstant(js.get("enlisted_on"));
         self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
         self.highestRank = ApiClientBase.optGetInteger(js.get("highest_rank"));
         self.kills = FwStats.fromJson(js.get("kills"));

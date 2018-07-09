@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -32,20 +33,18 @@ public class CorporationDivision {
             List<Json> jl = js.get("hangar").asJsonList();
             List<DivisionInfo> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, DivisionInfo.fromJson(jl.get(i)));
+                rt.add(DivisionInfo.fromJson(jl.get(i)));
             }
             self.hangar = rt;
         }
-
         {
             List<Json> jl = js.get("wallet").asJsonList();
             List<DivisionInfo> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, DivisionInfo.fromJson(jl.get(i)));
+                rt.add(DivisionInfo.fromJson(jl.get(i)));
             }
             self.wallet = rt;
         }
-
         return self;
     }
 }

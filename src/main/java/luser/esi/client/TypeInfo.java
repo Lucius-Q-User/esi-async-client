@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -132,20 +133,18 @@ public class TypeInfo {
             List<Json> jl = js.get("dogma_attributes").asJsonList();
             List<DgmAttributeValue> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, DgmAttributeValue.fromJson(jl.get(i)));
+                rt.add(DgmAttributeValue.fromJson(jl.get(i)));
             }
             self.dogmaAttributes = rt;
         }
-
         {
             List<Json> jl = js.get("dogma_effects").asJsonList();
             List<DgmEffectValue> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, DgmEffectValue.fromJson(jl.get(i)));
+                rt.add(DgmEffectValue.fromJson(jl.get(i)));
             }
             self.dogmaEffects = rt;
         }
-
         self.graphicId = ApiClientBase.optGetInteger(js.get("graphic_id"));
         self.groupId = ApiClientBase.optGetInteger(js.get("group_id"));
         self.iconId = ApiClientBase.optGetInteger(js.get("icon_id"));

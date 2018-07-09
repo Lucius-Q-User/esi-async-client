@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class PIPin {
     public List<PIContext> getContents() {
         return contents;
     }
-    private String expiryTime;
-    public void setExpiryTime(String val) {
+    private Instant expiryTime;
+    public void setExpiryTime(Instant val) {
         expiryTime = val;
     }
-    public String getExpiryTime() {
+    public Instant getExpiryTime() {
         return expiryTime;
     }
     private PIExtractor extractorDetails;
@@ -36,18 +37,18 @@ public class PIPin {
     public PIFactory getFactoryDetails() {
         return factoryDetails;
     }
-    private String installTime;
-    public void setInstallTime(String val) {
+    private Instant installTime;
+    public void setInstallTime(Instant val) {
         installTime = val;
     }
-    public String getInstallTime() {
+    public Instant getInstallTime() {
         return installTime;
     }
-    private String lastCycleStart;
-    public void setLastCycleStart(String val) {
+    private Instant lastCycleStart;
+    public void setLastCycleStart(Instant val) {
         lastCycleStart = val;
     }
-    public String getLastCycleStart() {
+    public Instant getLastCycleStart() {
         return lastCycleStart;
     }
     private float latitude;
@@ -95,16 +96,15 @@ public class PIPin {
             List<Json> jl = js.get("contents").asJsonList();
             List<PIContext> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, PIContext.fromJson(jl.get(i)));
+                rt.add(PIContext.fromJson(jl.get(i)));
             }
             self.contents = rt;
         }
-
-        self.expiryTime = ApiClientBase.optGetString(js.get("expiry_time"));
+        self.expiryTime = ApiClientBase.optGetInstant(js.get("expiry_time"));
         self.extractorDetails = PIExtractor.fromJson(js.get("extractor_details"));
         self.factoryDetails = PIFactory.fromJson(js.get("factory_details"));
-        self.installTime = ApiClientBase.optGetString(js.get("install_time"));
-        self.lastCycleStart = ApiClientBase.optGetString(js.get("last_cycle_start"));
+        self.installTime = ApiClientBase.optGetInstant(js.get("install_time"));
+        self.lastCycleStart = ApiClientBase.optGetInstant(js.get("last_cycle_start"));
         self.latitude = ApiClientBase.optGetFloat(js.get("latitude"));
         self.longitude = ApiClientBase.optGetFloat(js.get("longitude"));
         self.pinId = ApiClientBase.optGetLong(js.get("pin_id"));

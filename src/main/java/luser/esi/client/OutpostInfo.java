@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -94,11 +95,10 @@ public class OutpostInfo {
             List<Json> jl = js.get("services").asJsonList();
             List<OutpostService> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, OutpostService.fromJson(jl.get(i)));
+                rt.add(OutpostService.fromJson(jl.get(i)));
             }
             self.services = rt;
         }
-
         self.standingOwnerId = ApiClientBase.optGetInteger(js.get("standing_owner_id"));
         self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
         self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));

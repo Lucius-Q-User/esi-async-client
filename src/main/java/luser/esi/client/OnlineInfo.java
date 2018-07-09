@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,18 +9,18 @@ import mjson.Json;
 
 @SuppressWarnings("unused")
 public class OnlineInfo {
-    private String lastLogin;
-    public void setLastLogin(String val) {
+    private Instant lastLogin;
+    public void setLastLogin(Instant val) {
         lastLogin = val;
     }
-    public String getLastLogin() {
+    public Instant getLastLogin() {
         return lastLogin;
     }
-    private String lastLogout;
-    public void setLastLogout(String val) {
+    private Instant lastLogout;
+    public void setLastLogout(Instant val) {
         lastLogout = val;
     }
-    public String getLastLogout() {
+    public Instant getLastLogout() {
         return lastLogout;
     }
     private Integer logins;
@@ -42,8 +43,8 @@ public class OnlineInfo {
         }
         OnlineInfo self = new OnlineInfo();
         Map<String, Json> js = json.asJsonMap();
-        self.lastLogin = ApiClientBase.optGetString(js.get("last_login"));
-        self.lastLogout = ApiClientBase.optGetString(js.get("last_logout"));
+        self.lastLogin = ApiClientBase.optGetInstant(js.get("last_login"));
+        self.lastLogout = ApiClientBase.optGetInstant(js.get("last_logout"));
         self.logins = ApiClientBase.optGetInteger(js.get("logins"));
         self.online = ApiClientBase.optGetBoolean(js.get("online"));
         return self;

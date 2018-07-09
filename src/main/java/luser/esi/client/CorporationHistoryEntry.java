@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -29,11 +30,11 @@ public class CorporationHistoryEntry {
     public int getRecordId() {
         return recordId;
     }
-    private String startDate;
-    public void setStartDate(String val) {
+    private Instant startDate;
+    public void setStartDate(Instant val) {
         startDate = val;
     }
-    public String getStartDate() {
+    public Instant getStartDate() {
         return startDate;
     }
     static CorporationHistoryEntry fromJson(Json json) {
@@ -45,7 +46,7 @@ public class CorporationHistoryEntry {
         self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
         self.isDeleted = ApiClientBase.optGetBoolean(js.get("is_deleted"));
         self.recordId = ApiClientBase.optGetInteger(js.get("record_id"));
-        self.startDate = ApiClientBase.optGetString(js.get("start_date"));
+        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
         return self;
     }
 }

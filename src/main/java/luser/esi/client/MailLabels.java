@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -32,11 +33,10 @@ public class MailLabels {
             List<Json> jl = js.get("labels").asJsonList();
             List<MailLabel> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, MailLabel.fromJson(jl.get(i)));
+                rt.add(MailLabel.fromJson(jl.get(i)));
             }
             self.labels = rt;
         }
-
         self.totalUnreadCount = ApiClientBase.optGetInteger(js.get("total_unread_count"));
         return self;
     }

@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class BookmarkInfo {
     public Coordinate getCoordinates() {
         return coordinates;
     }
-    private String created;
-    public void setCreated(String val) {
+    private Instant created;
+    public void setCreated(Instant val) {
         created = val;
     }
-    public String getCreated() {
+    public Instant getCreated() {
         return created;
     }
     private int creatorId;
@@ -79,7 +80,7 @@ public class BookmarkInfo {
         Map<String, Json> js = json.asJsonMap();
         self.bookmarkId = ApiClientBase.optGetInteger(js.get("bookmark_id"));
         self.coordinates = Coordinate.fromJson(js.get("coordinates"));
-        self.created = ApiClientBase.optGetString(js.get("created"));
+        self.created = ApiClientBase.optGetInstant(js.get("created"));
         self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
         self.folderId = ApiClientBase.optGetInteger(js.get("folder_id"));
         self.item = BookmarkedItem.fromJson(js.get("item"));

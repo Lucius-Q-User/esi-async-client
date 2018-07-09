@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class WalletTransaction {
     public int getClientId() {
         return clientId;
     }
-    private String date;
-    public void setDate(String val) {
+    private Instant date;
+    public void setDate(Instant val) {
         date = val;
     }
-    public String getDate() {
+    public Instant getDate() {
         return date;
     }
     private boolean isBuy;
@@ -85,7 +86,7 @@ public class WalletTransaction {
         WalletTransaction self = new WalletTransaction();
         Map<String, Json> js = json.asJsonMap();
         self.clientId = ApiClientBase.optGetInteger(js.get("client_id"));
-        self.date = ApiClientBase.optGetString(js.get("date"));
+        self.date = ApiClientBase.optGetInstant(js.get("date"));
         self.isBuy = ApiClientBase.optGetBoolean(js.get("is_buy"));
         self.isPersonal = ApiClientBase.optGetBoolean(js.get("is_personal"));
         self.journalRefId = ApiClientBase.optGetLong(js.get("journal_ref_id"));

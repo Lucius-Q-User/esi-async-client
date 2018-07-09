@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class NewContactNotification {
     public int getNotificationId() {
         return notificationId;
     }
-    private String sendDate;
-    public void setSendDate(String val) {
+    private Instant sendDate;
+    public void setSendDate(Instant val) {
         sendDate = val;
     }
-    public String getSendDate() {
+    public Instant getSendDate() {
         return sendDate;
     }
     private int senderCharacterId;
@@ -51,7 +52,7 @@ public class NewContactNotification {
         Map<String, Json> js = json.asJsonMap();
         self.message = ApiClientBase.optGetString(js.get("message"));
         self.notificationId = ApiClientBase.optGetInteger(js.get("notification_id"));
-        self.sendDate = ApiClientBase.optGetString(js.get("send_date"));
+        self.sendDate = ApiClientBase.optGetInstant(js.get("send_date"));
         self.senderCharacterId = ApiClientBase.optGetInteger(js.get("sender_character_id"));
         self.standingLevel = ApiClientBase.optGetFloat(js.get("standing_level"));
         return self;

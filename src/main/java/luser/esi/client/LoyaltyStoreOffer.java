@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -72,11 +73,10 @@ public class LoyaltyStoreOffer {
             List<Json> jl = js.get("required_items").asJsonList();
             List<LpTradeRequiredItem> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, LpTradeRequiredItem.fromJson(jl.get(i)));
+                rt.add(LpTradeRequiredItem.fromJson(jl.get(i)));
             }
             self.requiredItems = rt;
         }
-
         self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
         return self;
     }

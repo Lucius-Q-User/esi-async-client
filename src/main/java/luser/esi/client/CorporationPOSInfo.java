@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -125,11 +126,10 @@ public class CorporationPOSInfo {
             List<Json> jl = js.get("fuels").asJsonList();
             List<StarbaseFuel> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, StarbaseFuel.fromJson(jl.get(i)));
+                rt.add(StarbaseFuel.fromJson(jl.get(i)));
             }
             self.fuels = rt;
         }
-
         self.offline = OfflineEnum.fromString(ApiClientBase.optGetString(js.get("offline")));
         self.online = OnlineEnum.fromString(ApiClientBase.optGetString(js.get("online")));
         self.unanchor = UnanchorEnum.fromString(ApiClientBase.optGetString(js.get("unanchor")));

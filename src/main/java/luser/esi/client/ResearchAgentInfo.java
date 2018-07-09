@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -36,11 +37,11 @@ public class ResearchAgentInfo {
     public int getSkillTypeId() {
         return skillTypeId;
     }
-    private String startedAt;
-    public void setStartedAt(String val) {
+    private Instant startedAt;
+    public void setStartedAt(Instant val) {
         startedAt = val;
     }
-    public String getStartedAt() {
+    public Instant getStartedAt() {
         return startedAt;
     }
     static ResearchAgentInfo fromJson(Json json) {
@@ -53,7 +54,7 @@ public class ResearchAgentInfo {
         self.pointsPerDay = ApiClientBase.optGetFloat(js.get("points_per_day"));
         self.remainderPoints = ApiClientBase.optGetFloat(js.get("remainder_points"));
         self.skillTypeId = ApiClientBase.optGetInteger(js.get("skill_type_id"));
-        self.startedAt = ApiClientBase.optGetString(js.get("started_at"));
+        self.startedAt = ApiClientBase.optGetInstant(js.get("started_at"));
         return self;
     }
 }

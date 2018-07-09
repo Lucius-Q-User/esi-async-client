@@ -195,7 +195,7 @@ renameObjects  = {
    "GetAlliancesAllianceIdOk": "AllianceInfo",
    "GetCharactersCharacterIdAgentsResearchOk": "ResearchAgentInfo",
    "GetCharactersCharacterIdAssetsOk": "CharacterAssetsEntry",
-   "GetCharactersCharacterIdAttributesOk": "ChatacterAttributes",
+   "GetCharactersCharacterIdAttributesOk": "CharacterAttributes",
    "GetCharactersCharacterIdBlueprintsOk": "CharacterBlueprint",
    "GetCharactersCharacterIdBookmarksFoldersOk": "CharacterBookmarksFolder",
    "GetCharactersCharacterIdCalendarEventIdAttendeesOk": "EventAttendee",

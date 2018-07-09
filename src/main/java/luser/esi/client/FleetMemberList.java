@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class FleetMemberList {
     public int getCharacterId() {
         return characterId;
     }
-    private String joinTime;
-    public void setJoinTime(String val) {
+    private Instant joinTime;
+    public void setJoinTime(Instant val) {
         joinTime = val;
     }
-    public String getJoinTime() {
+    public Instant getJoinTime() {
         return joinTime;
     }
     private RoleEnum role;
@@ -85,7 +86,7 @@ public class FleetMemberList {
         FleetMemberList self = new FleetMemberList();
         Map<String, Json> js = json.asJsonMap();
         self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.joinTime = ApiClientBase.optGetString(js.get("join_time"));
+        self.joinTime = ApiClientBase.optGetInstant(js.get("join_time"));
         self.role = RoleEnum.fromString(ApiClientBase.optGetString(js.get("role")));
         self.roleName = ApiClientBase.optGetString(js.get("role_name"));
         self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));

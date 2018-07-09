@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -32,11 +33,10 @@ public class IndustrySystems {
             List<Json> jl = js.get("cost_indices").asJsonList();
             List<SystemCostIndex> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, SystemCostIndex.fromJson(jl.get(i)));
+                rt.add(SystemCostIndex.fromJson(jl.get(i)));
             }
             self.costIndices = rt;
         }
-
         self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
         return self;
     }

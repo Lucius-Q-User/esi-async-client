@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -41,11 +42,10 @@ public class FleetWings {
             List<Json> jl = js.get("squads").asJsonList();
             List<SquadsInWing> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, SquadsInWing.fromJson(jl.get(i)));
+                rt.add(SquadsInWing.fromJson(jl.get(i)));
             }
             self.squads = rt;
         }
-
         return self;
     }
 }

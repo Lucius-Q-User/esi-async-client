@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -55,11 +56,10 @@ public class PIExtractor {
             List<Json> jl = js.get("heads").asJsonList();
             List<PIExtractorHead> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, PIExtractorHead.fromJson(jl.get(i)));
+                rt.add(PIExtractorHead.fromJson(jl.get(i)));
             }
             self.heads = rt;
         }
-
         self.productTypeId = ApiClientBase.optGetInteger(js.get("product_type_id"));
         self.qtyPerCycle = ApiClientBase.optGetInteger(js.get("qty_per_cycle"));
         return self;

@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -17,7 +18,9 @@ extends JsonConvertible \
     %>\
     %for pname, ptype in properties.items():
 <%
-        if ptype["type"] == "string" and "enum" not in ptype:
+        if ptype["type"] == "string" and "format" in ptype and ptype["format"] == "date-time":
+            typeTag = "Instant"
+        elif ptype["type"] == "string" and "enum" not in ptype:
             typeTag = "String"
         elif ptype["type"] == "string" and "enum" in ptype:
             typeTag = toUcaseJava(pname) + "Enum"
@@ -165,7 +168,7 @@ extends JsonConvertible \
             List<Json> jl = js.get("${pname}").asJsonList();
             List<${toUcaseJava(pname) + "Enum"}> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, ${toUcaseJava(pname) + "Enum"}.fromString(jl.get(i).asString()));
+                rt.add(${toUcaseJava(pname) + "Enum"}.fromString(jl.get(i).asString()));
             }
             self.${toLcaseJava(pname)} = rt;
         }
@@ -179,11 +182,12 @@ extends JsonConvertible \
             List<Json> jl = js.get("${pname}").asJsonList();
             List<${tag}> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, ${tag}.fromJson(jl.get(i)));
+                rt.add(${tag}.fromJson(jl.get(i)));
             }
             self.${toLcaseJava(pname)} = rt;
         }
-
+        %elif ptype["type"] == "string" and "format" in ptype and ptype["format"] == "date-time":
+        self.${toLcaseJava(pname)} = ApiClientBase.optGetInstant(js.get("${pname}"));
         %else:
         self.${toLcaseJava(pname)} = ApiClientBase.optGetString(js.get("${pname}"));
         %endif

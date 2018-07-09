@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class AllianceInfo {
     public int getCreatorId() {
         return creatorId;
     }
-    private String dateFounded;
-    public void setDateFounded(String val) {
+    private Instant dateFounded;
+    public void setDateFounded(Instant val) {
         dateFounded = val;
     }
-    public String getDateFounded() {
+    public Instant getDateFounded() {
         return dateFounded;
     }
     private Integer executorCorporationId;
@@ -65,7 +66,7 @@ public class AllianceInfo {
         Map<String, Json> js = json.asJsonMap();
         self.creatorCorporationId = ApiClientBase.optGetInteger(js.get("creator_corporation_id"));
         self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
-        self.dateFounded = ApiClientBase.optGetString(js.get("date_founded"));
+        self.dateFounded = ApiClientBase.optGetInstant(js.get("date_founded"));
         self.executorCorporationId = ApiClientBase.optGetInteger(js.get("executor_corporation_id"));
         self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
         self.name = ApiClientBase.optGetString(js.get("name"));

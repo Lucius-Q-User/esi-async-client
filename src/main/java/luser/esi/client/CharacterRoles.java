@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class CharacterRoles {
             List<Json> jl = js.get("roles").asJsonList();
             List<RolesEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesEnum.fromString(jl.get(i).asString()));
             }
             self.roles = rt;
         }
@@ -54,7 +55,7 @@ public class CharacterRoles {
             List<Json> jl = js.get("roles_at_base").asJsonList();
             List<RolesAtBaseEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesAtBaseEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesAtBaseEnum.fromString(jl.get(i).asString()));
             }
             self.rolesAtBase = rt;
         }
@@ -62,7 +63,7 @@ public class CharacterRoles {
             List<Json> jl = js.get("roles_at_hq").asJsonList();
             List<RolesAtHqEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesAtHqEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesAtHqEnum.fromString(jl.get(i).asString()));
             }
             self.rolesAtHq = rt;
         }
@@ -70,7 +71,7 @@ public class CharacterRoles {
             List<Json> jl = js.get("roles_at_other").asJsonList();
             List<RolesAtOtherEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesAtOtherEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesAtOtherEnum.fromString(jl.get(i).asString()));
             }
             self.rolesAtOther = rt;
         }

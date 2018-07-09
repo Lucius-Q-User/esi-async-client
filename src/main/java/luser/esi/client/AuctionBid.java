@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -29,11 +30,11 @@ public class AuctionBid {
     public int getBidderId() {
         return bidderId;
     }
-    private String dateBid;
-    public void setDateBid(String val) {
+    private Instant dateBid;
+    public void setDateBid(Instant val) {
         dateBid = val;
     }
-    public String getDateBid() {
+    public Instant getDateBid() {
         return dateBid;
     }
     static AuctionBid fromJson(Json json) {
@@ -45,7 +46,7 @@ public class AuctionBid {
         self.amount = ApiClientBase.optGetFloat(js.get("amount"));
         self.bidId = ApiClientBase.optGetInteger(js.get("bid_id"));
         self.bidderId = ApiClientBase.optGetInteger(js.get("bidder_id"));
-        self.dateBid = ApiClientBase.optGetString(js.get("date_bid"));
+        self.dateBid = ApiClientBase.optGetInstant(js.get("date_bid"));
         return self;
     }
 }

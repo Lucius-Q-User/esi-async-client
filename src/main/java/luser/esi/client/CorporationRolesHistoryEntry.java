@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import mjson.Json;
 
 @SuppressWarnings("unused")
 public class CorporationRolesHistoryEntry {
-    private String changedAt;
-    public void setChangedAt(String val) {
+    private Instant changedAt;
+    public void setChangedAt(Instant val) {
         changedAt = val;
     }
-    public String getChangedAt() {
+    public Instant getChangedAt() {
         return changedAt;
     }
     private int characterId;
@@ -56,14 +57,14 @@ public class CorporationRolesHistoryEntry {
         }
         CorporationRolesHistoryEntry self = new CorporationRolesHistoryEntry();
         Map<String, Json> js = json.asJsonMap();
-        self.changedAt = ApiClientBase.optGetString(js.get("changed_at"));
+        self.changedAt = ApiClientBase.optGetInstant(js.get("changed_at"));
         self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
         self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
         {
             List<Json> jl = js.get("new_roles").asJsonList();
             List<NewRolesEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, NewRolesEnum.fromString(jl.get(i).asString()));
+                rt.add(NewRolesEnum.fromString(jl.get(i).asString()));
             }
             self.newRoles = rt;
         }
@@ -71,7 +72,7 @@ public class CorporationRolesHistoryEntry {
             List<Json> jl = js.get("old_roles").asJsonList();
             List<OldRolesEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, OldRolesEnum.fromString(jl.get(i).asString()));
+                rt.add(OldRolesEnum.fromString(jl.get(i).asString()));
             }
             self.oldRoles = rt;
         }

@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -79,11 +80,10 @@ public class KillVictim {
             List<Json> jl = js.get("items").asJsonList();
             List<KillItems> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, KillItems.fromJson(jl.get(i)));
+                rt.add(KillItems.fromJson(jl.get(i)));
             }
             self.items = rt;
         }
-
         self.position = Coordinate.fromJson(js.get("position"));
         self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
         return self;

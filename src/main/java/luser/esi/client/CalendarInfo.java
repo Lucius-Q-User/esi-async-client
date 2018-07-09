@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import mjson.Json;
 
 @SuppressWarnings("unused")
 public class CalendarInfo {
-    private String eventDate;
-    public void setEventDate(String val) {
+    private Instant eventDate;
+    public void setEventDate(Instant val) {
         eventDate = val;
     }
-    public String getEventDate() {
+    public Instant getEventDate() {
         return eventDate;
     }
     private Integer eventId;
@@ -49,7 +50,7 @@ public class CalendarInfo {
         }
         CalendarInfo self = new CalendarInfo();
         Map<String, Json> js = json.asJsonMap();
-        self.eventDate = ApiClientBase.optGetString(js.get("event_date"));
+        self.eventDate = ApiClientBase.optGetInstant(js.get("event_date"));
         self.eventId = ApiClientBase.optGetInteger(js.get("event_id"));
         self.eventResponse = EventResponseEnum.fromString(ApiClientBase.optGetString(js.get("event_response")));
         self.importance = ApiClientBase.optGetInteger(js.get("importance"));

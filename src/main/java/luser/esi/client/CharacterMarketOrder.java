@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -36,11 +37,11 @@ public class CharacterMarketOrder {
     public boolean getIsCorporation() {
         return isCorporation;
     }
-    private String issued;
-    public void setIssued(String val) {
+    private Instant issued;
+    public void setIssued(Instant val) {
         issued = val;
     }
-    public String getIssued() {
+    public Instant getIssued() {
         return issued;
     }
     private long locationId;
@@ -116,7 +117,7 @@ public class CharacterMarketOrder {
         self.escrow = ApiClientBase.optGetDouble(js.get("escrow"));
         self.isBuyOrder = ApiClientBase.optGetBoolean(js.get("is_buy_order"));
         self.isCorporation = ApiClientBase.optGetBoolean(js.get("is_corporation"));
-        self.issued = ApiClientBase.optGetString(js.get("issued"));
+        self.issued = ApiClientBase.optGetInstant(js.get("issued"));
         self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
         self.minVolume = ApiClientBase.optGetInteger(js.get("min_volume"));
         self.orderId = ApiClientBase.optGetLong(js.get("order_id"));

@@ -19,7 +19,7 @@ public class SkillsApi {
         return apiClient;
     }
     
-    public CompletableFuture<EsiResponseWrapper<ChatacterAttributes>> getCharactersCharacterIdAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getCharactersCharacterIdAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/attributes/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -38,9 +38,9 @@ public class SkillsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, ChatacterAttributes> responseParser = (resp) -> {
+        Function<String, CharacterAttributes> responseParser = (resp) -> {
             Json js = Json.read(resp);
-            return ChatacterAttributes.fromJson(js);
+            return CharacterAttributes.fromJson(js);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

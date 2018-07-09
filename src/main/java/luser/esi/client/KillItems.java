@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -62,11 +63,10 @@ public class KillItems {
             List<Json> jl = js.get("items").asJsonList();
             List<KillItem> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, KillItem.fromJson(jl.get(i)));
+                rt.add(KillItem.fromJson(jl.get(i)));
             }
             self.items = rt;
         }
-
         self.quantityDestroyed = ApiClientBase.optGetLong(js.get("quantity_destroyed"));
         self.quantityDropped = ApiClientBase.optGetLong(js.get("quantity_dropped"));
         self.singleton = ApiClientBase.optGetInteger(js.get("singleton"));

@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -39,11 +40,10 @@ public class TrainedSkillsInfo {
             List<Json> jl = js.get("skills").asJsonList();
             List<TrainedSkill> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, TrainedSkill.fromJson(jl.get(i)));
+                rt.add(TrainedSkill.fromJson(jl.get(i)));
             }
             self.skills = rt;
         }
-
         self.totalSp = ApiClientBase.optGetLong(js.get("total_sp"));
         self.unallocatedSp = ApiClientBase.optGetInteger(js.get("unallocated_sp"));
         return self;

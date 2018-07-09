@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -64,11 +65,11 @@ public class SovereigntyCampaign {
     public int getSolarSystemId() {
         return solarSystemId;
     }
-    private String startTime;
-    public void setStartTime(String val) {
+    private Instant startTime;
+    public void setStartTime(Instant val) {
         startTime = val;
     }
-    public String getStartTime() {
+    public Instant getStartTime() {
         return startTime;
     }
     private long structureId;
@@ -94,13 +95,12 @@ public class SovereigntyCampaign {
             List<Json> jl = js.get("participants").asJsonList();
             List<SovCampaignParticipant> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, SovCampaignParticipant.fromJson(jl.get(i)));
+                rt.add(SovCampaignParticipant.fromJson(jl.get(i)));
             }
             self.participants = rt;
         }
-
         self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.startTime = ApiClientBase.optGetString(js.get("start_time"));
+        self.startTime = ApiClientBase.optGetInstant(js.get("start_time"));
         self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
         return self;
     }

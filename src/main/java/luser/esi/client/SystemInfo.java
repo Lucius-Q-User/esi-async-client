@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -90,11 +91,10 @@ public class SystemInfo {
             List<Json> jl = js.get("planets").asJsonList();
             List<SystemPlanetInfo> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, SystemPlanetInfo.fromJson(jl.get(i)));
+                rt.add(SystemPlanetInfo.fromJson(jl.get(i)));
             }
             self.planets = rt;
         }
-
         self.position = Coordinate.fromJson(js.get("position"));
         self.securityClass = ApiClientBase.optGetString(js.get("security_class"));
         self.securityStatus = ApiClientBase.optGetFloat(js.get("security_status"));

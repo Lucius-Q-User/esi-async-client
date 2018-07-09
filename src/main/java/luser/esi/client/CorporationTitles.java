@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("grantable_roles").asJsonList();
             List<GrantableRolesEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, GrantableRolesEnum.fromString(jl.get(i).asString()));
+                rt.add(GrantableRolesEnum.fromString(jl.get(i).asString()));
             }
             self.grantableRoles = rt;
         }
@@ -96,7 +97,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("grantable_roles_at_base").asJsonList();
             List<GrantableRolesAtBaseEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, GrantableRolesAtBaseEnum.fromString(jl.get(i).asString()));
+                rt.add(GrantableRolesAtBaseEnum.fromString(jl.get(i).asString()));
             }
             self.grantableRolesAtBase = rt;
         }
@@ -104,7 +105,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("grantable_roles_at_hq").asJsonList();
             List<GrantableRolesAtHqEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, GrantableRolesAtHqEnum.fromString(jl.get(i).asString()));
+                rt.add(GrantableRolesAtHqEnum.fromString(jl.get(i).asString()));
             }
             self.grantableRolesAtHq = rt;
         }
@@ -112,7 +113,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("grantable_roles_at_other").asJsonList();
             List<GrantableRolesAtOtherEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, GrantableRolesAtOtherEnum.fromString(jl.get(i).asString()));
+                rt.add(GrantableRolesAtOtherEnum.fromString(jl.get(i).asString()));
             }
             self.grantableRolesAtOther = rt;
         }
@@ -121,7 +122,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("roles").asJsonList();
             List<RolesEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesEnum.fromString(jl.get(i).asString()));
             }
             self.roles = rt;
         }
@@ -129,7 +130,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("roles_at_base").asJsonList();
             List<RolesAtBaseEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesAtBaseEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesAtBaseEnum.fromString(jl.get(i).asString()));
             }
             self.rolesAtBase = rt;
         }
@@ -137,7 +138,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("roles_at_hq").asJsonList();
             List<RolesAtHqEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesAtHqEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesAtHqEnum.fromString(jl.get(i).asString()));
             }
             self.rolesAtHq = rt;
         }
@@ -145,7 +146,7 @@ public class CorporationTitles {
             List<Json> jl = js.get("roles_at_other").asJsonList();
             List<RolesAtOtherEnum> rt = new ArrayList<>(jl.size());
             for (int i = 0; i < jl.size(); i++) {
-                rt.set(i, RolesAtOtherEnum.fromString(jl.get(i).asString()));
+                rt.add(RolesAtOtherEnum.fromString(jl.get(i).asString()));
             }
             self.rolesAtOther = rt;
         }
