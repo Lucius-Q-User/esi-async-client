@@ -37,6 +37,13 @@ public class CorporationMarketOrderHistoryEntry {
     public Instant getIssued() {
         return issued;
     }
+    private Integer issuedBy;
+    public void setIssuedBy(Integer val) {
+        issuedBy = val;
+    }
+    public Integer getIssuedBy() {
+        return issuedBy;
+    }
     private long locationId;
     public void setLocationId(long val) {
         locationId = val;
@@ -124,6 +131,7 @@ public class CorporationMarketOrderHistoryEntry {
         self.escrow = ApiClientBase.optGetDouble(js.get("escrow"));
         self.isBuyOrder = ApiClientBase.optGetBoolean(js.get("is_buy_order"));
         self.issued = ApiClientBase.optGetInstant(js.get("issued"));
+        self.issuedBy = ApiClientBase.optGetInteger(js.get("issued_by"));
         self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
         self.minVolume = ApiClientBase.optGetInteger(js.get("min_volume"));
         self.orderId = ApiClientBase.optGetLong(js.get("order_id"));

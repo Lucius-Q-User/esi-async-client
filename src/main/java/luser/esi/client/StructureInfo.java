@@ -16,6 +16,13 @@ public class StructureInfo {
     public String getName() {
         return name;
     }
+    private int ownerId;
+    public void setOwnerId(int val) {
+        ownerId = val;
+    }
+    public int getOwnerId() {
+        return ownerId;
+    }
     private Coordinate position;
     public void setPosition(Coordinate val) {
         position = val;
@@ -44,6 +51,7 @@ public class StructureInfo {
         StructureInfo self = new StructureInfo();
         Map<String, Json> js = json.asJsonMap();
         self.name = ApiClientBase.optGetString(js.get("name"));
+        self.ownerId = ApiClientBase.optGetInteger(js.get("owner_id"));
         self.position = Coordinate.fromJson(js.get("position"));
         self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
         self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));

@@ -51,11 +51,11 @@ public class SystemInfo {
     public float getSecurityStatus() {
         return securityStatus;
     }
-    private int starId;
-    public void setStarId(int val) {
+    private Integer starId;
+    public void setStarId(Integer val) {
         starId = val;
     }
-    public int getStarId() {
+    public Integer getStarId() {
         return starId;
     }
     private int[] stargates;

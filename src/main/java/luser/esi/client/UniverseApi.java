@@ -619,33 +619,6 @@ public class UniverseApi {
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
     
-    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getUniverseStructuresStructureId(DatasourceEnum datasource, String ifNoneMatch, long structureId) {
-        String url = "https://esi.evetech.net/v1/universe/structures/{structure_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("structure_id", String.valueOf(structureId));
-        String body = null;
-        String method = "GET";
-        Function<String, StructureInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return StructureInfo.fromJson(js);
-        };
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
-    }
-    
     public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getUniverseSystemJumps(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/system_jumps/";
         
@@ -829,6 +802,33 @@ public class UniverseApi {
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
     
+    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getUniverseStructuresStructureId(DatasourceEnum datasource, String ifNoneMatch, long structureId) {
+        String url = "https://esi.evetech.net/v2/universe/structures/{structure_id}/";
+        
+        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        if (ifNoneMatch != null) {
+            String val = ifNoneMatch;
+            parametersInHeaders.put("If-None-Match", val);
+        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
+        
+        if (datasource != null) {
+            String val = datasource.stringValue;
+            parametersInQuery.put("datasource", val);
+        }
+
+        Map<String, String> parametersInUrl = new HashMap<>(1);
+        parametersInUrl.put("structure_id", String.valueOf(structureId));
+        String body = null;
+        String method = "GET";
+        Function<String, StructureInfo> responseParser = (resp) -> {
+            Json js = Json.read(resp);
+            return StructureInfo.fromJson(js);
+        };
+        boolean needsAuth = true;
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+    }
+    
     public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getUniverseSystemKills(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/universe/system_kills/";
         
@@ -854,37 +854,6 @@ public class UniverseApi {
                 ret.add(SystemKills.fromJson(jo));
             }
             return ret;
-        };
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
-    }
-    
-    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getUniverseSystemsSystemId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int systemId) {
-        String url = "https://esi.evetech.net/v3/universe/systems/{system_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
-        if (acceptLanguage != null) {
-            String val = acceptLanguage.stringValue;
-            parametersInHeaders.put("Accept-Language", val);
-        }
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("system_id", String.valueOf(systemId));
-        String body = null;
-        String method = "GET";
-        Function<String, SystemInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return SystemInfo.fromJson(js);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -916,6 +885,37 @@ public class UniverseApi {
         Function<String, TypeInfo> responseParser = (resp) -> {
             Json js = Json.read(resp);
             return TypeInfo.fromJson(js);
+        };
+        boolean needsAuth = false;
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+    }
+    
+    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getUniverseSystemsSystemId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int systemId) {
+        String url = "https://esi.evetech.net/v4/universe/systems/{system_id}/";
+        
+        Map<String, String> parametersInHeaders = new HashMap<>(2);
+        if (acceptLanguage != null) {
+            String val = acceptLanguage.stringValue;
+            parametersInHeaders.put("Accept-Language", val);
+        }
+        if (ifNoneMatch != null) {
+            String val = ifNoneMatch;
+            parametersInHeaders.put("If-None-Match", val);
+        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
+        
+        if (datasource != null) {
+            String val = datasource.stringValue;
+            parametersInQuery.put("datasource", val);
+        }
+
+        Map<String, String> parametersInUrl = new HashMap<>(1);
+        parametersInUrl.put("system_id", String.valueOf(systemId));
+        String body = null;
+        String method = "GET";
+        Function<String, SystemInfo> responseParser = (resp) -> {
+            Json js = Json.read(resp);
+            return SystemInfo.fromJson(js);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
