@@ -1,6 +1,8 @@
 package luser.esi.client;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -58,12 +60,15 @@ public class TokenVerifyResponse {
         this.intellectualProperty = intellectualProperty;
     }
     private String intellectualProperty;
+    private static final DateTimeFormatter EXPIRES_ON_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS").withZone(ZoneId.of("Z"));
     static TokenVerifyResponse fromJson(Json json) {
+
         Map<String, Json> js = json.asJsonMap();
         TokenVerifyResponse self = new TokenVerifyResponse();
         self.characterId = js.get("CharacterID").asInteger();
         self.characterName = js.get("CharacterName").asString();
-        self.expiresOn = Instant.parse(js.get("ExpiresOn").asString());
+        self.expiresOn = EXPIRES_ON_FORMAT.parse(js.get("ExpiresOn").asString(), Instant::from);
         self.scopes = Arrays.stream(js.get("Scopes").asString().split(" "))
                 .map(EsiScope::fromString).filter((t) -> t != null).collect(Collectors.toList());
         self.tokenType = js.get("TokenType").asString();

@@ -69,6 +69,12 @@ public class ApiException extends Exception {
         return responseHeaders;
     }
 
+    @Override
+    public String toString() {
+        return "ApiException {code=" + code + ", responseHeaders=" + responseHeaders + ", responseBody=" + responseBody
+                + ", getMessage()=" + getMessage() + "}";
+    }
+
     /**
      * Get the HTTP response body.
      *

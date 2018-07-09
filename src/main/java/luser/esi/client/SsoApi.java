@@ -34,7 +34,7 @@ public class SsoApi {
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
     public CompletableFuture<EsiResponseWrapper<TokenVerifyResponse>> verifyToken() {
-        String url = "https://login.eveonline.com/oauth/token";
+        String url = "https://login.eveonline.com/oauth/verify";
         Map<String, String> parametersInHeaders = new HashMap<>(0);
         Map<String, String> parametersInUrl = new HashMap<>(0);
         Map<String, String> parametersInQuery = new HashMap<>(0);

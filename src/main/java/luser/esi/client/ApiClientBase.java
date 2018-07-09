@@ -113,6 +113,7 @@ abstract class ApiClientBase {
             Map<String, List<String>> headers = headersToMap(resp.getHeaders());
             if (statusCode / 100 != 2) {
                 CompletableFuture<EsiResponseWrapper<T>> future = new CompletableFuture<>();
+
                 future.completeExceptionally(new ApiException(statusCode, headers, resultBody));
                 return future;
             } else {
@@ -239,6 +240,13 @@ abstract class ApiClientBase {
             return null;
         }
         return js.asString();
+    }
+    static Instant optGetInstant(Json js) {
+        String st = optGetString(js);
+        if (st == null) {
+            return null;
+        }
+        return Instant.parse(st);
     }
 
 }
