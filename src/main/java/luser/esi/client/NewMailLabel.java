@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewMailLabel extends JsonConvertible {
+public class NewMailLabel implements ApiParameterObject {
     private ColorEnum color;
     public void setColor(ColorEnum val) {
         color = val;
     }
+    @JsonProperty("color")
     public ColorEnum getColor() {
         return color;
     }
@@ -20,15 +21,9 @@ public class NewMailLabel extends JsonConvertible {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("color", Json.make(color.stringValue));
-        object.set("name", Json.make(name));
-        return object;
     }
     public static enum ColorEnum {
         _0000FE("#0000fe"),
@@ -49,10 +44,15 @@ public class NewMailLabel extends JsonConvertible {
         _FFFF01("#ffff01"),
         _FFFFCD("#ffffcd"),
         _FFFFFF("#ffffff");
-        public final String stringValue;
+        private final String stringValue;
         private ColorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ColorEnum fromString(String str) {
             for (ColorEnum self : ColorEnum.values()) {
                 if (self.stringValue.equals(str)) {

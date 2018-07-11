@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FittingItem extends JsonConvertible {
+public class FittingItem implements ApiParameterObject {
     private int flag;
     public void setFlag(int val) {
         flag = val;
     }
+    @JsonProperty("flag")
     public int getFlag() {
         return flag;
     }
@@ -20,6 +21,7 @@ public class FittingItem extends JsonConvertible {
     public void setQuantity(int val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -27,26 +29,8 @@ public class FittingItem extends JsonConvertible {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("flag", Json.make(flag));
-        object.set("quantity", Json.make(quantity));
-        object.set("type_id", Json.make(typeId));
-        return object;
-    }
-    static FittingItem fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FittingItem self = new FittingItem();
-        Map<String, Json> js = json.asJsonMap();
-        self.flag = ApiClientBase.optGetInteger(js.get("flag"));
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

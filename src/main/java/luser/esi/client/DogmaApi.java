@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class DogmaApi {
@@ -37,13 +37,8 @@ public class DogmaApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -68,9 +63,8 @@ public class DogmaApi {
         parametersInUrl.put("attribute_id", String.valueOf(attributeId));
         String body = null;
         String method = "GET";
-        Function<String, DogmaAttributeInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return DogmaAttributeInfo.fromJson(js);
+        ResponseParser<DogmaAttributeInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, DogmaAttributeInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -96,9 +90,8 @@ public class DogmaApi {
         parametersInUrl.put("type_id", String.valueOf(typeId));
         String body = null;
         String method = "GET";
-        Function<String, DogmaDynamicItemInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return DogmaDynamicItemInfo.fromJson(js);
+        ResponseParser<DogmaDynamicItemInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, DogmaDynamicItemInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -122,13 +115,8 @@ public class DogmaApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -153,9 +141,8 @@ public class DogmaApi {
         parametersInUrl.put("effect_id", String.valueOf(effectId));
         String body = null;
         String method = "GET";
-        Function<String, DogmaEffectIfno> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return DogmaEffectIfno.fromJson(js);
+        ResponseParser<DogmaEffectIfno> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, DogmaEffectIfno.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

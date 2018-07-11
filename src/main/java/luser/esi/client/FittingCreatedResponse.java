@@ -3,26 +3,18 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FittingCreatedResponse {
+public class FittingCreatedResponse implements ApiParameterObject {
     private int fittingId;
     public void setFittingId(int val) {
         fittingId = val;
     }
+    @JsonProperty("fitting_id")
     public int getFittingId() {
         return fittingId;
-    }
-    static FittingCreatedResponse fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FittingCreatedResponse self = new FittingCreatedResponse();
-        Map<String, Json> js = json.asJsonMap();
-        self.fittingId = ApiClientBase.optGetInteger(js.get("fitting_id"));
-        return self;
     }
 }

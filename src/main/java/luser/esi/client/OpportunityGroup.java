@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class OpportunityGroup {
+public class OpportunityGroup implements ApiParameterObject {
     private int[] connectedGroups;
     public void setConnectedGroups(int[] val) {
         connectedGroups = val;
     }
+    @JsonProperty("connected_groups")
     public int[] getConnectedGroups() {
         return connectedGroups;
     }
@@ -20,6 +21,7 @@ public class OpportunityGroup {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -27,6 +29,7 @@ public class OpportunityGroup {
     public void setGroupId(int val) {
         groupId = val;
     }
+    @JsonProperty("group_id")
     public int getGroupId() {
         return groupId;
     }
@@ -34,6 +37,7 @@ public class OpportunityGroup {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -41,6 +45,7 @@ public class OpportunityGroup {
     public void setNotification(String val) {
         notification = val;
     }
+    @JsonProperty("notification")
     public String getNotification() {
         return notification;
     }
@@ -48,35 +53,8 @@ public class OpportunityGroup {
     public void setRequiredTasks(int[] val) {
         requiredTasks = val;
     }
+    @JsonProperty("required_tasks")
     public int[] getRequiredTasks() {
         return requiredTasks;
-    }
-    static OpportunityGroup fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        OpportunityGroup self = new OpportunityGroup();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("connected_groups").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.connectedGroups = rt;
-        }
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.groupId = ApiClientBase.optGetInteger(js.get("group_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.notification = ApiClientBase.optGetString(js.get("notification"));
-        {
-            List<Json> jl = js.get("required_tasks").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.requiredTasks = rt;
-        }
-        return self;
     }
 }

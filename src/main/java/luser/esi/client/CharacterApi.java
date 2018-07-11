@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class CharacterApi {
@@ -34,13 +34,8 @@ public class CharacterApi {
         String body = null;
         body = ApiClientBase.renderToBody(characters);
         String method = "POST";
-        Function<String, List<ResolvedCharacterAffiliation>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResolvedCharacterAffiliation> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResolvedCharacterAffiliation.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResolvedCharacterAffiliation>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedCharacterAffiliation>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -65,13 +60,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<ResearchAgentInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResearchAgentInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResearchAgentInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResearchAgentInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResearchAgentInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -96,13 +86,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationHistoryEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationHistoryEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationHistoryEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationHistoryEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationHistoryEntry>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -127,9 +112,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, JumpAidsInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return JumpAidsInfo.fromJson(js);
+        ResponseParser<JumpAidsInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, JumpAidsInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -154,13 +138,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterMedal>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterMedal> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterMedal.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterMedal>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterMedal>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -185,13 +164,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<NewContactNotification>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<NewContactNotification> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(NewContactNotification.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<NewContactNotification>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<NewContactNotification>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -216,13 +190,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<StandingsEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<StandingsEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(StandingsEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<StandingsEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<StandingsEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -247,13 +216,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterTitles>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterTitles> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterTitles.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterTitles>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterTitles>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -283,13 +247,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterBlueprint>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterBlueprint> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterBlueprint.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterBlueprint>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterBlueprint>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -314,13 +273,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<NotificationInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<NotificationInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(NotificationInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<NotificationInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<NotificationInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -345,9 +299,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CharacterPortrait> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CharacterPortrait.fromJson(js);
+        ResponseParser<CharacterPortrait> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterPortrait.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -372,9 +325,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CharacterRoles> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CharacterRoles.fromJson(js);
+        ResponseParser<CharacterRoles> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterRoles.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -399,13 +351,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterStats>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterStats> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterStats.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterStats>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterStats>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -430,9 +377,8 @@ public class CharacterApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CharacterInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CharacterInfo.fromJson(js);
+        ResponseParser<CharacterInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -454,7 +400,7 @@ public class CharacterApi {
         String body = null;
         body = ApiClientBase.renderToBody(characters);
         String method = "POST";
-        Function<String, Float> responseParser = (resp) -> {
+        ResponseParser<Float> responseParser = (resp) -> {
             return Float.parseFloat(resp);
         };
         boolean needsAuth = true;

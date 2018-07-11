@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ActiveIncursions {
+public class ActiveIncursions implements ApiParameterObject {
     private int constellationId;
     public void setConstellationId(int val) {
         constellationId = val;
     }
+    @JsonProperty("constellation_id")
     public int getConstellationId() {
         return constellationId;
     }
@@ -20,6 +21,7 @@ public class ActiveIncursions {
     public void setFactionId(int val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public int getFactionId() {
         return factionId;
     }
@@ -27,6 +29,7 @@ public class ActiveIncursions {
     public void setHasBoss(boolean val) {
         hasBoss = val;
     }
+    @JsonProperty("has_boss")
     public boolean getHasBoss() {
         return hasBoss;
     }
@@ -34,6 +37,7 @@ public class ActiveIncursions {
     public void setInfestedSolarSystems(int[] val) {
         infestedSolarSystems = val;
     }
+    @JsonProperty("infested_solar_systems")
     public int[] getInfestedSolarSystems() {
         return infestedSolarSystems;
     }
@@ -41,6 +45,7 @@ public class ActiveIncursions {
     public void setInfluence(float val) {
         influence = val;
     }
+    @JsonProperty("influence")
     public float getInfluence() {
         return influence;
     }
@@ -48,6 +53,7 @@ public class ActiveIncursions {
     public void setStagingSolarSystemId(int val) {
         stagingSolarSystemId = val;
     }
+    @JsonProperty("staging_solar_system_id")
     public int getStagingSolarSystemId() {
         return stagingSolarSystemId;
     }
@@ -55,6 +61,7 @@ public class ActiveIncursions {
     public void setState(StateEnum val) {
         state = val;
     }
+    @JsonProperty("state")
     public StateEnum getState() {
         return state;
     }
@@ -62,40 +69,23 @@ public class ActiveIncursions {
     public void setType(String val) {
         type = val;
     }
+    @JsonProperty("type")
     public String getType() {
         return type;
-    }
-    static ActiveIncursions fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ActiveIncursions self = new ActiveIncursions();
-        Map<String, Json> js = json.asJsonMap();
-        self.constellationId = ApiClientBase.optGetInteger(js.get("constellation_id"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.hasBoss = ApiClientBase.optGetBoolean(js.get("has_boss"));
-        {
-            List<Json> jl = js.get("infested_solar_systems").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.infestedSolarSystems = rt;
-        }
-        self.influence = ApiClientBase.optGetFloat(js.get("influence"));
-        self.stagingSolarSystemId = ApiClientBase.optGetInteger(js.get("staging_solar_system_id"));
-        self.state = StateEnum.fromString(ApiClientBase.optGetString(js.get("state")));
-        self.type = ApiClientBase.optGetString(js.get("type"));
-        return self;
     }
     public static enum StateEnum {
         WITHDRAWING("withdrawing"),
         MOBILIZING("mobilizing"),
         ESTABLISHED("established");
-        public final String stringValue;
+        private final String stringValue;
         private StateEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StateEnum fromString(String str) {
             for (StateEnum self : StateEnum.values()) {
                 if (self.stringValue.equals(str)) {

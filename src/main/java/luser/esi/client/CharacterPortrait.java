@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterPortrait {
+public class CharacterPortrait implements ApiParameterObject {
     private String px128x128;
     public void setPx128x128(String val) {
         px128x128 = val;
     }
+    @JsonProperty("px128x128")
     public String getPx128x128() {
         return px128x128;
     }
@@ -20,6 +21,7 @@ public class CharacterPortrait {
     public void setPx256x256(String val) {
         px256x256 = val;
     }
+    @JsonProperty("px256x256")
     public String getPx256x256() {
         return px256x256;
     }
@@ -27,6 +29,7 @@ public class CharacterPortrait {
     public void setPx512x512(String val) {
         px512x512 = val;
     }
+    @JsonProperty("px512x512")
     public String getPx512x512() {
         return px512x512;
     }
@@ -34,19 +37,8 @@ public class CharacterPortrait {
     public void setPx64x64(String val) {
         px64x64 = val;
     }
+    @JsonProperty("px64x64")
     public String getPx64x64() {
         return px64x64;
-    }
-    static CharacterPortrait fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterPortrait self = new CharacterPortrait();
-        Map<String, Json> js = json.asJsonMap();
-        self.px128x128 = ApiClientBase.optGetString(js.get("px128x128"));
-        self.px256x256 = ApiClientBase.optGetString(js.get("px256x256"));
-        self.px512x512 = ApiClientBase.optGetString(js.get("px512x512"));
-        self.px64x64 = ApiClientBase.optGetString(js.get("px64x64"));
-        return self;
     }
 }

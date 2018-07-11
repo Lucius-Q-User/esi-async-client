@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FwStats {
+public class FwStats implements ApiParameterObject {
     private int lastWeek;
     public void setLastWeek(int val) {
         lastWeek = val;
     }
+    @JsonProperty("last_week")
     public int getLastWeek() {
         return lastWeek;
     }
@@ -20,6 +21,7 @@ public class FwStats {
     public void setTotal(int val) {
         total = val;
     }
+    @JsonProperty("total")
     public int getTotal() {
         return total;
     }
@@ -27,18 +29,8 @@ public class FwStats {
     public void setYesterday(int val) {
         yesterday = val;
     }
+    @JsonProperty("yesterday")
     public int getYesterday() {
         return yesterday;
-    }
-    static FwStats fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FwStats self = new FwStats();
-        Map<String, Json> js = json.asJsonMap();
-        self.lastWeek = ApiClientBase.optGetInteger(js.get("last_week"));
-        self.total = ApiClientBase.optGetInteger(js.get("total"));
-        self.yesterday = ApiClientBase.optGetInteger(js.get("yesterday"));
-        return self;
     }
 }

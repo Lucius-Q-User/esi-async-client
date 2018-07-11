@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStats {
+public class CharacterStats implements ApiParameterObject {
     private CharacterStatsGeneral character;
     public void setCharacter(CharacterStatsGeneral val) {
         character = val;
     }
+    @JsonProperty("character")
     public CharacterStatsGeneral getCharacter() {
         return character;
     }
@@ -20,6 +21,7 @@ public class CharacterStats {
     public void setCombat(CharacterStatsCombat val) {
         combat = val;
     }
+    @JsonProperty("combat")
     public CharacterStatsCombat getCombat() {
         return combat;
     }
@@ -27,6 +29,7 @@ public class CharacterStats {
     public void setIndustry(CharacterStatsIndustry val) {
         industry = val;
     }
+    @JsonProperty("industry")
     public CharacterStatsIndustry getIndustry() {
         return industry;
     }
@@ -34,6 +37,7 @@ public class CharacterStats {
     public void setInventory(CharacterStatsInventory val) {
         inventory = val;
     }
+    @JsonProperty("inventory")
     public CharacterStatsInventory getInventory() {
         return inventory;
     }
@@ -41,6 +45,7 @@ public class CharacterStats {
     public void setIsk(CharacterStatsIsk val) {
         isk = val;
     }
+    @JsonProperty("isk")
     public CharacterStatsIsk getIsk() {
         return isk;
     }
@@ -48,6 +53,7 @@ public class CharacterStats {
     public void setMarket(CharacterStatsMarket val) {
         market = val;
     }
+    @JsonProperty("market")
     public CharacterStatsMarket getMarket() {
         return market;
     }
@@ -55,6 +61,7 @@ public class CharacterStats {
     public void setMining(CharacterStatsMining val) {
         mining = val;
     }
+    @JsonProperty("mining")
     public CharacterStatsMining getMining() {
         return mining;
     }
@@ -62,6 +69,7 @@ public class CharacterStats {
     public void setModule(CharacterStatsModules val) {
         module = val;
     }
+    @JsonProperty("module")
     public CharacterStatsModules getModule() {
         return module;
     }
@@ -69,6 +77,7 @@ public class CharacterStats {
     public void setOrbital(CharacterStatsOrbital val) {
         orbital = val;
     }
+    @JsonProperty("orbital")
     public CharacterStatsOrbital getOrbital() {
         return orbital;
     }
@@ -76,6 +85,7 @@ public class CharacterStats {
     public void setPve(CharacterStatsPve val) {
         pve = val;
     }
+    @JsonProperty("pve")
     public CharacterStatsPve getPve() {
         return pve;
     }
@@ -83,6 +93,7 @@ public class CharacterStats {
     public void setSocial(CharacterStatsSocial val) {
         social = val;
     }
+    @JsonProperty("social")
     public CharacterStatsSocial getSocial() {
         return social;
     }
@@ -90,6 +101,7 @@ public class CharacterStats {
     public void setTravel(CharacterStatsTravel val) {
         travel = val;
     }
+    @JsonProperty("travel")
     public CharacterStatsTravel getTravel() {
         return travel;
     }
@@ -97,28 +109,8 @@ public class CharacterStats {
     public void setYear(int val) {
         year = val;
     }
+    @JsonProperty("year")
     public int getYear() {
         return year;
-    }
-    static CharacterStats fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStats self = new CharacterStats();
-        Map<String, Json> js = json.asJsonMap();
-        self.character = CharacterStatsGeneral.fromJson(js.get("character"));
-        self.combat = CharacterStatsCombat.fromJson(js.get("combat"));
-        self.industry = CharacterStatsIndustry.fromJson(js.get("industry"));
-        self.inventory = CharacterStatsInventory.fromJson(js.get("inventory"));
-        self.isk = CharacterStatsIsk.fromJson(js.get("isk"));
-        self.market = CharacterStatsMarket.fromJson(js.get("market"));
-        self.mining = CharacterStatsMining.fromJson(js.get("mining"));
-        self.module = CharacterStatsModules.fromJson(js.get("module"));
-        self.orbital = CharacterStatsOrbital.fromJson(js.get("orbital"));
-        self.pve = CharacterStatsPve.fromJson(js.get("pve"));
-        self.social = CharacterStatsSocial.fromJson(js.get("social"));
-        self.travel = CharacterStatsTravel.fromJson(js.get("travel"));
-        self.year = ApiClientBase.optGetInteger(js.get("year"));
-        return self;
     }
 }

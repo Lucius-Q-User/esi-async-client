@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class LoyaltyStoreOffer {
+public class LoyaltyStoreOffer implements ApiParameterObject {
     private Integer akCost;
     public void setAkCost(Integer val) {
         akCost = val;
     }
+    @JsonProperty("ak_cost")
     public Integer getAkCost() {
         return akCost;
     }
@@ -20,6 +21,7 @@ public class LoyaltyStoreOffer {
     public void setIskCost(long val) {
         iskCost = val;
     }
+    @JsonProperty("isk_cost")
     public long getIskCost() {
         return iskCost;
     }
@@ -27,6 +29,7 @@ public class LoyaltyStoreOffer {
     public void setLpCost(int val) {
         lpCost = val;
     }
+    @JsonProperty("lp_cost")
     public int getLpCost() {
         return lpCost;
     }
@@ -34,6 +37,7 @@ public class LoyaltyStoreOffer {
     public void setOfferId(int val) {
         offerId = val;
     }
+    @JsonProperty("offer_id")
     public int getOfferId() {
         return offerId;
     }
@@ -41,6 +45,7 @@ public class LoyaltyStoreOffer {
     public void setQuantity(int val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -48,6 +53,7 @@ public class LoyaltyStoreOffer {
     public void setRequiredItems(List<LpTradeRequiredItem> val) {
         requiredItems = val;
     }
+    @JsonProperty("required_items")
     public List<LpTradeRequiredItem> getRequiredItems() {
         return requiredItems;
     }
@@ -55,29 +61,8 @@ public class LoyaltyStoreOffer {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static LoyaltyStoreOffer fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        LoyaltyStoreOffer self = new LoyaltyStoreOffer();
-        Map<String, Json> js = json.asJsonMap();
-        self.akCost = ApiClientBase.optGetInteger(js.get("ak_cost"));
-        self.iskCost = ApiClientBase.optGetLong(js.get("isk_cost"));
-        self.lpCost = ApiClientBase.optGetInteger(js.get("lp_cost"));
-        self.offerId = ApiClientBase.optGetInteger(js.get("offer_id"));
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        {
-            List<Json> jl = js.get("required_items").asJsonList();
-            List<LpTradeRequiredItem> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(LpTradeRequiredItem.fromJson(jl.get(i)));
-            }
-            self.requiredItems = rt;
-        }
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PILink {
+public class PILink implements ApiParameterObject {
     private long destinationPinId;
     public void setDestinationPinId(long val) {
         destinationPinId = val;
     }
+    @JsonProperty("destination_pin_id")
     public long getDestinationPinId() {
         return destinationPinId;
     }
@@ -20,6 +21,7 @@ public class PILink {
     public void setLinkLevel(int val) {
         linkLevel = val;
     }
+    @JsonProperty("link_level")
     public int getLinkLevel() {
         return linkLevel;
     }
@@ -27,18 +29,8 @@ public class PILink {
     public void setSourcePinId(long val) {
         sourcePinId = val;
     }
+    @JsonProperty("source_pin_id")
     public long getSourcePinId() {
         return sourcePinId;
-    }
-    static PILink fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PILink self = new PILink();
-        Map<String, Json> js = json.asJsonMap();
-        self.destinationPinId = ApiClientBase.optGetLong(js.get("destination_pin_id"));
-        self.linkLevel = ApiClientBase.optGetInteger(js.get("link_level"));
-        self.sourcePinId = ApiClientBase.optGetLong(js.get("source_pin_id"));
-        return self;
     }
 }

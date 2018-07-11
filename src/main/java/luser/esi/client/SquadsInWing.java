@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SquadsInWing {
+public class SquadsInWing implements ApiParameterObject {
     private long id;
     public void setId(long val) {
         id = val;
     }
+    @JsonProperty("id")
     public long getId() {
         return id;
     }
@@ -20,17 +21,8 @@ public class SquadsInWing {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    static SquadsInWing fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SquadsInWing self = new SquadsInWing();
-        Map<String, Json> js = json.asJsonMap();
-        self.id = ApiClientBase.optGetLong(js.get("id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        return self;
     }
 }

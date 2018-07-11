@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class BookmarkInfo {
+public class BookmarkInfo implements ApiParameterObject {
     private int bookmarkId;
     public void setBookmarkId(int val) {
         bookmarkId = val;
     }
+    @JsonProperty("bookmark_id")
     public int getBookmarkId() {
         return bookmarkId;
     }
@@ -20,6 +21,7 @@ public class BookmarkInfo {
     public void setCoordinates(Coordinate val) {
         coordinates = val;
     }
+    @JsonProperty("coordinates")
     public Coordinate getCoordinates() {
         return coordinates;
     }
@@ -27,6 +29,7 @@ public class BookmarkInfo {
     public void setCreated(Instant val) {
         created = val;
     }
+    @JsonProperty("created")
     public Instant getCreated() {
         return created;
     }
@@ -34,6 +37,7 @@ public class BookmarkInfo {
     public void setCreatorId(int val) {
         creatorId = val;
     }
+    @JsonProperty("creator_id")
     public int getCreatorId() {
         return creatorId;
     }
@@ -41,6 +45,7 @@ public class BookmarkInfo {
     public void setFolderId(Integer val) {
         folderId = val;
     }
+    @JsonProperty("folder_id")
     public Integer getFolderId() {
         return folderId;
     }
@@ -48,6 +53,7 @@ public class BookmarkInfo {
     public void setItem(BookmarkedItem val) {
         item = val;
     }
+    @JsonProperty("item")
     public BookmarkedItem getItem() {
         return item;
     }
@@ -55,6 +61,7 @@ public class BookmarkInfo {
     public void setLabel(String val) {
         label = val;
     }
+    @JsonProperty("label")
     public String getLabel() {
         return label;
     }
@@ -62,6 +69,7 @@ public class BookmarkInfo {
     public void setLocationId(int val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public int getLocationId() {
         return locationId;
     }
@@ -69,24 +77,8 @@ public class BookmarkInfo {
     public void setNotes(String val) {
         notes = val;
     }
+    @JsonProperty("notes")
     public String getNotes() {
         return notes;
-    }
-    static BookmarkInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        BookmarkInfo self = new BookmarkInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.bookmarkId = ApiClientBase.optGetInteger(js.get("bookmark_id"));
-        self.coordinates = Coordinate.fromJson(js.get("coordinates"));
-        self.created = ApiClientBase.optGetInstant(js.get("created"));
-        self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
-        self.folderId = ApiClientBase.optGetInteger(js.get("folder_id"));
-        self.item = BookmarkedItem.fromJson(js.get("item"));
-        self.label = ApiClientBase.optGetString(js.get("label"));
-        self.locationId = ApiClientBase.optGetInteger(js.get("location_id"));
-        self.notes = ApiClientBase.optGetString(js.get("notes"));
-        return self;
     }
 }

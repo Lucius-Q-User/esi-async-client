@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewFleetSettings extends JsonConvertible {
+public class NewFleetSettings implements ApiParameterObject {
     private Boolean isFreeMove;
     public void setIsFreeMove(Boolean val) {
         isFreeMove = val;
     }
+    @JsonProperty("is_free_move")
     public Boolean getIsFreeMove() {
         return isFreeMove;
     }
@@ -20,14 +21,8 @@ public class NewFleetSettings extends JsonConvertible {
     public void setMotd(String val) {
         motd = val;
     }
+    @JsonProperty("motd")
     public String getMotd() {
         return motd;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("is_free_move", Json.make(isFreeMove));
-        object.set("motd", Json.make(motd));
-        return object;
     }
 }

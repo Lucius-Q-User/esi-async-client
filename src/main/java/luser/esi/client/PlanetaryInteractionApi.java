@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class PlanetaryInteractionApi {
@@ -38,13 +38,8 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<PlanetInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<PlanetInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(PlanetInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<PlanetInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<PlanetInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -74,13 +69,8 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationCustomsOffice>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationCustomsOffice> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationCustomsOffice.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationCustomsOffice>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationCustomsOffice>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -105,9 +95,8 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("schematic_id", String.valueOf(schematicId));
         String body = null;
         String method = "GET";
-        Function<String, SchematicInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return SchematicInfo.fromJson(js);
+        ResponseParser<SchematicInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, SchematicInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -133,9 +122,8 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("planet_id", String.valueOf(planetId));
         String body = null;
         String method = "GET";
-        Function<String, PlanetContents> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return PlanetContents.fromJson(js);
+        ResponseParser<PlanetContents> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, PlanetContents.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

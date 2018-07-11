@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class CorporationApi {
@@ -37,13 +37,8 @@ public class CorporationApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -68,9 +63,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, CorporationDivision> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CorporationDivision.fromJson(js);
+        ResponseParser<CorporationDivision> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationDivision.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -95,13 +89,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationFacility>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationFacility> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationFacility.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationFacility>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationFacility>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -126,9 +115,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, CorporationIcons> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CorporationIcons.fromJson(js);
+        ResponseParser<CorporationIcons> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationIcons.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -158,13 +146,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationMedals>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationMedals> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationMedals.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationMedals>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMedals>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -194,13 +177,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationIssuedMedals>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationIssuedMedals> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationIssuedMedals.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationIssuedMedals>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationIssuedMedals>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -225,7 +203,7 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, Integer> responseParser = (resp) -> {
+        ResponseParser<Integer> responseParser = (resp) -> {
             return Integer.parseInt(resp);
         };
         boolean needsAuth = true;
@@ -251,13 +229,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationMemberTitle>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationMemberTitle> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationMemberTitle.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationMemberTitle>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMemberTitle>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -282,13 +255,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<MemberTrackingInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MemberTrackingInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MemberTrackingInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MemberTrackingInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MemberTrackingInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -313,13 +281,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationRoles>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationRoles> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationRoles.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationRoles>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationRoles>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -349,13 +312,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationRolesHistoryEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationRolesHistoryEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationRolesHistoryEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationRolesHistoryEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationRolesHistoryEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -385,13 +343,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationShareholders>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationShareholders> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationShareholders.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationShareholders>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationShareholders>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -421,13 +374,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<StandingsEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<StandingsEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(StandingsEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<StandingsEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<StandingsEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -457,13 +405,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationPOS>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationPOS> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationPOS.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationPOS>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationPOS>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -494,9 +437,8 @@ public class CorporationApi {
         parametersInUrl.put("starbase_id", String.valueOf(starbaseId));
         String body = null;
         String method = "GET";
-        Function<String, CorporationPOSInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CorporationPOSInfo.fromJson(js);
+        ResponseParser<CorporationPOSInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationPOSInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -521,13 +463,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationTitles>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationTitles> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationTitles.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationTitles>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationTitles>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -552,13 +489,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<AllianceHistoryEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<AllianceHistoryEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(AllianceHistoryEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<AllianceHistoryEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AllianceHistoryEntry>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -588,13 +520,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationBlueprint>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationBlueprint> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationBlueprint.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationBlueprint>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationBlueprint>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -624,13 +551,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<ContainerLogEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ContainerLogEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ContainerLogEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ContainerLogEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContainerLogEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -664,13 +586,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationStructures>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationStructures> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationStructures.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationStructures>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationStructures>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -695,13 +612,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -726,9 +638,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, CorporationInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CorporationInfo.fromJson(js);
+        ResponseParser<CorporationInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

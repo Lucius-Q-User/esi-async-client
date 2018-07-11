@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class EventAttendee {
+public class EventAttendee implements ApiParameterObject {
     private Integer characterId;
     public void setCharacterId(Integer val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public Integer getCharacterId() {
         return characterId;
     }
@@ -20,28 +21,24 @@ public class EventAttendee {
     public void setEventResponse(EventResponseEnum val) {
         eventResponse = val;
     }
+    @JsonProperty("event_response")
     public EventResponseEnum getEventResponse() {
         return eventResponse;
-    }
-    static EventAttendee fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        EventAttendee self = new EventAttendee();
-        Map<String, Json> js = json.asJsonMap();
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.eventResponse = EventResponseEnum.fromString(ApiClientBase.optGetString(js.get("event_response")));
-        return self;
     }
     public static enum EventResponseEnum {
         DECLINED("declined"),
         NOT_RESPONDED("not_responded"),
         ACCEPTED("accepted"),
         TENTATIVE("tentative");
-        public final String stringValue;
+        private final String stringValue;
         private EventResponseEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static EventResponseEnum fromString(String str) {
             for (EventResponseEnum self : EventResponseEnum.values()) {
                 if (self.stringValue.equals(str)) {

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ResolvedAssetName {
+public class ResolvedAssetName implements ApiParameterObject {
     private long itemId;
     public void setItemId(long val) {
         itemId = val;
     }
+    @JsonProperty("item_id")
     public long getItemId() {
         return itemId;
     }
@@ -20,17 +21,8 @@ public class ResolvedAssetName {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    static ResolvedAssetName fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ResolvedAssetName self = new ResolvedAssetName();
-        Map<String, Json> js = json.asJsonMap();
-        self.itemId = ApiClientBase.optGetLong(js.get("item_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        return self;
     }
 }

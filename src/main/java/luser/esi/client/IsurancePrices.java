@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class IsurancePrices {
+public class IsurancePrices implements ApiParameterObject {
     private float cost;
     public void setCost(float val) {
         cost = val;
     }
+    @JsonProperty("cost")
     public float getCost() {
         return cost;
     }
@@ -20,6 +21,7 @@ public class IsurancePrices {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,18 +29,8 @@ public class IsurancePrices {
     public void setPayout(float val) {
         payout = val;
     }
+    @JsonProperty("payout")
     public float getPayout() {
         return payout;
-    }
-    static IsurancePrices fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        IsurancePrices self = new IsurancePrices();
-        Map<String, Json> js = json.asJsonMap();
-        self.cost = ApiClientBase.optGetFloat(js.get("cost"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.payout = ApiClientBase.optGetFloat(js.get("payout"));
-        return self;
     }
 }

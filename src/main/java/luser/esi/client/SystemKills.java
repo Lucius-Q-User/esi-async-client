@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SystemKills {
+public class SystemKills implements ApiParameterObject {
     private int npcKills;
     public void setNpcKills(int val) {
         npcKills = val;
     }
+    @JsonProperty("npc_kills")
     public int getNpcKills() {
         return npcKills;
     }
@@ -20,6 +21,7 @@ public class SystemKills {
     public void setPodKills(int val) {
         podKills = val;
     }
+    @JsonProperty("pod_kills")
     public int getPodKills() {
         return podKills;
     }
@@ -27,6 +29,7 @@ public class SystemKills {
     public void setShipKills(int val) {
         shipKills = val;
     }
+    @JsonProperty("ship_kills")
     public int getShipKills() {
         return shipKills;
     }
@@ -34,19 +37,8 @@ public class SystemKills {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
-    }
-    static SystemKills fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SystemKills self = new SystemKills();
-        Map<String, Json> js = json.asJsonMap();
-        self.npcKills = ApiClientBase.optGetInteger(js.get("npc_kills"));
-        self.podKills = ApiClientBase.optGetInteger(js.get("pod_kills"));
-        self.shipKills = ApiClientBase.optGetInteger(js.get("ship_kills"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        return self;
     }
 }

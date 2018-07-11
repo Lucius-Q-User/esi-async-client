@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FleetWings {
+public class FleetWings implements ApiParameterObject {
     private long id;
     public void setId(long val) {
         id = val;
     }
+    @JsonProperty("id")
     public long getId() {
         return id;
     }
@@ -20,6 +21,7 @@ public class FleetWings {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,25 +29,8 @@ public class FleetWings {
     public void setSquads(List<SquadsInWing> val) {
         squads = val;
     }
+    @JsonProperty("squads")
     public List<SquadsInWing> getSquads() {
         return squads;
-    }
-    static FleetWings fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FleetWings self = new FleetWings();
-        Map<String, Json> js = json.asJsonMap();
-        self.id = ApiClientBase.optGetLong(js.get("id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        {
-            List<Json> jl = js.get("squads").asJsonList();
-            List<SquadsInWing> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(SquadsInWing.fromJson(jl.get(i)));
-            }
-            self.squads = rt;
-        }
-        return self;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class MarketApi {
@@ -43,13 +43,8 @@ public class MarketApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterOrderHistoryEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterOrderHistoryEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterOrderHistoryEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterOrderHistoryEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterOrderHistoryEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -73,13 +68,8 @@ public class MarketApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -108,9 +98,8 @@ public class MarketApi {
         parametersInUrl.put("market_group_id", String.valueOf(marketGroupId));
         String body = null;
         String method = "GET";
-        Function<String, MarketGroup> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return MarketGroup.fromJson(js);
+        ResponseParser<MarketGroup> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MarketGroup.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -134,13 +123,8 @@ public class MarketApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<MarketPrices>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MarketPrices> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MarketPrices.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MarketPrices>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MarketPrices>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -170,13 +154,8 @@ public class MarketApi {
         parametersInUrl.put("structure_id", String.valueOf(structureId));
         String body = null;
         String method = "GET";
-        Function<String, List<StructureMarkets>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<StructureMarkets> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(StructureMarkets.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<StructureMarkets>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<StructureMarkets>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -206,13 +185,8 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        Function<String, List<MarketHistory>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MarketHistory> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MarketHistory.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MarketHistory>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MarketHistory>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -252,13 +226,8 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        Function<String, List<ActiveMarketOrder>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ActiveMarketOrder> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ActiveMarketOrder.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ActiveMarketOrder>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ActiveMarketOrder>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -288,13 +257,8 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -319,13 +283,8 @@ public class MarketApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterMarketOrder>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterMarketOrder> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterMarketOrder.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterMarketOrder>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterMarketOrder>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -355,13 +314,8 @@ public class MarketApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationMarketOrderHistoryEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationMarketOrderHistoryEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationMarketOrderHistoryEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationMarketOrderHistoryEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMarketOrderHistoryEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -391,13 +345,8 @@ public class MarketApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationMarketOwner>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationMarketOwner> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationMarketOwner.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationMarketOwner>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMarketOwner>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

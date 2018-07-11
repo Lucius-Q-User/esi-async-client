@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StructureMarkets {
+public class StructureMarkets implements ApiParameterObject {
     private int duration;
     public void setDuration(int val) {
         duration = val;
     }
+    @JsonProperty("duration")
     public int getDuration() {
         return duration;
     }
@@ -20,6 +21,7 @@ public class StructureMarkets {
     public void setIsBuyOrder(boolean val) {
         isBuyOrder = val;
     }
+    @JsonProperty("is_buy_order")
     public boolean getIsBuyOrder() {
         return isBuyOrder;
     }
@@ -27,6 +29,7 @@ public class StructureMarkets {
     public void setIssued(Instant val) {
         issued = val;
     }
+    @JsonProperty("issued")
     public Instant getIssued() {
         return issued;
     }
@@ -34,6 +37,7 @@ public class StructureMarkets {
     public void setLocationId(long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public long getLocationId() {
         return locationId;
     }
@@ -41,6 +45,7 @@ public class StructureMarkets {
     public void setMinVolume(int val) {
         minVolume = val;
     }
+    @JsonProperty("min_volume")
     public int getMinVolume() {
         return minVolume;
     }
@@ -48,6 +53,7 @@ public class StructureMarkets {
     public void setOrderId(long val) {
         orderId = val;
     }
+    @JsonProperty("order_id")
     public long getOrderId() {
         return orderId;
     }
@@ -55,6 +61,7 @@ public class StructureMarkets {
     public void setPrice(double val) {
         price = val;
     }
+    @JsonProperty("price")
     public double getPrice() {
         return price;
     }
@@ -62,6 +69,7 @@ public class StructureMarkets {
     public void setRange(RangeEnum val) {
         range = val;
     }
+    @JsonProperty("range")
     public RangeEnum getRange() {
         return range;
     }
@@ -69,6 +77,7 @@ public class StructureMarkets {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -76,6 +85,7 @@ public class StructureMarkets {
     public void setVolumeRemain(int val) {
         volumeRemain = val;
     }
+    @JsonProperty("volume_remain")
     public int getVolumeRemain() {
         return volumeRemain;
     }
@@ -83,27 +93,9 @@ public class StructureMarkets {
     public void setVolumeTotal(int val) {
         volumeTotal = val;
     }
+    @JsonProperty("volume_total")
     public int getVolumeTotal() {
         return volumeTotal;
-    }
-    static StructureMarkets fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StructureMarkets self = new StructureMarkets();
-        Map<String, Json> js = json.asJsonMap();
-        self.duration = ApiClientBase.optGetInteger(js.get("duration"));
-        self.isBuyOrder = ApiClientBase.optGetBoolean(js.get("is_buy_order"));
-        self.issued = ApiClientBase.optGetInstant(js.get("issued"));
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.minVolume = ApiClientBase.optGetInteger(js.get("min_volume"));
-        self.orderId = ApiClientBase.optGetLong(js.get("order_id"));
-        self.price = ApiClientBase.optGetDouble(js.get("price"));
-        self.range = RangeEnum.fromString(ApiClientBase.optGetString(js.get("range")));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.volumeRemain = ApiClientBase.optGetInteger(js.get("volume_remain"));
-        self.volumeTotal = ApiClientBase.optGetInteger(js.get("volume_total"));
-        return self;
     }
     public static enum RangeEnum {
         STATION("station"),
@@ -118,10 +110,15 @@ public class StructureMarkets {
         _20("20"),
         _30("30"),
         _40("40");
-        public final String stringValue;
+        private final String stringValue;
         private RangeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RangeEnum fromString(String str) {
             for (RangeEnum self : RangeEnum.values()) {
                 if (self.stringValue.equals(str)) {

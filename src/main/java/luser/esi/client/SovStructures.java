@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SovStructures {
+public class SovStructures implements ApiParameterObject {
     private int allianceId;
     public void setAllianceId(int val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public int getAllianceId() {
         return allianceId;
     }
@@ -20,6 +21,7 @@ public class SovStructures {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -27,6 +29,7 @@ public class SovStructures {
     public void setStructureId(long val) {
         structureId = val;
     }
+    @JsonProperty("structure_id")
     public long getStructureId() {
         return structureId;
     }
@@ -34,6 +37,7 @@ public class SovStructures {
     public void setStructureTypeId(int val) {
         structureTypeId = val;
     }
+    @JsonProperty("structure_type_id")
     public int getStructureTypeId() {
         return structureTypeId;
     }
@@ -41,6 +45,7 @@ public class SovStructures {
     public void setVulnerabilityOccupancyLevel(Float val) {
         vulnerabilityOccupancyLevel = val;
     }
+    @JsonProperty("vulnerability_occupancy_level")
     public Float getVulnerabilityOccupancyLevel() {
         return vulnerabilityOccupancyLevel;
     }
@@ -48,6 +53,7 @@ public class SovStructures {
     public void setVulnerableEndTime(Instant val) {
         vulnerableEndTime = val;
     }
+    @JsonProperty("vulnerable_end_time")
     public Instant getVulnerableEndTime() {
         return vulnerableEndTime;
     }
@@ -55,22 +61,8 @@ public class SovStructures {
     public void setVulnerableStartTime(Instant val) {
         vulnerableStartTime = val;
     }
+    @JsonProperty("vulnerable_start_time")
     public Instant getVulnerableStartTime() {
         return vulnerableStartTime;
-    }
-    static SovStructures fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SovStructures self = new SovStructures();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
-        self.structureTypeId = ApiClientBase.optGetInteger(js.get("structure_type_id"));
-        self.vulnerabilityOccupancyLevel = ApiClientBase.optGetFloat(js.get("vulnerability_occupancy_level"));
-        self.vulnerableEndTime = ApiClientBase.optGetInstant(js.get("vulnerable_end_time"));
-        self.vulnerableStartTime = ApiClientBase.optGetInstant(js.get("vulnerable_start_time"));
-        return self;
     }
 }

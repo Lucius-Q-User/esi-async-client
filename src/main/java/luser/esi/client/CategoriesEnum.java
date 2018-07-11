@@ -1,5 +1,8 @@
 package luser.esi.client;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum CategoriesEnum {
     AGENT("agent"),
     ALLIANCE("alliance"),
@@ -15,9 +18,11 @@ public enum CategoriesEnum {
     private CategoriesEnum(String stringValue) {
        this.stringValue = stringValue;
     }
+    @JsonValue
     public String getStringValue() {
         return stringValue;
     }
+    @JsonCreator
     public static CategoriesEnum fromString(String str) {
         if (str == null) {
             return null;

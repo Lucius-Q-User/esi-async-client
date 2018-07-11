@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class GhaphicInfo {
+public class GhaphicInfo implements ApiParameterObject {
     private String collisionFile;
     public void setCollisionFile(String val) {
         collisionFile = val;
     }
+    @JsonProperty("collision_file")
     public String getCollisionFile() {
         return collisionFile;
     }
@@ -20,6 +21,7 @@ public class GhaphicInfo {
     public void setGraphicFile(String val) {
         graphicFile = val;
     }
+    @JsonProperty("graphic_file")
     public String getGraphicFile() {
         return graphicFile;
     }
@@ -27,6 +29,7 @@ public class GhaphicInfo {
     public void setGraphicId(int val) {
         graphicId = val;
     }
+    @JsonProperty("graphic_id")
     public int getGraphicId() {
         return graphicId;
     }
@@ -34,6 +37,7 @@ public class GhaphicInfo {
     public void setIconFolder(String val) {
         iconFolder = val;
     }
+    @JsonProperty("icon_folder")
     public String getIconFolder() {
         return iconFolder;
     }
@@ -41,6 +45,7 @@ public class GhaphicInfo {
     public void setSofDna(String val) {
         sofDna = val;
     }
+    @JsonProperty("sof_dna")
     public String getSofDna() {
         return sofDna;
     }
@@ -48,6 +53,7 @@ public class GhaphicInfo {
     public void setSofFationName(String val) {
         sofFationName = val;
     }
+    @JsonProperty("sof_fation_name")
     public String getSofFationName() {
         return sofFationName;
     }
@@ -55,6 +61,7 @@ public class GhaphicInfo {
     public void setSofHullName(String val) {
         sofHullName = val;
     }
+    @JsonProperty("sof_hull_name")
     public String getSofHullName() {
         return sofHullName;
     }
@@ -62,23 +69,8 @@ public class GhaphicInfo {
     public void setSofRaceName(String val) {
         sofRaceName = val;
     }
+    @JsonProperty("sof_race_name")
     public String getSofRaceName() {
         return sofRaceName;
-    }
-    static GhaphicInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        GhaphicInfo self = new GhaphicInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.collisionFile = ApiClientBase.optGetString(js.get("collision_file"));
-        self.graphicFile = ApiClientBase.optGetString(js.get("graphic_file"));
-        self.graphicId = ApiClientBase.optGetInteger(js.get("graphic_id"));
-        self.iconFolder = ApiClientBase.optGetString(js.get("icon_folder"));
-        self.sofDna = ApiClientBase.optGetString(js.get("sof_dna"));
-        self.sofFationName = ApiClientBase.optGetString(js.get("sof_fation_name"));
-        self.sofHullName = ApiClientBase.optGetString(js.get("sof_hull_name"));
-        self.sofRaceName = ApiClientBase.optGetString(js.get("sof_race_name"));
-        return self;
     }
 }

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewStoredFitting extends JsonConvertible {
+public class NewStoredFitting implements ApiParameterObject {
     private String description;
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -20,6 +21,7 @@ public class NewStoredFitting extends JsonConvertible {
     public void setItems(List<FittingItem> val) {
         items = val;
     }
+    @JsonProperty("items")
     public List<FittingItem> getItems() {
         return items;
     }
@@ -27,6 +29,7 @@ public class NewStoredFitting extends JsonConvertible {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -34,22 +37,8 @@ public class NewStoredFitting extends JsonConvertible {
     public void setShipTypeId(int val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public int getShipTypeId() {
         return shipTypeId;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("description", Json.make(description));
-        {
-            Json arr = Json.array();
-            for (JsonConvertible i : items){
-                arr.add(i.toJson());
-            }
-            object.set("items", arr);
-        }
-        object.set("name", Json.make(name));
-        object.set("ship_type_id", Json.make(shipTypeId));
-        return object;
     }
 }

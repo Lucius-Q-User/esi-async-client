@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MailContents {
+public class MailContents implements ApiParameterObject {
     private String body;
     public void setBody(String val) {
         body = val;
     }
+    @JsonProperty("body")
     public String getBody() {
         return body;
     }
@@ -20,6 +21,7 @@ public class MailContents {
     public void setFrom(Integer val) {
         from = val;
     }
+    @JsonProperty("from")
     public Integer getFrom() {
         return from;
     }
@@ -27,6 +29,7 @@ public class MailContents {
     public void setLabels(int[] val) {
         labels = val;
     }
+    @JsonProperty("labels")
     public int[] getLabels() {
         return labels;
     }
@@ -34,6 +37,7 @@ public class MailContents {
     public void setRead(Boolean val) {
         read = val;
     }
+    @JsonProperty("read")
     public Boolean getRead() {
         return read;
     }
@@ -41,6 +45,7 @@ public class MailContents {
     public void setRecipients(List<MailRecipient> val) {
         recipients = val;
     }
+    @JsonProperty("recipients")
     public List<MailRecipient> getRecipients() {
         return recipients;
     }
@@ -48,6 +53,7 @@ public class MailContents {
     public void setSubject(String val) {
         subject = val;
     }
+    @JsonProperty("subject")
     public String getSubject() {
         return subject;
     }
@@ -55,36 +61,8 @@ public class MailContents {
     public void setTimestamp(Instant val) {
         timestamp = val;
     }
+    @JsonProperty("timestamp")
     public Instant getTimestamp() {
         return timestamp;
-    }
-    static MailContents fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MailContents self = new MailContents();
-        Map<String, Json> js = json.asJsonMap();
-        self.body = ApiClientBase.optGetString(js.get("body"));
-        self.from = ApiClientBase.optGetInteger(js.get("from"));
-        {
-            List<Json> jl = js.get("labels").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.labels = rt;
-        }
-        self.read = ApiClientBase.optGetBoolean(js.get("read"));
-        {
-            List<Json> jl = js.get("recipients").asJsonList();
-            List<MailRecipient> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(MailRecipient.fromJson(jl.get(i)));
-            }
-            self.recipients = rt;
-        }
-        self.subject = ApiClientBase.optGetString(js.get("subject"));
-        self.timestamp = ApiClientBase.optGetInstant(js.get("timestamp"));
-        return self;
     }
 }

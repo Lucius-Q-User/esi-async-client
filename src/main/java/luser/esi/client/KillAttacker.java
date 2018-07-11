@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class KillAttacker {
+public class KillAttacker implements ApiParameterObject {
     private Integer allianceId;
     public void setAllianceId(Integer val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public Integer getAllianceId() {
         return allianceId;
     }
@@ -20,6 +21,7 @@ public class KillAttacker {
     public void setCharacterId(Integer val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public Integer getCharacterId() {
         return characterId;
     }
@@ -27,6 +29,7 @@ public class KillAttacker {
     public void setCorporationId(Integer val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public Integer getCorporationId() {
         return corporationId;
     }
@@ -34,6 +37,7 @@ public class KillAttacker {
     public void setDamageDone(int val) {
         damageDone = val;
     }
+    @JsonProperty("damage_done")
     public int getDamageDone() {
         return damageDone;
     }
@@ -41,6 +45,7 @@ public class KillAttacker {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -48,6 +53,7 @@ public class KillAttacker {
     public void setFinalBlow(boolean val) {
         finalBlow = val;
     }
+    @JsonProperty("final_blow")
     public boolean getFinalBlow() {
         return finalBlow;
     }
@@ -55,6 +61,7 @@ public class KillAttacker {
     public void setSecurityStatus(float val) {
         securityStatus = val;
     }
+    @JsonProperty("security_status")
     public float getSecurityStatus() {
         return securityStatus;
     }
@@ -62,6 +69,7 @@ public class KillAttacker {
     public void setShipTypeId(Integer val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public Integer getShipTypeId() {
         return shipTypeId;
     }
@@ -69,24 +77,8 @@ public class KillAttacker {
     public void setWeaponTypeId(Integer val) {
         weaponTypeId = val;
     }
+    @JsonProperty("weapon_type_id")
     public Integer getWeaponTypeId() {
         return weaponTypeId;
-    }
-    static KillAttacker fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        KillAttacker self = new KillAttacker();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.damageDone = ApiClientBase.optGetInteger(js.get("damage_done"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.finalBlow = ApiClientBase.optGetBoolean(js.get("final_blow"));
-        self.securityStatus = ApiClientBase.optGetFloat(js.get("security_status"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        self.weaponTypeId = ApiClientBase.optGetInteger(js.get("weapon_type_id"));
-        return self;
     }
 }

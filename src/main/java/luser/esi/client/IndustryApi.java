@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class IndustryApi {
@@ -43,13 +43,8 @@ public class IndustryApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<IndustryJobInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<IndustryJobInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(IndustryJobInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<IndustryJobInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustryJobInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -79,13 +74,8 @@ public class IndustryApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterMiningLedgerEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterMiningLedgerEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterMiningLedgerEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterMiningLedgerEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterMiningLedgerEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -115,13 +105,8 @@ public class IndustryApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<ActiveMoonExtraction>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ActiveMoonExtraction> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ActiveMoonExtraction.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ActiveMoonExtraction>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ActiveMoonExtraction>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -151,13 +136,8 @@ public class IndustryApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<MiningObservers>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MiningObservers> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MiningObservers.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MiningObservers>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MiningObservers>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -188,13 +168,8 @@ public class IndustryApi {
         parametersInUrl.put("observer_id", String.valueOf(observerId));
         String body = null;
         String method = "GET";
-        Function<String, List<MiningObserverInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MiningObserverInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MiningObserverInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MiningObserverInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MiningObserverInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -229,13 +204,8 @@ public class IndustryApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<IndustryJobInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<IndustryJobInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(IndustryJobInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<IndustryJobInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustryJobInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -259,13 +229,8 @@ public class IndustryApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<IndustryFacilities>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<IndustryFacilities> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(IndustryFacilities.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<IndustryFacilities>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustryFacilities>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -289,13 +254,8 @@ public class IndustryApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<IndustrySystems>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<IndustrySystems> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(IndustrySystems.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<IndustrySystems>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustrySystems>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

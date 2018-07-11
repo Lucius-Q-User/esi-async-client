@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewMailContents extends JsonConvertible {
+public class NewMailContents implements ApiParameterObject {
     private int[] labels;
     public void setLabels(int[] val) {
         labels = val;
     }
+    @JsonProperty("labels")
     public int[] getLabels() {
         return labels;
     }
@@ -20,20 +21,8 @@ public class NewMailContents extends JsonConvertible {
     public void setRead(Boolean val) {
         read = val;
     }
+    @JsonProperty("read")
     public Boolean getRead() {
         return read;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        {
-            Json arr = Json.array();
-            for (int i : labels){
-                arr.add(Json.make(i));
-            }
-            object.set("labels", arr);
-        }
-        object.set("read", Json.make(read));
-        return object;
     }
 }

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class WalletJournalEntry {
+public class WalletJournalEntry implements ApiParameterObject {
     private Double amount;
     public void setAmount(Double val) {
         amount = val;
     }
+    @JsonProperty("amount")
     public Double getAmount() {
         return amount;
     }
@@ -20,6 +21,7 @@ public class WalletJournalEntry {
     public void setBalance(Double val) {
         balance = val;
     }
+    @JsonProperty("balance")
     public Double getBalance() {
         return balance;
     }
@@ -27,6 +29,7 @@ public class WalletJournalEntry {
     public void setContextId(Long val) {
         contextId = val;
     }
+    @JsonProperty("context_id")
     public Long getContextId() {
         return contextId;
     }
@@ -34,6 +37,7 @@ public class WalletJournalEntry {
     public void setContextIdType(ContextIdTypeEnum val) {
         contextIdType = val;
     }
+    @JsonProperty("context_id_type")
     public ContextIdTypeEnum getContextIdType() {
         return contextIdType;
     }
@@ -41,6 +45,7 @@ public class WalletJournalEntry {
     public void setDate(Instant val) {
         date = val;
     }
+    @JsonProperty("date")
     public Instant getDate() {
         return date;
     }
@@ -48,6 +53,7 @@ public class WalletJournalEntry {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -55,6 +61,7 @@ public class WalletJournalEntry {
     public void setFirstPartyId(Integer val) {
         firstPartyId = val;
     }
+    @JsonProperty("first_party_id")
     public Integer getFirstPartyId() {
         return firstPartyId;
     }
@@ -62,6 +69,7 @@ public class WalletJournalEntry {
     public void setId(long val) {
         id = val;
     }
+    @JsonProperty("id")
     public long getId() {
         return id;
     }
@@ -69,6 +77,7 @@ public class WalletJournalEntry {
     public void setReason(String val) {
         reason = val;
     }
+    @JsonProperty("reason")
     public String getReason() {
         return reason;
     }
@@ -76,6 +85,7 @@ public class WalletJournalEntry {
     public void setRefType(RefTypeEnum val) {
         refType = val;
     }
+    @JsonProperty("ref_type")
     public RefTypeEnum getRefType() {
         return refType;
     }
@@ -83,6 +93,7 @@ public class WalletJournalEntry {
     public void setSecondPartyId(Integer val) {
         secondPartyId = val;
     }
+    @JsonProperty("second_party_id")
     public Integer getSecondPartyId() {
         return secondPartyId;
     }
@@ -90,6 +101,7 @@ public class WalletJournalEntry {
     public void setTax(Double val) {
         tax = val;
     }
+    @JsonProperty("tax")
     public Double getTax() {
         return tax;
     }
@@ -97,29 +109,9 @@ public class WalletJournalEntry {
     public void setTaxReceiverId(Integer val) {
         taxReceiverId = val;
     }
+    @JsonProperty("tax_receiver_id")
     public Integer getTaxReceiverId() {
         return taxReceiverId;
-    }
-    static WalletJournalEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        WalletJournalEntry self = new WalletJournalEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.amount = ApiClientBase.optGetDouble(js.get("amount"));
-        self.balance = ApiClientBase.optGetDouble(js.get("balance"));
-        self.contextId = ApiClientBase.optGetLong(js.get("context_id"));
-        self.contextIdType = ContextIdTypeEnum.fromString(ApiClientBase.optGetString(js.get("context_id_type")));
-        self.date = ApiClientBase.optGetInstant(js.get("date"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.firstPartyId = ApiClientBase.optGetInteger(js.get("first_party_id"));
-        self.id = ApiClientBase.optGetLong(js.get("id"));
-        self.reason = ApiClientBase.optGetString(js.get("reason"));
-        self.refType = RefTypeEnum.fromString(ApiClientBase.optGetString(js.get("ref_type")));
-        self.secondPartyId = ApiClientBase.optGetInteger(js.get("second_party_id"));
-        self.tax = ApiClientBase.optGetDouble(js.get("tax"));
-        self.taxReceiverId = ApiClientBase.optGetInteger(js.get("tax_receiver_id"));
-        return self;
     }
     public static enum ContextIdTypeEnum {
         STRUCTURE_ID("structure_id"),
@@ -134,10 +126,15 @@ public class WalletJournalEntry {
         PLANET_ID("planet_id"),
         SYSTEM_ID("system_id"),
         TYPE_ID("type_id");
-        public final String stringValue;
+        private final String stringValue;
         private ContextIdTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ContextIdTypeEnum fromString(String str) {
             for (ContextIdTypeEnum self : ContextIdTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -265,10 +262,15 @@ public class WalletJournalEntry {
         WAR_ALLY_CONTRACT("war_ally_contract"),
         WAR_FEE("war_fee"),
         WAR_FEE_SURRENDER("war_fee_surrender");
-        public final String stringValue;
+        private final String stringValue;
         private RefTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RefTypeEnum fromString(String str) {
             for (RefTypeEnum self : RefTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

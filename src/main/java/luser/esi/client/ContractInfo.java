@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ContractInfo {
+public class ContractInfo implements ApiParameterObject {
     private int acceptorId;
     public void setAcceptorId(int val) {
         acceptorId = val;
     }
+    @JsonProperty("acceptor_id")
     public int getAcceptorId() {
         return acceptorId;
     }
@@ -20,6 +21,7 @@ public class ContractInfo {
     public void setAssigneeId(int val) {
         assigneeId = val;
     }
+    @JsonProperty("assignee_id")
     public int getAssigneeId() {
         return assigneeId;
     }
@@ -27,6 +29,7 @@ public class ContractInfo {
     public void setAvailability(AvailabilityEnum val) {
         availability = val;
     }
+    @JsonProperty("availability")
     public AvailabilityEnum getAvailability() {
         return availability;
     }
@@ -34,6 +37,7 @@ public class ContractInfo {
     public void setBuyout(Double val) {
         buyout = val;
     }
+    @JsonProperty("buyout")
     public Double getBuyout() {
         return buyout;
     }
@@ -41,6 +45,7 @@ public class ContractInfo {
     public void setCollateral(Double val) {
         collateral = val;
     }
+    @JsonProperty("collateral")
     public Double getCollateral() {
         return collateral;
     }
@@ -48,6 +53,7 @@ public class ContractInfo {
     public void setContractId(int val) {
         contractId = val;
     }
+    @JsonProperty("contract_id")
     public int getContractId() {
         return contractId;
     }
@@ -55,6 +61,7 @@ public class ContractInfo {
     public void setDateAccepted(Instant val) {
         dateAccepted = val;
     }
+    @JsonProperty("date_accepted")
     public Instant getDateAccepted() {
         return dateAccepted;
     }
@@ -62,6 +69,7 @@ public class ContractInfo {
     public void setDateCompleted(Instant val) {
         dateCompleted = val;
     }
+    @JsonProperty("date_completed")
     public Instant getDateCompleted() {
         return dateCompleted;
     }
@@ -69,6 +77,7 @@ public class ContractInfo {
     public void setDateExpired(Instant val) {
         dateExpired = val;
     }
+    @JsonProperty("date_expired")
     public Instant getDateExpired() {
         return dateExpired;
     }
@@ -76,6 +85,7 @@ public class ContractInfo {
     public void setDateIssued(Instant val) {
         dateIssued = val;
     }
+    @JsonProperty("date_issued")
     public Instant getDateIssued() {
         return dateIssued;
     }
@@ -83,6 +93,7 @@ public class ContractInfo {
     public void setDaysToComplete(Integer val) {
         daysToComplete = val;
     }
+    @JsonProperty("days_to_complete")
     public Integer getDaysToComplete() {
         return daysToComplete;
     }
@@ -90,6 +101,7 @@ public class ContractInfo {
     public void setEndLocationId(Long val) {
         endLocationId = val;
     }
+    @JsonProperty("end_location_id")
     public Long getEndLocationId() {
         return endLocationId;
     }
@@ -97,6 +109,7 @@ public class ContractInfo {
     public void setForCorporation(boolean val) {
         forCorporation = val;
     }
+    @JsonProperty("for_corporation")
     public boolean getForCorporation() {
         return forCorporation;
     }
@@ -104,6 +117,7 @@ public class ContractInfo {
     public void setIssuerCorporationId(int val) {
         issuerCorporationId = val;
     }
+    @JsonProperty("issuer_corporation_id")
     public int getIssuerCorporationId() {
         return issuerCorporationId;
     }
@@ -111,6 +125,7 @@ public class ContractInfo {
     public void setIssuerId(int val) {
         issuerId = val;
     }
+    @JsonProperty("issuer_id")
     public int getIssuerId() {
         return issuerId;
     }
@@ -118,6 +133,7 @@ public class ContractInfo {
     public void setPrice(Double val) {
         price = val;
     }
+    @JsonProperty("price")
     public Double getPrice() {
         return price;
     }
@@ -125,6 +141,7 @@ public class ContractInfo {
     public void setReward(Double val) {
         reward = val;
     }
+    @JsonProperty("reward")
     public Double getReward() {
         return reward;
     }
@@ -132,6 +149,7 @@ public class ContractInfo {
     public void setStartLocationId(Long val) {
         startLocationId = val;
     }
+    @JsonProperty("start_location_id")
     public Long getStartLocationId() {
         return startLocationId;
     }
@@ -139,6 +157,7 @@ public class ContractInfo {
     public void setStatus(StatusEnum val) {
         status = val;
     }
+    @JsonProperty("status")
     public StatusEnum getStatus() {
         return status;
     }
@@ -146,6 +165,7 @@ public class ContractInfo {
     public void setTitle(String val) {
         title = val;
     }
+    @JsonProperty("title")
     public String getTitle() {
         return title;
     }
@@ -153,6 +173,7 @@ public class ContractInfo {
     public void setType(TypeEnum val) {
         type = val;
     }
+    @JsonProperty("type")
     public TypeEnum getType() {
         return type;
     }
@@ -160,48 +181,24 @@ public class ContractInfo {
     public void setVolume(Double val) {
         volume = val;
     }
+    @JsonProperty("volume")
     public Double getVolume() {
         return volume;
-    }
-    static ContractInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ContractInfo self = new ContractInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.acceptorId = ApiClientBase.optGetInteger(js.get("acceptor_id"));
-        self.assigneeId = ApiClientBase.optGetInteger(js.get("assignee_id"));
-        self.availability = AvailabilityEnum.fromString(ApiClientBase.optGetString(js.get("availability")));
-        self.buyout = ApiClientBase.optGetDouble(js.get("buyout"));
-        self.collateral = ApiClientBase.optGetDouble(js.get("collateral"));
-        self.contractId = ApiClientBase.optGetInteger(js.get("contract_id"));
-        self.dateAccepted = ApiClientBase.optGetInstant(js.get("date_accepted"));
-        self.dateCompleted = ApiClientBase.optGetInstant(js.get("date_completed"));
-        self.dateExpired = ApiClientBase.optGetInstant(js.get("date_expired"));
-        self.dateIssued = ApiClientBase.optGetInstant(js.get("date_issued"));
-        self.daysToComplete = ApiClientBase.optGetInteger(js.get("days_to_complete"));
-        self.endLocationId = ApiClientBase.optGetLong(js.get("end_location_id"));
-        self.forCorporation = ApiClientBase.optGetBoolean(js.get("for_corporation"));
-        self.issuerCorporationId = ApiClientBase.optGetInteger(js.get("issuer_corporation_id"));
-        self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
-        self.price = ApiClientBase.optGetDouble(js.get("price"));
-        self.reward = ApiClientBase.optGetDouble(js.get("reward"));
-        self.startLocationId = ApiClientBase.optGetLong(js.get("start_location_id"));
-        self.status = StatusEnum.fromString(ApiClientBase.optGetString(js.get("status")));
-        self.title = ApiClientBase.optGetString(js.get("title"));
-        self.type = TypeEnum.fromString(ApiClientBase.optGetString(js.get("type")));
-        self.volume = ApiClientBase.optGetDouble(js.get("volume"));
-        return self;
     }
     public static enum AvailabilityEnum {
         PUBLIC("public"),
         PERSONAL("personal"),
         CORPORATION("corporation"),
         ALLIANCE("alliance");
-        public final String stringValue;
+        private final String stringValue;
         private AvailabilityEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static AvailabilityEnum fromString(String str) {
             for (AvailabilityEnum self : AvailabilityEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -222,10 +219,15 @@ public class ContractInfo {
         FAILED("failed"),
         DELETED("deleted"),
         REVERSED("reversed");
-        public final String stringValue;
+        private final String stringValue;
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StatusEnum fromString(String str) {
             for (StatusEnum self : StatusEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -241,10 +243,15 @@ public class ContractInfo {
         AUCTION("auction"),
         COURIER("courier"),
         LOAN("loan");
-        public final String stringValue;
+        private final String stringValue;
         private TypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static TypeEnum fromString(String str) {
             for (TypeEnum self : TypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

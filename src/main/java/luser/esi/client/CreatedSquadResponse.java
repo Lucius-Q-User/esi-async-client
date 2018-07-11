@@ -3,26 +3,18 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CreatedSquadResponse {
+public class CreatedSquadResponse implements ApiParameterObject {
     private long squadId;
     public void setSquadId(long val) {
         squadId = val;
     }
+    @JsonProperty("squad_id")
     public long getSquadId() {
         return squadId;
-    }
-    static CreatedSquadResponse fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CreatedSquadResponse self = new CreatedSquadResponse();
-        Map<String, Json> js = json.asJsonMap();
-        self.squadId = ApiClientBase.optGetLong(js.get("squad_id"));
-        return self;
     }
 }

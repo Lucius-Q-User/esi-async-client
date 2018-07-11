@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class SearchApi {
@@ -56,9 +56,8 @@ public class SearchApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, SearchResult> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return SearchResult.fromJson(js);
+        ResponseParser<SearchResult> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, SearchResult.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -102,9 +101,8 @@ public class SearchApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CharacterSearchResult> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CharacterSearchResult.fromJson(js);
+        ResponseParser<CharacterSearchResult> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterSearchResult.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

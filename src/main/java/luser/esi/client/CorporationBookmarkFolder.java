@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationBookmarkFolder {
+public class CorporationBookmarkFolder implements ApiParameterObject {
     private Integer creatorId;
     public void setCreatorId(Integer val) {
         creatorId = val;
     }
+    @JsonProperty("creator_id")
     public Integer getCreatorId() {
         return creatorId;
     }
@@ -20,6 +21,7 @@ public class CorporationBookmarkFolder {
     public void setFolderId(int val) {
         folderId = val;
     }
+    @JsonProperty("folder_id")
     public int getFolderId() {
         return folderId;
     }
@@ -27,18 +29,8 @@ public class CorporationBookmarkFolder {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    static CorporationBookmarkFolder fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationBookmarkFolder self = new CorporationBookmarkFolder();
-        Map<String, Json> js = json.asJsonMap();
-        self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
-        self.folderId = ApiClientBase.optGetInteger(js.get("folder_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        return self;
     }
 }

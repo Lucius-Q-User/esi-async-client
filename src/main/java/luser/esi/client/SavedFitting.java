@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SavedFitting {
+public class SavedFitting implements ApiParameterObject {
     private String description;
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -20,6 +21,7 @@ public class SavedFitting {
     public void setFittingId(int val) {
         fittingId = val;
     }
+    @JsonProperty("fitting_id")
     public int getFittingId() {
         return fittingId;
     }
@@ -27,6 +29,7 @@ public class SavedFitting {
     public void setItems(List<FittingItem> val) {
         items = val;
     }
+    @JsonProperty("items")
     public List<FittingItem> getItems() {
         return items;
     }
@@ -34,6 +37,7 @@ public class SavedFitting {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -41,27 +45,8 @@ public class SavedFitting {
     public void setShipTypeId(int val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public int getShipTypeId() {
         return shipTypeId;
-    }
-    static SavedFitting fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SavedFitting self = new SavedFitting();
-        Map<String, Json> js = json.asJsonMap();
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.fittingId = ApiClientBase.optGetInteger(js.get("fitting_id"));
-        {
-            List<Json> jl = js.get("items").asJsonList();
-            List<FittingItem> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(FittingItem.fromJson(jl.get(i)));
-            }
-            self.items = rt;
-        }
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        return self;
     }
 }

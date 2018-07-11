@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class LoyaltyApi {
@@ -38,13 +38,8 @@ public class LoyaltyApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<LoyaltyPointsInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<LoyaltyPointsInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(LoyaltyPointsInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<LoyaltyPointsInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<LoyaltyPointsInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -69,13 +64,8 @@ public class LoyaltyApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<LoyaltyStoreOffer>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<LoyaltyStoreOffer> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(LoyaltyStoreOffer.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<LoyaltyStoreOffer>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<LoyaltyStoreOffer>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FwFactionLeaderboard {
+public class FwFactionLeaderboard implements ApiParameterObject {
     private List<FwFactionLeaderboardEntry> activeTotal;
     public void setActiveTotal(List<FwFactionLeaderboardEntry> val) {
         activeTotal = val;
     }
+    @JsonProperty("active_total")
     public List<FwFactionLeaderboardEntry> getActiveTotal() {
         return activeTotal;
     }
@@ -20,6 +21,7 @@ public class FwFactionLeaderboard {
     public void setLastWeek(List<FwFactionLeaderboardEntry> val) {
         lastWeek = val;
     }
+    @JsonProperty("last_week")
     public List<FwFactionLeaderboardEntry> getLastWeek() {
         return lastWeek;
     }
@@ -27,39 +29,8 @@ public class FwFactionLeaderboard {
     public void setYesterday(List<FwFactionLeaderboardEntry> val) {
         yesterday = val;
     }
+    @JsonProperty("yesterday")
     public List<FwFactionLeaderboardEntry> getYesterday() {
         return yesterday;
-    }
-    static FwFactionLeaderboard fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FwFactionLeaderboard self = new FwFactionLeaderboard();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("active_total").asJsonList();
-            List<FwFactionLeaderboardEntry> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(FwFactionLeaderboardEntry.fromJson(jl.get(i)));
-            }
-            self.activeTotal = rt;
-        }
-        {
-            List<Json> jl = js.get("last_week").asJsonList();
-            List<FwFactionLeaderboardEntry> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(FwFactionLeaderboardEntry.fromJson(jl.get(i)));
-            }
-            self.lastWeek = rt;
-        }
-        {
-            List<Json> jl = js.get("yesterday").asJsonList();
-            List<FwFactionLeaderboardEntry> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(FwFactionLeaderboardEntry.fromJson(jl.get(i)));
-            }
-            self.yesterday = rt;
-        }
-        return self;
     }
 }

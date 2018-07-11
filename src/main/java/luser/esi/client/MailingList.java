@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MailingList {
+public class MailingList implements ApiParameterObject {
     private int mailingListId;
     public void setMailingListId(int val) {
         mailingListId = val;
     }
+    @JsonProperty("mailing_list_id")
     public int getMailingListId() {
         return mailingListId;
     }
@@ -20,17 +21,8 @@ public class MailingList {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    static MailingList fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MailingList self = new MailingList();
-        Map<String, Json> js = json.asJsonMap();
-        self.mailingListId = ApiClientBase.optGetInteger(js.get("mailing_list_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        return self;
     }
 }

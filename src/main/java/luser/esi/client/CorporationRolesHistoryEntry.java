@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationRolesHistoryEntry {
+public class CorporationRolesHistoryEntry implements ApiParameterObject {
     private Instant changedAt;
     public void setChangedAt(Instant val) {
         changedAt = val;
     }
+    @JsonProperty("changed_at")
     public Instant getChangedAt() {
         return changedAt;
     }
@@ -20,6 +21,7 @@ public class CorporationRolesHistoryEntry {
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -27,6 +29,7 @@ public class CorporationRolesHistoryEntry {
     public void setIssuerId(int val) {
         issuerId = val;
     }
+    @JsonProperty("issuer_id")
     public int getIssuerId() {
         return issuerId;
     }
@@ -34,6 +37,7 @@ public class CorporationRolesHistoryEntry {
     public void setNewRoles(List<NewRolesEnum> val) {
         newRoles = val;
     }
+    @JsonProperty("new_roles")
     public List<NewRolesEnum> getNewRoles() {
         return newRoles;
     }
@@ -41,6 +45,7 @@ public class CorporationRolesHistoryEntry {
     public void setOldRoles(List<OldRolesEnum> val) {
         oldRoles = val;
     }
+    @JsonProperty("old_roles")
     public List<OldRolesEnum> getOldRoles() {
         return oldRoles;
     }
@@ -48,36 +53,9 @@ public class CorporationRolesHistoryEntry {
     public void setRoleType(RoleTypeEnum val) {
         roleType = val;
     }
+    @JsonProperty("role_type")
     public RoleTypeEnum getRoleType() {
         return roleType;
-    }
-    static CorporationRolesHistoryEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationRolesHistoryEntry self = new CorporationRolesHistoryEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.changedAt = ApiClientBase.optGetInstant(js.get("changed_at"));
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
-        {
-            List<Json> jl = js.get("new_roles").asJsonList();
-            List<NewRolesEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(NewRolesEnum.fromString(jl.get(i).asString()));
-            }
-            self.newRoles = rt;
-        }
-        {
-            List<Json> jl = js.get("old_roles").asJsonList();
-            List<OldRolesEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(OldRolesEnum.fromString(jl.get(i).asString()));
-            }
-            self.oldRoles = rt;
-        }
-        self.roleType = RoleTypeEnum.fromString(ApiClientBase.optGetString(js.get("role_type")));
-        return self;
     }
     public static enum NewRolesEnum {
         ACCOUNT_TAKE_1("Account_Take_1"),
@@ -130,10 +108,15 @@ public class CorporationRolesHistoryEntry {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private NewRolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static NewRolesEnum fromString(String str) {
             for (NewRolesEnum self : NewRolesEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -194,10 +177,15 @@ public class CorporationRolesHistoryEntry {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private OldRolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static OldRolesEnum fromString(String str) {
             for (OldRolesEnum self : OldRolesEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -216,10 +204,15 @@ public class CorporationRolesHistoryEntry {
         ROLES_AT_BASE("roles_at_base"),
         ROLES_AT_HQ("roles_at_hq"),
         ROLES_AT_OTHER("roles_at_other");
-        public final String stringValue;
+        private final String stringValue;
         private RoleTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RoleTypeEnum fromString(String str) {
             for (RoleTypeEnum self : RoleTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class AllianceHistoryEntry {
+public class AllianceHistoryEntry implements ApiParameterObject {
     private Integer allianceId;
     public void setAllianceId(Integer val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public Integer getAllianceId() {
         return allianceId;
     }
@@ -20,6 +21,7 @@ public class AllianceHistoryEntry {
     public void setIsDeleted(Boolean val) {
         isDeleted = val;
     }
+    @JsonProperty("is_deleted")
     public Boolean getIsDeleted() {
         return isDeleted;
     }
@@ -27,6 +29,7 @@ public class AllianceHistoryEntry {
     public void setRecordId(int val) {
         recordId = val;
     }
+    @JsonProperty("record_id")
     public int getRecordId() {
         return recordId;
     }
@@ -34,19 +37,8 @@ public class AllianceHistoryEntry {
     public void setStartDate(Instant val) {
         startDate = val;
     }
+    @JsonProperty("start_date")
     public Instant getStartDate() {
         return startDate;
-    }
-    static AllianceHistoryEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        AllianceHistoryEntry self = new AllianceHistoryEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.isDeleted = ApiClientBase.optGetBoolean(js.get("is_deleted"));
-        self.recordId = ApiClientBase.optGetInteger(js.get("record_id"));
-        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
-        return self;
     }
 }

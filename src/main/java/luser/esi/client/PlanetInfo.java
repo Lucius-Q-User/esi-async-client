@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PlanetInfo {
+public class PlanetInfo implements ApiParameterObject {
     private Instant lastUpdate;
     public void setLastUpdate(Instant val) {
         lastUpdate = val;
     }
+    @JsonProperty("last_update")
     public Instant getLastUpdate() {
         return lastUpdate;
     }
@@ -20,6 +21,7 @@ public class PlanetInfo {
     public void setNumPins(int val) {
         numPins = val;
     }
+    @JsonProperty("num_pins")
     public int getNumPins() {
         return numPins;
     }
@@ -27,6 +29,7 @@ public class PlanetInfo {
     public void setOwnerId(int val) {
         ownerId = val;
     }
+    @JsonProperty("owner_id")
     public int getOwnerId() {
         return ownerId;
     }
@@ -34,6 +37,7 @@ public class PlanetInfo {
     public void setPlanetId(int val) {
         planetId = val;
     }
+    @JsonProperty("planet_id")
     public int getPlanetId() {
         return planetId;
     }
@@ -41,6 +45,7 @@ public class PlanetInfo {
     public void setPlanetType(PlanetTypeEnum val) {
         planetType = val;
     }
+    @JsonProperty("planet_type")
     public PlanetTypeEnum getPlanetType() {
         return planetType;
     }
@@ -48,6 +53,7 @@ public class PlanetInfo {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -55,23 +61,9 @@ public class PlanetInfo {
     public void setUpgradeLevel(int val) {
         upgradeLevel = val;
     }
+    @JsonProperty("upgrade_level")
     public int getUpgradeLevel() {
         return upgradeLevel;
-    }
-    static PlanetInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PlanetInfo self = new PlanetInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.lastUpdate = ApiClientBase.optGetInstant(js.get("last_update"));
-        self.numPins = ApiClientBase.optGetInteger(js.get("num_pins"));
-        self.ownerId = ApiClientBase.optGetInteger(js.get("owner_id"));
-        self.planetId = ApiClientBase.optGetInteger(js.get("planet_id"));
-        self.planetType = PlanetTypeEnum.fromString(ApiClientBase.optGetString(js.get("planet_type")));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.upgradeLevel = ApiClientBase.optGetInteger(js.get("upgrade_level"));
-        return self;
     }
     public static enum PlanetTypeEnum {
         TEMPERATE("temperate"),
@@ -82,10 +74,15 @@ public class PlanetInfo {
         LAVA("lava"),
         STORM("storm"),
         PLASMA("plasma");
-        public final String stringValue;
+        private final String stringValue;
         private PlanetTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static PlanetTypeEnum fromString(String str) {
             for (PlanetTypeEnum self : PlanetTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

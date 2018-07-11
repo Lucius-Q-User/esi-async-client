@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class LoyaltyPointsInfo {
+public class LoyaltyPointsInfo implements ApiParameterObject {
     private int corporationId;
     public void setCorporationId(int val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public int getCorporationId() {
         return corporationId;
     }
@@ -20,17 +21,8 @@ public class LoyaltyPointsInfo {
     public void setLoyaltyPoints(int val) {
         loyaltyPoints = val;
     }
+    @JsonProperty("loyalty_points")
     public int getLoyaltyPoints() {
         return loyaltyPoints;
-    }
-    static LoyaltyPointsInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        LoyaltyPointsInfo self = new LoyaltyPointsInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.loyaltyPoints = ApiClientBase.optGetInteger(js.get("loyalty_points"));
-        return self;
     }
 }

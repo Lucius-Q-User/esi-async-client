@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterAttributes {
+public class CharacterAttributes implements ApiParameterObject {
     private Instant accruedRemapCooldownDate;
     public void setAccruedRemapCooldownDate(Instant val) {
         accruedRemapCooldownDate = val;
     }
+    @JsonProperty("accrued_remap_cooldown_date")
     public Instant getAccruedRemapCooldownDate() {
         return accruedRemapCooldownDate;
     }
@@ -20,6 +21,7 @@ public class CharacterAttributes {
     public void setBonusRemaps(Integer val) {
         bonusRemaps = val;
     }
+    @JsonProperty("bonus_remaps")
     public Integer getBonusRemaps() {
         return bonusRemaps;
     }
@@ -27,6 +29,7 @@ public class CharacterAttributes {
     public void setCharisma(int val) {
         charisma = val;
     }
+    @JsonProperty("charisma")
     public int getCharisma() {
         return charisma;
     }
@@ -34,6 +37,7 @@ public class CharacterAttributes {
     public void setIntelligence(int val) {
         intelligence = val;
     }
+    @JsonProperty("intelligence")
     public int getIntelligence() {
         return intelligence;
     }
@@ -41,6 +45,7 @@ public class CharacterAttributes {
     public void setLastRemapDate(Instant val) {
         lastRemapDate = val;
     }
+    @JsonProperty("last_remap_date")
     public Instant getLastRemapDate() {
         return lastRemapDate;
     }
@@ -48,6 +53,7 @@ public class CharacterAttributes {
     public void setMemory(int val) {
         memory = val;
     }
+    @JsonProperty("memory")
     public int getMemory() {
         return memory;
     }
@@ -55,6 +61,7 @@ public class CharacterAttributes {
     public void setPerception(int val) {
         perception = val;
     }
+    @JsonProperty("perception")
     public int getPerception() {
         return perception;
     }
@@ -62,23 +69,8 @@ public class CharacterAttributes {
     public void setWillpower(int val) {
         willpower = val;
     }
+    @JsonProperty("willpower")
     public int getWillpower() {
         return willpower;
-    }
-    static CharacterAttributes fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterAttributes self = new CharacterAttributes();
-        Map<String, Json> js = json.asJsonMap();
-        self.accruedRemapCooldownDate = ApiClientBase.optGetInstant(js.get("accrued_remap_cooldown_date"));
-        self.bonusRemaps = ApiClientBase.optGetInteger(js.get("bonus_remaps"));
-        self.charisma = ApiClientBase.optGetInteger(js.get("charisma"));
-        self.intelligence = ApiClientBase.optGetInteger(js.get("intelligence"));
-        self.lastRemapDate = ApiClientBase.optGetInstant(js.get("last_remap_date"));
-        self.memory = ApiClientBase.optGetInteger(js.get("memory"));
-        self.perception = ApiClientBase.optGetInteger(js.get("perception"));
-        self.willpower = ApiClientBase.optGetInteger(js.get("willpower"));
-        return self;
     }
 }

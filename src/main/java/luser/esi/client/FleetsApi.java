@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class FleetsApi {
@@ -38,9 +38,8 @@ public class FleetsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, ActiveFleetInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return ActiveFleetInfo.fromJson(js);
+        ResponseParser<ActiveFleetInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ActiveFleetInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -65,9 +64,8 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "GET";
-        Function<String, FleetInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return FleetInfo.fromJson(js);
+        ResponseParser<FleetInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FleetInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -89,7 +87,7 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(newSettings);
         String method = "PUT";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -119,13 +117,8 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "GET";
-        Function<String, List<FleetMemberList>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<FleetMemberList> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(FleetMemberList.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<FleetMemberList>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FleetMemberList>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -147,7 +140,7 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(invitation);
         String method = "POST";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -170,7 +163,7 @@ public class FleetsApi {
         parametersInUrl.put("member_id", String.valueOf(memberId));
         String body = null;
         String method = "DELETE";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -194,7 +187,7 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(movement);
         String method = "PUT";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -217,7 +210,7 @@ public class FleetsApi {
         parametersInUrl.put("squad_id", String.valueOf(squadId));
         String body = null;
         String method = "DELETE";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -241,7 +234,7 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(naming);
         String method = "PUT";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -271,13 +264,8 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "GET";
-        Function<String, List<FleetWings>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<FleetWings> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(FleetWings.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<FleetWings>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FleetWings>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -298,9 +286,8 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "POST";
-        Function<String, CreatedWingResponse> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CreatedWingResponse.fromJson(js);
+        ResponseParser<CreatedWingResponse> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CreatedWingResponse.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -322,7 +309,7 @@ public class FleetsApi {
         parametersInUrl.put("wing_id", String.valueOf(wingId));
         String body = null;
         String method = "DELETE";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -346,7 +333,7 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(naming);
         String method = "PUT";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -369,9 +356,8 @@ public class FleetsApi {
         parametersInUrl.put("wing_id", String.valueOf(wingId));
         String body = null;
         String method = "POST";
-        Function<String, CreatedSquadResponse> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CreatedSquadResponse.fromJson(js);
+        ResponseParser<CreatedSquadResponse> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CreatedSquadResponse.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

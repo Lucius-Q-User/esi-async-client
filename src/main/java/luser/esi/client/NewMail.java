@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewMail extends JsonConvertible {
+public class NewMail implements ApiParameterObject {
     private Long approvedCost;
     public void setApprovedCost(Long val) {
         approvedCost = val;
     }
+    @JsonProperty("approved_cost")
     public Long getApprovedCost() {
         return approvedCost;
     }
@@ -20,6 +21,7 @@ public class NewMail extends JsonConvertible {
     public void setBody(String val) {
         body = val;
     }
+    @JsonProperty("body")
     public String getBody() {
         return body;
     }
@@ -27,6 +29,7 @@ public class NewMail extends JsonConvertible {
     public void setRecipients(List<MailRecipient> val) {
         recipients = val;
     }
+    @JsonProperty("recipients")
     public List<MailRecipient> getRecipients() {
         return recipients;
     }
@@ -34,22 +37,8 @@ public class NewMail extends JsonConvertible {
     public void setSubject(String val) {
         subject = val;
     }
+    @JsonProperty("subject")
     public String getSubject() {
         return subject;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("approved_cost", Json.make(approvedCost));
-        object.set("body", Json.make(body));
-        {
-            Json arr = Json.array();
-            for (JsonConvertible i : recipients){
-                arr.add(i.toJson());
-            }
-            object.set("recipients", arr);
-        }
-        object.set("subject", Json.make(subject));
-        return object;
     }
 }

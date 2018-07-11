@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MarketGroup {
+public class MarketGroup implements ApiParameterObject {
     private String description;
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -20,6 +21,7 @@ public class MarketGroup {
     public void setMarketGroupId(int val) {
         marketGroupId = val;
     }
+    @JsonProperty("market_group_id")
     public int getMarketGroupId() {
         return marketGroupId;
     }
@@ -27,6 +29,7 @@ public class MarketGroup {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -34,6 +37,7 @@ public class MarketGroup {
     public void setParentGroupId(Integer val) {
         parentGroupId = val;
     }
+    @JsonProperty("parent_group_id")
     public Integer getParentGroupId() {
         return parentGroupId;
     }
@@ -41,27 +45,8 @@ public class MarketGroup {
     public void setTypes(int[] val) {
         types = val;
     }
+    @JsonProperty("types")
     public int[] getTypes() {
         return types;
-    }
-    static MarketGroup fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MarketGroup self = new MarketGroup();
-        Map<String, Json> js = json.asJsonMap();
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.marketGroupId = ApiClientBase.optGetInteger(js.get("market_group_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.parentGroupId = ApiClientBase.optGetInteger(js.get("parent_group_id"));
-        {
-            List<Json> jl = js.get("types").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.types = rt;
-        }
-        return self;
     }
 }

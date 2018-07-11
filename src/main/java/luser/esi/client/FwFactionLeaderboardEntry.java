@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FwFactionLeaderboardEntry {
+public class FwFactionLeaderboardEntry implements ApiParameterObject {
     private Integer amount;
     public void setAmount(Integer val) {
         amount = val;
     }
+    @JsonProperty("amount")
     public Integer getAmount() {
         return amount;
     }
@@ -20,17 +21,8 @@ public class FwFactionLeaderboardEntry {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
-    }
-    static FwFactionLeaderboardEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FwFactionLeaderboardEntry self = new FwFactionLeaderboardEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.amount = ApiClientBase.optGetInteger(js.get("amount"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        return self;
     }
 }

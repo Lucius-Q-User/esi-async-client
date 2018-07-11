@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class ${tag}Api {
@@ -89,7 +89,7 @@ if (${toLcaseJava(par["name"])} != null) \
         body = ApiClientBase.renderToBody(${toLcaseJava(bodyPar["name"])});
         %endif
         String method = "${method.upper()}";
-        Function<String, ${returnType}> responseParser = (resp) -> {
+        ResponseParser<${returnType}> responseParser = (resp) -> {
             %if returnType == "Void":
             return null;
             %elif returnType == "Integer":
@@ -98,23 +98,10 @@ if (${toLcaseJava(par["name"])} != null) \
             return Float.parseFloat(resp);
             %elif returnType == "Double":
             return Double.parseDouble(resp);
-            %elif returnType == "int[]" or returnType == "long[]":
-            List<Json> json = Json.read(resp).asJsonList();
-            ${returnType} ret = new ${returnType[:-2]}[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).${"asInteger" if returnType == "int[]" else "asLong"}();
-            }
-            return ret;
-            %elif retTypeKind(path, method) == "object":
-            Json js = Json.read(resp);
-            return ${returnType}.fromJson(js);
+            %elif returnType == "int[]" or returnType == "long[]" or retTypeKind(path, method) == "object":
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ${returnType}.class);
             %elif retTypeKind(path, method) == "object[]":
-            List<Json> js = Json.read(resp).asJsonList();
-            ${returnType} ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(${returnType[5:-1]}.fromJson(jo));
-            }
-            return ret;
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<${returnType}>() {});
             %else:
             BLANK
             %endif

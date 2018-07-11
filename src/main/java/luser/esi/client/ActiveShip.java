@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ActiveShip {
+public class ActiveShip implements ApiParameterObject {
     private long shipItemId;
     public void setShipItemId(long val) {
         shipItemId = val;
     }
+    @JsonProperty("ship_item_id")
     public long getShipItemId() {
         return shipItemId;
     }
@@ -20,6 +21,7 @@ public class ActiveShip {
     public void setShipName(String val) {
         shipName = val;
     }
+    @JsonProperty("ship_name")
     public String getShipName() {
         return shipName;
     }
@@ -27,18 +29,8 @@ public class ActiveShip {
     public void setShipTypeId(int val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public int getShipTypeId() {
         return shipTypeId;
-    }
-    static ActiveShip fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ActiveShip self = new ActiveShip();
-        Map<String, Json> js = json.asJsonMap();
-        self.shipItemId = ApiClientBase.optGetLong(js.get("ship_item_id"));
-        self.shipName = ApiClientBase.optGetString(js.get("ship_name"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        return self;
     }
 }

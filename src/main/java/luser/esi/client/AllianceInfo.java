@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class AllianceInfo {
+public class AllianceInfo implements ApiParameterObject {
     private int creatorCorporationId;
     public void setCreatorCorporationId(int val) {
         creatorCorporationId = val;
     }
+    @JsonProperty("creator_corporation_id")
     public int getCreatorCorporationId() {
         return creatorCorporationId;
     }
@@ -20,6 +21,7 @@ public class AllianceInfo {
     public void setCreatorId(int val) {
         creatorId = val;
     }
+    @JsonProperty("creator_id")
     public int getCreatorId() {
         return creatorId;
     }
@@ -27,6 +29,7 @@ public class AllianceInfo {
     public void setDateFounded(Instant val) {
         dateFounded = val;
     }
+    @JsonProperty("date_founded")
     public Instant getDateFounded() {
         return dateFounded;
     }
@@ -34,6 +37,7 @@ public class AllianceInfo {
     public void setExecutorCorporationId(Integer val) {
         executorCorporationId = val;
     }
+    @JsonProperty("executor_corporation_id")
     public Integer getExecutorCorporationId() {
         return executorCorporationId;
     }
@@ -41,6 +45,7 @@ public class AllianceInfo {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -48,6 +53,7 @@ public class AllianceInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -55,22 +61,8 @@ public class AllianceInfo {
     public void setTicker(String val) {
         ticker = val;
     }
+    @JsonProperty("ticker")
     public String getTicker() {
         return ticker;
-    }
-    static AllianceInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        AllianceInfo self = new AllianceInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.creatorCorporationId = ApiClientBase.optGetInteger(js.get("creator_corporation_id"));
-        self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
-        self.dateFounded = ApiClientBase.optGetInstant(js.get("date_founded"));
-        self.executorCorporationId = ApiClientBase.optGetInteger(js.get("executor_corporation_id"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.ticker = ApiClientBase.optGetString(js.get("ticker"));
-        return self;
     }
 }

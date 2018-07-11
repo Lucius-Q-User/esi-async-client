@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class Coordinate {
+public class Coordinate implements ApiParameterObject {
     private double x;
     public void setX(double val) {
         x = val;
     }
+    @JsonProperty("x")
     public double getX() {
         return x;
     }
@@ -20,6 +21,7 @@ public class Coordinate {
     public void setY(double val) {
         y = val;
     }
+    @JsonProperty("y")
     public double getY() {
         return y;
     }
@@ -27,18 +29,8 @@ public class Coordinate {
     public void setZ(double val) {
         z = val;
     }
+    @JsonProperty("z")
     public double getZ() {
         return z;
-    }
-    static Coordinate fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        Coordinate self = new Coordinate();
-        Map<String, Json> js = json.asJsonMap();
-        self.x = ApiClientBase.optGetDouble(js.get("x"));
-        self.y = ApiClientBase.optGetDouble(js.get("y"));
-        self.z = ApiClientBase.optGetDouble(js.get("z"));
-        return self;
     }
 }

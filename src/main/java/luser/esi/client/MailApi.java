@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class MailApi {
@@ -48,13 +48,8 @@ public class MailApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<MailboxEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MailboxEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MailboxEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MailboxEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MailboxEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -76,7 +71,7 @@ public class MailApi {
         String body = null;
         body = ApiClientBase.renderToBody(mail);
         String method = "POST";
-        Function<String, Integer> responseParser = (resp) -> {
+        ResponseParser<Integer> responseParser = (resp) -> {
             return Integer.parseInt(resp);
         };
         boolean needsAuth = true;
@@ -99,7 +94,7 @@ public class MailApi {
         parametersInUrl.put("label_id", String.valueOf(labelId));
         String body = null;
         String method = "DELETE";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -125,13 +120,8 @@ public class MailApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<MailingList>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<MailingList> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(MailingList.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<MailingList>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MailingList>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -153,7 +143,7 @@ public class MailApi {
         parametersInUrl.put("mail_id", String.valueOf(mailId));
         String body = null;
         String method = "DELETE";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -180,9 +170,8 @@ public class MailApi {
         parametersInUrl.put("mail_id", String.valueOf(mailId));
         String body = null;
         String method = "GET";
-        Function<String, MailContents> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return MailContents.fromJson(js);
+        ResponseParser<MailContents> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MailContents.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -205,7 +194,7 @@ public class MailApi {
         String body = null;
         body = ApiClientBase.renderToBody(contents);
         String method = "PUT";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -228,7 +217,7 @@ public class MailApi {
         String body = null;
         body = ApiClientBase.renderToBody(label);
         String method = "POST";
-        Function<String, Integer> responseParser = (resp) -> {
+        ResponseParser<Integer> responseParser = (resp) -> {
             return Integer.parseInt(resp);
         };
         boolean needsAuth = true;
@@ -254,9 +243,8 @@ public class MailApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, MailLabels> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return MailLabels.fromJson(js);
+        ResponseParser<MailLabels> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MailLabels.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationPOS {
+public class CorporationPOS implements ApiParameterObject {
     private Integer moonId;
     public void setMoonId(Integer val) {
         moonId = val;
     }
+    @JsonProperty("moon_id")
     public Integer getMoonId() {
         return moonId;
     }
@@ -20,6 +21,7 @@ public class CorporationPOS {
     public void setOnlinedSince(Instant val) {
         onlinedSince = val;
     }
+    @JsonProperty("onlined_since")
     public Instant getOnlinedSince() {
         return onlinedSince;
     }
@@ -27,6 +29,7 @@ public class CorporationPOS {
     public void setReinforcedUntil(Instant val) {
         reinforcedUntil = val;
     }
+    @JsonProperty("reinforced_until")
     public Instant getReinforcedUntil() {
         return reinforcedUntil;
     }
@@ -34,6 +37,7 @@ public class CorporationPOS {
     public void setStarbaseId(long val) {
         starbaseId = val;
     }
+    @JsonProperty("starbase_id")
     public long getStarbaseId() {
         return starbaseId;
     }
@@ -41,6 +45,7 @@ public class CorporationPOS {
     public void setState(StateEnum val) {
         state = val;
     }
+    @JsonProperty("state")
     public StateEnum getState() {
         return state;
     }
@@ -48,6 +53,7 @@ public class CorporationPOS {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
     }
@@ -55,6 +61,7 @@ public class CorporationPOS {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -62,24 +69,9 @@ public class CorporationPOS {
     public void setUnanchorAt(Instant val) {
         unanchorAt = val;
     }
+    @JsonProperty("unanchor_at")
     public Instant getUnanchorAt() {
         return unanchorAt;
-    }
-    static CorporationPOS fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationPOS self = new CorporationPOS();
-        Map<String, Json> js = json.asJsonMap();
-        self.moonId = ApiClientBase.optGetInteger(js.get("moon_id"));
-        self.onlinedSince = ApiClientBase.optGetInstant(js.get("onlined_since"));
-        self.reinforcedUntil = ApiClientBase.optGetInstant(js.get("reinforced_until"));
-        self.starbaseId = ApiClientBase.optGetLong(js.get("starbase_id"));
-        self.state = StateEnum.fromString(ApiClientBase.optGetString(js.get("state")));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.unanchorAt = ApiClientBase.optGetInstant(js.get("unanchor_at"));
-        return self;
     }
     public static enum StateEnum {
         OFFLINE("offline"),
@@ -87,10 +79,15 @@ public class CorporationPOS {
         ONLINING("onlining"),
         REINFORCED("reinforced"),
         UNANCHORING("unanchoring");
-        public final String stringValue;
+        private final String stringValue;
         private StateEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StateEnum fromString(String str) {
             for (StateEnum self : StateEnum.values()) {
                 if (self.stringValue.equals(str)) {

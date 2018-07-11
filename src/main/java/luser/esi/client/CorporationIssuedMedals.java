@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationIssuedMedals {
+public class CorporationIssuedMedals implements ApiParameterObject {
     private int characterId;
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -20,6 +21,7 @@ public class CorporationIssuedMedals {
     public void setIssuedAt(Instant val) {
         issuedAt = val;
     }
+    @JsonProperty("issued_at")
     public Instant getIssuedAt() {
         return issuedAt;
     }
@@ -27,6 +29,7 @@ public class CorporationIssuedMedals {
     public void setIssuerId(int val) {
         issuerId = val;
     }
+    @JsonProperty("issuer_id")
     public int getIssuerId() {
         return issuerId;
     }
@@ -34,6 +37,7 @@ public class CorporationIssuedMedals {
     public void setMedalId(int val) {
         medalId = val;
     }
+    @JsonProperty("medal_id")
     public int getMedalId() {
         return medalId;
     }
@@ -41,6 +45,7 @@ public class CorporationIssuedMedals {
     public void setReason(String val) {
         reason = val;
     }
+    @JsonProperty("reason")
     public String getReason() {
         return reason;
     }
@@ -48,30 +53,22 @@ public class CorporationIssuedMedals {
     public void setStatus(StatusEnum val) {
         status = val;
     }
+    @JsonProperty("status")
     public StatusEnum getStatus() {
         return status;
-    }
-    static CorporationIssuedMedals fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationIssuedMedals self = new CorporationIssuedMedals();
-        Map<String, Json> js = json.asJsonMap();
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.issuedAt = ApiClientBase.optGetInstant(js.get("issued_at"));
-        self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
-        self.medalId = ApiClientBase.optGetInteger(js.get("medal_id"));
-        self.reason = ApiClientBase.optGetString(js.get("reason"));
-        self.status = StatusEnum.fromString(ApiClientBase.optGetString(js.get("status")));
-        return self;
     }
     public static enum StatusEnum {
         PRIVATE("private"),
         PUBLIC("public");
-        public final String stringValue;
+        private final String stringValue;
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StatusEnum fromString(String str) {
             for (StatusEnum self : StatusEnum.values()) {
                 if (self.stringValue.equals(str)) {

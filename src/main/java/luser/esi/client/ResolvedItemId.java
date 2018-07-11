@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ResolvedItemId {
+public class ResolvedItemId implements ApiParameterObject {
     private List<ResolvedName> agents;
     public void setAgents(List<ResolvedName> val) {
         agents = val;
     }
+    @JsonProperty("agents")
     public List<ResolvedName> getAgents() {
         return agents;
     }
@@ -20,6 +21,7 @@ public class ResolvedItemId {
     public void setAlliances(List<ResolvedName> val) {
         alliances = val;
     }
+    @JsonProperty("alliances")
     public List<ResolvedName> getAlliances() {
         return alliances;
     }
@@ -27,6 +29,7 @@ public class ResolvedItemId {
     public void setCharacters(List<ResolvedName> val) {
         characters = val;
     }
+    @JsonProperty("characters")
     public List<ResolvedName> getCharacters() {
         return characters;
     }
@@ -34,6 +37,7 @@ public class ResolvedItemId {
     public void setConstellations(List<ResolvedName> val) {
         constellations = val;
     }
+    @JsonProperty("constellations")
     public List<ResolvedName> getConstellations() {
         return constellations;
     }
@@ -41,6 +45,7 @@ public class ResolvedItemId {
     public void setCorporations(List<ResolvedName> val) {
         corporations = val;
     }
+    @JsonProperty("corporations")
     public List<ResolvedName> getCorporations() {
         return corporations;
     }
@@ -48,6 +53,7 @@ public class ResolvedItemId {
     public void setFactions(List<ResolvedName> val) {
         factions = val;
     }
+    @JsonProperty("factions")
     public List<ResolvedName> getFactions() {
         return factions;
     }
@@ -55,6 +61,7 @@ public class ResolvedItemId {
     public void setInventoryTypes(List<ResolvedName> val) {
         inventoryTypes = val;
     }
+    @JsonProperty("inventory_types")
     public List<ResolvedName> getInventoryTypes() {
         return inventoryTypes;
     }
@@ -62,6 +69,7 @@ public class ResolvedItemId {
     public void setRegions(List<ResolvedName> val) {
         regions = val;
     }
+    @JsonProperty("regions")
     public List<ResolvedName> getRegions() {
         return regions;
     }
@@ -69,6 +77,7 @@ public class ResolvedItemId {
     public void setStations(List<ResolvedName> val) {
         stations = val;
     }
+    @JsonProperty("stations")
     public List<ResolvedName> getStations() {
         return stations;
     }
@@ -76,95 +85,8 @@ public class ResolvedItemId {
     public void setSystems(List<ResolvedName> val) {
         systems = val;
     }
+    @JsonProperty("systems")
     public List<ResolvedName> getSystems() {
         return systems;
-    }
-    static ResolvedItemId fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ResolvedItemId self = new ResolvedItemId();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("agents").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.agents = rt;
-        }
-        {
-            List<Json> jl = js.get("alliances").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.alliances = rt;
-        }
-        {
-            List<Json> jl = js.get("characters").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.characters = rt;
-        }
-        {
-            List<Json> jl = js.get("constellations").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.constellations = rt;
-        }
-        {
-            List<Json> jl = js.get("corporations").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.corporations = rt;
-        }
-        {
-            List<Json> jl = js.get("factions").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.factions = rt;
-        }
-        {
-            List<Json> jl = js.get("inventory_types").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.inventoryTypes = rt;
-        }
-        {
-            List<Json> jl = js.get("regions").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.regions = rt;
-        }
-        {
-            List<Json> jl = js.get("stations").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.stations = rt;
-        }
-        {
-            List<Json> jl = js.get("systems").asJsonList();
-            List<ResolvedName> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ResolvedName.fromJson(jl.get(i)));
-            }
-            self.systems = rt;
-        }
-        return self;
     }
 }

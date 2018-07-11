@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterFwStats {
+public class CharacterFwStats implements ApiParameterObject {
     private Integer currentRank;
     public void setCurrentRank(Integer val) {
         currentRank = val;
     }
+    @JsonProperty("current_rank")
     public Integer getCurrentRank() {
         return currentRank;
     }
@@ -20,6 +21,7 @@ public class CharacterFwStats {
     public void setEnlistedOn(Instant val) {
         enlistedOn = val;
     }
+    @JsonProperty("enlisted_on")
     public Instant getEnlistedOn() {
         return enlistedOn;
     }
@@ -27,6 +29,7 @@ public class CharacterFwStats {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -34,6 +37,7 @@ public class CharacterFwStats {
     public void setHighestRank(Integer val) {
         highestRank = val;
     }
+    @JsonProperty("highest_rank")
     public Integer getHighestRank() {
         return highestRank;
     }
@@ -41,6 +45,7 @@ public class CharacterFwStats {
     public void setKills(FwStats val) {
         kills = val;
     }
+    @JsonProperty("kills")
     public FwStats getKills() {
         return kills;
     }
@@ -48,21 +53,8 @@ public class CharacterFwStats {
     public void setVictoryPoints(FwStats val) {
         victoryPoints = val;
     }
+    @JsonProperty("victory_points")
     public FwStats getVictoryPoints() {
         return victoryPoints;
-    }
-    static CharacterFwStats fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterFwStats self = new CharacterFwStats();
-        Map<String, Json> js = json.asJsonMap();
-        self.currentRank = ApiClientBase.optGetInteger(js.get("current_rank"));
-        self.enlistedOn = ApiClientBase.optGetInstant(js.get("enlisted_on"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.highestRank = ApiClientBase.optGetInteger(js.get("highest_rank"));
-        self.kills = FwStats.fromJson(js.get("kills"));
-        self.victoryPoints = FwStats.fromJson(js.get("victory_points"));
-        return self;
     }
 }

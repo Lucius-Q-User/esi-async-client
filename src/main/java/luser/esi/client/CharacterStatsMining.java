@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsMining {
+public class CharacterStatsMining implements ApiParameterObject {
     private Long droneMine;
     public void setDroneMine(Long val) {
         droneMine = val;
     }
+    @JsonProperty("drone_mine")
     public Long getDroneMine() {
         return droneMine;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsMining {
     public void setOreArkonor(Long val) {
         oreArkonor = val;
     }
+    @JsonProperty("ore_arkonor")
     public Long getOreArkonor() {
         return oreArkonor;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsMining {
     public void setOreBistot(Long val) {
         oreBistot = val;
     }
+    @JsonProperty("ore_bistot")
     public Long getOreBistot() {
         return oreBistot;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsMining {
     public void setOreCrokite(Long val) {
         oreCrokite = val;
     }
+    @JsonProperty("ore_crokite")
     public Long getOreCrokite() {
         return oreCrokite;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsMining {
     public void setOreDarkOchre(Long val) {
         oreDarkOchre = val;
     }
+    @JsonProperty("ore_dark_ochre")
     public Long getOreDarkOchre() {
         return oreDarkOchre;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsMining {
     public void setOreGneiss(Long val) {
         oreGneiss = val;
     }
+    @JsonProperty("ore_gneiss")
     public Long getOreGneiss() {
         return oreGneiss;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsMining {
     public void setOreHarvestableCloud(Long val) {
         oreHarvestableCloud = val;
     }
+    @JsonProperty("ore_harvestable_cloud")
     public Long getOreHarvestableCloud() {
         return oreHarvestableCloud;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsMining {
     public void setOreHedbergite(Long val) {
         oreHedbergite = val;
     }
+    @JsonProperty("ore_hedbergite")
     public Long getOreHedbergite() {
         return oreHedbergite;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsMining {
     public void setOreHemorphite(Long val) {
         oreHemorphite = val;
     }
+    @JsonProperty("ore_hemorphite")
     public Long getOreHemorphite() {
         return oreHemorphite;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsMining {
     public void setOreIce(Long val) {
         oreIce = val;
     }
+    @JsonProperty("ore_ice")
     public Long getOreIce() {
         return oreIce;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsMining {
     public void setOreJaspet(Long val) {
         oreJaspet = val;
     }
+    @JsonProperty("ore_jaspet")
     public Long getOreJaspet() {
         return oreJaspet;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsMining {
     public void setOreKernite(Long val) {
         oreKernite = val;
     }
+    @JsonProperty("ore_kernite")
     public Long getOreKernite() {
         return oreKernite;
     }
@@ -97,6 +109,7 @@ public class CharacterStatsMining {
     public void setOreMercoxit(Long val) {
         oreMercoxit = val;
     }
+    @JsonProperty("ore_mercoxit")
     public Long getOreMercoxit() {
         return oreMercoxit;
     }
@@ -104,6 +117,7 @@ public class CharacterStatsMining {
     public void setOreOmber(Long val) {
         oreOmber = val;
     }
+    @JsonProperty("ore_omber")
     public Long getOreOmber() {
         return oreOmber;
     }
@@ -111,6 +125,7 @@ public class CharacterStatsMining {
     public void setOrePlagioclase(Long val) {
         orePlagioclase = val;
     }
+    @JsonProperty("ore_plagioclase")
     public Long getOrePlagioclase() {
         return orePlagioclase;
     }
@@ -118,6 +133,7 @@ public class CharacterStatsMining {
     public void setOrePyroxeres(Long val) {
         orePyroxeres = val;
     }
+    @JsonProperty("ore_pyroxeres")
     public Long getOrePyroxeres() {
         return orePyroxeres;
     }
@@ -125,6 +141,7 @@ public class CharacterStatsMining {
     public void setOreScordite(Long val) {
         oreScordite = val;
     }
+    @JsonProperty("ore_scordite")
     public Long getOreScordite() {
         return oreScordite;
     }
@@ -132,6 +149,7 @@ public class CharacterStatsMining {
     public void setOreSpodumain(Long val) {
         oreSpodumain = val;
     }
+    @JsonProperty("ore_spodumain")
     public Long getOreSpodumain() {
         return oreSpodumain;
     }
@@ -139,34 +157,8 @@ public class CharacterStatsMining {
     public void setOreVeldspar(Long val) {
         oreVeldspar = val;
     }
+    @JsonProperty("ore_veldspar")
     public Long getOreVeldspar() {
         return oreVeldspar;
-    }
-    static CharacterStatsMining fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsMining self = new CharacterStatsMining();
-        Map<String, Json> js = json.asJsonMap();
-        self.droneMine = ApiClientBase.optGetLong(js.get("drone_mine"));
-        self.oreArkonor = ApiClientBase.optGetLong(js.get("ore_arkonor"));
-        self.oreBistot = ApiClientBase.optGetLong(js.get("ore_bistot"));
-        self.oreCrokite = ApiClientBase.optGetLong(js.get("ore_crokite"));
-        self.oreDarkOchre = ApiClientBase.optGetLong(js.get("ore_dark_ochre"));
-        self.oreGneiss = ApiClientBase.optGetLong(js.get("ore_gneiss"));
-        self.oreHarvestableCloud = ApiClientBase.optGetLong(js.get("ore_harvestable_cloud"));
-        self.oreHedbergite = ApiClientBase.optGetLong(js.get("ore_hedbergite"));
-        self.oreHemorphite = ApiClientBase.optGetLong(js.get("ore_hemorphite"));
-        self.oreIce = ApiClientBase.optGetLong(js.get("ore_ice"));
-        self.oreJaspet = ApiClientBase.optGetLong(js.get("ore_jaspet"));
-        self.oreKernite = ApiClientBase.optGetLong(js.get("ore_kernite"));
-        self.oreMercoxit = ApiClientBase.optGetLong(js.get("ore_mercoxit"));
-        self.oreOmber = ApiClientBase.optGetLong(js.get("ore_omber"));
-        self.orePlagioclase = ApiClientBase.optGetLong(js.get("ore_plagioclase"));
-        self.orePyroxeres = ApiClientBase.optGetLong(js.get("ore_pyroxeres"));
-        self.oreScordite = ApiClientBase.optGetLong(js.get("ore_scordite"));
-        self.oreSpodumain = ApiClientBase.optGetLong(js.get("ore_spodumain"));
-        self.oreVeldspar = ApiClientBase.optGetLong(js.get("ore_veldspar"));
-        return self;
     }
 }

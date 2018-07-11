@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class WarsApi {
@@ -42,13 +42,8 @@ public class WarsApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -73,9 +68,8 @@ public class WarsApi {
         parametersInUrl.put("war_id", String.valueOf(warId));
         String body = null;
         String method = "GET";
-        Function<String, WarInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return WarInfo.fromJson(js);
+        ResponseParser<WarInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, WarInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -105,13 +99,8 @@ public class WarsApi {
         parametersInUrl.put("war_id", String.valueOf(warId));
         String body = null;
         String method = "GET";
-        Function<String, List<KillmailRef>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<KillmailRef> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(KillmailRef.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<KillmailRef>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<KillmailRef>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

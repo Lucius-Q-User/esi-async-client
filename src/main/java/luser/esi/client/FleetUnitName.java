@@ -3,23 +3,18 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FleetUnitName extends JsonConvertible {
+public class FleetUnitName implements ApiParameterObject {
     private String name;
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("name", Json.make(name));
-        return object;
     }
 }

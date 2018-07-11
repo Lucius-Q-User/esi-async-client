@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterInfo {
+public class CharacterInfo implements ApiParameterObject {
     private Integer allianceId;
     public void setAllianceId(Integer val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public Integer getAllianceId() {
         return allianceId;
     }
@@ -20,6 +21,7 @@ public class CharacterInfo {
     public void setAncestryId(Integer val) {
         ancestryId = val;
     }
+    @JsonProperty("ancestry_id")
     public Integer getAncestryId() {
         return ancestryId;
     }
@@ -27,6 +29,7 @@ public class CharacterInfo {
     public void setBirthday(Instant val) {
         birthday = val;
     }
+    @JsonProperty("birthday")
     public Instant getBirthday() {
         return birthday;
     }
@@ -34,6 +37,7 @@ public class CharacterInfo {
     public void setBloodlineId(int val) {
         bloodlineId = val;
     }
+    @JsonProperty("bloodline_id")
     public int getBloodlineId() {
         return bloodlineId;
     }
@@ -41,6 +45,7 @@ public class CharacterInfo {
     public void setCorporationId(int val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public int getCorporationId() {
         return corporationId;
     }
@@ -48,6 +53,7 @@ public class CharacterInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -55,6 +61,7 @@ public class CharacterInfo {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -62,6 +69,7 @@ public class CharacterInfo {
     public void setGender(GenderEnum val) {
         gender = val;
     }
+    @JsonProperty("gender")
     public GenderEnum getGender() {
         return gender;
     }
@@ -69,6 +77,7 @@ public class CharacterInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -76,6 +85,7 @@ public class CharacterInfo {
     public void setRaceId(int val) {
         raceId = val;
     }
+    @JsonProperty("race_id")
     public int getRaceId() {
         return raceId;
     }
@@ -83,35 +93,22 @@ public class CharacterInfo {
     public void setSecurityStatus(Float val) {
         securityStatus = val;
     }
+    @JsonProperty("security_status")
     public Float getSecurityStatus() {
         return securityStatus;
-    }
-    static CharacterInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterInfo self = new CharacterInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.ancestryId = ApiClientBase.optGetInteger(js.get("ancestry_id"));
-        self.birthday = ApiClientBase.optGetInstant(js.get("birthday"));
-        self.bloodlineId = ApiClientBase.optGetInteger(js.get("bloodline_id"));
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.gender = GenderEnum.fromString(ApiClientBase.optGetString(js.get("gender")));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.raceId = ApiClientBase.optGetInteger(js.get("race_id"));
-        self.securityStatus = ApiClientBase.optGetFloat(js.get("security_status"));
-        return self;
     }
     public static enum GenderEnum {
         FEMALE("female"),
         MALE("male");
-        public final String stringValue;
+        private final String stringValue;
         private GenderEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static GenderEnum fromString(String str) {
             for (GenderEnum self : GenderEnum.values()) {
                 if (self.stringValue.equals(str)) {

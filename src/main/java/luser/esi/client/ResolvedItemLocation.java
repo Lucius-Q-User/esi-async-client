@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ResolvedItemLocation {
+public class ResolvedItemLocation implements ApiParameterObject {
     private long itemId;
     public void setItemId(long val) {
         itemId = val;
     }
+    @JsonProperty("item_id")
     public long getItemId() {
         return itemId;
     }
@@ -20,17 +21,8 @@ public class ResolvedItemLocation {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
-    }
-    static ResolvedItemLocation fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ResolvedItemLocation self = new ResolvedItemLocation();
-        Map<String, Json> js = json.asJsonMap();
-        self.itemId = ApiClientBase.optGetLong(js.get("item_id"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        return self;
     }
 }

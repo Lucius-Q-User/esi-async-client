@@ -1,5 +1,8 @@
 package luser.esi.client;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum OrderTypeEnum {
     BUY("buy"),
     SELL("sell"),
@@ -8,9 +11,11 @@ public enum OrderTypeEnum {
     private OrderTypeEnum(String stringValue) {
        this.stringValue = stringValue;
     }
+    @JsonValue
     public String getStringValue() {
         return stringValue;
     }
+    @JsonCreator
     public static OrderTypeEnum fromString(String str) {
         if (str == null) {
             return null;

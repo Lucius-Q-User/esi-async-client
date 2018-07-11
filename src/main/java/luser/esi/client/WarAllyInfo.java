@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class WarAllyInfo {
+public class WarAllyInfo implements ApiParameterObject {
     private Integer allianceId;
     public void setAllianceId(Integer val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public Integer getAllianceId() {
         return allianceId;
     }
@@ -20,17 +21,8 @@ public class WarAllyInfo {
     public void setCorporationId(Integer val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public Integer getCorporationId() {
         return corporationId;
-    }
-    static WarAllyInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        WarAllyInfo self = new WarAllyInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        return self;
     }
 }

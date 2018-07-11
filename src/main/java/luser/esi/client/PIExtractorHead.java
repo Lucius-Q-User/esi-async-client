@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PIExtractorHead {
+public class PIExtractorHead implements ApiParameterObject {
     private int headId;
     public void setHeadId(int val) {
         headId = val;
     }
+    @JsonProperty("head_id")
     public int getHeadId() {
         return headId;
     }
@@ -20,6 +21,7 @@ public class PIExtractorHead {
     public void setLatitude(float val) {
         latitude = val;
     }
+    @JsonProperty("latitude")
     public float getLatitude() {
         return latitude;
     }
@@ -27,18 +29,8 @@ public class PIExtractorHead {
     public void setLongitude(float val) {
         longitude = val;
     }
+    @JsonProperty("longitude")
     public float getLongitude() {
         return longitude;
-    }
-    static PIExtractorHead fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PIExtractorHead self = new PIExtractorHead();
-        Map<String, Json> js = json.asJsonMap();
-        self.headId = ApiClientBase.optGetInteger(js.get("head_id"));
-        self.latitude = ApiClientBase.optGetFloat(js.get("latitude"));
-        self.longitude = ApiClientBase.optGetFloat(js.get("longitude"));
-        return self;
     }
 }

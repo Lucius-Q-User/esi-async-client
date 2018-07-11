@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PlanetContents {
+public class PlanetContents implements ApiParameterObject {
     private List<PILink> links;
     public void setLinks(List<PILink> val) {
         links = val;
     }
+    @JsonProperty("links")
     public List<PILink> getLinks() {
         return links;
     }
@@ -20,6 +21,7 @@ public class PlanetContents {
     public void setPins(List<PIPin> val) {
         pins = val;
     }
+    @JsonProperty("pins")
     public List<PIPin> getPins() {
         return pins;
     }
@@ -27,39 +29,8 @@ public class PlanetContents {
     public void setRoutes(List<PIRoute> val) {
         routes = val;
     }
+    @JsonProperty("routes")
     public List<PIRoute> getRoutes() {
         return routes;
-    }
-    static PlanetContents fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PlanetContents self = new PlanetContents();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("links").asJsonList();
-            List<PILink> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(PILink.fromJson(jl.get(i)));
-            }
-            self.links = rt;
-        }
-        {
-            List<Json> jl = js.get("pins").asJsonList();
-            List<PIPin> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(PIPin.fromJson(jl.get(i)));
-            }
-            self.pins = rt;
-        }
-        {
-            List<Json> jl = js.get("routes").asJsonList();
-            List<PIRoute> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(PIRoute.fromJson(jl.get(i)));
-            }
-            self.routes = rt;
-        }
-        return self;
     }
 }

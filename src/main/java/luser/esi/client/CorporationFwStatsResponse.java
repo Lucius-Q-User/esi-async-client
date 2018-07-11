@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationFwStatsResponse {
+public class CorporationFwStatsResponse implements ApiParameterObject {
     private Instant enlistedOn;
     public void setEnlistedOn(Instant val) {
         enlistedOn = val;
     }
+    @JsonProperty("enlisted_on")
     public Instant getEnlistedOn() {
         return enlistedOn;
     }
@@ -20,6 +21,7 @@ public class CorporationFwStatsResponse {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -27,6 +29,7 @@ public class CorporationFwStatsResponse {
     public void setKills(FwStats val) {
         kills = val;
     }
+    @JsonProperty("kills")
     public FwStats getKills() {
         return kills;
     }
@@ -34,6 +37,7 @@ public class CorporationFwStatsResponse {
     public void setPilots(Integer val) {
         pilots = val;
     }
+    @JsonProperty("pilots")
     public Integer getPilots() {
         return pilots;
     }
@@ -41,20 +45,8 @@ public class CorporationFwStatsResponse {
     public void setVictoryPoints(FwStats val) {
         victoryPoints = val;
     }
+    @JsonProperty("victory_points")
     public FwStats getVictoryPoints() {
         return victoryPoints;
-    }
-    static CorporationFwStatsResponse fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationFwStatsResponse self = new CorporationFwStatsResponse();
-        Map<String, Json> js = json.asJsonMap();
-        self.enlistedOn = ApiClientBase.optGetInstant(js.get("enlisted_on"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.kills = FwStats.fromJson(js.get("kills"));
-        self.pilots = ApiClientBase.optGetInteger(js.get("pilots"));
-        self.victoryPoints = FwStats.fromJson(js.get("victory_points"));
-        return self;
     }
 }

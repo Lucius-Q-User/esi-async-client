@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class BookmarksApi {
@@ -43,13 +43,8 @@ public class BookmarksApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<BookmarkInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<BookmarkInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(BookmarkInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<BookmarkInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<BookmarkInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -79,13 +74,8 @@ public class BookmarksApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationBookmarkFolder>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationBookmarkFolder> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationBookmarkFolder.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationBookmarkFolder>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationBookmarkFolder>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -115,13 +105,8 @@ public class BookmarksApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<BookmarkInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<BookmarkInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(BookmarkInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<BookmarkInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<BookmarkInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -151,13 +136,8 @@ public class BookmarksApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterBookmarksFolder>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterBookmarksFolder> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterBookmarksFolder.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterBookmarksFolder>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterBookmarksFolder>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

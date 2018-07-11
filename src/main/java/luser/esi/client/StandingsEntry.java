@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StandingsEntry {
+public class StandingsEntry implements ApiParameterObject {
     private int fromId;
     public void setFromId(int val) {
         fromId = val;
     }
+    @JsonProperty("from_id")
     public int getFromId() {
         return fromId;
     }
@@ -20,6 +21,7 @@ public class StandingsEntry {
     public void setFromType(FromTypeEnum val) {
         fromType = val;
     }
+    @JsonProperty("from_type")
     public FromTypeEnum getFromType() {
         return fromType;
     }
@@ -27,28 +29,23 @@ public class StandingsEntry {
     public void setStanding(float val) {
         standing = val;
     }
+    @JsonProperty("standing")
     public float getStanding() {
         return standing;
-    }
-    static StandingsEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StandingsEntry self = new StandingsEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.fromId = ApiClientBase.optGetInteger(js.get("from_id"));
-        self.fromType = FromTypeEnum.fromString(ApiClientBase.optGetString(js.get("from_type")));
-        self.standing = ApiClientBase.optGetFloat(js.get("standing"));
-        return self;
     }
     public static enum FromTypeEnum {
         AGENT("agent"),
         NPC_CORP("npc_corp"),
         FACTION("faction");
-        public final String stringValue;
+        private final String stringValue;
         private FromTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static FromTypeEnum fromString(String str) {
             for (FromTypeEnum self : FromTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

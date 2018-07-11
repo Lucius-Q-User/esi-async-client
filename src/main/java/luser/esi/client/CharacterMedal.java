@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterMedal {
+public class CharacterMedal implements ApiParameterObject {
     private int corporationId;
     public void setCorporationId(int val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public int getCorporationId() {
         return corporationId;
     }
@@ -20,6 +21,7 @@ public class CharacterMedal {
     public void setDate(Instant val) {
         date = val;
     }
+    @JsonProperty("date")
     public Instant getDate() {
         return date;
     }
@@ -27,6 +29,7 @@ public class CharacterMedal {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -34,6 +37,7 @@ public class CharacterMedal {
     public void setGraphics(List<MedalGraphic> val) {
         graphics = val;
     }
+    @JsonProperty("graphics")
     public List<MedalGraphic> getGraphics() {
         return graphics;
     }
@@ -41,6 +45,7 @@ public class CharacterMedal {
     public void setIssuerId(int val) {
         issuerId = val;
     }
+    @JsonProperty("issuer_id")
     public int getIssuerId() {
         return issuerId;
     }
@@ -48,6 +53,7 @@ public class CharacterMedal {
     public void setMedalId(int val) {
         medalId = val;
     }
+    @JsonProperty("medal_id")
     public int getMedalId() {
         return medalId;
     }
@@ -55,6 +61,7 @@ public class CharacterMedal {
     public void setReason(String val) {
         reason = val;
     }
+    @JsonProperty("reason")
     public String getReason() {
         return reason;
     }
@@ -62,6 +69,7 @@ public class CharacterMedal {
     public void setStatus(StatusEnum val) {
         status = val;
     }
+    @JsonProperty("status")
     public StatusEnum getStatus() {
         return status;
     }
@@ -69,40 +77,22 @@ public class CharacterMedal {
     public void setTitle(String val) {
         title = val;
     }
+    @JsonProperty("title")
     public String getTitle() {
         return title;
-    }
-    static CharacterMedal fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterMedal self = new CharacterMedal();
-        Map<String, Json> js = json.asJsonMap();
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.date = ApiClientBase.optGetInstant(js.get("date"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        {
-            List<Json> jl = js.get("graphics").asJsonList();
-            List<MedalGraphic> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(MedalGraphic.fromJson(jl.get(i)));
-            }
-            self.graphics = rt;
-        }
-        self.issuerId = ApiClientBase.optGetInteger(js.get("issuer_id"));
-        self.medalId = ApiClientBase.optGetInteger(js.get("medal_id"));
-        self.reason = ApiClientBase.optGetString(js.get("reason"));
-        self.status = StatusEnum.fromString(ApiClientBase.optGetString(js.get("status")));
-        self.title = ApiClientBase.optGetString(js.get("title"));
-        return self;
     }
     public static enum StatusEnum {
         PUBLIC("public"),
         PRIVATE("private");
-        public final String stringValue;
+        private final String stringValue;
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StatusEnum fromString(String str) {
             for (StatusEnum self : StatusEnum.values()) {
                 if (self.stringValue.equals(str)) {

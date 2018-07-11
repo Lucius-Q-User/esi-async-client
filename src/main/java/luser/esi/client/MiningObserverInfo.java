@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MiningObserverInfo {
+public class MiningObserverInfo implements ApiParameterObject {
     private int characterId;
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -20,6 +21,7 @@ public class MiningObserverInfo {
     public void setLastUpdated(String val) {
         lastUpdated = val;
     }
+    @JsonProperty("last_updated")
     public String getLastUpdated() {
         return lastUpdated;
     }
@@ -27,6 +29,7 @@ public class MiningObserverInfo {
     public void setQuantity(long val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public long getQuantity() {
         return quantity;
     }
@@ -34,6 +37,7 @@ public class MiningObserverInfo {
     public void setRecordedCorporationId(int val) {
         recordedCorporationId = val;
     }
+    @JsonProperty("recorded_corporation_id")
     public int getRecordedCorporationId() {
         return recordedCorporationId;
     }
@@ -41,20 +45,8 @@ public class MiningObserverInfo {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static MiningObserverInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MiningObserverInfo self = new MiningObserverInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.lastUpdated = ApiClientBase.optGetString(js.get("last_updated"));
-        self.quantity = ApiClientBase.optGetLong(js.get("quantity"));
-        self.recordedCorporationId = ApiClientBase.optGetInteger(js.get("recorded_corporation_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

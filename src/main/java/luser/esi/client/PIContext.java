@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PIContext {
+public class PIContext implements ApiParameterObject {
     private long amount;
     public void setAmount(long val) {
         amount = val;
     }
+    @JsonProperty("amount")
     public long getAmount() {
         return amount;
     }
@@ -20,17 +21,8 @@ public class PIContext {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static PIContext fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PIContext self = new PIContext();
-        Map<String, Json> js = json.asJsonMap();
-        self.amount = ApiClientBase.optGetLong(js.get("amount"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

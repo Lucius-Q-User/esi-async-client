@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class RegionInfo {
+public class RegionInfo implements ApiParameterObject {
     private int[] constellations;
     public void setConstellations(int[] val) {
         constellations = val;
     }
+    @JsonProperty("constellations")
     public int[] getConstellations() {
         return constellations;
     }
@@ -20,6 +21,7 @@ public class RegionInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -27,6 +29,7 @@ public class RegionInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -34,26 +37,8 @@ public class RegionInfo {
     public void setRegionId(int val) {
         regionId = val;
     }
+    @JsonProperty("region_id")
     public int getRegionId() {
         return regionId;
-    }
-    static RegionInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        RegionInfo self = new RegionInfo();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("constellations").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.constellations = rt;
-        }
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.regionId = ApiClientBase.optGetInteger(js.get("region_id"));
-        return self;
     }
 }

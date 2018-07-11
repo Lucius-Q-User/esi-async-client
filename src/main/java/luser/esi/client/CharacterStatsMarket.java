@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsMarket {
+public class CharacterStatsMarket implements ApiParameterObject {
     private Long acceptContractsCourier;
     public void setAcceptContractsCourier(Long val) {
         acceptContractsCourier = val;
     }
+    @JsonProperty("accept_contracts_courier")
     public Long getAcceptContractsCourier() {
         return acceptContractsCourier;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsMarket {
     public void setAcceptContractsItemExchange(Long val) {
         acceptContractsItemExchange = val;
     }
+    @JsonProperty("accept_contracts_item_exchange")
     public Long getAcceptContractsItemExchange() {
         return acceptContractsItemExchange;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsMarket {
     public void setBuyOrdersPlaced(Long val) {
         buyOrdersPlaced = val;
     }
+    @JsonProperty("buy_orders_placed")
     public Long getBuyOrdersPlaced() {
         return buyOrdersPlaced;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsMarket {
     public void setCancelMarketOrder(Long val) {
         cancelMarketOrder = val;
     }
+    @JsonProperty("cancel_market_order")
     public Long getCancelMarketOrder() {
         return cancelMarketOrder;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsMarket {
     public void setCreateContractsAuction(Long val) {
         createContractsAuction = val;
     }
+    @JsonProperty("create_contracts_auction")
     public Long getCreateContractsAuction() {
         return createContractsAuction;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsMarket {
     public void setCreateContractsCourier(Long val) {
         createContractsCourier = val;
     }
+    @JsonProperty("create_contracts_courier")
     public Long getCreateContractsCourier() {
         return createContractsCourier;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsMarket {
     public void setCreateContractsItemExchange(Long val) {
         createContractsItemExchange = val;
     }
+    @JsonProperty("create_contracts_item_exchange")
     public Long getCreateContractsItemExchange() {
         return createContractsItemExchange;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsMarket {
     public void setDeliverCourierContract(Long val) {
         deliverCourierContract = val;
     }
+    @JsonProperty("deliver_courier_contract")
     public Long getDeliverCourierContract() {
         return deliverCourierContract;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsMarket {
     public void setIskGained(Long val) {
         iskGained = val;
     }
+    @JsonProperty("isk_gained")
     public Long getIskGained() {
         return iskGained;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsMarket {
     public void setIskSpent(Long val) {
         iskSpent = val;
     }
+    @JsonProperty("isk_spent")
     public Long getIskSpent() {
         return iskSpent;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsMarket {
     public void setModifyMarketOrder(Long val) {
         modifyMarketOrder = val;
     }
+    @JsonProperty("modify_market_order")
     public Long getModifyMarketOrder() {
         return modifyMarketOrder;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsMarket {
     public void setSearchContracts(Long val) {
         searchContracts = val;
     }
+    @JsonProperty("search_contracts")
     public Long getSearchContracts() {
         return searchContracts;
     }
@@ -97,28 +109,8 @@ public class CharacterStatsMarket {
     public void setSellOrdersPlaced(Long val) {
         sellOrdersPlaced = val;
     }
+    @JsonProperty("sell_orders_placed")
     public Long getSellOrdersPlaced() {
         return sellOrdersPlaced;
-    }
-    static CharacterStatsMarket fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsMarket self = new CharacterStatsMarket();
-        Map<String, Json> js = json.asJsonMap();
-        self.acceptContractsCourier = ApiClientBase.optGetLong(js.get("accept_contracts_courier"));
-        self.acceptContractsItemExchange = ApiClientBase.optGetLong(js.get("accept_contracts_item_exchange"));
-        self.buyOrdersPlaced = ApiClientBase.optGetLong(js.get("buy_orders_placed"));
-        self.cancelMarketOrder = ApiClientBase.optGetLong(js.get("cancel_market_order"));
-        self.createContractsAuction = ApiClientBase.optGetLong(js.get("create_contracts_auction"));
-        self.createContractsCourier = ApiClientBase.optGetLong(js.get("create_contracts_courier"));
-        self.createContractsItemExchange = ApiClientBase.optGetLong(js.get("create_contracts_item_exchange"));
-        self.deliverCourierContract = ApiClientBase.optGetLong(js.get("deliver_courier_contract"));
-        self.iskGained = ApiClientBase.optGetLong(js.get("isk_gained"));
-        self.iskSpent = ApiClientBase.optGetLong(js.get("isk_spent"));
-        self.modifyMarketOrder = ApiClientBase.optGetLong(js.get("modify_market_order"));
-        self.searchContracts = ApiClientBase.optGetLong(js.get("search_contracts"));
-        self.sellOrdersPlaced = ApiClientBase.optGetLong(js.get("sell_orders_placed"));
-        return self;
     }
 }

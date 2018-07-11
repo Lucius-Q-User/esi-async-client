@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class AncestryInfo {
+public class AncestryInfo implements ApiParameterObject {
     private int bloodlineId;
     public void setBloodlineId(int val) {
         bloodlineId = val;
     }
+    @JsonProperty("bloodline_id")
     public int getBloodlineId() {
         return bloodlineId;
     }
@@ -20,6 +21,7 @@ public class AncestryInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -27,6 +29,7 @@ public class AncestryInfo {
     public void setIconId(Integer val) {
         iconId = val;
     }
+    @JsonProperty("icon_id")
     public Integer getIconId() {
         return iconId;
     }
@@ -34,6 +37,7 @@ public class AncestryInfo {
     public void setId(int val) {
         id = val;
     }
+    @JsonProperty("id")
     public int getId() {
         return id;
     }
@@ -41,6 +45,7 @@ public class AncestryInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -48,21 +53,8 @@ public class AncestryInfo {
     public void setShortDescription(String val) {
         shortDescription = val;
     }
+    @JsonProperty("short_description")
     public String getShortDescription() {
         return shortDescription;
-    }
-    static AncestryInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        AncestryInfo self = new AncestryInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.bloodlineId = ApiClientBase.optGetInteger(js.get("bloodline_id"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.iconId = ApiClientBase.optGetInteger(js.get("icon_id"));
-        self.id = ApiClientBase.optGetInteger(js.get("id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.shortDescription = ApiClientBase.optGetString(js.get("short_description"));
-        return self;
     }
 }

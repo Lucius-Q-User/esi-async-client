@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsInventory {
+public class CharacterStatsInventory implements ApiParameterObject {
     private Long abandonLootQuantity;
     public void setAbandonLootQuantity(Long val) {
         abandonLootQuantity = val;
     }
+    @JsonProperty("abandon_loot_quantity")
     public Long getAbandonLootQuantity() {
         return abandonLootQuantity;
     }
@@ -20,17 +21,8 @@ public class CharacterStatsInventory {
     public void setTrashItemQuantity(Long val) {
         trashItemQuantity = val;
     }
+    @JsonProperty("trash_item_quantity")
     public Long getTrashItemQuantity() {
         return trashItemQuantity;
-    }
-    static CharacterStatsInventory fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsInventory self = new CharacterStatsInventory();
-        Map<String, Json> js = json.asJsonMap();
-        self.abandonLootQuantity = ApiClientBase.optGetLong(js.get("abandon_loot_quantity"));
-        self.trashItemQuantity = ApiClientBase.optGetLong(js.get("trash_item_quantity"));
-        return self;
     }
 }

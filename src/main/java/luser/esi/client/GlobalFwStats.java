@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class GlobalFwStats {
+public class GlobalFwStats implements ApiParameterObject {
     private int factionId;
     public void setFactionId(int val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public int getFactionId() {
         return factionId;
     }
@@ -20,6 +21,7 @@ public class GlobalFwStats {
     public void setKills(FwStats val) {
         kills = val;
     }
+    @JsonProperty("kills")
     public FwStats getKills() {
         return kills;
     }
@@ -27,6 +29,7 @@ public class GlobalFwStats {
     public void setPilots(int val) {
         pilots = val;
     }
+    @JsonProperty("pilots")
     public int getPilots() {
         return pilots;
     }
@@ -34,6 +37,7 @@ public class GlobalFwStats {
     public void setSystemsControlled(int val) {
         systemsControlled = val;
     }
+    @JsonProperty("systems_controlled")
     public int getSystemsControlled() {
         return systemsControlled;
     }
@@ -41,20 +45,8 @@ public class GlobalFwStats {
     public void setVictoryPoints(FwStats val) {
         victoryPoints = val;
     }
+    @JsonProperty("victory_points")
     public FwStats getVictoryPoints() {
         return victoryPoints;
-    }
-    static GlobalFwStats fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        GlobalFwStats self = new GlobalFwStats();
-        Map<String, Json> js = json.asJsonMap();
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.kills = FwStats.fromJson(js.get("kills"));
-        self.pilots = ApiClientBase.optGetInteger(js.get("pilots"));
-        self.systemsControlled = ApiClientBase.optGetInteger(js.get("systems_controlled"));
-        self.victoryPoints = FwStats.fromJson(js.get("victory_points"));
-        return self;
     }
 }

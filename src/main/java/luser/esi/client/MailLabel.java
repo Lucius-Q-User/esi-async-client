@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MailLabel {
+public class MailLabel implements ApiParameterObject {
     private ColorEnum color;
     public void setColor(ColorEnum val) {
         color = val;
     }
+    @JsonProperty("color")
     public ColorEnum getColor() {
         return color;
     }
@@ -20,6 +21,7 @@ public class MailLabel {
     public void setLabelId(Integer val) {
         labelId = val;
     }
+    @JsonProperty("label_id")
     public Integer getLabelId() {
         return labelId;
     }
@@ -27,6 +29,7 @@ public class MailLabel {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -34,20 +37,9 @@ public class MailLabel {
     public void setUnreadCount(Integer val) {
         unreadCount = val;
     }
+    @JsonProperty("unread_count")
     public Integer getUnreadCount() {
         return unreadCount;
-    }
-    static MailLabel fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MailLabel self = new MailLabel();
-        Map<String, Json> js = json.asJsonMap();
-        self.color = ColorEnum.fromString(ApiClientBase.optGetString(js.get("color")));
-        self.labelId = ApiClientBase.optGetInteger(js.get("label_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.unreadCount = ApiClientBase.optGetInteger(js.get("unread_count"));
-        return self;
     }
     public static enum ColorEnum {
         _0000FE("#0000fe"),
@@ -68,10 +60,15 @@ public class MailLabel {
         _FFFF01("#ffff01"),
         _FFFFCD("#ffffcd"),
         _FFFFFF("#ffffff");
-        public final String stringValue;
+        private final String stringValue;
         private ColorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ColorEnum fromString(String str) {
             for (ColorEnum self : ColorEnum.values()) {
                 if (self.stringValue.equals(str)) {

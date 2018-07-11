@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationHistoryEntry {
+public class CorporationHistoryEntry implements ApiParameterObject {
     private int corporationId;
     public void setCorporationId(int val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public int getCorporationId() {
         return corporationId;
     }
@@ -20,6 +21,7 @@ public class CorporationHistoryEntry {
     public void setIsDeleted(Boolean val) {
         isDeleted = val;
     }
+    @JsonProperty("is_deleted")
     public Boolean getIsDeleted() {
         return isDeleted;
     }
@@ -27,6 +29,7 @@ public class CorporationHistoryEntry {
     public void setRecordId(int val) {
         recordId = val;
     }
+    @JsonProperty("record_id")
     public int getRecordId() {
         return recordId;
     }
@@ -34,19 +37,8 @@ public class CorporationHistoryEntry {
     public void setStartDate(Instant val) {
         startDate = val;
     }
+    @JsonProperty("start_date")
     public Instant getStartDate() {
         return startDate;
-    }
-    static CorporationHistoryEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationHistoryEntry self = new CorporationHistoryEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.isDeleted = ApiClientBase.optGetBoolean(js.get("is_deleted"));
-        self.recordId = ApiClientBase.optGetInteger(js.get("record_id"));
-        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
-        return self;
     }
 }

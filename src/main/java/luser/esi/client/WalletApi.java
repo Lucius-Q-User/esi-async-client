@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class WalletApi {
@@ -38,7 +38,7 @@ public class WalletApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, Double> responseParser = (resp) -> {
+        ResponseParser<Double> responseParser = (resp) -> {
             return Double.parseDouble(resp);
         };
         boolean needsAuth = true;
@@ -69,13 +69,8 @@ public class WalletApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<WalletTransaction>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<WalletTransaction> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(WalletTransaction.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<WalletTransaction>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletTransaction>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -100,13 +95,8 @@ public class WalletApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationWallets>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationWallets> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationWallets.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationWallets>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationWallets>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -137,13 +127,8 @@ public class WalletApi {
         parametersInUrl.put("division", String.valueOf(division));
         String body = null;
         String method = "GET";
-        Function<String, List<WalletTransaction>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<WalletTransaction> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(WalletTransaction.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<WalletTransaction>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletTransaction>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -174,13 +159,8 @@ public class WalletApi {
         parametersInUrl.put("division", String.valueOf(division));
         String body = null;
         String method = "GET";
-        Function<String, List<WalletJournalEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<WalletJournalEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(WalletJournalEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<WalletJournalEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletJournalEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -210,13 +190,8 @@ public class WalletApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<WalletJournalEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<WalletJournalEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(WalletJournalEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<WalletJournalEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletJournalEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

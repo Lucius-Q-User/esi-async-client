@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class KillVictim {
+public class KillVictim implements ApiParameterObject {
     private Integer allianceId;
     public void setAllianceId(Integer val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public Integer getAllianceId() {
         return allianceId;
     }
@@ -20,6 +21,7 @@ public class KillVictim {
     public void setCharacterId(Integer val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public Integer getCharacterId() {
         return characterId;
     }
@@ -27,6 +29,7 @@ public class KillVictim {
     public void setCorporationId(Integer val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public Integer getCorporationId() {
         return corporationId;
     }
@@ -34,6 +37,7 @@ public class KillVictim {
     public void setDamageTaken(int val) {
         damageTaken = val;
     }
+    @JsonProperty("damage_taken")
     public int getDamageTaken() {
         return damageTaken;
     }
@@ -41,6 +45,7 @@ public class KillVictim {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -48,6 +53,7 @@ public class KillVictim {
     public void setItems(List<KillItems> val) {
         items = val;
     }
+    @JsonProperty("items")
     public List<KillItems> getItems() {
         return items;
     }
@@ -55,6 +61,7 @@ public class KillVictim {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -62,30 +69,8 @@ public class KillVictim {
     public void setShipTypeId(int val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public int getShipTypeId() {
         return shipTypeId;
-    }
-    static KillVictim fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        KillVictim self = new KillVictim();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.damageTaken = ApiClientBase.optGetInteger(js.get("damage_taken"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        {
-            List<Json> jl = js.get("items").asJsonList();
-            List<KillItems> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(KillItems.fromJson(jl.get(i)));
-            }
-            self.items = rt;
-        }
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        return self;
     }
 }

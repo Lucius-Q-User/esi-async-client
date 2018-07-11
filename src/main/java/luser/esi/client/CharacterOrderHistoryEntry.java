@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterOrderHistoryEntry {
+public class CharacterOrderHistoryEntry implements ApiParameterObject {
     private int duration;
     public void setDuration(int val) {
         duration = val;
     }
+    @JsonProperty("duration")
     public int getDuration() {
         return duration;
     }
@@ -20,6 +21,7 @@ public class CharacterOrderHistoryEntry {
     public void setEscrow(Double val) {
         escrow = val;
     }
+    @JsonProperty("escrow")
     public Double getEscrow() {
         return escrow;
     }
@@ -27,6 +29,7 @@ public class CharacterOrderHistoryEntry {
     public void setIsBuyOrder(Boolean val) {
         isBuyOrder = val;
     }
+    @JsonProperty("is_buy_order")
     public Boolean getIsBuyOrder() {
         return isBuyOrder;
     }
@@ -34,6 +37,7 @@ public class CharacterOrderHistoryEntry {
     public void setIsCorporation(boolean val) {
         isCorporation = val;
     }
+    @JsonProperty("is_corporation")
     public boolean getIsCorporation() {
         return isCorporation;
     }
@@ -41,6 +45,7 @@ public class CharacterOrderHistoryEntry {
     public void setIssued(Instant val) {
         issued = val;
     }
+    @JsonProperty("issued")
     public Instant getIssued() {
         return issued;
     }
@@ -48,6 +53,7 @@ public class CharacterOrderHistoryEntry {
     public void setLocationId(long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public long getLocationId() {
         return locationId;
     }
@@ -55,6 +61,7 @@ public class CharacterOrderHistoryEntry {
     public void setMinVolume(Integer val) {
         minVolume = val;
     }
+    @JsonProperty("min_volume")
     public Integer getMinVolume() {
         return minVolume;
     }
@@ -62,6 +69,7 @@ public class CharacterOrderHistoryEntry {
     public void setOrderId(long val) {
         orderId = val;
     }
+    @JsonProperty("order_id")
     public long getOrderId() {
         return orderId;
     }
@@ -69,6 +77,7 @@ public class CharacterOrderHistoryEntry {
     public void setPrice(double val) {
         price = val;
     }
+    @JsonProperty("price")
     public double getPrice() {
         return price;
     }
@@ -76,6 +85,7 @@ public class CharacterOrderHistoryEntry {
     public void setRange(RangeEnum val) {
         range = val;
     }
+    @JsonProperty("range")
     public RangeEnum getRange() {
         return range;
     }
@@ -83,6 +93,7 @@ public class CharacterOrderHistoryEntry {
     public void setRegionId(int val) {
         regionId = val;
     }
+    @JsonProperty("region_id")
     public int getRegionId() {
         return regionId;
     }
@@ -90,6 +101,7 @@ public class CharacterOrderHistoryEntry {
     public void setState(StateEnum val) {
         state = val;
     }
+    @JsonProperty("state")
     public StateEnum getState() {
         return state;
     }
@@ -97,6 +109,7 @@ public class CharacterOrderHistoryEntry {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -104,6 +117,7 @@ public class CharacterOrderHistoryEntry {
     public void setVolumeRemain(int val) {
         volumeRemain = val;
     }
+    @JsonProperty("volume_remain")
     public int getVolumeRemain() {
         return volumeRemain;
     }
@@ -111,31 +125,9 @@ public class CharacterOrderHistoryEntry {
     public void setVolumeTotal(int val) {
         volumeTotal = val;
     }
+    @JsonProperty("volume_total")
     public int getVolumeTotal() {
         return volumeTotal;
-    }
-    static CharacterOrderHistoryEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterOrderHistoryEntry self = new CharacterOrderHistoryEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.duration = ApiClientBase.optGetInteger(js.get("duration"));
-        self.escrow = ApiClientBase.optGetDouble(js.get("escrow"));
-        self.isBuyOrder = ApiClientBase.optGetBoolean(js.get("is_buy_order"));
-        self.isCorporation = ApiClientBase.optGetBoolean(js.get("is_corporation"));
-        self.issued = ApiClientBase.optGetInstant(js.get("issued"));
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.minVolume = ApiClientBase.optGetInteger(js.get("min_volume"));
-        self.orderId = ApiClientBase.optGetLong(js.get("order_id"));
-        self.price = ApiClientBase.optGetDouble(js.get("price"));
-        self.range = RangeEnum.fromString(ApiClientBase.optGetString(js.get("range")));
-        self.regionId = ApiClientBase.optGetInteger(js.get("region_id"));
-        self.state = StateEnum.fromString(ApiClientBase.optGetString(js.get("state")));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.volumeRemain = ApiClientBase.optGetInteger(js.get("volume_remain"));
-        self.volumeTotal = ApiClientBase.optGetInteger(js.get("volume_total"));
-        return self;
     }
     public static enum RangeEnum {
         _1("1"),
@@ -150,10 +142,15 @@ public class CharacterOrderHistoryEntry {
         REGION("region"),
         SOLARSYSTEM("solarsystem"),
         STATION("station");
-        public final String stringValue;
+        private final String stringValue;
         private RangeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RangeEnum fromString(String str) {
             for (RangeEnum self : RangeEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -166,10 +163,15 @@ public class CharacterOrderHistoryEntry {
     public static enum StateEnum {
         CANCELLED("cancelled"),
         EXPIRED("expired");
-        public final String stringValue;
+        private final String stringValue;
         private StateEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StateEnum fromString(String str) {
             for (StateEnum self : StateEnum.values()) {
                 if (self.stringValue.equals(str)) {

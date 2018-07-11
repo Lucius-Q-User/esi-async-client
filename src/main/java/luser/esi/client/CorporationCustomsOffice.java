@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationCustomsOffice {
+public class CorporationCustomsOffice implements ApiParameterObject {
     private Float allianceTaxRate;
     public void setAllianceTaxRate(Float val) {
         allianceTaxRate = val;
     }
+    @JsonProperty("alliance_tax_rate")
     public Float getAllianceTaxRate() {
         return allianceTaxRate;
     }
@@ -20,6 +21,7 @@ public class CorporationCustomsOffice {
     public void setAllowAccessWithStandings(boolean val) {
         allowAccessWithStandings = val;
     }
+    @JsonProperty("allow_access_with_standings")
     public boolean getAllowAccessWithStandings() {
         return allowAccessWithStandings;
     }
@@ -27,6 +29,7 @@ public class CorporationCustomsOffice {
     public void setAllowAllianceAccess(boolean val) {
         allowAllianceAccess = val;
     }
+    @JsonProperty("allow_alliance_access")
     public boolean getAllowAllianceAccess() {
         return allowAllianceAccess;
     }
@@ -34,6 +37,7 @@ public class CorporationCustomsOffice {
     public void setBadStandingTaxRate(Float val) {
         badStandingTaxRate = val;
     }
+    @JsonProperty("bad_standing_tax_rate")
     public Float getBadStandingTaxRate() {
         return badStandingTaxRate;
     }
@@ -41,6 +45,7 @@ public class CorporationCustomsOffice {
     public void setCorporationTaxRate(Float val) {
         corporationTaxRate = val;
     }
+    @JsonProperty("corporation_tax_rate")
     public Float getCorporationTaxRate() {
         return corporationTaxRate;
     }
@@ -48,6 +53,7 @@ public class CorporationCustomsOffice {
     public void setExcellentStandingTaxRate(Float val) {
         excellentStandingTaxRate = val;
     }
+    @JsonProperty("excellent_standing_tax_rate")
     public Float getExcellentStandingTaxRate() {
         return excellentStandingTaxRate;
     }
@@ -55,6 +61,7 @@ public class CorporationCustomsOffice {
     public void setGoodStandingTaxRate(Float val) {
         goodStandingTaxRate = val;
     }
+    @JsonProperty("good_standing_tax_rate")
     public Float getGoodStandingTaxRate() {
         return goodStandingTaxRate;
     }
@@ -62,6 +69,7 @@ public class CorporationCustomsOffice {
     public void setNeutralStandingTaxRate(Float val) {
         neutralStandingTaxRate = val;
     }
+    @JsonProperty("neutral_standing_tax_rate")
     public Float getNeutralStandingTaxRate() {
         return neutralStandingTaxRate;
     }
@@ -69,6 +77,7 @@ public class CorporationCustomsOffice {
     public void setOfficeId(long val) {
         officeId = val;
     }
+    @JsonProperty("office_id")
     public long getOfficeId() {
         return officeId;
     }
@@ -76,6 +85,7 @@ public class CorporationCustomsOffice {
     public void setReinforceExitEnd(int val) {
         reinforceExitEnd = val;
     }
+    @JsonProperty("reinforce_exit_end")
     public int getReinforceExitEnd() {
         return reinforceExitEnd;
     }
@@ -83,6 +93,7 @@ public class CorporationCustomsOffice {
     public void setReinforceExitStart(int val) {
         reinforceExitStart = val;
     }
+    @JsonProperty("reinforce_exit_start")
     public int getReinforceExitStart() {
         return reinforceExitStart;
     }
@@ -90,6 +101,7 @@ public class CorporationCustomsOffice {
     public void setStandingLevel(StandingLevelEnum val) {
         standingLevel = val;
     }
+    @JsonProperty("standing_level")
     public StandingLevelEnum getStandingLevel() {
         return standingLevel;
     }
@@ -97,6 +109,7 @@ public class CorporationCustomsOffice {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
     }
@@ -104,30 +117,9 @@ public class CorporationCustomsOffice {
     public void setTerribleStandingTaxRate(Float val) {
         terribleStandingTaxRate = val;
     }
+    @JsonProperty("terrible_standing_tax_rate")
     public Float getTerribleStandingTaxRate() {
         return terribleStandingTaxRate;
-    }
-    static CorporationCustomsOffice fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationCustomsOffice self = new CorporationCustomsOffice();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceTaxRate = ApiClientBase.optGetFloat(js.get("alliance_tax_rate"));
-        self.allowAccessWithStandings = ApiClientBase.optGetBoolean(js.get("allow_access_with_standings"));
-        self.allowAllianceAccess = ApiClientBase.optGetBoolean(js.get("allow_alliance_access"));
-        self.badStandingTaxRate = ApiClientBase.optGetFloat(js.get("bad_standing_tax_rate"));
-        self.corporationTaxRate = ApiClientBase.optGetFloat(js.get("corporation_tax_rate"));
-        self.excellentStandingTaxRate = ApiClientBase.optGetFloat(js.get("excellent_standing_tax_rate"));
-        self.goodStandingTaxRate = ApiClientBase.optGetFloat(js.get("good_standing_tax_rate"));
-        self.neutralStandingTaxRate = ApiClientBase.optGetFloat(js.get("neutral_standing_tax_rate"));
-        self.officeId = ApiClientBase.optGetLong(js.get("office_id"));
-        self.reinforceExitEnd = ApiClientBase.optGetInteger(js.get("reinforce_exit_end"));
-        self.reinforceExitStart = ApiClientBase.optGetInteger(js.get("reinforce_exit_start"));
-        self.standingLevel = StandingLevelEnum.fromString(ApiClientBase.optGetString(js.get("standing_level")));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        self.terribleStandingTaxRate = ApiClientBase.optGetFloat(js.get("terrible_standing_tax_rate"));
-        return self;
     }
     public static enum StandingLevelEnum {
         BAD("bad"),
@@ -135,10 +127,15 @@ public class CorporationCustomsOffice {
         GOOD("good"),
         NEUTRAL("neutral"),
         TERRIBLE("terrible");
-        public final String stringValue;
+        private final String stringValue;
         private StandingLevelEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StandingLevelEnum fromString(String str) {
             for (StandingLevelEnum self : StandingLevelEnum.values()) {
                 if (self.stringValue.equals(str)) {

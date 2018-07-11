@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MarketPrices {
+public class MarketPrices implements ApiParameterObject {
     private Double adjustedPrice;
     public void setAdjustedPrice(Double val) {
         adjustedPrice = val;
     }
+    @JsonProperty("adjusted_price")
     public Double getAdjustedPrice() {
         return adjustedPrice;
     }
@@ -20,6 +21,7 @@ public class MarketPrices {
     public void setAveragePrice(Double val) {
         averagePrice = val;
     }
+    @JsonProperty("average_price")
     public Double getAveragePrice() {
         return averagePrice;
     }
@@ -27,18 +29,8 @@ public class MarketPrices {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static MarketPrices fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MarketPrices self = new MarketPrices();
-        Map<String, Json> js = json.asJsonMap();
-        self.adjustedPrice = ApiClientBase.optGetDouble(js.get("adjusted_price"));
-        self.averagePrice = ApiClientBase.optGetDouble(js.get("average_price"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ContainerLogEntry {
+public class ContainerLogEntry implements ApiParameterObject {
     private ActionEnum action;
     public void setAction(ActionEnum val) {
         action = val;
     }
+    @JsonProperty("action")
     public ActionEnum getAction() {
         return action;
     }
@@ -20,6 +21,7 @@ public class ContainerLogEntry {
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -27,6 +29,7 @@ public class ContainerLogEntry {
     public void setContainerId(long val) {
         containerId = val;
     }
+    @JsonProperty("container_id")
     public long getContainerId() {
         return containerId;
     }
@@ -34,6 +37,7 @@ public class ContainerLogEntry {
     public void setContainerTypeId(int val) {
         containerTypeId = val;
     }
+    @JsonProperty("container_type_id")
     public int getContainerTypeId() {
         return containerTypeId;
     }
@@ -41,6 +45,7 @@ public class ContainerLogEntry {
     public void setLocationFlag(LocationFlagEnum val) {
         locationFlag = val;
     }
+    @JsonProperty("location_flag")
     public LocationFlagEnum getLocationFlag() {
         return locationFlag;
     }
@@ -48,6 +53,7 @@ public class ContainerLogEntry {
     public void setLocationId(long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public long getLocationId() {
         return locationId;
     }
@@ -55,6 +61,7 @@ public class ContainerLogEntry {
     public void setLoggedAt(Instant val) {
         loggedAt = val;
     }
+    @JsonProperty("logged_at")
     public Instant getLoggedAt() {
         return loggedAt;
     }
@@ -62,6 +69,7 @@ public class ContainerLogEntry {
     public void setNewConfigBitmask(Integer val) {
         newConfigBitmask = val;
     }
+    @JsonProperty("new_config_bitmask")
     public Integer getNewConfigBitmask() {
         return newConfigBitmask;
     }
@@ -69,6 +77,7 @@ public class ContainerLogEntry {
     public void setOldConfigBitmask(Integer val) {
         oldConfigBitmask = val;
     }
+    @JsonProperty("old_config_bitmask")
     public Integer getOldConfigBitmask() {
         return oldConfigBitmask;
     }
@@ -76,6 +85,7 @@ public class ContainerLogEntry {
     public void setPasswordType(PasswordTypeEnum val) {
         passwordType = val;
     }
+    @JsonProperty("password_type")
     public PasswordTypeEnum getPasswordType() {
         return passwordType;
     }
@@ -83,6 +93,7 @@ public class ContainerLogEntry {
     public void setQuantity(Integer val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public Integer getQuantity() {
         return quantity;
     }
@@ -90,28 +101,9 @@ public class ContainerLogEntry {
     public void setTypeId(Integer val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public Integer getTypeId() {
         return typeId;
-    }
-    static ContainerLogEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ContainerLogEntry self = new ContainerLogEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.action = ActionEnum.fromString(ApiClientBase.optGetString(js.get("action")));
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.containerId = ApiClientBase.optGetLong(js.get("container_id"));
-        self.containerTypeId = ApiClientBase.optGetInteger(js.get("container_type_id"));
-        self.locationFlag = LocationFlagEnum.fromString(ApiClientBase.optGetString(js.get("location_flag")));
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.loggedAt = ApiClientBase.optGetInstant(js.get("logged_at"));
-        self.newConfigBitmask = ApiClientBase.optGetInteger(js.get("new_config_bitmask"));
-        self.oldConfigBitmask = ApiClientBase.optGetInteger(js.get("old_config_bitmask"));
-        self.passwordType = PasswordTypeEnum.fromString(ApiClientBase.optGetString(js.get("password_type")));
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
     public static enum ActionEnum {
         ADD("add"),
@@ -124,10 +116,15 @@ public class ContainerLogEntry {
         SET_NAME("set_name"),
         SET_PASSWORD("set_password"),
         UNLOCK("unlock");
-        public final String stringValue;
+        private final String stringValue;
         private ActionEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ActionEnum fromString(String str) {
             for (ActionEnum self : ActionEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -253,10 +250,15 @@ public class ContainerLogEntry {
         UNLOCKED("Unlocked"),
         WALLET("Wallet"),
         WARDROBE("Wardrobe");
-        public final String stringValue;
+        private final String stringValue;
         private LocationFlagEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static LocationFlagEnum fromString(String str) {
             for (LocationFlagEnum self : LocationFlagEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -269,10 +271,15 @@ public class ContainerLogEntry {
     public static enum PasswordTypeEnum {
         CONFIG("config"),
         GENERAL("general");
-        public final String stringValue;
+        private final String stringValue;
         private PasswordTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static PasswordTypeEnum fromString(String str) {
             for (PasswordTypeEnum self : PasswordTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

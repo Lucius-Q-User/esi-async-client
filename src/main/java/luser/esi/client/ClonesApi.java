@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class ClonesApi {
@@ -38,13 +38,8 @@ public class ClonesApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -69,9 +64,8 @@ public class ClonesApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CloneInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CloneInfo.fromJson(js);
+        ResponseParser<CloneInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CloneInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

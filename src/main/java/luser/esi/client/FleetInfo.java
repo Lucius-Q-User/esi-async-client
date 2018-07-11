@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FleetInfo {
+public class FleetInfo implements ApiParameterObject {
     private boolean isFreeMove;
     public void setIsFreeMove(boolean val) {
         isFreeMove = val;
     }
+    @JsonProperty("is_free_move")
     public boolean getIsFreeMove() {
         return isFreeMove;
     }
@@ -20,6 +21,7 @@ public class FleetInfo {
     public void setIsRegistered(boolean val) {
         isRegistered = val;
     }
+    @JsonProperty("is_registered")
     public boolean getIsRegistered() {
         return isRegistered;
     }
@@ -27,6 +29,7 @@ public class FleetInfo {
     public void setIsVoiceEnabled(boolean val) {
         isVoiceEnabled = val;
     }
+    @JsonProperty("is_voice_enabled")
     public boolean getIsVoiceEnabled() {
         return isVoiceEnabled;
     }
@@ -34,19 +37,8 @@ public class FleetInfo {
     public void setMotd(String val) {
         motd = val;
     }
+    @JsonProperty("motd")
     public String getMotd() {
         return motd;
-    }
-    static FleetInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FleetInfo self = new FleetInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.isFreeMove = ApiClientBase.optGetBoolean(js.get("is_free_move"));
-        self.isRegistered = ApiClientBase.optGetBoolean(js.get("is_registered"));
-        self.isVoiceEnabled = ApiClientBase.optGetBoolean(js.get("is_voice_enabled"));
-        self.motd = ApiClientBase.optGetString(js.get("motd"));
-        return self;
     }
 }

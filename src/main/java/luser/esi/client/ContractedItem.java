@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ContractedItem {
+public class ContractedItem implements ApiParameterObject {
     private boolean isIncluded;
     public void setIsIncluded(boolean val) {
         isIncluded = val;
     }
+    @JsonProperty("is_included")
     public boolean getIsIncluded() {
         return isIncluded;
     }
@@ -20,6 +21,7 @@ public class ContractedItem {
     public void setIsSingleton(boolean val) {
         isSingleton = val;
     }
+    @JsonProperty("is_singleton")
     public boolean getIsSingleton() {
         return isSingleton;
     }
@@ -27,6 +29,7 @@ public class ContractedItem {
     public void setQuantity(int val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -34,6 +37,7 @@ public class ContractedItem {
     public void setRawQuantity(Integer val) {
         rawQuantity = val;
     }
+    @JsonProperty("raw_quantity")
     public Integer getRawQuantity() {
         return rawQuantity;
     }
@@ -41,6 +45,7 @@ public class ContractedItem {
     public void setRecordId(long val) {
         recordId = val;
     }
+    @JsonProperty("record_id")
     public long getRecordId() {
         return recordId;
     }
@@ -48,21 +53,8 @@ public class ContractedItem {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static ContractedItem fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ContractedItem self = new ContractedItem();
-        Map<String, Json> js = json.asJsonMap();
-        self.isIncluded = ApiClientBase.optGetBoolean(js.get("is_included"));
-        self.isSingleton = ApiClientBase.optGetBoolean(js.get("is_singleton"));
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        self.rawQuantity = ApiClientBase.optGetInteger(js.get("raw_quantity"));
-        self.recordId = ApiClientBase.optGetLong(js.get("record_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

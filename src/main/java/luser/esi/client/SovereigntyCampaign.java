@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SovereigntyCampaign {
+public class SovereigntyCampaign implements ApiParameterObject {
     private Float attackersScore;
     public void setAttackersScore(Float val) {
         attackersScore = val;
     }
+    @JsonProperty("attackers_score")
     public Float getAttackersScore() {
         return attackersScore;
     }
@@ -20,6 +21,7 @@ public class SovereigntyCampaign {
     public void setCampaignId(int val) {
         campaignId = val;
     }
+    @JsonProperty("campaign_id")
     public int getCampaignId() {
         return campaignId;
     }
@@ -27,6 +29,7 @@ public class SovereigntyCampaign {
     public void setConstellationId(int val) {
         constellationId = val;
     }
+    @JsonProperty("constellation_id")
     public int getConstellationId() {
         return constellationId;
     }
@@ -34,6 +37,7 @@ public class SovereigntyCampaign {
     public void setDefenderId(Integer val) {
         defenderId = val;
     }
+    @JsonProperty("defender_id")
     public Integer getDefenderId() {
         return defenderId;
     }
@@ -41,6 +45,7 @@ public class SovereigntyCampaign {
     public void setDefenderScore(Float val) {
         defenderScore = val;
     }
+    @JsonProperty("defender_score")
     public Float getDefenderScore() {
         return defenderScore;
     }
@@ -48,6 +53,7 @@ public class SovereigntyCampaign {
     public void setEventType(EventTypeEnum val) {
         eventType = val;
     }
+    @JsonProperty("event_type")
     public EventTypeEnum getEventType() {
         return eventType;
     }
@@ -55,6 +61,7 @@ public class SovereigntyCampaign {
     public void setParticipants(List<SovCampaignParticipant> val) {
         participants = val;
     }
+    @JsonProperty("participants")
     public List<SovCampaignParticipant> getParticipants() {
         return participants;
     }
@@ -62,6 +69,7 @@ public class SovereigntyCampaign {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -69,6 +77,7 @@ public class SovereigntyCampaign {
     public void setStartTime(Instant val) {
         startTime = val;
     }
+    @JsonProperty("start_time")
     public Instant getStartTime() {
         return startTime;
     }
@@ -76,43 +85,24 @@ public class SovereigntyCampaign {
     public void setStructureId(long val) {
         structureId = val;
     }
+    @JsonProperty("structure_id")
     public long getStructureId() {
         return structureId;
-    }
-    static SovereigntyCampaign fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SovereigntyCampaign self = new SovereigntyCampaign();
-        Map<String, Json> js = json.asJsonMap();
-        self.attackersScore = ApiClientBase.optGetFloat(js.get("attackers_score"));
-        self.campaignId = ApiClientBase.optGetInteger(js.get("campaign_id"));
-        self.constellationId = ApiClientBase.optGetInteger(js.get("constellation_id"));
-        self.defenderId = ApiClientBase.optGetInteger(js.get("defender_id"));
-        self.defenderScore = ApiClientBase.optGetFloat(js.get("defender_score"));
-        self.eventType = EventTypeEnum.fromString(ApiClientBase.optGetString(js.get("event_type")));
-        {
-            List<Json> jl = js.get("participants").asJsonList();
-            List<SovCampaignParticipant> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(SovCampaignParticipant.fromJson(jl.get(i)));
-            }
-            self.participants = rt;
-        }
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.startTime = ApiClientBase.optGetInstant(js.get("start_time"));
-        self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
-        return self;
     }
     public static enum EventTypeEnum {
         TCU_DEFENSE("tcu_defense"),
         IHUB_DEFENSE("ihub_defense"),
         STATION_DEFENSE("station_defense"),
         STATION_FREEPORT("station_freeport");
-        public final String stringValue;
+        private final String stringValue;
         private EventTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static EventTypeEnum fromString(String str) {
             for (EventTypeEnum self : EventTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

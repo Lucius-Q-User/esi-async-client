@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class KillItem {
+public class KillItem implements ApiParameterObject {
     private int flag;
     public void setFlag(int val) {
         flag = val;
     }
+    @JsonProperty("flag")
     public int getFlag() {
         return flag;
     }
@@ -20,6 +21,7 @@ public class KillItem {
     public void setItemTypeId(int val) {
         itemTypeId = val;
     }
+    @JsonProperty("item_type_id")
     public int getItemTypeId() {
         return itemTypeId;
     }
@@ -27,6 +29,7 @@ public class KillItem {
     public void setQuantityDestroyed(Long val) {
         quantityDestroyed = val;
     }
+    @JsonProperty("quantity_destroyed")
     public Long getQuantityDestroyed() {
         return quantityDestroyed;
     }
@@ -34,6 +37,7 @@ public class KillItem {
     public void setQuantityDropped(Long val) {
         quantityDropped = val;
     }
+    @JsonProperty("quantity_dropped")
     public Long getQuantityDropped() {
         return quantityDropped;
     }
@@ -41,20 +45,8 @@ public class KillItem {
     public void setSingleton(int val) {
         singleton = val;
     }
+    @JsonProperty("singleton")
     public int getSingleton() {
         return singleton;
-    }
-    static KillItem fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        KillItem self = new KillItem();
-        Map<String, Json> js = json.asJsonMap();
-        self.flag = ApiClientBase.optGetInteger(js.get("flag"));
-        self.itemTypeId = ApiClientBase.optGetInteger(js.get("item_type_id"));
-        self.quantityDestroyed = ApiClientBase.optGetLong(js.get("quantity_destroyed"));
-        self.quantityDropped = ApiClientBase.optGetLong(js.get("quantity_dropped"));
-        self.singleton = ApiClientBase.optGetInteger(js.get("singleton"));
-        return self;
     }
 }

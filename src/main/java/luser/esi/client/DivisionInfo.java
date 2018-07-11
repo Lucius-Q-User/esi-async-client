@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DivisionInfo {
+public class DivisionInfo implements ApiParameterObject {
     private Integer division;
     public void setDivision(Integer val) {
         division = val;
     }
+    @JsonProperty("division")
     public Integer getDivision() {
         return division;
     }
@@ -20,17 +21,8 @@ public class DivisionInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    static DivisionInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DivisionInfo self = new DivisionInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.division = ApiClientBase.optGetInteger(js.get("division"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        return self;
     }
 }

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PIRoute {
+public class PIRoute implements ApiParameterObject {
     private int contentTypeId;
     public void setContentTypeId(int val) {
         contentTypeId = val;
     }
+    @JsonProperty("content_type_id")
     public int getContentTypeId() {
         return contentTypeId;
     }
@@ -20,6 +21,7 @@ public class PIRoute {
     public void setDestinationPinId(long val) {
         destinationPinId = val;
     }
+    @JsonProperty("destination_pin_id")
     public long getDestinationPinId() {
         return destinationPinId;
     }
@@ -27,6 +29,7 @@ public class PIRoute {
     public void setQuantity(float val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public float getQuantity() {
         return quantity;
     }
@@ -34,6 +37,7 @@ public class PIRoute {
     public void setRouteId(long val) {
         routeId = val;
     }
+    @JsonProperty("route_id")
     public long getRouteId() {
         return routeId;
     }
@@ -41,6 +45,7 @@ public class PIRoute {
     public void setSourcePinId(long val) {
         sourcePinId = val;
     }
+    @JsonProperty("source_pin_id")
     public long getSourcePinId() {
         return sourcePinId;
     }
@@ -48,28 +53,8 @@ public class PIRoute {
     public void setWaypoints(long[] val) {
         waypoints = val;
     }
+    @JsonProperty("waypoints")
     public long[] getWaypoints() {
         return waypoints;
-    }
-    static PIRoute fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PIRoute self = new PIRoute();
-        Map<String, Json> js = json.asJsonMap();
-        self.contentTypeId = ApiClientBase.optGetInteger(js.get("content_type_id"));
-        self.destinationPinId = ApiClientBase.optGetLong(js.get("destination_pin_id"));
-        self.quantity = ApiClientBase.optGetFloat(js.get("quantity"));
-        self.routeId = ApiClientBase.optGetLong(js.get("route_id"));
-        self.sourcePinId = ApiClientBase.optGetLong(js.get("source_pin_id"));
-        {
-            List<Json> jl = js.get("waypoints").asJsonList();
-            long[] rt = new long[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asLong();
-            }
-            self.waypoints = rt;
-        }
-        return self;
     }
 }

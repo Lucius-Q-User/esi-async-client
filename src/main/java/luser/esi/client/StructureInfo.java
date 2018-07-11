@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StructureInfo {
+public class StructureInfo implements ApiParameterObject {
     private String name;
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -20,6 +21,7 @@ public class StructureInfo {
     public void setOwnerId(int val) {
         ownerId = val;
     }
+    @JsonProperty("owner_id")
     public int getOwnerId() {
         return ownerId;
     }
@@ -27,6 +29,7 @@ public class StructureInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -34,6 +37,7 @@ public class StructureInfo {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -41,20 +45,8 @@ public class StructureInfo {
     public void setTypeId(Integer val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public Integer getTypeId() {
         return typeId;
-    }
-    static StructureInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StructureInfo self = new StructureInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.ownerId = ApiClientBase.optGetInteger(js.get("owner_id"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

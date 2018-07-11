@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MoonInfo {
+public class MoonInfo implements ApiParameterObject {
     private int moonId;
     public void setMoonId(int val) {
         moonId = val;
     }
+    @JsonProperty("moon_id")
     public int getMoonId() {
         return moonId;
     }
@@ -20,6 +21,7 @@ public class MoonInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,6 +29,7 @@ public class MoonInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -34,19 +37,8 @@ public class MoonInfo {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
-    }
-    static MoonInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MoonInfo self = new MoonInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.moonId = ApiClientBase.optGetInteger(js.get("moon_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        return self;
     }
 }

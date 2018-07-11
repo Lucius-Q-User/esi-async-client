@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class FactionWarfareApi {
@@ -38,9 +38,8 @@ public class FactionWarfareApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CharacterFwStats> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CharacterFwStats.fromJson(js);
+        ResponseParser<CharacterFwStats> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterFwStats.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -65,9 +64,8 @@ public class FactionWarfareApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, CorporationFwStatsResponse> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CorporationFwStatsResponse.fromJson(js);
+        ResponseParser<CorporationFwStatsResponse> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationFwStatsResponse.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -91,9 +89,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, FwFactionLeaderboards> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return FwFactionLeaderboards.fromJson(js);
+        ResponseParser<FwFactionLeaderboards> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FwFactionLeaderboards.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -117,9 +114,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, FwCharacterLeaderboards> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return FwCharacterLeaderboards.fromJson(js);
+        ResponseParser<FwCharacterLeaderboards> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FwCharacterLeaderboards.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -143,9 +139,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, FWCorporationLeaderboards> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return FWCorporationLeaderboards.fromJson(js);
+        ResponseParser<FWCorporationLeaderboards> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FWCorporationLeaderboards.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -169,13 +164,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<GlobalFwStats>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<GlobalFwStats> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(GlobalFwStats.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<GlobalFwStats>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<GlobalFwStats>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -199,13 +189,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<FwActiveWars>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<FwActiveWars> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(FwActiveWars.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<FwActiveWars>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FwActiveWars>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -229,13 +214,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<FwSystemsList>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<FwSystemsList> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(FwSystemsList.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<FwSystemsList>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FwSystemsList>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

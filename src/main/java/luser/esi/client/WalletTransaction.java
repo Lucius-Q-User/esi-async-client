@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class WalletTransaction {
+public class WalletTransaction implements ApiParameterObject {
     private int clientId;
     public void setClientId(int val) {
         clientId = val;
     }
+    @JsonProperty("client_id")
     public int getClientId() {
         return clientId;
     }
@@ -20,6 +21,7 @@ public class WalletTransaction {
     public void setDate(Instant val) {
         date = val;
     }
+    @JsonProperty("date")
     public Instant getDate() {
         return date;
     }
@@ -27,6 +29,7 @@ public class WalletTransaction {
     public void setIsBuy(boolean val) {
         isBuy = val;
     }
+    @JsonProperty("is_buy")
     public boolean getIsBuy() {
         return isBuy;
     }
@@ -34,6 +37,7 @@ public class WalletTransaction {
     public void setIsPersonal(boolean val) {
         isPersonal = val;
     }
+    @JsonProperty("is_personal")
     public boolean getIsPersonal() {
         return isPersonal;
     }
@@ -41,6 +45,7 @@ public class WalletTransaction {
     public void setJournalRefId(long val) {
         journalRefId = val;
     }
+    @JsonProperty("journal_ref_id")
     public long getJournalRefId() {
         return journalRefId;
     }
@@ -48,6 +53,7 @@ public class WalletTransaction {
     public void setLocationId(long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public long getLocationId() {
         return locationId;
     }
@@ -55,6 +61,7 @@ public class WalletTransaction {
     public void setQuantity(int val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -62,6 +69,7 @@ public class WalletTransaction {
     public void setTransactionId(long val) {
         transactionId = val;
     }
+    @JsonProperty("transaction_id")
     public long getTransactionId() {
         return transactionId;
     }
@@ -69,6 +77,7 @@ public class WalletTransaction {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -76,25 +85,8 @@ public class WalletTransaction {
     public void setUnitPrice(double val) {
         unitPrice = val;
     }
+    @JsonProperty("unit_price")
     public double getUnitPrice() {
         return unitPrice;
-    }
-    static WalletTransaction fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        WalletTransaction self = new WalletTransaction();
-        Map<String, Json> js = json.asJsonMap();
-        self.clientId = ApiClientBase.optGetInteger(js.get("client_id"));
-        self.date = ApiClientBase.optGetInstant(js.get("date"));
-        self.isBuy = ApiClientBase.optGetBoolean(js.get("is_buy"));
-        self.isPersonal = ApiClientBase.optGetBoolean(js.get("is_personal"));
-        self.journalRefId = ApiClientBase.optGetLong(js.get("journal_ref_id"));
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        self.transactionId = ApiClientBase.optGetLong(js.get("transaction_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.unitPrice = ApiClientBase.optGetDouble(js.get("unit_price"));
-        return self;
     }
 }

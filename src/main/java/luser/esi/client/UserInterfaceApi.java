@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class UserInterfaceApi {
@@ -38,7 +38,7 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -64,7 +64,7 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -90,7 +90,7 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -112,7 +112,7 @@ public class UserInterfaceApi {
         String body = null;
         body = ApiClientBase.renderToBody(newMail);
         String method = "POST";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;
@@ -148,7 +148,7 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;

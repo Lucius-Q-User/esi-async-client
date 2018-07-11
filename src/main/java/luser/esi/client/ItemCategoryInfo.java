@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ItemCategoryInfo {
+public class ItemCategoryInfo implements ApiParameterObject {
     private int categoryId;
     public void setCategoryId(int val) {
         categoryId = val;
     }
+    @JsonProperty("category_id")
     public int getCategoryId() {
         return categoryId;
     }
@@ -20,6 +21,7 @@ public class ItemCategoryInfo {
     public void setGroups(int[] val) {
         groups = val;
     }
+    @JsonProperty("groups")
     public int[] getGroups() {
         return groups;
     }
@@ -27,6 +29,7 @@ public class ItemCategoryInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -34,26 +37,8 @@ public class ItemCategoryInfo {
     public void setPublished(boolean val) {
         published = val;
     }
+    @JsonProperty("published")
     public boolean getPublished() {
         return published;
-    }
-    static ItemCategoryInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ItemCategoryInfo self = new ItemCategoryInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.categoryId = ApiClientBase.optGetInteger(js.get("category_id"));
-        {
-            List<Json> jl = js.get("groups").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.groups = rt;
-        }
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.published = ApiClientBase.optGetBoolean(js.get("published"));
-        return self;
     }
 }

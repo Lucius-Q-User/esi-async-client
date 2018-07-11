@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationStructures {
+public class CorporationStructures implements ApiParameterObject {
     private int corporationId;
     public void setCorporationId(int val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public int getCorporationId() {
         return corporationId;
     }
@@ -20,6 +21,7 @@ public class CorporationStructures {
     public void setFuelExpires(Instant val) {
         fuelExpires = val;
     }
+    @JsonProperty("fuel_expires")
     public Instant getFuelExpires() {
         return fuelExpires;
     }
@@ -27,6 +29,7 @@ public class CorporationStructures {
     public void setNextReinforceApply(Instant val) {
         nextReinforceApply = val;
     }
+    @JsonProperty("next_reinforce_apply")
     public Instant getNextReinforceApply() {
         return nextReinforceApply;
     }
@@ -34,6 +37,7 @@ public class CorporationStructures {
     public void setNextReinforceHour(Integer val) {
         nextReinforceHour = val;
     }
+    @JsonProperty("next_reinforce_hour")
     public Integer getNextReinforceHour() {
         return nextReinforceHour;
     }
@@ -41,6 +45,7 @@ public class CorporationStructures {
     public void setNextReinforceWeekday(Integer val) {
         nextReinforceWeekday = val;
     }
+    @JsonProperty("next_reinforce_weekday")
     public Integer getNextReinforceWeekday() {
         return nextReinforceWeekday;
     }
@@ -48,6 +53,7 @@ public class CorporationStructures {
     public void setProfileId(int val) {
         profileId = val;
     }
+    @JsonProperty("profile_id")
     public int getProfileId() {
         return profileId;
     }
@@ -55,6 +61,7 @@ public class CorporationStructures {
     public void setReinforceHour(int val) {
         reinforceHour = val;
     }
+    @JsonProperty("reinforce_hour")
     public int getReinforceHour() {
         return reinforceHour;
     }
@@ -62,6 +69,7 @@ public class CorporationStructures {
     public void setReinforceWeekday(int val) {
         reinforceWeekday = val;
     }
+    @JsonProperty("reinforce_weekday")
     public int getReinforceWeekday() {
         return reinforceWeekday;
     }
@@ -69,6 +77,7 @@ public class CorporationStructures {
     public void setServices(List<StructureSerivec> val) {
         services = val;
     }
+    @JsonProperty("services")
     public List<StructureSerivec> getServices() {
         return services;
     }
@@ -76,6 +85,7 @@ public class CorporationStructures {
     public void setState(StateEnum val) {
         state = val;
     }
+    @JsonProperty("state")
     public StateEnum getState() {
         return state;
     }
@@ -83,6 +93,7 @@ public class CorporationStructures {
     public void setStateTimerEnd(Instant val) {
         stateTimerEnd = val;
     }
+    @JsonProperty("state_timer_end")
     public Instant getStateTimerEnd() {
         return stateTimerEnd;
     }
@@ -90,6 +101,7 @@ public class CorporationStructures {
     public void setStateTimerStart(Instant val) {
         stateTimerStart = val;
     }
+    @JsonProperty("state_timer_start")
     public Instant getStateTimerStart() {
         return stateTimerStart;
     }
@@ -97,6 +109,7 @@ public class CorporationStructures {
     public void setStructureId(long val) {
         structureId = val;
     }
+    @JsonProperty("structure_id")
     public long getStructureId() {
         return structureId;
     }
@@ -104,6 +117,7 @@ public class CorporationStructures {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
     }
@@ -111,6 +125,7 @@ public class CorporationStructures {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -118,39 +133,9 @@ public class CorporationStructures {
     public void setUnanchorsAt(Instant val) {
         unanchorsAt = val;
     }
+    @JsonProperty("unanchors_at")
     public Instant getUnanchorsAt() {
         return unanchorsAt;
-    }
-    static CorporationStructures fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationStructures self = new CorporationStructures();
-        Map<String, Json> js = json.asJsonMap();
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.fuelExpires = ApiClientBase.optGetInstant(js.get("fuel_expires"));
-        self.nextReinforceApply = ApiClientBase.optGetInstant(js.get("next_reinforce_apply"));
-        self.nextReinforceHour = ApiClientBase.optGetInteger(js.get("next_reinforce_hour"));
-        self.nextReinforceWeekday = ApiClientBase.optGetInteger(js.get("next_reinforce_weekday"));
-        self.profileId = ApiClientBase.optGetInteger(js.get("profile_id"));
-        self.reinforceHour = ApiClientBase.optGetInteger(js.get("reinforce_hour"));
-        self.reinforceWeekday = ApiClientBase.optGetInteger(js.get("reinforce_weekday"));
-        {
-            List<Json> jl = js.get("services").asJsonList();
-            List<StructureSerivec> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(StructureSerivec.fromJson(jl.get(i)));
-            }
-            self.services = rt;
-        }
-        self.state = StateEnum.fromString(ApiClientBase.optGetString(js.get("state")));
-        self.stateTimerEnd = ApiClientBase.optGetInstant(js.get("state_timer_end"));
-        self.stateTimerStart = ApiClientBase.optGetInstant(js.get("state_timer_start"));
-        self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.unanchorsAt = ApiClientBase.optGetInstant(js.get("unanchors_at"));
-        return self;
     }
     public static enum StateEnum {
         ANCHOR_VULNERABLE("anchor_vulnerable"),
@@ -165,10 +150,15 @@ public class CorporationStructures {
         SHIELD_VULNERABLE("shield_vulnerable"),
         UNANCHORED("unanchored"),
         UNKNOWN("unknown");
-        public final String stringValue;
+        private final String stringValue;
         private StateEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StateEnum fromString(String str) {
             for (StateEnum self : StateEnum.values()) {
                 if (self.stringValue.equals(str)) {

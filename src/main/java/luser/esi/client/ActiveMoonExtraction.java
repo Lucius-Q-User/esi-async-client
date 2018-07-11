@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ActiveMoonExtraction {
+public class ActiveMoonExtraction implements ApiParameterObject {
     private Instant chunkArrivalTime;
     public void setChunkArrivalTime(Instant val) {
         chunkArrivalTime = val;
     }
+    @JsonProperty("chunk_arrival_time")
     public Instant getChunkArrivalTime() {
         return chunkArrivalTime;
     }
@@ -20,6 +21,7 @@ public class ActiveMoonExtraction {
     public void setExtractionStartTime(Instant val) {
         extractionStartTime = val;
     }
+    @JsonProperty("extraction_start_time")
     public Instant getExtractionStartTime() {
         return extractionStartTime;
     }
@@ -27,6 +29,7 @@ public class ActiveMoonExtraction {
     public void setMoonId(int val) {
         moonId = val;
     }
+    @JsonProperty("moon_id")
     public int getMoonId() {
         return moonId;
     }
@@ -34,6 +37,7 @@ public class ActiveMoonExtraction {
     public void setNaturalDecayTime(Instant val) {
         naturalDecayTime = val;
     }
+    @JsonProperty("natural_decay_time")
     public Instant getNaturalDecayTime() {
         return naturalDecayTime;
     }
@@ -41,20 +45,8 @@ public class ActiveMoonExtraction {
     public void setStructureId(long val) {
         structureId = val;
     }
+    @JsonProperty("structure_id")
     public long getStructureId() {
         return structureId;
-    }
-    static ActiveMoonExtraction fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ActiveMoonExtraction self = new ActiveMoonExtraction();
-        Map<String, Json> js = json.asJsonMap();
-        self.chunkArrivalTime = ApiClientBase.optGetInstant(js.get("chunk_arrival_time"));
-        self.extractionStartTime = ApiClientBase.optGetInstant(js.get("extraction_start_time"));
-        self.moonId = ApiClientBase.optGetInteger(js.get("moon_id"));
-        self.naturalDecayTime = ApiClientBase.optGetInstant(js.get("natural_decay_time"));
-        self.structureId = ApiClientBase.optGetLong(js.get("structure_id"));
-        return self;
     }
 }

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class WarInfo {
+public class WarInfo implements ApiParameterObject {
     private WarParticipantInfo aggressor;
     public void setAggressor(WarParticipantInfo val) {
         aggressor = val;
     }
+    @JsonProperty("aggressor")
     public WarParticipantInfo getAggressor() {
         return aggressor;
     }
@@ -20,6 +21,7 @@ public class WarInfo {
     public void setAllies(List<WarAllyInfo> val) {
         allies = val;
     }
+    @JsonProperty("allies")
     public List<WarAllyInfo> getAllies() {
         return allies;
     }
@@ -27,6 +29,7 @@ public class WarInfo {
     public void setDeclared(Instant val) {
         declared = val;
     }
+    @JsonProperty("declared")
     public Instant getDeclared() {
         return declared;
     }
@@ -34,6 +37,7 @@ public class WarInfo {
     public void setDefender(WarParticipantInfo val) {
         defender = val;
     }
+    @JsonProperty("defender")
     public WarParticipantInfo getDefender() {
         return defender;
     }
@@ -41,6 +45,7 @@ public class WarInfo {
     public void setFinished(Instant val) {
         finished = val;
     }
+    @JsonProperty("finished")
     public Instant getFinished() {
         return finished;
     }
@@ -48,6 +53,7 @@ public class WarInfo {
     public void setId(int val) {
         id = val;
     }
+    @JsonProperty("id")
     public int getId() {
         return id;
     }
@@ -55,6 +61,7 @@ public class WarInfo {
     public void setMutual(boolean val) {
         mutual = val;
     }
+    @JsonProperty("mutual")
     public boolean getMutual() {
         return mutual;
     }
@@ -62,6 +69,7 @@ public class WarInfo {
     public void setOpenForAllies(boolean val) {
         openForAllies = val;
     }
+    @JsonProperty("open_for_allies")
     public boolean getOpenForAllies() {
         return openForAllies;
     }
@@ -69,6 +77,7 @@ public class WarInfo {
     public void setRetracted(Instant val) {
         retracted = val;
     }
+    @JsonProperty("retracted")
     public Instant getRetracted() {
         return retracted;
     }
@@ -76,32 +85,8 @@ public class WarInfo {
     public void setStarted(Instant val) {
         started = val;
     }
+    @JsonProperty("started")
     public Instant getStarted() {
         return started;
-    }
-    static WarInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        WarInfo self = new WarInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.aggressor = WarParticipantInfo.fromJson(js.get("aggressor"));
-        {
-            List<Json> jl = js.get("allies").asJsonList();
-            List<WarAllyInfo> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(WarAllyInfo.fromJson(jl.get(i)));
-            }
-            self.allies = rt;
-        }
-        self.declared = ApiClientBase.optGetInstant(js.get("declared"));
-        self.defender = WarParticipantInfo.fromJson(js.get("defender"));
-        self.finished = ApiClientBase.optGetInstant(js.get("finished"));
-        self.id = ApiClientBase.optGetInteger(js.get("id"));
-        self.mutual = ApiClientBase.optGetBoolean(js.get("mutual"));
-        self.openForAllies = ApiClientBase.optGetBoolean(js.get("open_for_allies"));
-        self.retracted = ApiClientBase.optGetInstant(js.get("retracted"));
-        self.started = ApiClientBase.optGetInstant(js.get("started"));
-        return self;
     }
 }

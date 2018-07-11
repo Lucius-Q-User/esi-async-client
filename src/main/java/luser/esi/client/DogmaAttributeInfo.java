@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DogmaAttributeInfo {
+public class DogmaAttributeInfo implements ApiParameterObject {
     private int attributeId;
     public void setAttributeId(int val) {
         attributeId = val;
     }
+    @JsonProperty("attribute_id")
     public int getAttributeId() {
         return attributeId;
     }
@@ -20,6 +21,7 @@ public class DogmaAttributeInfo {
     public void setDefaultValue(Float val) {
         defaultValue = val;
     }
+    @JsonProperty("default_value")
     public Float getDefaultValue() {
         return defaultValue;
     }
@@ -27,6 +29,7 @@ public class DogmaAttributeInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -34,6 +37,7 @@ public class DogmaAttributeInfo {
     public void setDisplayName(String val) {
         displayName = val;
     }
+    @JsonProperty("display_name")
     public String getDisplayName() {
         return displayName;
     }
@@ -41,6 +45,7 @@ public class DogmaAttributeInfo {
     public void setHighIsGood(Boolean val) {
         highIsGood = val;
     }
+    @JsonProperty("high_is_good")
     public Boolean getHighIsGood() {
         return highIsGood;
     }
@@ -48,6 +53,7 @@ public class DogmaAttributeInfo {
     public void setIconId(Integer val) {
         iconId = val;
     }
+    @JsonProperty("icon_id")
     public Integer getIconId() {
         return iconId;
     }
@@ -55,6 +61,7 @@ public class DogmaAttributeInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -62,6 +69,7 @@ public class DogmaAttributeInfo {
     public void setPublished(Boolean val) {
         published = val;
     }
+    @JsonProperty("published")
     public Boolean getPublished() {
         return published;
     }
@@ -69,6 +77,7 @@ public class DogmaAttributeInfo {
     public void setStackable(Boolean val) {
         stackable = val;
     }
+    @JsonProperty("stackable")
     public Boolean getStackable() {
         return stackable;
     }
@@ -76,25 +85,8 @@ public class DogmaAttributeInfo {
     public void setUnitId(Integer val) {
         unitId = val;
     }
+    @JsonProperty("unit_id")
     public Integer getUnitId() {
         return unitId;
-    }
-    static DogmaAttributeInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DogmaAttributeInfo self = new DogmaAttributeInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.attributeId = ApiClientBase.optGetInteger(js.get("attribute_id"));
-        self.defaultValue = ApiClientBase.optGetFloat(js.get("default_value"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.displayName = ApiClientBase.optGetString(js.get("display_name"));
-        self.highIsGood = ApiClientBase.optGetBoolean(js.get("high_is_good"));
-        self.iconId = ApiClientBase.optGetInteger(js.get("icon_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.published = ApiClientBase.optGetBoolean(js.get("published"));
-        self.stackable = ApiClientBase.optGetBoolean(js.get("stackable"));
-        self.unitId = ApiClientBase.optGetInteger(js.get("unit_id"));
-        return self;
     }
 }

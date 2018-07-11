@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class SkillsApi {
@@ -38,9 +38,8 @@ public class SkillsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, CharacterAttributes> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CharacterAttributes.fromJson(js);
+        ResponseParser<CharacterAttributes> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterAttributes.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -65,13 +64,8 @@ public class SkillsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<SkillQueueEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SkillQueueEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SkillQueueEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SkillQueueEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SkillQueueEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -96,9 +90,8 @@ public class SkillsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, TrainedSkillsInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return TrainedSkillsInfo.fromJson(js);
+        ResponseParser<TrainedSkillsInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, TrainedSkillsInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

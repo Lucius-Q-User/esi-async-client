@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsCombat {
+public class CharacterStatsCombat implements ApiParameterObject {
     private Long capDrainedbyNpc;
     public void setCapDrainedbyNpc(Long val) {
         capDrainedbyNpc = val;
     }
+    @JsonProperty("cap_drainedby_npc")
     public Long getCapDrainedbyNpc() {
         return capDrainedbyNpc;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsCombat {
     public void setCapDrainedbyPc(Long val) {
         capDrainedbyPc = val;
     }
+    @JsonProperty("cap_drainedby_pc")
     public Long getCapDrainedbyPc() {
         return capDrainedbyPc;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsCombat {
     public void setCapDrainingPc(Long val) {
         capDrainingPc = val;
     }
+    @JsonProperty("cap_draining_pc")
     public Long getCapDrainingPc() {
         return capDrainingPc;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsCombat {
     public void setCriminalFlagSet(Long val) {
         criminalFlagSet = val;
     }
+    @JsonProperty("criminal_flag_set")
     public Long getCriminalFlagSet() {
         return criminalFlagSet;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsCombat {
     public void setDamageFromNpCsAmount(Long val) {
         damageFromNpCsAmount = val;
     }
+    @JsonProperty("damage_from_np_cs_amount")
     public Long getDamageFromNpCsAmount() {
         return damageFromNpCsAmount;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsCombat {
     public void setDamageFromNpCsNumShots(Long val) {
         damageFromNpCsNumShots = val;
     }
+    @JsonProperty("damage_from_np_cs_num_shots")
     public Long getDamageFromNpCsNumShots() {
         return damageFromNpCsNumShots;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersBombAmount(Long val) {
         damageFromPlayersBombAmount = val;
     }
+    @JsonProperty("damage_from_players_bomb_amount")
     public Long getDamageFromPlayersBombAmount() {
         return damageFromPlayersBombAmount;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersBombNumShots(Long val) {
         damageFromPlayersBombNumShots = val;
     }
+    @JsonProperty("damage_from_players_bomb_num_shots")
     public Long getDamageFromPlayersBombNumShots() {
         return damageFromPlayersBombNumShots;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersCombatDroneAmount(Long val) {
         damageFromPlayersCombatDroneAmount = val;
     }
+    @JsonProperty("damage_from_players_combat_drone_amount")
     public Long getDamageFromPlayersCombatDroneAmount() {
         return damageFromPlayersCombatDroneAmount;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersCombatDroneNumShots(Long val) {
         damageFromPlayersCombatDroneNumShots = val;
     }
+    @JsonProperty("damage_from_players_combat_drone_num_shots")
     public Long getDamageFromPlayersCombatDroneNumShots() {
         return damageFromPlayersCombatDroneNumShots;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersEnergyAmount(Long val) {
         damageFromPlayersEnergyAmount = val;
     }
+    @JsonProperty("damage_from_players_energy_amount")
     public Long getDamageFromPlayersEnergyAmount() {
         return damageFromPlayersEnergyAmount;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersEnergyNumShots(Long val) {
         damageFromPlayersEnergyNumShots = val;
     }
+    @JsonProperty("damage_from_players_energy_num_shots")
     public Long getDamageFromPlayersEnergyNumShots() {
         return damageFromPlayersEnergyNumShots;
     }
@@ -97,6 +109,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersFighterBomberAmount(Long val) {
         damageFromPlayersFighterBomberAmount = val;
     }
+    @JsonProperty("damage_from_players_fighter_bomber_amount")
     public Long getDamageFromPlayersFighterBomberAmount() {
         return damageFromPlayersFighterBomberAmount;
     }
@@ -104,6 +117,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersFighterBomberNumShots(Long val) {
         damageFromPlayersFighterBomberNumShots = val;
     }
+    @JsonProperty("damage_from_players_fighter_bomber_num_shots")
     public Long getDamageFromPlayersFighterBomberNumShots() {
         return damageFromPlayersFighterBomberNumShots;
     }
@@ -111,6 +125,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersFighterDroneAmount(Long val) {
         damageFromPlayersFighterDroneAmount = val;
     }
+    @JsonProperty("damage_from_players_fighter_drone_amount")
     public Long getDamageFromPlayersFighterDroneAmount() {
         return damageFromPlayersFighterDroneAmount;
     }
@@ -118,6 +133,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersFighterDroneNumShots(Long val) {
         damageFromPlayersFighterDroneNumShots = val;
     }
+    @JsonProperty("damage_from_players_fighter_drone_num_shots")
     public Long getDamageFromPlayersFighterDroneNumShots() {
         return damageFromPlayersFighterDroneNumShots;
     }
@@ -125,6 +141,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersHybridAmount(Long val) {
         damageFromPlayersHybridAmount = val;
     }
+    @JsonProperty("damage_from_players_hybrid_amount")
     public Long getDamageFromPlayersHybridAmount() {
         return damageFromPlayersHybridAmount;
     }
@@ -132,6 +149,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersHybridNumShots(Long val) {
         damageFromPlayersHybridNumShots = val;
     }
+    @JsonProperty("damage_from_players_hybrid_num_shots")
     public Long getDamageFromPlayersHybridNumShots() {
         return damageFromPlayersHybridNumShots;
     }
@@ -139,6 +157,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersMissileAmount(Long val) {
         damageFromPlayersMissileAmount = val;
     }
+    @JsonProperty("damage_from_players_missile_amount")
     public Long getDamageFromPlayersMissileAmount() {
         return damageFromPlayersMissileAmount;
     }
@@ -146,6 +165,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersMissileNumShots(Long val) {
         damageFromPlayersMissileNumShots = val;
     }
+    @JsonProperty("damage_from_players_missile_num_shots")
     public Long getDamageFromPlayersMissileNumShots() {
         return damageFromPlayersMissileNumShots;
     }
@@ -153,6 +173,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersProjectileAmount(Long val) {
         damageFromPlayersProjectileAmount = val;
     }
+    @JsonProperty("damage_from_players_projectile_amount")
     public Long getDamageFromPlayersProjectileAmount() {
         return damageFromPlayersProjectileAmount;
     }
@@ -160,6 +181,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersProjectileNumShots(Long val) {
         damageFromPlayersProjectileNumShots = val;
     }
+    @JsonProperty("damage_from_players_projectile_num_shots")
     public Long getDamageFromPlayersProjectileNumShots() {
         return damageFromPlayersProjectileNumShots;
     }
@@ -167,6 +189,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersSmartBombAmount(Long val) {
         damageFromPlayersSmartBombAmount = val;
     }
+    @JsonProperty("damage_from_players_smart_bomb_amount")
     public Long getDamageFromPlayersSmartBombAmount() {
         return damageFromPlayersSmartBombAmount;
     }
@@ -174,6 +197,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersSmartBombNumShots(Long val) {
         damageFromPlayersSmartBombNumShots = val;
     }
+    @JsonProperty("damage_from_players_smart_bomb_num_shots")
     public Long getDamageFromPlayersSmartBombNumShots() {
         return damageFromPlayersSmartBombNumShots;
     }
@@ -181,6 +205,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersSuperAmount(Long val) {
         damageFromPlayersSuperAmount = val;
     }
+    @JsonProperty("damage_from_players_super_amount")
     public Long getDamageFromPlayersSuperAmount() {
         return damageFromPlayersSuperAmount;
     }
@@ -188,6 +213,7 @@ public class CharacterStatsCombat {
     public void setDamageFromPlayersSuperNumShots(Long val) {
         damageFromPlayersSuperNumShots = val;
     }
+    @JsonProperty("damage_from_players_super_num_shots")
     public Long getDamageFromPlayersSuperNumShots() {
         return damageFromPlayersSuperNumShots;
     }
@@ -195,6 +221,7 @@ public class CharacterStatsCombat {
     public void setDamageFromStructuresTotalAmount(Long val) {
         damageFromStructuresTotalAmount = val;
     }
+    @JsonProperty("damage_from_structures_total_amount")
     public Long getDamageFromStructuresTotalAmount() {
         return damageFromStructuresTotalAmount;
     }
@@ -202,6 +229,7 @@ public class CharacterStatsCombat {
     public void setDamageFromStructuresTotalNumShots(Long val) {
         damageFromStructuresTotalNumShots = val;
     }
+    @JsonProperty("damage_from_structures_total_num_shots")
     public Long getDamageFromStructuresTotalNumShots() {
         return damageFromStructuresTotalNumShots;
     }
@@ -209,6 +237,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersBombAmount(Long val) {
         damageToPlayersBombAmount = val;
     }
+    @JsonProperty("damage_to_players_bomb_amount")
     public Long getDamageToPlayersBombAmount() {
         return damageToPlayersBombAmount;
     }
@@ -216,6 +245,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersBombNumShots(Long val) {
         damageToPlayersBombNumShots = val;
     }
+    @JsonProperty("damage_to_players_bomb_num_shots")
     public Long getDamageToPlayersBombNumShots() {
         return damageToPlayersBombNumShots;
     }
@@ -223,6 +253,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersCombatDroneAmount(Long val) {
         damageToPlayersCombatDroneAmount = val;
     }
+    @JsonProperty("damage_to_players_combat_drone_amount")
     public Long getDamageToPlayersCombatDroneAmount() {
         return damageToPlayersCombatDroneAmount;
     }
@@ -230,6 +261,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersCombatDroneNumShots(Long val) {
         damageToPlayersCombatDroneNumShots = val;
     }
+    @JsonProperty("damage_to_players_combat_drone_num_shots")
     public Long getDamageToPlayersCombatDroneNumShots() {
         return damageToPlayersCombatDroneNumShots;
     }
@@ -237,6 +269,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersEnergyAmount(Long val) {
         damageToPlayersEnergyAmount = val;
     }
+    @JsonProperty("damage_to_players_energy_amount")
     public Long getDamageToPlayersEnergyAmount() {
         return damageToPlayersEnergyAmount;
     }
@@ -244,6 +277,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersEnergyNumShots(Long val) {
         damageToPlayersEnergyNumShots = val;
     }
+    @JsonProperty("damage_to_players_energy_num_shots")
     public Long getDamageToPlayersEnergyNumShots() {
         return damageToPlayersEnergyNumShots;
     }
@@ -251,6 +285,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersFighterBomberAmount(Long val) {
         damageToPlayersFighterBomberAmount = val;
     }
+    @JsonProperty("damage_to_players_fighter_bomber_amount")
     public Long getDamageToPlayersFighterBomberAmount() {
         return damageToPlayersFighterBomberAmount;
     }
@@ -258,6 +293,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersFighterBomberNumShots(Long val) {
         damageToPlayersFighterBomberNumShots = val;
     }
+    @JsonProperty("damage_to_players_fighter_bomber_num_shots")
     public Long getDamageToPlayersFighterBomberNumShots() {
         return damageToPlayersFighterBomberNumShots;
     }
@@ -265,6 +301,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersFighterDroneAmount(Long val) {
         damageToPlayersFighterDroneAmount = val;
     }
+    @JsonProperty("damage_to_players_fighter_drone_amount")
     public Long getDamageToPlayersFighterDroneAmount() {
         return damageToPlayersFighterDroneAmount;
     }
@@ -272,6 +309,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersFighterDroneNumShots(Long val) {
         damageToPlayersFighterDroneNumShots = val;
     }
+    @JsonProperty("damage_to_players_fighter_drone_num_shots")
     public Long getDamageToPlayersFighterDroneNumShots() {
         return damageToPlayersFighterDroneNumShots;
     }
@@ -279,6 +317,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersHybridAmount(Long val) {
         damageToPlayersHybridAmount = val;
     }
+    @JsonProperty("damage_to_players_hybrid_amount")
     public Long getDamageToPlayersHybridAmount() {
         return damageToPlayersHybridAmount;
     }
@@ -286,6 +325,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersHybridNumShots(Long val) {
         damageToPlayersHybridNumShots = val;
     }
+    @JsonProperty("damage_to_players_hybrid_num_shots")
     public Long getDamageToPlayersHybridNumShots() {
         return damageToPlayersHybridNumShots;
     }
@@ -293,6 +333,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersMissileAmount(Long val) {
         damageToPlayersMissileAmount = val;
     }
+    @JsonProperty("damage_to_players_missile_amount")
     public Long getDamageToPlayersMissileAmount() {
         return damageToPlayersMissileAmount;
     }
@@ -300,6 +341,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersMissileNumShots(Long val) {
         damageToPlayersMissileNumShots = val;
     }
+    @JsonProperty("damage_to_players_missile_num_shots")
     public Long getDamageToPlayersMissileNumShots() {
         return damageToPlayersMissileNumShots;
     }
@@ -307,6 +349,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersProjectileAmount(Long val) {
         damageToPlayersProjectileAmount = val;
     }
+    @JsonProperty("damage_to_players_projectile_amount")
     public Long getDamageToPlayersProjectileAmount() {
         return damageToPlayersProjectileAmount;
     }
@@ -314,6 +357,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersProjectileNumShots(Long val) {
         damageToPlayersProjectileNumShots = val;
     }
+    @JsonProperty("damage_to_players_projectile_num_shots")
     public Long getDamageToPlayersProjectileNumShots() {
         return damageToPlayersProjectileNumShots;
     }
@@ -321,6 +365,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersSmartBombAmount(Long val) {
         damageToPlayersSmartBombAmount = val;
     }
+    @JsonProperty("damage_to_players_smart_bomb_amount")
     public Long getDamageToPlayersSmartBombAmount() {
         return damageToPlayersSmartBombAmount;
     }
@@ -328,6 +373,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersSmartBombNumShots(Long val) {
         damageToPlayersSmartBombNumShots = val;
     }
+    @JsonProperty("damage_to_players_smart_bomb_num_shots")
     public Long getDamageToPlayersSmartBombNumShots() {
         return damageToPlayersSmartBombNumShots;
     }
@@ -335,6 +381,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersSuperAmount(Long val) {
         damageToPlayersSuperAmount = val;
     }
+    @JsonProperty("damage_to_players_super_amount")
     public Long getDamageToPlayersSuperAmount() {
         return damageToPlayersSuperAmount;
     }
@@ -342,6 +389,7 @@ public class CharacterStatsCombat {
     public void setDamageToPlayersSuperNumShots(Long val) {
         damageToPlayersSuperNumShots = val;
     }
+    @JsonProperty("damage_to_players_super_num_shots")
     public Long getDamageToPlayersSuperNumShots() {
         return damageToPlayersSuperNumShots;
     }
@@ -349,6 +397,7 @@ public class CharacterStatsCombat {
     public void setDamageToStructuresTotalAmount(Long val) {
         damageToStructuresTotalAmount = val;
     }
+    @JsonProperty("damage_to_structures_total_amount")
     public Long getDamageToStructuresTotalAmount() {
         return damageToStructuresTotalAmount;
     }
@@ -356,6 +405,7 @@ public class CharacterStatsCombat {
     public void setDamageToStructuresTotalNumShots(Long val) {
         damageToStructuresTotalNumShots = val;
     }
+    @JsonProperty("damage_to_structures_total_num_shots")
     public Long getDamageToStructuresTotalNumShots() {
         return damageToStructuresTotalNumShots;
     }
@@ -363,6 +413,7 @@ public class CharacterStatsCombat {
     public void setDeathsHighSec(Long val) {
         deathsHighSec = val;
     }
+    @JsonProperty("deaths_high_sec")
     public Long getDeathsHighSec() {
         return deathsHighSec;
     }
@@ -370,6 +421,7 @@ public class CharacterStatsCombat {
     public void setDeathsLowSec(Long val) {
         deathsLowSec = val;
     }
+    @JsonProperty("deaths_low_sec")
     public Long getDeathsLowSec() {
         return deathsLowSec;
     }
@@ -377,6 +429,7 @@ public class CharacterStatsCombat {
     public void setDeathsNullSec(Long val) {
         deathsNullSec = val;
     }
+    @JsonProperty("deaths_null_sec")
     public Long getDeathsNullSec() {
         return deathsNullSec;
     }
@@ -384,6 +437,7 @@ public class CharacterStatsCombat {
     public void setDeathsPodHighSec(Long val) {
         deathsPodHighSec = val;
     }
+    @JsonProperty("deaths_pod_high_sec")
     public Long getDeathsPodHighSec() {
         return deathsPodHighSec;
     }
@@ -391,6 +445,7 @@ public class CharacterStatsCombat {
     public void setDeathsPodLowSec(Long val) {
         deathsPodLowSec = val;
     }
+    @JsonProperty("deaths_pod_low_sec")
     public Long getDeathsPodLowSec() {
         return deathsPodLowSec;
     }
@@ -398,6 +453,7 @@ public class CharacterStatsCombat {
     public void setDeathsPodNullSec(Long val) {
         deathsPodNullSec = val;
     }
+    @JsonProperty("deaths_pod_null_sec")
     public Long getDeathsPodNullSec() {
         return deathsPodNullSec;
     }
@@ -405,6 +461,7 @@ public class CharacterStatsCombat {
     public void setDeathsPodWormhole(Long val) {
         deathsPodWormhole = val;
     }
+    @JsonProperty("deaths_pod_wormhole")
     public Long getDeathsPodWormhole() {
         return deathsPodWormhole;
     }
@@ -412,6 +469,7 @@ public class CharacterStatsCombat {
     public void setDeathsWormhole(Long val) {
         deathsWormhole = val;
     }
+    @JsonProperty("deaths_wormhole")
     public Long getDeathsWormhole() {
         return deathsWormhole;
     }
@@ -419,6 +477,7 @@ public class CharacterStatsCombat {
     public void setDroneEngage(Long val) {
         droneEngage = val;
     }
+    @JsonProperty("drone_engage")
     public Long getDroneEngage() {
         return droneEngage;
     }
@@ -426,6 +485,7 @@ public class CharacterStatsCombat {
     public void setDscans(Long val) {
         dscans = val;
     }
+    @JsonProperty("dscans")
     public Long getDscans() {
         return dscans;
     }
@@ -433,6 +493,7 @@ public class CharacterStatsCombat {
     public void setDuelRequested(Long val) {
         duelRequested = val;
     }
+    @JsonProperty("duel_requested")
     public Long getDuelRequested() {
         return duelRequested;
     }
@@ -440,6 +501,7 @@ public class CharacterStatsCombat {
     public void setEngagementRegister(Long val) {
         engagementRegister = val;
     }
+    @JsonProperty("engagement_register")
     public Long getEngagementRegister() {
         return engagementRegister;
     }
@@ -447,6 +509,7 @@ public class CharacterStatsCombat {
     public void setKillsAssists(Long val) {
         killsAssists = val;
     }
+    @JsonProperty("kills_assists")
     public Long getKillsAssists() {
         return killsAssists;
     }
@@ -454,6 +517,7 @@ public class CharacterStatsCombat {
     public void setKillsHighSec(Long val) {
         killsHighSec = val;
     }
+    @JsonProperty("kills_high_sec")
     public Long getKillsHighSec() {
         return killsHighSec;
     }
@@ -461,6 +525,7 @@ public class CharacterStatsCombat {
     public void setKillsLowSec(Long val) {
         killsLowSec = val;
     }
+    @JsonProperty("kills_low_sec")
     public Long getKillsLowSec() {
         return killsLowSec;
     }
@@ -468,6 +533,7 @@ public class CharacterStatsCombat {
     public void setKillsNullSec(Long val) {
         killsNullSec = val;
     }
+    @JsonProperty("kills_null_sec")
     public Long getKillsNullSec() {
         return killsNullSec;
     }
@@ -475,6 +541,7 @@ public class CharacterStatsCombat {
     public void setKillsPodHighSec(Long val) {
         killsPodHighSec = val;
     }
+    @JsonProperty("kills_pod_high_sec")
     public Long getKillsPodHighSec() {
         return killsPodHighSec;
     }
@@ -482,6 +549,7 @@ public class CharacterStatsCombat {
     public void setKillsPodLowSec(Long val) {
         killsPodLowSec = val;
     }
+    @JsonProperty("kills_pod_low_sec")
     public Long getKillsPodLowSec() {
         return killsPodLowSec;
     }
@@ -489,6 +557,7 @@ public class CharacterStatsCombat {
     public void setKillsPodNullSec(Long val) {
         killsPodNullSec = val;
     }
+    @JsonProperty("kills_pod_null_sec")
     public Long getKillsPodNullSec() {
         return killsPodNullSec;
     }
@@ -496,6 +565,7 @@ public class CharacterStatsCombat {
     public void setKillsPodWormhole(Long val) {
         killsPodWormhole = val;
     }
+    @JsonProperty("kills_pod_wormhole")
     public Long getKillsPodWormhole() {
         return killsPodWormhole;
     }
@@ -503,6 +573,7 @@ public class CharacterStatsCombat {
     public void setKillsWormhole(Long val) {
         killsWormhole = val;
     }
+    @JsonProperty("kills_wormhole")
     public Long getKillsWormhole() {
         return killsWormhole;
     }
@@ -510,6 +581,7 @@ public class CharacterStatsCombat {
     public void setNpcFlagSet(Long val) {
         npcFlagSet = val;
     }
+    @JsonProperty("npc_flag_set")
     public Long getNpcFlagSet() {
         return npcFlagSet;
     }
@@ -517,6 +589,7 @@ public class CharacterStatsCombat {
     public void setProbeScans(Long val) {
         probeScans = val;
     }
+    @JsonProperty("probe_scans")
     public Long getProbeScans() {
         return probeScans;
     }
@@ -524,6 +597,7 @@ public class CharacterStatsCombat {
     public void setPvpFlagSet(Long val) {
         pvpFlagSet = val;
     }
+    @JsonProperty("pvp_flag_set")
     public Long getPvpFlagSet() {
         return pvpFlagSet;
     }
@@ -531,6 +605,7 @@ public class CharacterStatsCombat {
     public void setRepairArmorByRemoteAmount(Long val) {
         repairArmorByRemoteAmount = val;
     }
+    @JsonProperty("repair_armor_by_remote_amount")
     public Long getRepairArmorByRemoteAmount() {
         return repairArmorByRemoteAmount;
     }
@@ -538,6 +613,7 @@ public class CharacterStatsCombat {
     public void setRepairArmorRemoteAmount(Long val) {
         repairArmorRemoteAmount = val;
     }
+    @JsonProperty("repair_armor_remote_amount")
     public Long getRepairArmorRemoteAmount() {
         return repairArmorRemoteAmount;
     }
@@ -545,6 +621,7 @@ public class CharacterStatsCombat {
     public void setRepairArmorSelfAmount(Long val) {
         repairArmorSelfAmount = val;
     }
+    @JsonProperty("repair_armor_self_amount")
     public Long getRepairArmorSelfAmount() {
         return repairArmorSelfAmount;
     }
@@ -552,6 +629,7 @@ public class CharacterStatsCombat {
     public void setRepairCapacitorByRemoteAmount(Long val) {
         repairCapacitorByRemoteAmount = val;
     }
+    @JsonProperty("repair_capacitor_by_remote_amount")
     public Long getRepairCapacitorByRemoteAmount() {
         return repairCapacitorByRemoteAmount;
     }
@@ -559,6 +637,7 @@ public class CharacterStatsCombat {
     public void setRepairCapacitorRemoteAmount(Long val) {
         repairCapacitorRemoteAmount = val;
     }
+    @JsonProperty("repair_capacitor_remote_amount")
     public Long getRepairCapacitorRemoteAmount() {
         return repairCapacitorRemoteAmount;
     }
@@ -566,6 +645,7 @@ public class CharacterStatsCombat {
     public void setRepairCapacitorSelfAmount(Long val) {
         repairCapacitorSelfAmount = val;
     }
+    @JsonProperty("repair_capacitor_self_amount")
     public Long getRepairCapacitorSelfAmount() {
         return repairCapacitorSelfAmount;
     }
@@ -573,6 +653,7 @@ public class CharacterStatsCombat {
     public void setRepairHullByRemoteAmount(Long val) {
         repairHullByRemoteAmount = val;
     }
+    @JsonProperty("repair_hull_by_remote_amount")
     public Long getRepairHullByRemoteAmount() {
         return repairHullByRemoteAmount;
     }
@@ -580,6 +661,7 @@ public class CharacterStatsCombat {
     public void setRepairHullRemoteAmount(Long val) {
         repairHullRemoteAmount = val;
     }
+    @JsonProperty("repair_hull_remote_amount")
     public Long getRepairHullRemoteAmount() {
         return repairHullRemoteAmount;
     }
@@ -587,6 +669,7 @@ public class CharacterStatsCombat {
     public void setRepairHullSelfAmount(Long val) {
         repairHullSelfAmount = val;
     }
+    @JsonProperty("repair_hull_self_amount")
     public Long getRepairHullSelfAmount() {
         return repairHullSelfAmount;
     }
@@ -594,6 +677,7 @@ public class CharacterStatsCombat {
     public void setRepairShieldByRemoteAmount(Long val) {
         repairShieldByRemoteAmount = val;
     }
+    @JsonProperty("repair_shield_by_remote_amount")
     public Long getRepairShieldByRemoteAmount() {
         return repairShieldByRemoteAmount;
     }
@@ -601,6 +685,7 @@ public class CharacterStatsCombat {
     public void setRepairShieldRemoteAmount(Long val) {
         repairShieldRemoteAmount = val;
     }
+    @JsonProperty("repair_shield_remote_amount")
     public Long getRepairShieldRemoteAmount() {
         return repairShieldRemoteAmount;
     }
@@ -608,6 +693,7 @@ public class CharacterStatsCombat {
     public void setRepairShieldSelfAmount(Long val) {
         repairShieldSelfAmount = val;
     }
+    @JsonProperty("repair_shield_self_amount")
     public Long getRepairShieldSelfAmount() {
         return repairShieldSelfAmount;
     }
@@ -615,6 +701,7 @@ public class CharacterStatsCombat {
     public void setSelfDestructs(Long val) {
         selfDestructs = val;
     }
+    @JsonProperty("self_destructs")
     public Long getSelfDestructs() {
         return selfDestructs;
     }
@@ -622,6 +709,7 @@ public class CharacterStatsCombat {
     public void setWarpScramblePc(Long val) {
         warpScramblePc = val;
     }
+    @JsonProperty("warp_scramble_pc")
     public Long getWarpScramblePc() {
         return warpScramblePc;
     }
@@ -629,6 +717,7 @@ public class CharacterStatsCombat {
     public void setWarpScrambledbyNpc(Long val) {
         warpScrambledbyNpc = val;
     }
+    @JsonProperty("warp_scrambledby_npc")
     public Long getWarpScrambledbyNpc() {
         return warpScrambledbyNpc;
     }
@@ -636,6 +725,7 @@ public class CharacterStatsCombat {
     public void setWarpScrambledbyPc(Long val) {
         warpScrambledbyPc = val;
     }
+    @JsonProperty("warp_scrambledby_pc")
     public Long getWarpScrambledbyPc() {
         return warpScrambledbyPc;
     }
@@ -643,6 +733,7 @@ public class CharacterStatsCombat {
     public void setWeaponFlagSet(Long val) {
         weaponFlagSet = val;
     }
+    @JsonProperty("weapon_flag_set")
     public Long getWeaponFlagSet() {
         return weaponFlagSet;
     }
@@ -650,6 +741,7 @@ public class CharacterStatsCombat {
     public void setWebifiedbyNpc(Long val) {
         webifiedbyNpc = val;
     }
+    @JsonProperty("webifiedby_npc")
     public Long getWebifiedbyNpc() {
         return webifiedbyNpc;
     }
@@ -657,6 +749,7 @@ public class CharacterStatsCombat {
     public void setWebifiedbyPc(Long val) {
         webifiedbyPc = val;
     }
+    @JsonProperty("webifiedby_pc")
     public Long getWebifiedbyPc() {
         return webifiedbyPc;
     }
@@ -664,109 +757,8 @@ public class CharacterStatsCombat {
     public void setWebifyingPc(Long val) {
         webifyingPc = val;
     }
+    @JsonProperty("webifying_pc")
     public Long getWebifyingPc() {
         return webifyingPc;
-    }
-    static CharacterStatsCombat fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsCombat self = new CharacterStatsCombat();
-        Map<String, Json> js = json.asJsonMap();
-        self.capDrainedbyNpc = ApiClientBase.optGetLong(js.get("cap_drainedby_npc"));
-        self.capDrainedbyPc = ApiClientBase.optGetLong(js.get("cap_drainedby_pc"));
-        self.capDrainingPc = ApiClientBase.optGetLong(js.get("cap_draining_pc"));
-        self.criminalFlagSet = ApiClientBase.optGetLong(js.get("criminal_flag_set"));
-        self.damageFromNpCsAmount = ApiClientBase.optGetLong(js.get("damage_from_np_cs_amount"));
-        self.damageFromNpCsNumShots = ApiClientBase.optGetLong(js.get("damage_from_np_cs_num_shots"));
-        self.damageFromPlayersBombAmount = ApiClientBase.optGetLong(js.get("damage_from_players_bomb_amount"));
-        self.damageFromPlayersBombNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_bomb_num_shots"));
-        self.damageFromPlayersCombatDroneAmount = ApiClientBase.optGetLong(js.get("damage_from_players_combat_drone_amount"));
-        self.damageFromPlayersCombatDroneNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_combat_drone_num_shots"));
-        self.damageFromPlayersEnergyAmount = ApiClientBase.optGetLong(js.get("damage_from_players_energy_amount"));
-        self.damageFromPlayersEnergyNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_energy_num_shots"));
-        self.damageFromPlayersFighterBomberAmount = ApiClientBase.optGetLong(js.get("damage_from_players_fighter_bomber_amount"));
-        self.damageFromPlayersFighterBomberNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_fighter_bomber_num_shots"));
-        self.damageFromPlayersFighterDroneAmount = ApiClientBase.optGetLong(js.get("damage_from_players_fighter_drone_amount"));
-        self.damageFromPlayersFighterDroneNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_fighter_drone_num_shots"));
-        self.damageFromPlayersHybridAmount = ApiClientBase.optGetLong(js.get("damage_from_players_hybrid_amount"));
-        self.damageFromPlayersHybridNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_hybrid_num_shots"));
-        self.damageFromPlayersMissileAmount = ApiClientBase.optGetLong(js.get("damage_from_players_missile_amount"));
-        self.damageFromPlayersMissileNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_missile_num_shots"));
-        self.damageFromPlayersProjectileAmount = ApiClientBase.optGetLong(js.get("damage_from_players_projectile_amount"));
-        self.damageFromPlayersProjectileNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_projectile_num_shots"));
-        self.damageFromPlayersSmartBombAmount = ApiClientBase.optGetLong(js.get("damage_from_players_smart_bomb_amount"));
-        self.damageFromPlayersSmartBombNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_smart_bomb_num_shots"));
-        self.damageFromPlayersSuperAmount = ApiClientBase.optGetLong(js.get("damage_from_players_super_amount"));
-        self.damageFromPlayersSuperNumShots = ApiClientBase.optGetLong(js.get("damage_from_players_super_num_shots"));
-        self.damageFromStructuresTotalAmount = ApiClientBase.optGetLong(js.get("damage_from_structures_total_amount"));
-        self.damageFromStructuresTotalNumShots = ApiClientBase.optGetLong(js.get("damage_from_structures_total_num_shots"));
-        self.damageToPlayersBombAmount = ApiClientBase.optGetLong(js.get("damage_to_players_bomb_amount"));
-        self.damageToPlayersBombNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_bomb_num_shots"));
-        self.damageToPlayersCombatDroneAmount = ApiClientBase.optGetLong(js.get("damage_to_players_combat_drone_amount"));
-        self.damageToPlayersCombatDroneNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_combat_drone_num_shots"));
-        self.damageToPlayersEnergyAmount = ApiClientBase.optGetLong(js.get("damage_to_players_energy_amount"));
-        self.damageToPlayersEnergyNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_energy_num_shots"));
-        self.damageToPlayersFighterBomberAmount = ApiClientBase.optGetLong(js.get("damage_to_players_fighter_bomber_amount"));
-        self.damageToPlayersFighterBomberNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_fighter_bomber_num_shots"));
-        self.damageToPlayersFighterDroneAmount = ApiClientBase.optGetLong(js.get("damage_to_players_fighter_drone_amount"));
-        self.damageToPlayersFighterDroneNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_fighter_drone_num_shots"));
-        self.damageToPlayersHybridAmount = ApiClientBase.optGetLong(js.get("damage_to_players_hybrid_amount"));
-        self.damageToPlayersHybridNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_hybrid_num_shots"));
-        self.damageToPlayersMissileAmount = ApiClientBase.optGetLong(js.get("damage_to_players_missile_amount"));
-        self.damageToPlayersMissileNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_missile_num_shots"));
-        self.damageToPlayersProjectileAmount = ApiClientBase.optGetLong(js.get("damage_to_players_projectile_amount"));
-        self.damageToPlayersProjectileNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_projectile_num_shots"));
-        self.damageToPlayersSmartBombAmount = ApiClientBase.optGetLong(js.get("damage_to_players_smart_bomb_amount"));
-        self.damageToPlayersSmartBombNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_smart_bomb_num_shots"));
-        self.damageToPlayersSuperAmount = ApiClientBase.optGetLong(js.get("damage_to_players_super_amount"));
-        self.damageToPlayersSuperNumShots = ApiClientBase.optGetLong(js.get("damage_to_players_super_num_shots"));
-        self.damageToStructuresTotalAmount = ApiClientBase.optGetLong(js.get("damage_to_structures_total_amount"));
-        self.damageToStructuresTotalNumShots = ApiClientBase.optGetLong(js.get("damage_to_structures_total_num_shots"));
-        self.deathsHighSec = ApiClientBase.optGetLong(js.get("deaths_high_sec"));
-        self.deathsLowSec = ApiClientBase.optGetLong(js.get("deaths_low_sec"));
-        self.deathsNullSec = ApiClientBase.optGetLong(js.get("deaths_null_sec"));
-        self.deathsPodHighSec = ApiClientBase.optGetLong(js.get("deaths_pod_high_sec"));
-        self.deathsPodLowSec = ApiClientBase.optGetLong(js.get("deaths_pod_low_sec"));
-        self.deathsPodNullSec = ApiClientBase.optGetLong(js.get("deaths_pod_null_sec"));
-        self.deathsPodWormhole = ApiClientBase.optGetLong(js.get("deaths_pod_wormhole"));
-        self.deathsWormhole = ApiClientBase.optGetLong(js.get("deaths_wormhole"));
-        self.droneEngage = ApiClientBase.optGetLong(js.get("drone_engage"));
-        self.dscans = ApiClientBase.optGetLong(js.get("dscans"));
-        self.duelRequested = ApiClientBase.optGetLong(js.get("duel_requested"));
-        self.engagementRegister = ApiClientBase.optGetLong(js.get("engagement_register"));
-        self.killsAssists = ApiClientBase.optGetLong(js.get("kills_assists"));
-        self.killsHighSec = ApiClientBase.optGetLong(js.get("kills_high_sec"));
-        self.killsLowSec = ApiClientBase.optGetLong(js.get("kills_low_sec"));
-        self.killsNullSec = ApiClientBase.optGetLong(js.get("kills_null_sec"));
-        self.killsPodHighSec = ApiClientBase.optGetLong(js.get("kills_pod_high_sec"));
-        self.killsPodLowSec = ApiClientBase.optGetLong(js.get("kills_pod_low_sec"));
-        self.killsPodNullSec = ApiClientBase.optGetLong(js.get("kills_pod_null_sec"));
-        self.killsPodWormhole = ApiClientBase.optGetLong(js.get("kills_pod_wormhole"));
-        self.killsWormhole = ApiClientBase.optGetLong(js.get("kills_wormhole"));
-        self.npcFlagSet = ApiClientBase.optGetLong(js.get("npc_flag_set"));
-        self.probeScans = ApiClientBase.optGetLong(js.get("probe_scans"));
-        self.pvpFlagSet = ApiClientBase.optGetLong(js.get("pvp_flag_set"));
-        self.repairArmorByRemoteAmount = ApiClientBase.optGetLong(js.get("repair_armor_by_remote_amount"));
-        self.repairArmorRemoteAmount = ApiClientBase.optGetLong(js.get("repair_armor_remote_amount"));
-        self.repairArmorSelfAmount = ApiClientBase.optGetLong(js.get("repair_armor_self_amount"));
-        self.repairCapacitorByRemoteAmount = ApiClientBase.optGetLong(js.get("repair_capacitor_by_remote_amount"));
-        self.repairCapacitorRemoteAmount = ApiClientBase.optGetLong(js.get("repair_capacitor_remote_amount"));
-        self.repairCapacitorSelfAmount = ApiClientBase.optGetLong(js.get("repair_capacitor_self_amount"));
-        self.repairHullByRemoteAmount = ApiClientBase.optGetLong(js.get("repair_hull_by_remote_amount"));
-        self.repairHullRemoteAmount = ApiClientBase.optGetLong(js.get("repair_hull_remote_amount"));
-        self.repairHullSelfAmount = ApiClientBase.optGetLong(js.get("repair_hull_self_amount"));
-        self.repairShieldByRemoteAmount = ApiClientBase.optGetLong(js.get("repair_shield_by_remote_amount"));
-        self.repairShieldRemoteAmount = ApiClientBase.optGetLong(js.get("repair_shield_remote_amount"));
-        self.repairShieldSelfAmount = ApiClientBase.optGetLong(js.get("repair_shield_self_amount"));
-        self.selfDestructs = ApiClientBase.optGetLong(js.get("self_destructs"));
-        self.warpScramblePc = ApiClientBase.optGetLong(js.get("warp_scramble_pc"));
-        self.warpScrambledbyNpc = ApiClientBase.optGetLong(js.get("warp_scrambledby_npc"));
-        self.warpScrambledbyPc = ApiClientBase.optGetLong(js.get("warp_scrambledby_pc"));
-        self.weaponFlagSet = ApiClientBase.optGetLong(js.get("weapon_flag_set"));
-        self.webifiedbyNpc = ApiClientBase.optGetLong(js.get("webifiedby_npc"));
-        self.webifiedbyPc = ApiClientBase.optGetLong(js.get("webifiedby_pc"));
-        self.webifyingPc = ApiClientBase.optGetLong(js.get("webifying_pc"));
-        return self;
     }
 }

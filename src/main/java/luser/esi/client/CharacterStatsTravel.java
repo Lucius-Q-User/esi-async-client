@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsTravel {
+public class CharacterStatsTravel implements ApiParameterObject {
     private Long accelerationGateActivations;
     public void setAccelerationGateActivations(Long val) {
         accelerationGateActivations = val;
     }
+    @JsonProperty("acceleration_gate_activations")
     public Long getAccelerationGateActivations() {
         return accelerationGateActivations;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsTravel {
     public void setAlignTo(Long val) {
         alignTo = val;
     }
+    @JsonProperty("align_to")
     public Long getAlignTo() {
         return alignTo;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsTravel {
     public void setDistanceWarpedHighSec(Long val) {
         distanceWarpedHighSec = val;
     }
+    @JsonProperty("distance_warped_high_sec")
     public Long getDistanceWarpedHighSec() {
         return distanceWarpedHighSec;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsTravel {
     public void setDistanceWarpedLowSec(Long val) {
         distanceWarpedLowSec = val;
     }
+    @JsonProperty("distance_warped_low_sec")
     public Long getDistanceWarpedLowSec() {
         return distanceWarpedLowSec;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsTravel {
     public void setDistanceWarpedNullSec(Long val) {
         distanceWarpedNullSec = val;
     }
+    @JsonProperty("distance_warped_null_sec")
     public Long getDistanceWarpedNullSec() {
         return distanceWarpedNullSec;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsTravel {
     public void setDistanceWarpedWormhole(Long val) {
         distanceWarpedWormhole = val;
     }
+    @JsonProperty("distance_warped_wormhole")
     public Long getDistanceWarpedWormhole() {
         return distanceWarpedWormhole;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsTravel {
     public void setDocksHighSec(Long val) {
         docksHighSec = val;
     }
+    @JsonProperty("docks_high_sec")
     public Long getDocksHighSec() {
         return docksHighSec;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsTravel {
     public void setDocksLowSec(Long val) {
         docksLowSec = val;
     }
+    @JsonProperty("docks_low_sec")
     public Long getDocksLowSec() {
         return docksLowSec;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsTravel {
     public void setDocksNullSec(Long val) {
         docksNullSec = val;
     }
+    @JsonProperty("docks_null_sec")
     public Long getDocksNullSec() {
         return docksNullSec;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsTravel {
     public void setJumpsStargateHighSec(Long val) {
         jumpsStargateHighSec = val;
     }
+    @JsonProperty("jumps_stargate_high_sec")
     public Long getJumpsStargateHighSec() {
         return jumpsStargateHighSec;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsTravel {
     public void setJumpsStargateLowSec(Long val) {
         jumpsStargateLowSec = val;
     }
+    @JsonProperty("jumps_stargate_low_sec")
     public Long getJumpsStargateLowSec() {
         return jumpsStargateLowSec;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsTravel {
     public void setJumpsStargateNullSec(Long val) {
         jumpsStargateNullSec = val;
     }
+    @JsonProperty("jumps_stargate_null_sec")
     public Long getJumpsStargateNullSec() {
         return jumpsStargateNullSec;
     }
@@ -97,6 +109,7 @@ public class CharacterStatsTravel {
     public void setJumpsWormhole(Long val) {
         jumpsWormhole = val;
     }
+    @JsonProperty("jumps_wormhole")
     public Long getJumpsWormhole() {
         return jumpsWormhole;
     }
@@ -104,6 +117,7 @@ public class CharacterStatsTravel {
     public void setWarpsHighSec(Long val) {
         warpsHighSec = val;
     }
+    @JsonProperty("warps_high_sec")
     public Long getWarpsHighSec() {
         return warpsHighSec;
     }
@@ -111,6 +125,7 @@ public class CharacterStatsTravel {
     public void setWarpsLowSec(Long val) {
         warpsLowSec = val;
     }
+    @JsonProperty("warps_low_sec")
     public Long getWarpsLowSec() {
         return warpsLowSec;
     }
@@ -118,6 +133,7 @@ public class CharacterStatsTravel {
     public void setWarpsNullSec(Long val) {
         warpsNullSec = val;
     }
+    @JsonProperty("warps_null_sec")
     public Long getWarpsNullSec() {
         return warpsNullSec;
     }
@@ -125,6 +141,7 @@ public class CharacterStatsTravel {
     public void setWarpsToBookmark(Long val) {
         warpsToBookmark = val;
     }
+    @JsonProperty("warps_to_bookmark")
     public Long getWarpsToBookmark() {
         return warpsToBookmark;
     }
@@ -132,6 +149,7 @@ public class CharacterStatsTravel {
     public void setWarpsToCelestial(Long val) {
         warpsToCelestial = val;
     }
+    @JsonProperty("warps_to_celestial")
     public Long getWarpsToCelestial() {
         return warpsToCelestial;
     }
@@ -139,6 +157,7 @@ public class CharacterStatsTravel {
     public void setWarpsToFleetMember(Long val) {
         warpsToFleetMember = val;
     }
+    @JsonProperty("warps_to_fleet_member")
     public Long getWarpsToFleetMember() {
         return warpsToFleetMember;
     }
@@ -146,6 +165,7 @@ public class CharacterStatsTravel {
     public void setWarpsToScanResult(Long val) {
         warpsToScanResult = val;
     }
+    @JsonProperty("warps_to_scan_result")
     public Long getWarpsToScanResult() {
         return warpsToScanResult;
     }
@@ -153,36 +173,8 @@ public class CharacterStatsTravel {
     public void setWarpsWormhole(Long val) {
         warpsWormhole = val;
     }
+    @JsonProperty("warps_wormhole")
     public Long getWarpsWormhole() {
         return warpsWormhole;
-    }
-    static CharacterStatsTravel fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsTravel self = new CharacterStatsTravel();
-        Map<String, Json> js = json.asJsonMap();
-        self.accelerationGateActivations = ApiClientBase.optGetLong(js.get("acceleration_gate_activations"));
-        self.alignTo = ApiClientBase.optGetLong(js.get("align_to"));
-        self.distanceWarpedHighSec = ApiClientBase.optGetLong(js.get("distance_warped_high_sec"));
-        self.distanceWarpedLowSec = ApiClientBase.optGetLong(js.get("distance_warped_low_sec"));
-        self.distanceWarpedNullSec = ApiClientBase.optGetLong(js.get("distance_warped_null_sec"));
-        self.distanceWarpedWormhole = ApiClientBase.optGetLong(js.get("distance_warped_wormhole"));
-        self.docksHighSec = ApiClientBase.optGetLong(js.get("docks_high_sec"));
-        self.docksLowSec = ApiClientBase.optGetLong(js.get("docks_low_sec"));
-        self.docksNullSec = ApiClientBase.optGetLong(js.get("docks_null_sec"));
-        self.jumpsStargateHighSec = ApiClientBase.optGetLong(js.get("jumps_stargate_high_sec"));
-        self.jumpsStargateLowSec = ApiClientBase.optGetLong(js.get("jumps_stargate_low_sec"));
-        self.jumpsStargateNullSec = ApiClientBase.optGetLong(js.get("jumps_stargate_null_sec"));
-        self.jumpsWormhole = ApiClientBase.optGetLong(js.get("jumps_wormhole"));
-        self.warpsHighSec = ApiClientBase.optGetLong(js.get("warps_high_sec"));
-        self.warpsLowSec = ApiClientBase.optGetLong(js.get("warps_low_sec"));
-        self.warpsNullSec = ApiClientBase.optGetLong(js.get("warps_null_sec"));
-        self.warpsToBookmark = ApiClientBase.optGetLong(js.get("warps_to_bookmark"));
-        self.warpsToCelestial = ApiClientBase.optGetLong(js.get("warps_to_celestial"));
-        self.warpsToFleetMember = ApiClientBase.optGetLong(js.get("warps_to_fleet_member"));
-        self.warpsToScanResult = ApiClientBase.optGetLong(js.get("warps_to_scan_result"));
-        self.warpsWormhole = ApiClientBase.optGetLong(js.get("warps_wormhole"));
-        return self;
     }
 }

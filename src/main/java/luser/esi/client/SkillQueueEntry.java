@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SkillQueueEntry {
+public class SkillQueueEntry implements ApiParameterObject {
     private Instant finishDate;
     public void setFinishDate(Instant val) {
         finishDate = val;
     }
+    @JsonProperty("finish_date")
     public Instant getFinishDate() {
         return finishDate;
     }
@@ -20,6 +21,7 @@ public class SkillQueueEntry {
     public void setFinishedLevel(int val) {
         finishedLevel = val;
     }
+    @JsonProperty("finished_level")
     public int getFinishedLevel() {
         return finishedLevel;
     }
@@ -27,6 +29,7 @@ public class SkillQueueEntry {
     public void setLevelEndSp(Integer val) {
         levelEndSp = val;
     }
+    @JsonProperty("level_end_sp")
     public Integer getLevelEndSp() {
         return levelEndSp;
     }
@@ -34,6 +37,7 @@ public class SkillQueueEntry {
     public void setLevelStartSp(Integer val) {
         levelStartSp = val;
     }
+    @JsonProperty("level_start_sp")
     public Integer getLevelStartSp() {
         return levelStartSp;
     }
@@ -41,6 +45,7 @@ public class SkillQueueEntry {
     public void setQueuePosition(int val) {
         queuePosition = val;
     }
+    @JsonProperty("queue_position")
     public int getQueuePosition() {
         return queuePosition;
     }
@@ -48,6 +53,7 @@ public class SkillQueueEntry {
     public void setSkillId(int val) {
         skillId = val;
     }
+    @JsonProperty("skill_id")
     public int getSkillId() {
         return skillId;
     }
@@ -55,6 +61,7 @@ public class SkillQueueEntry {
     public void setStartDate(Instant val) {
         startDate = val;
     }
+    @JsonProperty("start_date")
     public Instant getStartDate() {
         return startDate;
     }
@@ -62,23 +69,8 @@ public class SkillQueueEntry {
     public void setTrainingStartSp(Integer val) {
         trainingStartSp = val;
     }
+    @JsonProperty("training_start_sp")
     public Integer getTrainingStartSp() {
         return trainingStartSp;
-    }
-    static SkillQueueEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SkillQueueEntry self = new SkillQueueEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.finishDate = ApiClientBase.optGetInstant(js.get("finish_date"));
-        self.finishedLevel = ApiClientBase.optGetInteger(js.get("finished_level"));
-        self.levelEndSp = ApiClientBase.optGetInteger(js.get("level_end_sp"));
-        self.levelStartSp = ApiClientBase.optGetInteger(js.get("level_start_sp"));
-        self.queuePosition = ApiClientBase.optGetInteger(js.get("queue_position"));
-        self.skillId = ApiClientBase.optGetInteger(js.get("skill_id"));
-        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
-        self.trainingStartSp = ApiClientBase.optGetInteger(js.get("training_start_sp"));
-        return self;
     }
 }

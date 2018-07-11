@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class TrainedSkillsInfo {
+public class TrainedSkillsInfo implements ApiParameterObject {
     private List<TrainedSkill> skills;
     public void setSkills(List<TrainedSkill> val) {
         skills = val;
     }
+    @JsonProperty("skills")
     public List<TrainedSkill> getSkills() {
         return skills;
     }
@@ -20,6 +21,7 @@ public class TrainedSkillsInfo {
     public void setTotalSp(long val) {
         totalSp = val;
     }
+    @JsonProperty("total_sp")
     public long getTotalSp() {
         return totalSp;
     }
@@ -27,25 +29,8 @@ public class TrainedSkillsInfo {
     public void setUnallocatedSp(Integer val) {
         unallocatedSp = val;
     }
+    @JsonProperty("unallocated_sp")
     public Integer getUnallocatedSp() {
         return unallocatedSp;
-    }
-    static TrainedSkillsInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        TrainedSkillsInfo self = new TrainedSkillsInfo();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("skills").asJsonList();
-            List<TrainedSkill> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(TrainedSkill.fromJson(jl.get(i)));
-            }
-            self.skills = rt;
-        }
-        self.totalSp = ApiClientBase.optGetLong(js.get("total_sp"));
-        self.unallocatedSp = ApiClientBase.optGetInteger(js.get("unallocated_sp"));
-        return self;
     }
 }

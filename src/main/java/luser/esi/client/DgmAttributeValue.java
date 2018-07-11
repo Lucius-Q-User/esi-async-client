@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DgmAttributeValue {
+public class DgmAttributeValue implements ApiParameterObject {
     private int attributeId;
     public void setAttributeId(int val) {
         attributeId = val;
     }
+    @JsonProperty("attribute_id")
     public int getAttributeId() {
         return attributeId;
     }
@@ -20,17 +21,8 @@ public class DgmAttributeValue {
     public void setValue(float val) {
         value = val;
     }
+    @JsonProperty("value")
     public float getValue() {
         return value;
-    }
-    static DgmAttributeValue fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DgmAttributeValue self = new DgmAttributeValue();
-        Map<String, Json> js = json.asJsonMap();
-        self.attributeId = ApiClientBase.optGetInteger(js.get("attribute_id"));
-        self.value = ApiClientBase.optGetFloat(js.get("value"));
-        return self;
     }
 }

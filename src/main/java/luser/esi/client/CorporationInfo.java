@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationInfo {
+public class CorporationInfo implements ApiParameterObject {
     private Integer allianceId;
     public void setAllianceId(Integer val) {
         allianceId = val;
     }
+    @JsonProperty("alliance_id")
     public Integer getAllianceId() {
         return allianceId;
     }
@@ -20,6 +21,7 @@ public class CorporationInfo {
     public void setCeoId(int val) {
         ceoId = val;
     }
+    @JsonProperty("ceo_id")
     public int getCeoId() {
         return ceoId;
     }
@@ -27,6 +29,7 @@ public class CorporationInfo {
     public void setCreatorId(int val) {
         creatorId = val;
     }
+    @JsonProperty("creator_id")
     public int getCreatorId() {
         return creatorId;
     }
@@ -34,6 +37,7 @@ public class CorporationInfo {
     public void setDateFounded(Instant val) {
         dateFounded = val;
     }
+    @JsonProperty("date_founded")
     public Instant getDateFounded() {
         return dateFounded;
     }
@@ -41,6 +45,7 @@ public class CorporationInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -48,6 +53,7 @@ public class CorporationInfo {
     public void setFactionId(Integer val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public Integer getFactionId() {
         return factionId;
     }
@@ -55,6 +61,7 @@ public class CorporationInfo {
     public void setHomeStationId(Integer val) {
         homeStationId = val;
     }
+    @JsonProperty("home_station_id")
     public Integer getHomeStationId() {
         return homeStationId;
     }
@@ -62,6 +69,7 @@ public class CorporationInfo {
     public void setMemberCount(int val) {
         memberCount = val;
     }
+    @JsonProperty("member_count")
     public int getMemberCount() {
         return memberCount;
     }
@@ -69,6 +77,7 @@ public class CorporationInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -76,6 +85,7 @@ public class CorporationInfo {
     public void setShares(Long val) {
         shares = val;
     }
+    @JsonProperty("shares")
     public Long getShares() {
         return shares;
     }
@@ -83,6 +93,7 @@ public class CorporationInfo {
     public void setTaxRate(float val) {
         taxRate = val;
     }
+    @JsonProperty("tax_rate")
     public float getTaxRate() {
         return taxRate;
     }
@@ -90,6 +101,7 @@ public class CorporationInfo {
     public void setTicker(String val) {
         ticker = val;
     }
+    @JsonProperty("ticker")
     public String getTicker() {
         return ticker;
     }
@@ -97,28 +109,8 @@ public class CorporationInfo {
     public void setUrl(String val) {
         url = val;
     }
+    @JsonProperty("url")
     public String getUrl() {
         return url;
-    }
-    static CorporationInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationInfo self = new CorporationInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.allianceId = ApiClientBase.optGetInteger(js.get("alliance_id"));
-        self.ceoId = ApiClientBase.optGetInteger(js.get("ceo_id"));
-        self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
-        self.dateFounded = ApiClientBase.optGetInstant(js.get("date_founded"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.homeStationId = ApiClientBase.optGetInteger(js.get("home_station_id"));
-        self.memberCount = ApiClientBase.optGetInteger(js.get("member_count"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.shares = ApiClientBase.optGetLong(js.get("shares"));
-        self.taxRate = ApiClientBase.optGetFloat(js.get("tax_rate"));
-        self.ticker = ApiClientBase.optGetString(js.get("ticker"));
-        self.url = ApiClientBase.optGetString(js.get("url"));
-        return self;
     }
 }

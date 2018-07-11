@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DogmaDynamicItemInfo {
+public class DogmaDynamicItemInfo implements ApiParameterObject {
     private int createdBy;
     public void setCreatedBy(int val) {
         createdBy = val;
     }
+    @JsonProperty("created_by")
     public int getCreatedBy() {
         return createdBy;
     }
@@ -20,6 +21,7 @@ public class DogmaDynamicItemInfo {
     public void setDogmaAttributes(List<DgmAttributeValue> val) {
         dogmaAttributes = val;
     }
+    @JsonProperty("dogma_attributes")
     public List<DgmAttributeValue> getDogmaAttributes() {
         return dogmaAttributes;
     }
@@ -27,6 +29,7 @@ public class DogmaDynamicItemInfo {
     public void setDogmaEffects(List<DgmEffectValue> val) {
         dogmaEffects = val;
     }
+    @JsonProperty("dogma_effects")
     public List<DgmEffectValue> getDogmaEffects() {
         return dogmaEffects;
     }
@@ -34,6 +37,7 @@ public class DogmaDynamicItemInfo {
     public void setMutatorTypeId(int val) {
         mutatorTypeId = val;
     }
+    @JsonProperty("mutator_type_id")
     public int getMutatorTypeId() {
         return mutatorTypeId;
     }
@@ -41,34 +45,8 @@ public class DogmaDynamicItemInfo {
     public void setSourceTypeId(int val) {
         sourceTypeId = val;
     }
+    @JsonProperty("source_type_id")
     public int getSourceTypeId() {
         return sourceTypeId;
-    }
-    static DogmaDynamicItemInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DogmaDynamicItemInfo self = new DogmaDynamicItemInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.createdBy = ApiClientBase.optGetInteger(js.get("created_by"));
-        {
-            List<Json> jl = js.get("dogma_attributes").asJsonList();
-            List<DgmAttributeValue> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DgmAttributeValue.fromJson(jl.get(i)));
-            }
-            self.dogmaAttributes = rt;
-        }
-        {
-            List<Json> jl = js.get("dogma_effects").asJsonList();
-            List<DgmEffectValue> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DgmEffectValue.fromJson(jl.get(i)));
-            }
-            self.dogmaEffects = rt;
-        }
-        self.mutatorTypeId = ApiClientBase.optGetInteger(js.get("mutator_type_id"));
-        self.sourceTypeId = ApiClientBase.optGetInteger(js.get("source_type_id"));
-        return self;
     }
 }

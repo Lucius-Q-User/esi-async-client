@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationShareholders {
+public class CorporationShareholders implements ApiParameterObject {
     private long shareCount;
     public void setShareCount(long val) {
         shareCount = val;
     }
+    @JsonProperty("share_count")
     public long getShareCount() {
         return shareCount;
     }
@@ -20,6 +21,7 @@ public class CorporationShareholders {
     public void setShareholderId(int val) {
         shareholderId = val;
     }
+    @JsonProperty("shareholder_id")
     public int getShareholderId() {
         return shareholderId;
     }
@@ -27,27 +29,22 @@ public class CorporationShareholders {
     public void setShareholderType(ShareholderTypeEnum val) {
         shareholderType = val;
     }
+    @JsonProperty("shareholder_type")
     public ShareholderTypeEnum getShareholderType() {
         return shareholderType;
-    }
-    static CorporationShareholders fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationShareholders self = new CorporationShareholders();
-        Map<String, Json> js = json.asJsonMap();
-        self.shareCount = ApiClientBase.optGetLong(js.get("share_count"));
-        self.shareholderId = ApiClientBase.optGetInteger(js.get("shareholder_id"));
-        self.shareholderType = ShareholderTypeEnum.fromString(ApiClientBase.optGetString(js.get("shareholder_type")));
-        return self;
     }
     public static enum ShareholderTypeEnum {
         CHARACTER("character"),
         CORPORATION("corporation");
-        public final String stringValue;
+        private final String stringValue;
         private ShareholderTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ShareholderTypeEnum fromString(String str) {
             for (ShareholderTypeEnum self : ShareholderTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

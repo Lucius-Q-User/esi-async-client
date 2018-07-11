@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class IndustryFacilities {
+public class IndustryFacilities implements ApiParameterObject {
     private long facilityId;
     public void setFacilityId(long val) {
         facilityId = val;
     }
+    @JsonProperty("facility_id")
     public long getFacilityId() {
         return facilityId;
     }
@@ -20,6 +21,7 @@ public class IndustryFacilities {
     public void setOwnerId(int val) {
         ownerId = val;
     }
+    @JsonProperty("owner_id")
     public int getOwnerId() {
         return ownerId;
     }
@@ -27,6 +29,7 @@ public class IndustryFacilities {
     public void setRegionId(int val) {
         regionId = val;
     }
+    @JsonProperty("region_id")
     public int getRegionId() {
         return regionId;
     }
@@ -34,6 +37,7 @@ public class IndustryFacilities {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -41,6 +45,7 @@ public class IndustryFacilities {
     public void setTax(Float val) {
         tax = val;
     }
+    @JsonProperty("tax")
     public Float getTax() {
         return tax;
     }
@@ -48,21 +53,8 @@ public class IndustryFacilities {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static IndustryFacilities fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        IndustryFacilities self = new IndustryFacilities();
-        Map<String, Json> js = json.asJsonMap();
-        self.facilityId = ApiClientBase.optGetLong(js.get("facility_id"));
-        self.ownerId = ApiClientBase.optGetInteger(js.get("owner_id"));
-        self.regionId = ApiClientBase.optGetInteger(js.get("region_id"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.tax = ApiClientBase.optGetFloat(js.get("tax"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

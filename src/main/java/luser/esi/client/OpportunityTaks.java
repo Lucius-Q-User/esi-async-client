@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class OpportunityTaks {
+public class OpportunityTaks implements ApiParameterObject {
     private String description;
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -20,6 +21,7 @@ public class OpportunityTaks {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,6 +29,7 @@ public class OpportunityTaks {
     public void setNotification(String val) {
         notification = val;
     }
+    @JsonProperty("notification")
     public String getNotification() {
         return notification;
     }
@@ -34,19 +37,8 @@ public class OpportunityTaks {
     public void setTaskId(int val) {
         taskId = val;
     }
+    @JsonProperty("task_id")
     public int getTaskId() {
         return taskId;
-    }
-    static OpportunityTaks fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        OpportunityTaks self = new OpportunityTaks();
-        Map<String, Json> js = json.asJsonMap();
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.notification = ApiClientBase.optGetString(js.get("notification"));
-        self.taskId = ApiClientBase.optGetInteger(js.get("task_id"));
-        return self;
     }
 }

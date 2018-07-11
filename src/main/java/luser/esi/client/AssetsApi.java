@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class AssetsApi {
@@ -35,13 +35,8 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        Function<String, List<ResolvedAssetName>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResolvedAssetName> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResolvedAssetName.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResolvedAssetName>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedAssetName>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -63,13 +58,8 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        Function<String, List<ResolvedAssetName>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResolvedAssetName> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResolvedAssetName.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResolvedAssetName>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedAssetName>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -91,13 +81,8 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        Function<String, List<ResolvedItemLocation>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResolvedItemLocation> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResolvedItemLocation.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResolvedItemLocation>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedItemLocation>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -119,13 +104,8 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        Function<String, List<ResolvedItemLocation>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResolvedItemLocation> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResolvedItemLocation.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResolvedItemLocation>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedItemLocation>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -155,13 +135,8 @@ public class AssetsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CharacterAssetsEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CharacterAssetsEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CharacterAssetsEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CharacterAssetsEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterAssetsEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -191,13 +166,8 @@ public class AssetsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<CorporationAssetsEntry>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CorporationAssetsEntry> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CorporationAssetsEntry.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CorporationAssetsEntry>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationAssetsEntry>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

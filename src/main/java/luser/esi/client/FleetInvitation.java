@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FleetInvitation extends JsonConvertible {
+public class FleetInvitation implements ApiParameterObject {
     private int characterId;
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -20,6 +21,7 @@ public class FleetInvitation extends JsonConvertible {
     public void setRole(RoleEnum val) {
         role = val;
     }
+    @JsonProperty("role")
     public RoleEnum getRole() {
         return role;
     }
@@ -27,6 +29,7 @@ public class FleetInvitation extends JsonConvertible {
     public void setSquadId(Long val) {
         squadId = val;
     }
+    @JsonProperty("squad_id")
     public Long getSquadId() {
         return squadId;
     }
@@ -34,27 +37,24 @@ public class FleetInvitation extends JsonConvertible {
     public void setWingId(Long val) {
         wingId = val;
     }
+    @JsonProperty("wing_id")
     public Long getWingId() {
         return wingId;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("character_id", Json.make(characterId));
-        object.set("role", Json.make(role.stringValue));
-        object.set("squad_id", Json.make(squadId));
-        object.set("wing_id", Json.make(wingId));
-        return object;
     }
     public static enum RoleEnum {
         FLEET_COMMANDER("fleet_commander"),
         WING_COMMANDER("wing_commander"),
         SQUAD_COMMANDER("squad_commander"),
         SQUAD_MEMBER("squad_member");
-        public final String stringValue;
+        private final String stringValue;
         private RoleEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RoleEnum fromString(String str) {
             for (RoleEnum self : RoleEnum.values()) {
                 if (self.stringValue.equals(str)) {

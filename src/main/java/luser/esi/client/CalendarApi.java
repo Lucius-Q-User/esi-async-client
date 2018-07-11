@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class CalendarApi {
@@ -43,13 +43,8 @@ public class CalendarApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<CalendarInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<CalendarInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(CalendarInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<CalendarInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CalendarInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -75,13 +70,8 @@ public class CalendarApi {
         parametersInUrl.put("event_id", String.valueOf(eventId));
         String body = null;
         String method = "GET";
-        Function<String, List<EventAttendee>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<EventAttendee> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(EventAttendee.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<EventAttendee>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<EventAttendee>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -107,9 +97,8 @@ public class CalendarApi {
         parametersInUrl.put("event_id", String.valueOf(eventId));
         String body = null;
         String method = "GET";
-        Function<String, CalendarEvent> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return CalendarEvent.fromJson(js);
+        ResponseParser<CalendarEvent> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CalendarEvent.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -132,7 +121,7 @@ public class CalendarApi {
         String body = null;
         body = ApiClientBase.renderToBody(response);
         String method = "PUT";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;

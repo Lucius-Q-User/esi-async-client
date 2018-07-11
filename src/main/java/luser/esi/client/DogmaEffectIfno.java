@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DogmaEffectIfno {
+public class DogmaEffectIfno implements ApiParameterObject {
     private String description;
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -20,6 +21,7 @@ public class DogmaEffectIfno {
     public void setDisallowAutoRepeat(Boolean val) {
         disallowAutoRepeat = val;
     }
+    @JsonProperty("disallow_auto_repeat")
     public Boolean getDisallowAutoRepeat() {
         return disallowAutoRepeat;
     }
@@ -27,6 +29,7 @@ public class DogmaEffectIfno {
     public void setDischargeAttributeId(Integer val) {
         dischargeAttributeId = val;
     }
+    @JsonProperty("discharge_attribute_id")
     public Integer getDischargeAttributeId() {
         return dischargeAttributeId;
     }
@@ -34,6 +37,7 @@ public class DogmaEffectIfno {
     public void setDisplayName(String val) {
         displayName = val;
     }
+    @JsonProperty("display_name")
     public String getDisplayName() {
         return displayName;
     }
@@ -41,6 +45,7 @@ public class DogmaEffectIfno {
     public void setDurationAttributeId(Integer val) {
         durationAttributeId = val;
     }
+    @JsonProperty("duration_attribute_id")
     public Integer getDurationAttributeId() {
         return durationAttributeId;
     }
@@ -48,6 +53,7 @@ public class DogmaEffectIfno {
     public void setEffectCategory(Integer val) {
         effectCategory = val;
     }
+    @JsonProperty("effect_category")
     public Integer getEffectCategory() {
         return effectCategory;
     }
@@ -55,6 +61,7 @@ public class DogmaEffectIfno {
     public void setEffectId(int val) {
         effectId = val;
     }
+    @JsonProperty("effect_id")
     public int getEffectId() {
         return effectId;
     }
@@ -62,6 +69,7 @@ public class DogmaEffectIfno {
     public void setElectronicChance(Boolean val) {
         electronicChance = val;
     }
+    @JsonProperty("electronic_chance")
     public Boolean getElectronicChance() {
         return electronicChance;
     }
@@ -69,6 +77,7 @@ public class DogmaEffectIfno {
     public void setFalloffAttributeId(Integer val) {
         falloffAttributeId = val;
     }
+    @JsonProperty("falloff_attribute_id")
     public Integer getFalloffAttributeId() {
         return falloffAttributeId;
     }
@@ -76,6 +85,7 @@ public class DogmaEffectIfno {
     public void setIconId(Integer val) {
         iconId = val;
     }
+    @JsonProperty("icon_id")
     public Integer getIconId() {
         return iconId;
     }
@@ -83,6 +93,7 @@ public class DogmaEffectIfno {
     public void setIsAssistance(Boolean val) {
         isAssistance = val;
     }
+    @JsonProperty("is_assistance")
     public Boolean getIsAssistance() {
         return isAssistance;
     }
@@ -90,6 +101,7 @@ public class DogmaEffectIfno {
     public void setIsOffensive(Boolean val) {
         isOffensive = val;
     }
+    @JsonProperty("is_offensive")
     public Boolean getIsOffensive() {
         return isOffensive;
     }
@@ -97,6 +109,7 @@ public class DogmaEffectIfno {
     public void setIsWarpSafe(Boolean val) {
         isWarpSafe = val;
     }
+    @JsonProperty("is_warp_safe")
     public Boolean getIsWarpSafe() {
         return isWarpSafe;
     }
@@ -104,6 +117,7 @@ public class DogmaEffectIfno {
     public void setModifiers(List<DgmEffectModifier> val) {
         modifiers = val;
     }
+    @JsonProperty("modifiers")
     public List<DgmEffectModifier> getModifiers() {
         return modifiers;
     }
@@ -111,6 +125,7 @@ public class DogmaEffectIfno {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -118,6 +133,7 @@ public class DogmaEffectIfno {
     public void setPostExpression(Integer val) {
         postExpression = val;
     }
+    @JsonProperty("post_expression")
     public Integer getPostExpression() {
         return postExpression;
     }
@@ -125,6 +141,7 @@ public class DogmaEffectIfno {
     public void setPreExpression(Integer val) {
         preExpression = val;
     }
+    @JsonProperty("pre_expression")
     public Integer getPreExpression() {
         return preExpression;
     }
@@ -132,6 +149,7 @@ public class DogmaEffectIfno {
     public void setPublished(Boolean val) {
         published = val;
     }
+    @JsonProperty("published")
     public Boolean getPublished() {
         return published;
     }
@@ -139,6 +157,7 @@ public class DogmaEffectIfno {
     public void setRangeAttributeId(Integer val) {
         rangeAttributeId = val;
     }
+    @JsonProperty("range_attribute_id")
     public Integer getRangeAttributeId() {
         return rangeAttributeId;
     }
@@ -146,6 +165,7 @@ public class DogmaEffectIfno {
     public void setRangeChance(Boolean val) {
         rangeChance = val;
     }
+    @JsonProperty("range_chance")
     public Boolean getRangeChance() {
         return rangeChance;
     }
@@ -153,43 +173,8 @@ public class DogmaEffectIfno {
     public void setTrackingSpeedAttributeId(Integer val) {
         trackingSpeedAttributeId = val;
     }
+    @JsonProperty("tracking_speed_attribute_id")
     public Integer getTrackingSpeedAttributeId() {
         return trackingSpeedAttributeId;
-    }
-    static DogmaEffectIfno fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DogmaEffectIfno self = new DogmaEffectIfno();
-        Map<String, Json> js = json.asJsonMap();
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.disallowAutoRepeat = ApiClientBase.optGetBoolean(js.get("disallow_auto_repeat"));
-        self.dischargeAttributeId = ApiClientBase.optGetInteger(js.get("discharge_attribute_id"));
-        self.displayName = ApiClientBase.optGetString(js.get("display_name"));
-        self.durationAttributeId = ApiClientBase.optGetInteger(js.get("duration_attribute_id"));
-        self.effectCategory = ApiClientBase.optGetInteger(js.get("effect_category"));
-        self.effectId = ApiClientBase.optGetInteger(js.get("effect_id"));
-        self.electronicChance = ApiClientBase.optGetBoolean(js.get("electronic_chance"));
-        self.falloffAttributeId = ApiClientBase.optGetInteger(js.get("falloff_attribute_id"));
-        self.iconId = ApiClientBase.optGetInteger(js.get("icon_id"));
-        self.isAssistance = ApiClientBase.optGetBoolean(js.get("is_assistance"));
-        self.isOffensive = ApiClientBase.optGetBoolean(js.get("is_offensive"));
-        self.isWarpSafe = ApiClientBase.optGetBoolean(js.get("is_warp_safe"));
-        {
-            List<Json> jl = js.get("modifiers").asJsonList();
-            List<DgmEffectModifier> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DgmEffectModifier.fromJson(jl.get(i)));
-            }
-            self.modifiers = rt;
-        }
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.postExpression = ApiClientBase.optGetInteger(js.get("post_expression"));
-        self.preExpression = ApiClientBase.optGetInteger(js.get("pre_expression"));
-        self.published = ApiClientBase.optGetBoolean(js.get("published"));
-        self.rangeAttributeId = ApiClientBase.optGetInteger(js.get("range_attribute_id"));
-        self.rangeChance = ApiClientBase.optGetBoolean(js.get("range_chance"));
-        self.trackingSpeedAttributeId = ApiClientBase.optGetInteger(js.get("tracking_speed_attribute_id"));
-        return self;
     }
 }

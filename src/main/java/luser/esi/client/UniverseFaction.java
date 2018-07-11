@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class UniverseFaction {
+public class UniverseFaction implements ApiParameterObject {
     private Integer corporationId;
     public void setCorporationId(Integer val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public Integer getCorporationId() {
         return corporationId;
     }
@@ -20,6 +21,7 @@ public class UniverseFaction {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -27,6 +29,7 @@ public class UniverseFaction {
     public void setFactionId(int val) {
         factionId = val;
     }
+    @JsonProperty("faction_id")
     public int getFactionId() {
         return factionId;
     }
@@ -34,6 +37,7 @@ public class UniverseFaction {
     public void setIsUnique(boolean val) {
         isUnique = val;
     }
+    @JsonProperty("is_unique")
     public boolean getIsUnique() {
         return isUnique;
     }
@@ -41,6 +45,7 @@ public class UniverseFaction {
     public void setMilitiaCorporationId(Integer val) {
         militiaCorporationId = val;
     }
+    @JsonProperty("militia_corporation_id")
     public Integer getMilitiaCorporationId() {
         return militiaCorporationId;
     }
@@ -48,6 +53,7 @@ public class UniverseFaction {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -55,6 +61,7 @@ public class UniverseFaction {
     public void setSizeFactor(float val) {
         sizeFactor = val;
     }
+    @JsonProperty("size_factor")
     public float getSizeFactor() {
         return sizeFactor;
     }
@@ -62,6 +69,7 @@ public class UniverseFaction {
     public void setSolarSystemId(Integer val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public Integer getSolarSystemId() {
         return solarSystemId;
     }
@@ -69,6 +77,7 @@ public class UniverseFaction {
     public void setStationCount(int val) {
         stationCount = val;
     }
+    @JsonProperty("station_count")
     public int getStationCount() {
         return stationCount;
     }
@@ -76,25 +85,8 @@ public class UniverseFaction {
     public void setStationSystemCount(int val) {
         stationSystemCount = val;
     }
+    @JsonProperty("station_system_count")
     public int getStationSystemCount() {
         return stationSystemCount;
-    }
-    static UniverseFaction fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        UniverseFaction self = new UniverseFaction();
-        Map<String, Json> js = json.asJsonMap();
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.factionId = ApiClientBase.optGetInteger(js.get("faction_id"));
-        self.isUnique = ApiClientBase.optGetBoolean(js.get("is_unique"));
-        self.militiaCorporationId = ApiClientBase.optGetInteger(js.get("militia_corporation_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.sizeFactor = ApiClientBase.optGetFloat(js.get("size_factor"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.stationCount = ApiClientBase.optGetInteger(js.get("station_count"));
-        self.stationSystemCount = ApiClientBase.optGetInteger(js.get("station_system_count"));
-        return self;
     }
 }

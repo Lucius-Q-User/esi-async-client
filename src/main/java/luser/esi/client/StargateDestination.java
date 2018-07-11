@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StargateDestination {
+public class StargateDestination implements ApiParameterObject {
     private int stargateId;
     public void setStargateId(int val) {
         stargateId = val;
     }
+    @JsonProperty("stargate_id")
     public int getStargateId() {
         return stargateId;
     }
@@ -20,17 +21,8 @@ public class StargateDestination {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
-    }
-    static StargateDestination fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StargateDestination self = new StargateDestination();
-        Map<String, Json> js = json.asJsonMap();
-        self.stargateId = ApiClientBase.optGetInteger(js.get("stargate_id"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        return self;
     }
 }

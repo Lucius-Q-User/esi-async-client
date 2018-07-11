@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class IndustrySystems {
+public class IndustrySystems implements ApiParameterObject {
     private List<SystemCostIndex> costIndices;
     public void setCostIndices(List<SystemCostIndex> val) {
         costIndices = val;
     }
+    @JsonProperty("cost_indices")
     public List<SystemCostIndex> getCostIndices() {
         return costIndices;
     }
@@ -20,24 +21,8 @@ public class IndustrySystems {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
-    }
-    static IndustrySystems fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        IndustrySystems self = new IndustrySystems();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("cost_indices").asJsonList();
-            List<SystemCostIndex> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(SystemCostIndex.fromJson(jl.get(i)));
-            }
-            self.costIndices = rt;
-        }
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        return self;
     }
 }

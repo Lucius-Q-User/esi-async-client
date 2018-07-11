@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class BookmarkedItem {
+public class BookmarkedItem implements ApiParameterObject {
     private long itemId;
     public void setItemId(long val) {
         itemId = val;
     }
+    @JsonProperty("item_id")
     public long getItemId() {
         return itemId;
     }
@@ -20,17 +21,8 @@ public class BookmarkedItem {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static BookmarkedItem fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        BookmarkedItem self = new BookmarkedItem();
-        Map<String, Json> js = json.asJsonMap();
-        self.itemId = ApiClientBase.optGetLong(js.get("item_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

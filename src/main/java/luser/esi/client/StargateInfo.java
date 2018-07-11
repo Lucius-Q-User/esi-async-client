@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StargateInfo {
+public class StargateInfo implements ApiParameterObject {
     private StargateDestination destination;
     public void setDestination(StargateDestination val) {
         destination = val;
     }
+    @JsonProperty("destination")
     public StargateDestination getDestination() {
         return destination;
     }
@@ -20,6 +21,7 @@ public class StargateInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,6 +29,7 @@ public class StargateInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -34,6 +37,7 @@ public class StargateInfo {
     public void setStargateId(int val) {
         stargateId = val;
     }
+    @JsonProperty("stargate_id")
     public int getStargateId() {
         return stargateId;
     }
@@ -41,6 +45,7 @@ public class StargateInfo {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
     }
@@ -48,21 +53,8 @@ public class StargateInfo {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static StargateInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StargateInfo self = new StargateInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.destination = StargateDestination.fromJson(js.get("destination"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.stargateId = ApiClientBase.optGetInteger(js.get("stargate_id"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

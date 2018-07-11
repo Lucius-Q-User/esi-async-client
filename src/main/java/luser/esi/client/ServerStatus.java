@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ServerStatus {
+public class ServerStatus implements ApiParameterObject {
     private int players;
     public void setPlayers(int val) {
         players = val;
     }
+    @JsonProperty("players")
     public int getPlayers() {
         return players;
     }
@@ -20,6 +21,7 @@ public class ServerStatus {
     public void setServerVersion(String val) {
         serverVersion = val;
     }
+    @JsonProperty("server_version")
     public String getServerVersion() {
         return serverVersion;
     }
@@ -27,6 +29,7 @@ public class ServerStatus {
     public void setStartTime(Instant val) {
         startTime = val;
     }
+    @JsonProperty("start_time")
     public Instant getStartTime() {
         return startTime;
     }
@@ -34,19 +37,8 @@ public class ServerStatus {
     public void setVip(Boolean val) {
         vip = val;
     }
+    @JsonProperty("vip")
     public Boolean getVip() {
         return vip;
-    }
-    static ServerStatus fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ServerStatus self = new ServerStatus();
-        Map<String, Json> js = json.asJsonMap();
-        self.players = ApiClientBase.optGetInteger(js.get("players"));
-        self.serverVersion = ApiClientBase.optGetString(js.get("server_version"));
-        self.startTime = ApiClientBase.optGetInstant(js.get("start_time"));
-        self.vip = ApiClientBase.optGetBoolean(js.get("vip"));
-        return self;
     }
 }

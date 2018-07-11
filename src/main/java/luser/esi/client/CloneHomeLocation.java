@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CloneHomeLocation {
+public class CloneHomeLocation implements ApiParameterObject {
     private Long locationId;
     public void setLocationId(Long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public Long getLocationId() {
         return locationId;
     }
@@ -20,26 +21,22 @@ public class CloneHomeLocation {
     public void setLocationType(LocationTypeEnum val) {
         locationType = val;
     }
+    @JsonProperty("location_type")
     public LocationTypeEnum getLocationType() {
         return locationType;
-    }
-    static CloneHomeLocation fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CloneHomeLocation self = new CloneHomeLocation();
-        Map<String, Json> js = json.asJsonMap();
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.locationType = LocationTypeEnum.fromString(ApiClientBase.optGetString(js.get("location_type")));
-        return self;
     }
     public static enum LocationTypeEnum {
         STATION("station"),
         STRUCTURE("structure");
-        public final String stringValue;
+        private final String stringValue;
         private LocationTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static LocationTypeEnum fromString(String str) {
             for (LocationTypeEnum self : LocationTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

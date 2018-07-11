@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterMiningLedgerEntry {
+public class CharacterMiningLedgerEntry implements ApiParameterObject {
     private String date;
     public void setDate(String val) {
         date = val;
     }
+    @JsonProperty("date")
     public String getDate() {
         return date;
     }
@@ -20,6 +21,7 @@ public class CharacterMiningLedgerEntry {
     public void setQuantity(long val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public long getQuantity() {
         return quantity;
     }
@@ -27,6 +29,7 @@ public class CharacterMiningLedgerEntry {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -34,19 +37,8 @@ public class CharacterMiningLedgerEntry {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static CharacterMiningLedgerEntry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterMiningLedgerEntry self = new CharacterMiningLedgerEntry();
-        Map<String, Json> js = json.asJsonMap();
-        self.date = ApiClientBase.optGetString(js.get("date"));
-        self.quantity = ApiClientBase.optGetLong(js.get("quantity"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

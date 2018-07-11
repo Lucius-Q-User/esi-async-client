@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class KillmailsApi {
@@ -43,13 +43,8 @@ public class KillmailsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<KillmailRef>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<KillmailRef> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(KillmailRef.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<KillmailRef>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<KillmailRef>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -79,13 +74,8 @@ public class KillmailsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<KillmailRef>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<KillmailRef> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(KillmailRef.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<KillmailRef>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<KillmailRef>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -111,9 +101,8 @@ public class KillmailsApi {
         parametersInUrl.put("killmail_id", String.valueOf(killmailId));
         String body = null;
         String method = "GET";
-        Function<String, KillmailData> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return KillmailData.fromJson(js);
+        ResponseParser<KillmailData> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, KillmailData.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

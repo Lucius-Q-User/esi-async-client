@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DgmEffectValue {
+public class DgmEffectValue implements ApiParameterObject {
     private int effectId;
     public void setEffectId(int val) {
         effectId = val;
     }
+    @JsonProperty("effect_id")
     public int getEffectId() {
         return effectId;
     }
@@ -20,17 +21,8 @@ public class DgmEffectValue {
     public void setIsDefault(boolean val) {
         isDefault = val;
     }
+    @JsonProperty("is_default")
     public boolean getIsDefault() {
         return isDefault;
-    }
-    static DgmEffectValue fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DgmEffectValue self = new DgmEffectValue();
-        Map<String, Json> js = json.asJsonMap();
-        self.effectId = ApiClientBase.optGetInteger(js.get("effect_id"));
-        self.isDefault = ApiClientBase.optGetBoolean(js.get("is_default"));
-        return self;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class IncursionsApi {
@@ -37,13 +37,8 @@ public class IncursionsApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<ActiveIncursions>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ActiveIncursions> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ActiveIncursions.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ActiveIncursions>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ActiveIncursions>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

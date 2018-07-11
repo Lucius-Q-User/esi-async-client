@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ContactLabel {
+public class ContactLabel implements ApiParameterObject {
     private long labelId;
     public void setLabelId(long val) {
         labelId = val;
     }
+    @JsonProperty("label_id")
     public long getLabelId() {
         return labelId;
     }
@@ -20,17 +21,8 @@ public class ContactLabel {
     public void setLabelName(String val) {
         labelName = val;
     }
+    @JsonProperty("label_name")
     public String getLabelName() {
         return labelName;
-    }
-    static ContactLabel fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ContactLabel self = new ContactLabel();
-        Map<String, Json> js = json.asJsonMap();
-        self.labelId = ApiClientBase.optGetLong(js.get("label_id"));
-        self.labelName = ApiClientBase.optGetString(js.get("label_name"));
-        return self;
     }
 }

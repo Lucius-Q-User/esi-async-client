@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class TypeInfo {
+public class TypeInfo implements ApiParameterObject {
     private Float capacity;
     public void setCapacity(Float val) {
         capacity = val;
     }
+    @JsonProperty("capacity")
     public Float getCapacity() {
         return capacity;
     }
@@ -20,6 +21,7 @@ public class TypeInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -27,6 +29,7 @@ public class TypeInfo {
     public void setDogmaAttributes(List<DgmAttributeValue> val) {
         dogmaAttributes = val;
     }
+    @JsonProperty("dogma_attributes")
     public List<DgmAttributeValue> getDogmaAttributes() {
         return dogmaAttributes;
     }
@@ -34,6 +37,7 @@ public class TypeInfo {
     public void setDogmaEffects(List<DgmEffectValue> val) {
         dogmaEffects = val;
     }
+    @JsonProperty("dogma_effects")
     public List<DgmEffectValue> getDogmaEffects() {
         return dogmaEffects;
     }
@@ -41,6 +45,7 @@ public class TypeInfo {
     public void setGraphicId(Integer val) {
         graphicId = val;
     }
+    @JsonProperty("graphic_id")
     public Integer getGraphicId() {
         return graphicId;
     }
@@ -48,6 +53,7 @@ public class TypeInfo {
     public void setGroupId(int val) {
         groupId = val;
     }
+    @JsonProperty("group_id")
     public int getGroupId() {
         return groupId;
     }
@@ -55,6 +61,7 @@ public class TypeInfo {
     public void setIconId(Integer val) {
         iconId = val;
     }
+    @JsonProperty("icon_id")
     public Integer getIconId() {
         return iconId;
     }
@@ -62,6 +69,7 @@ public class TypeInfo {
     public void setMarketGroupId(Integer val) {
         marketGroupId = val;
     }
+    @JsonProperty("market_group_id")
     public Integer getMarketGroupId() {
         return marketGroupId;
     }
@@ -69,6 +77,7 @@ public class TypeInfo {
     public void setMass(Float val) {
         mass = val;
     }
+    @JsonProperty("mass")
     public Float getMass() {
         return mass;
     }
@@ -76,6 +85,7 @@ public class TypeInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -83,6 +93,7 @@ public class TypeInfo {
     public void setPackagedVolume(Float val) {
         packagedVolume = val;
     }
+    @JsonProperty("packaged_volume")
     public Float getPackagedVolume() {
         return packagedVolume;
     }
@@ -90,6 +101,7 @@ public class TypeInfo {
     public void setPortionSize(Integer val) {
         portionSize = val;
     }
+    @JsonProperty("portion_size")
     public Integer getPortionSize() {
         return portionSize;
     }
@@ -97,6 +109,7 @@ public class TypeInfo {
     public void setPublished(boolean val) {
         published = val;
     }
+    @JsonProperty("published")
     public boolean getPublished() {
         return published;
     }
@@ -104,6 +117,7 @@ public class TypeInfo {
     public void setRadius(Float val) {
         radius = val;
     }
+    @JsonProperty("radius")
     public Float getRadius() {
         return radius;
     }
@@ -111,6 +125,7 @@ public class TypeInfo {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
     }
@@ -118,45 +133,8 @@ public class TypeInfo {
     public void setVolume(Float val) {
         volume = val;
     }
+    @JsonProperty("volume")
     public Float getVolume() {
         return volume;
-    }
-    static TypeInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        TypeInfo self = new TypeInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.capacity = ApiClientBase.optGetFloat(js.get("capacity"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        {
-            List<Json> jl = js.get("dogma_attributes").asJsonList();
-            List<DgmAttributeValue> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DgmAttributeValue.fromJson(jl.get(i)));
-            }
-            self.dogmaAttributes = rt;
-        }
-        {
-            List<Json> jl = js.get("dogma_effects").asJsonList();
-            List<DgmEffectValue> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DgmEffectValue.fromJson(jl.get(i)));
-            }
-            self.dogmaEffects = rt;
-        }
-        self.graphicId = ApiClientBase.optGetInteger(js.get("graphic_id"));
-        self.groupId = ApiClientBase.optGetInteger(js.get("group_id"));
-        self.iconId = ApiClientBase.optGetInteger(js.get("icon_id"));
-        self.marketGroupId = ApiClientBase.optGetInteger(js.get("market_group_id"));
-        self.mass = ApiClientBase.optGetFloat(js.get("mass"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.packagedVolume = ApiClientBase.optGetFloat(js.get("packaged_volume"));
-        self.portionSize = ApiClientBase.optGetInteger(js.get("portion_size"));
-        self.published = ApiClientBase.optGetBoolean(js.get("published"));
-        self.radius = ApiClientBase.optGetFloat(js.get("radius"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        self.volume = ApiClientBase.optGetFloat(js.get("volume"));
-        return self;
     }
 }

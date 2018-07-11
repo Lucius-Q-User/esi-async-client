@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SchematicInfo {
+public class SchematicInfo implements ApiParameterObject {
     private int cycleTime;
     public void setCycleTime(int val) {
         cycleTime = val;
     }
+    @JsonProperty("cycle_time")
     public int getCycleTime() {
         return cycleTime;
     }
@@ -20,17 +21,8 @@ public class SchematicInfo {
     public void setSchematicName(String val) {
         schematicName = val;
     }
+    @JsonProperty("schematic_name")
     public String getSchematicName() {
         return schematicName;
-    }
-    static SchematicInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SchematicInfo self = new SchematicInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.cycleTime = ApiClientBase.optGetInteger(js.get("cycle_time"));
-        self.schematicName = ApiClientBase.optGetString(js.get("schematic_name"));
-        return self;
     }
 }

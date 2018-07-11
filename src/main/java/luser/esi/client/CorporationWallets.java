@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationWallets {
+public class CorporationWallets implements ApiParameterObject {
     private double balance;
     public void setBalance(double val) {
         balance = val;
     }
+    @JsonProperty("balance")
     public double getBalance() {
         return balance;
     }
@@ -20,17 +21,8 @@ public class CorporationWallets {
     public void setDivision(int val) {
         division = val;
     }
+    @JsonProperty("division")
     public int getDivision() {
         return division;
-    }
-    static CorporationWallets fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationWallets self = new CorporationWallets();
-        Map<String, Json> js = json.asJsonMap();
-        self.balance = ApiClientBase.optGetDouble(js.get("balance"));
-        self.division = ApiClientBase.optGetInteger(js.get("division"));
-        return self;
     }
 }

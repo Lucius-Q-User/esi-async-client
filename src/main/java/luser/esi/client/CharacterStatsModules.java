@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsModules {
+public class CharacterStatsModules implements ApiParameterObject {
     private Long activationsArmorHardener;
     public void setActivationsArmorHardener(Long val) {
         activationsArmorHardener = val;
     }
+    @JsonProperty("activations_armor_hardener")
     public Long getActivationsArmorHardener() {
         return activationsArmorHardener;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsModules {
     public void setActivationsArmorRepairUnit(Long val) {
         activationsArmorRepairUnit = val;
     }
+    @JsonProperty("activations_armor_repair_unit")
     public Long getActivationsArmorRepairUnit() {
         return activationsArmorRepairUnit;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsModules {
     public void setActivationsArmorResistanceShiftHardener(Long val) {
         activationsArmorResistanceShiftHardener = val;
     }
+    @JsonProperty("activations_armor_resistance_shift_hardener")
     public Long getActivationsArmorResistanceShiftHardener() {
         return activationsArmorResistanceShiftHardener;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsModules {
     public void setActivationsAutomatedTargetingSystem(Long val) {
         activationsAutomatedTargetingSystem = val;
     }
+    @JsonProperty("activations_automated_targeting_system")
     public Long getActivationsAutomatedTargetingSystem() {
         return activationsAutomatedTargetingSystem;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsModules {
     public void setActivationsBastion(Long val) {
         activationsBastion = val;
     }
+    @JsonProperty("activations_bastion")
     public Long getActivationsBastion() {
         return activationsBastion;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsModules {
     public void setActivationsBombLauncher(Long val) {
         activationsBombLauncher = val;
     }
+    @JsonProperty("activations_bomb_launcher")
     public Long getActivationsBombLauncher() {
         return activationsBombLauncher;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsModules {
     public void setActivationsCapacitorBooster(Long val) {
         activationsCapacitorBooster = val;
     }
+    @JsonProperty("activations_capacitor_booster")
     public Long getActivationsCapacitorBooster() {
         return activationsCapacitorBooster;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsModules {
     public void setActivationsCargoScanner(Long val) {
         activationsCargoScanner = val;
     }
+    @JsonProperty("activations_cargo_scanner")
     public Long getActivationsCargoScanner() {
         return activationsCargoScanner;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsModules {
     public void setActivationsCloakingDevice(Long val) {
         activationsCloakingDevice = val;
     }
+    @JsonProperty("activations_cloaking_device")
     public Long getActivationsCloakingDevice() {
         return activationsCloakingDevice;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsModules {
     public void setActivationsCloneVatBay(Long val) {
         activationsCloneVatBay = val;
     }
+    @JsonProperty("activations_clone_vat_bay")
     public Long getActivationsCloneVatBay() {
         return activationsCloneVatBay;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsModules {
     public void setActivationsCynosuralField(Long val) {
         activationsCynosuralField = val;
     }
+    @JsonProperty("activations_cynosural_field")
     public Long getActivationsCynosuralField() {
         return activationsCynosuralField;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsModules {
     public void setActivationsDamageControl(Long val) {
         activationsDamageControl = val;
     }
+    @JsonProperty("activations_damage_control")
     public Long getActivationsDamageControl() {
         return activationsDamageControl;
     }
@@ -97,6 +109,7 @@ public class CharacterStatsModules {
     public void setActivationsDataMiners(Long val) {
         activationsDataMiners = val;
     }
+    @JsonProperty("activations_data_miners")
     public Long getActivationsDataMiners() {
         return activationsDataMiners;
     }
@@ -104,6 +117,7 @@ public class CharacterStatsModules {
     public void setActivationsDroneControlUnit(Long val) {
         activationsDroneControlUnit = val;
     }
+    @JsonProperty("activations_drone_control_unit")
     public Long getActivationsDroneControlUnit() {
         return activationsDroneControlUnit;
     }
@@ -111,6 +125,7 @@ public class CharacterStatsModules {
     public void setActivationsDroneTrackingModules(Long val) {
         activationsDroneTrackingModules = val;
     }
+    @JsonProperty("activations_drone_tracking_modules")
     public Long getActivationsDroneTrackingModules() {
         return activationsDroneTrackingModules;
     }
@@ -118,6 +133,7 @@ public class CharacterStatsModules {
     public void setActivationsEccm(Long val) {
         activationsEccm = val;
     }
+    @JsonProperty("activations_eccm")
     public Long getActivationsEccm() {
         return activationsEccm;
     }
@@ -125,6 +141,7 @@ public class CharacterStatsModules {
     public void setActivationsEcm(Long val) {
         activationsEcm = val;
     }
+    @JsonProperty("activations_ecm")
     public Long getActivationsEcm() {
         return activationsEcm;
     }
@@ -132,6 +149,7 @@ public class CharacterStatsModules {
     public void setActivationsEcmBurst(Long val) {
         activationsEcmBurst = val;
     }
+    @JsonProperty("activations_ecm_burst")
     public Long getActivationsEcmBurst() {
         return activationsEcmBurst;
     }
@@ -139,6 +157,7 @@ public class CharacterStatsModules {
     public void setActivationsEnergyDestabilizer(Long val) {
         activationsEnergyDestabilizer = val;
     }
+    @JsonProperty("activations_energy_destabilizer")
     public Long getActivationsEnergyDestabilizer() {
         return activationsEnergyDestabilizer;
     }
@@ -146,6 +165,7 @@ public class CharacterStatsModules {
     public void setActivationsEnergyVampire(Long val) {
         activationsEnergyVampire = val;
     }
+    @JsonProperty("activations_energy_vampire")
     public Long getActivationsEnergyVampire() {
         return activationsEnergyVampire;
     }
@@ -153,6 +173,7 @@ public class CharacterStatsModules {
     public void setActivationsEnergyWeapon(Long val) {
         activationsEnergyWeapon = val;
     }
+    @JsonProperty("activations_energy_weapon")
     public Long getActivationsEnergyWeapon() {
         return activationsEnergyWeapon;
     }
@@ -160,6 +181,7 @@ public class CharacterStatsModules {
     public void setActivationsFestivalLauncher(Long val) {
         activationsFestivalLauncher = val;
     }
+    @JsonProperty("activations_festival_launcher")
     public Long getActivationsFestivalLauncher() {
         return activationsFestivalLauncher;
     }
@@ -167,6 +189,7 @@ public class CharacterStatsModules {
     public void setActivationsFrequencyMiningLaser(Long val) {
         activationsFrequencyMiningLaser = val;
     }
+    @JsonProperty("activations_frequency_mining_laser")
     public Long getActivationsFrequencyMiningLaser() {
         return activationsFrequencyMiningLaser;
     }
@@ -174,6 +197,7 @@ public class CharacterStatsModules {
     public void setActivationsFueledArmorRepairer(Long val) {
         activationsFueledArmorRepairer = val;
     }
+    @JsonProperty("activations_fueled_armor_repairer")
     public Long getActivationsFueledArmorRepairer() {
         return activationsFueledArmorRepairer;
     }
@@ -181,6 +205,7 @@ public class CharacterStatsModules {
     public void setActivationsFueledShieldBooster(Long val) {
         activationsFueledShieldBooster = val;
     }
+    @JsonProperty("activations_fueled_shield_booster")
     public Long getActivationsFueledShieldBooster() {
         return activationsFueledShieldBooster;
     }
@@ -188,6 +213,7 @@ public class CharacterStatsModules {
     public void setActivationsGangCoordinator(Long val) {
         activationsGangCoordinator = val;
     }
+    @JsonProperty("activations_gang_coordinator")
     public Long getActivationsGangCoordinator() {
         return activationsGangCoordinator;
     }
@@ -195,6 +221,7 @@ public class CharacterStatsModules {
     public void setActivationsGasCloudHarvester(Long val) {
         activationsGasCloudHarvester = val;
     }
+    @JsonProperty("activations_gas_cloud_harvester")
     public Long getActivationsGasCloudHarvester() {
         return activationsGasCloudHarvester;
     }
@@ -202,6 +229,7 @@ public class CharacterStatsModules {
     public void setActivationsHullRepairUnit(Long val) {
         activationsHullRepairUnit = val;
     }
+    @JsonProperty("activations_hull_repair_unit")
     public Long getActivationsHullRepairUnit() {
         return activationsHullRepairUnit;
     }
@@ -209,6 +237,7 @@ public class CharacterStatsModules {
     public void setActivationsHybridWeapon(Long val) {
         activationsHybridWeapon = val;
     }
+    @JsonProperty("activations_hybrid_weapon")
     public Long getActivationsHybridWeapon() {
         return activationsHybridWeapon;
     }
@@ -216,6 +245,7 @@ public class CharacterStatsModules {
     public void setActivationsIndustrialCore(Long val) {
         activationsIndustrialCore = val;
     }
+    @JsonProperty("activations_industrial_core")
     public Long getActivationsIndustrialCore() {
         return activationsIndustrialCore;
     }
@@ -223,6 +253,7 @@ public class CharacterStatsModules {
     public void setActivationsInterdictionSphereLauncher(Long val) {
         activationsInterdictionSphereLauncher = val;
     }
+    @JsonProperty("activations_interdiction_sphere_launcher")
     public Long getActivationsInterdictionSphereLauncher() {
         return activationsInterdictionSphereLauncher;
     }
@@ -230,6 +261,7 @@ public class CharacterStatsModules {
     public void setActivationsMicroJumpDrive(Long val) {
         activationsMicroJumpDrive = val;
     }
+    @JsonProperty("activations_micro_jump_drive")
     public Long getActivationsMicroJumpDrive() {
         return activationsMicroJumpDrive;
     }
@@ -237,6 +269,7 @@ public class CharacterStatsModules {
     public void setActivationsMiningLaser(Long val) {
         activationsMiningLaser = val;
     }
+    @JsonProperty("activations_mining_laser")
     public Long getActivationsMiningLaser() {
         return activationsMiningLaser;
     }
@@ -244,6 +277,7 @@ public class CharacterStatsModules {
     public void setActivationsMissileLauncher(Long val) {
         activationsMissileLauncher = val;
     }
+    @JsonProperty("activations_missile_launcher")
     public Long getActivationsMissileLauncher() {
         return activationsMissileLauncher;
     }
@@ -251,6 +285,7 @@ public class CharacterStatsModules {
     public void setActivationsPassiveTargetingSystem(Long val) {
         activationsPassiveTargetingSystem = val;
     }
+    @JsonProperty("activations_passive_targeting_system")
     public Long getActivationsPassiveTargetingSystem() {
         return activationsPassiveTargetingSystem;
     }
@@ -258,6 +293,7 @@ public class CharacterStatsModules {
     public void setActivationsProbeLauncher(Long val) {
         activationsProbeLauncher = val;
     }
+    @JsonProperty("activations_probe_launcher")
     public Long getActivationsProbeLauncher() {
         return activationsProbeLauncher;
     }
@@ -265,6 +301,7 @@ public class CharacterStatsModules {
     public void setActivationsProjectedEccm(Long val) {
         activationsProjectedEccm = val;
     }
+    @JsonProperty("activations_projected_eccm")
     public Long getActivationsProjectedEccm() {
         return activationsProjectedEccm;
     }
@@ -272,6 +309,7 @@ public class CharacterStatsModules {
     public void setActivationsProjectileWeapon(Long val) {
         activationsProjectileWeapon = val;
     }
+    @JsonProperty("activations_projectile_weapon")
     public Long getActivationsProjectileWeapon() {
         return activationsProjectileWeapon;
     }
@@ -279,6 +317,7 @@ public class CharacterStatsModules {
     public void setActivationsPropulsionModule(Long val) {
         activationsPropulsionModule = val;
     }
+    @JsonProperty("activations_propulsion_module")
     public Long getActivationsPropulsionModule() {
         return activationsPropulsionModule;
     }
@@ -286,6 +325,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteArmorRepairer(Long val) {
         activationsRemoteArmorRepairer = val;
     }
+    @JsonProperty("activations_remote_armor_repairer")
     public Long getActivationsRemoteArmorRepairer() {
         return activationsRemoteArmorRepairer;
     }
@@ -293,6 +333,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteCapacitorTransmitter(Long val) {
         activationsRemoteCapacitorTransmitter = val;
     }
+    @JsonProperty("activations_remote_capacitor_transmitter")
     public Long getActivationsRemoteCapacitorTransmitter() {
         return activationsRemoteCapacitorTransmitter;
     }
@@ -300,6 +341,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteEcmBurst(Long val) {
         activationsRemoteEcmBurst = val;
     }
+    @JsonProperty("activations_remote_ecm_burst")
     public Long getActivationsRemoteEcmBurst() {
         return activationsRemoteEcmBurst;
     }
@@ -307,6 +349,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteHullRepairer(Long val) {
         activationsRemoteHullRepairer = val;
     }
+    @JsonProperty("activations_remote_hull_repairer")
     public Long getActivationsRemoteHullRepairer() {
         return activationsRemoteHullRepairer;
     }
@@ -314,6 +357,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteSensorBooster(Long val) {
         activationsRemoteSensorBooster = val;
     }
+    @JsonProperty("activations_remote_sensor_booster")
     public Long getActivationsRemoteSensorBooster() {
         return activationsRemoteSensorBooster;
     }
@@ -321,6 +365,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteSensorDamper(Long val) {
         activationsRemoteSensorDamper = val;
     }
+    @JsonProperty("activations_remote_sensor_damper")
     public Long getActivationsRemoteSensorDamper() {
         return activationsRemoteSensorDamper;
     }
@@ -328,6 +373,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteShieldBooster(Long val) {
         activationsRemoteShieldBooster = val;
     }
+    @JsonProperty("activations_remote_shield_booster")
     public Long getActivationsRemoteShieldBooster() {
         return activationsRemoteShieldBooster;
     }
@@ -335,6 +381,7 @@ public class CharacterStatsModules {
     public void setActivationsRemoteTrackingComputer(Long val) {
         activationsRemoteTrackingComputer = val;
     }
+    @JsonProperty("activations_remote_tracking_computer")
     public Long getActivationsRemoteTrackingComputer() {
         return activationsRemoteTrackingComputer;
     }
@@ -342,6 +389,7 @@ public class CharacterStatsModules {
     public void setActivationsSalvager(Long val) {
         activationsSalvager = val;
     }
+    @JsonProperty("activations_salvager")
     public Long getActivationsSalvager() {
         return activationsSalvager;
     }
@@ -349,6 +397,7 @@ public class CharacterStatsModules {
     public void setActivationsSensorBooster(Long val) {
         activationsSensorBooster = val;
     }
+    @JsonProperty("activations_sensor_booster")
     public Long getActivationsSensorBooster() {
         return activationsSensorBooster;
     }
@@ -356,6 +405,7 @@ public class CharacterStatsModules {
     public void setActivationsShieldBooster(Long val) {
         activationsShieldBooster = val;
     }
+    @JsonProperty("activations_shield_booster")
     public Long getActivationsShieldBooster() {
         return activationsShieldBooster;
     }
@@ -363,6 +413,7 @@ public class CharacterStatsModules {
     public void setActivationsShieldHardener(Long val) {
         activationsShieldHardener = val;
     }
+    @JsonProperty("activations_shield_hardener")
     public Long getActivationsShieldHardener() {
         return activationsShieldHardener;
     }
@@ -370,6 +421,7 @@ public class CharacterStatsModules {
     public void setActivationsShipScanner(Long val) {
         activationsShipScanner = val;
     }
+    @JsonProperty("activations_ship_scanner")
     public Long getActivationsShipScanner() {
         return activationsShipScanner;
     }
@@ -377,6 +429,7 @@ public class CharacterStatsModules {
     public void setActivationsSiege(Long val) {
         activationsSiege = val;
     }
+    @JsonProperty("activations_siege")
     public Long getActivationsSiege() {
         return activationsSiege;
     }
@@ -384,6 +437,7 @@ public class CharacterStatsModules {
     public void setActivationsSmartBomb(Long val) {
         activationsSmartBomb = val;
     }
+    @JsonProperty("activations_smart_bomb")
     public Long getActivationsSmartBomb() {
         return activationsSmartBomb;
     }
@@ -391,6 +445,7 @@ public class CharacterStatsModules {
     public void setActivationsStasisWeb(Long val) {
         activationsStasisWeb = val;
     }
+    @JsonProperty("activations_stasis_web")
     public Long getActivationsStasisWeb() {
         return activationsStasisWeb;
     }
@@ -398,6 +453,7 @@ public class CharacterStatsModules {
     public void setActivationsStripMiner(Long val) {
         activationsStripMiner = val;
     }
+    @JsonProperty("activations_strip_miner")
     public Long getActivationsStripMiner() {
         return activationsStripMiner;
     }
@@ -405,6 +461,7 @@ public class CharacterStatsModules {
     public void setActivationsSuperWeapon(Long val) {
         activationsSuperWeapon = val;
     }
+    @JsonProperty("activations_super_weapon")
     public Long getActivationsSuperWeapon() {
         return activationsSuperWeapon;
     }
@@ -412,6 +469,7 @@ public class CharacterStatsModules {
     public void setActivationsSurveyScanner(Long val) {
         activationsSurveyScanner = val;
     }
+    @JsonProperty("activations_survey_scanner")
     public Long getActivationsSurveyScanner() {
         return activationsSurveyScanner;
     }
@@ -419,6 +477,7 @@ public class CharacterStatsModules {
     public void setActivationsTargetBreaker(Long val) {
         activationsTargetBreaker = val;
     }
+    @JsonProperty("activations_target_breaker")
     public Long getActivationsTargetBreaker() {
         return activationsTargetBreaker;
     }
@@ -426,6 +485,7 @@ public class CharacterStatsModules {
     public void setActivationsTargetPainter(Long val) {
         activationsTargetPainter = val;
     }
+    @JsonProperty("activations_target_painter")
     public Long getActivationsTargetPainter() {
         return activationsTargetPainter;
     }
@@ -433,6 +493,7 @@ public class CharacterStatsModules {
     public void setActivationsTrackingComputer(Long val) {
         activationsTrackingComputer = val;
     }
+    @JsonProperty("activations_tracking_computer")
     public Long getActivationsTrackingComputer() {
         return activationsTrackingComputer;
     }
@@ -440,6 +501,7 @@ public class CharacterStatsModules {
     public void setActivationsTrackingDisruptor(Long val) {
         activationsTrackingDisruptor = val;
     }
+    @JsonProperty("activations_tracking_disruptor")
     public Long getActivationsTrackingDisruptor() {
         return activationsTrackingDisruptor;
     }
@@ -447,6 +509,7 @@ public class CharacterStatsModules {
     public void setActivationsTractorBeam(Long val) {
         activationsTractorBeam = val;
     }
+    @JsonProperty("activations_tractor_beam")
     public Long getActivationsTractorBeam() {
         return activationsTractorBeam;
     }
@@ -454,6 +517,7 @@ public class CharacterStatsModules {
     public void setActivationsTriage(Long val) {
         activationsTriage = val;
     }
+    @JsonProperty("activations_triage")
     public Long getActivationsTriage() {
         return activationsTriage;
     }
@@ -461,6 +525,7 @@ public class CharacterStatsModules {
     public void setActivationsWarpDisruptFieldGenerator(Long val) {
         activationsWarpDisruptFieldGenerator = val;
     }
+    @JsonProperty("activations_warp_disrupt_field_generator")
     public Long getActivationsWarpDisruptFieldGenerator() {
         return activationsWarpDisruptFieldGenerator;
     }
@@ -468,6 +533,7 @@ public class CharacterStatsModules {
     public void setActivationsWarpScrambler(Long val) {
         activationsWarpScrambler = val;
     }
+    @JsonProperty("activations_warp_scrambler")
     public Long getActivationsWarpScrambler() {
         return activationsWarpScrambler;
     }
@@ -475,6 +541,7 @@ public class CharacterStatsModules {
     public void setLinkWeapons(Long val) {
         linkWeapons = val;
     }
+    @JsonProperty("link_weapons")
     public Long getLinkWeapons() {
         return linkWeapons;
     }
@@ -482,6 +549,7 @@ public class CharacterStatsModules {
     public void setOverload(Long val) {
         overload = val;
     }
+    @JsonProperty("overload")
     public Long getOverload() {
         return overload;
     }
@@ -489,84 +557,8 @@ public class CharacterStatsModules {
     public void setRepairs(Long val) {
         repairs = val;
     }
+    @JsonProperty("repairs")
     public Long getRepairs() {
         return repairs;
-    }
-    static CharacterStatsModules fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsModules self = new CharacterStatsModules();
-        Map<String, Json> js = json.asJsonMap();
-        self.activationsArmorHardener = ApiClientBase.optGetLong(js.get("activations_armor_hardener"));
-        self.activationsArmorRepairUnit = ApiClientBase.optGetLong(js.get("activations_armor_repair_unit"));
-        self.activationsArmorResistanceShiftHardener = ApiClientBase.optGetLong(js.get("activations_armor_resistance_shift_hardener"));
-        self.activationsAutomatedTargetingSystem = ApiClientBase.optGetLong(js.get("activations_automated_targeting_system"));
-        self.activationsBastion = ApiClientBase.optGetLong(js.get("activations_bastion"));
-        self.activationsBombLauncher = ApiClientBase.optGetLong(js.get("activations_bomb_launcher"));
-        self.activationsCapacitorBooster = ApiClientBase.optGetLong(js.get("activations_capacitor_booster"));
-        self.activationsCargoScanner = ApiClientBase.optGetLong(js.get("activations_cargo_scanner"));
-        self.activationsCloakingDevice = ApiClientBase.optGetLong(js.get("activations_cloaking_device"));
-        self.activationsCloneVatBay = ApiClientBase.optGetLong(js.get("activations_clone_vat_bay"));
-        self.activationsCynosuralField = ApiClientBase.optGetLong(js.get("activations_cynosural_field"));
-        self.activationsDamageControl = ApiClientBase.optGetLong(js.get("activations_damage_control"));
-        self.activationsDataMiners = ApiClientBase.optGetLong(js.get("activations_data_miners"));
-        self.activationsDroneControlUnit = ApiClientBase.optGetLong(js.get("activations_drone_control_unit"));
-        self.activationsDroneTrackingModules = ApiClientBase.optGetLong(js.get("activations_drone_tracking_modules"));
-        self.activationsEccm = ApiClientBase.optGetLong(js.get("activations_eccm"));
-        self.activationsEcm = ApiClientBase.optGetLong(js.get("activations_ecm"));
-        self.activationsEcmBurst = ApiClientBase.optGetLong(js.get("activations_ecm_burst"));
-        self.activationsEnergyDestabilizer = ApiClientBase.optGetLong(js.get("activations_energy_destabilizer"));
-        self.activationsEnergyVampire = ApiClientBase.optGetLong(js.get("activations_energy_vampire"));
-        self.activationsEnergyWeapon = ApiClientBase.optGetLong(js.get("activations_energy_weapon"));
-        self.activationsFestivalLauncher = ApiClientBase.optGetLong(js.get("activations_festival_launcher"));
-        self.activationsFrequencyMiningLaser = ApiClientBase.optGetLong(js.get("activations_frequency_mining_laser"));
-        self.activationsFueledArmorRepairer = ApiClientBase.optGetLong(js.get("activations_fueled_armor_repairer"));
-        self.activationsFueledShieldBooster = ApiClientBase.optGetLong(js.get("activations_fueled_shield_booster"));
-        self.activationsGangCoordinator = ApiClientBase.optGetLong(js.get("activations_gang_coordinator"));
-        self.activationsGasCloudHarvester = ApiClientBase.optGetLong(js.get("activations_gas_cloud_harvester"));
-        self.activationsHullRepairUnit = ApiClientBase.optGetLong(js.get("activations_hull_repair_unit"));
-        self.activationsHybridWeapon = ApiClientBase.optGetLong(js.get("activations_hybrid_weapon"));
-        self.activationsIndustrialCore = ApiClientBase.optGetLong(js.get("activations_industrial_core"));
-        self.activationsInterdictionSphereLauncher = ApiClientBase.optGetLong(js.get("activations_interdiction_sphere_launcher"));
-        self.activationsMicroJumpDrive = ApiClientBase.optGetLong(js.get("activations_micro_jump_drive"));
-        self.activationsMiningLaser = ApiClientBase.optGetLong(js.get("activations_mining_laser"));
-        self.activationsMissileLauncher = ApiClientBase.optGetLong(js.get("activations_missile_launcher"));
-        self.activationsPassiveTargetingSystem = ApiClientBase.optGetLong(js.get("activations_passive_targeting_system"));
-        self.activationsProbeLauncher = ApiClientBase.optGetLong(js.get("activations_probe_launcher"));
-        self.activationsProjectedEccm = ApiClientBase.optGetLong(js.get("activations_projected_eccm"));
-        self.activationsProjectileWeapon = ApiClientBase.optGetLong(js.get("activations_projectile_weapon"));
-        self.activationsPropulsionModule = ApiClientBase.optGetLong(js.get("activations_propulsion_module"));
-        self.activationsRemoteArmorRepairer = ApiClientBase.optGetLong(js.get("activations_remote_armor_repairer"));
-        self.activationsRemoteCapacitorTransmitter = ApiClientBase.optGetLong(js.get("activations_remote_capacitor_transmitter"));
-        self.activationsRemoteEcmBurst = ApiClientBase.optGetLong(js.get("activations_remote_ecm_burst"));
-        self.activationsRemoteHullRepairer = ApiClientBase.optGetLong(js.get("activations_remote_hull_repairer"));
-        self.activationsRemoteSensorBooster = ApiClientBase.optGetLong(js.get("activations_remote_sensor_booster"));
-        self.activationsRemoteSensorDamper = ApiClientBase.optGetLong(js.get("activations_remote_sensor_damper"));
-        self.activationsRemoteShieldBooster = ApiClientBase.optGetLong(js.get("activations_remote_shield_booster"));
-        self.activationsRemoteTrackingComputer = ApiClientBase.optGetLong(js.get("activations_remote_tracking_computer"));
-        self.activationsSalvager = ApiClientBase.optGetLong(js.get("activations_salvager"));
-        self.activationsSensorBooster = ApiClientBase.optGetLong(js.get("activations_sensor_booster"));
-        self.activationsShieldBooster = ApiClientBase.optGetLong(js.get("activations_shield_booster"));
-        self.activationsShieldHardener = ApiClientBase.optGetLong(js.get("activations_shield_hardener"));
-        self.activationsShipScanner = ApiClientBase.optGetLong(js.get("activations_ship_scanner"));
-        self.activationsSiege = ApiClientBase.optGetLong(js.get("activations_siege"));
-        self.activationsSmartBomb = ApiClientBase.optGetLong(js.get("activations_smart_bomb"));
-        self.activationsStasisWeb = ApiClientBase.optGetLong(js.get("activations_stasis_web"));
-        self.activationsStripMiner = ApiClientBase.optGetLong(js.get("activations_strip_miner"));
-        self.activationsSuperWeapon = ApiClientBase.optGetLong(js.get("activations_super_weapon"));
-        self.activationsSurveyScanner = ApiClientBase.optGetLong(js.get("activations_survey_scanner"));
-        self.activationsTargetBreaker = ApiClientBase.optGetLong(js.get("activations_target_breaker"));
-        self.activationsTargetPainter = ApiClientBase.optGetLong(js.get("activations_target_painter"));
-        self.activationsTrackingComputer = ApiClientBase.optGetLong(js.get("activations_tracking_computer"));
-        self.activationsTrackingDisruptor = ApiClientBase.optGetLong(js.get("activations_tracking_disruptor"));
-        self.activationsTractorBeam = ApiClientBase.optGetLong(js.get("activations_tractor_beam"));
-        self.activationsTriage = ApiClientBase.optGetLong(js.get("activations_triage"));
-        self.activationsWarpDisruptFieldGenerator = ApiClientBase.optGetLong(js.get("activations_warp_disrupt_field_generator"));
-        self.activationsWarpScrambler = ApiClientBase.optGetLong(js.get("activations_warp_scrambler"));
-        self.linkWeapons = ApiClientBase.optGetLong(js.get("link_weapons"));
-        self.overload = ApiClientBase.optGetLong(js.get("overload"));
-        self.repairs = ApiClientBase.optGetLong(js.get("repairs"));
-        return self;
     }
 }

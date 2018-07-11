@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class LpTradeRequiredItem {
+public class LpTradeRequiredItem implements ApiParameterObject {
     private int quantity;
     public void setQuantity(int val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -20,17 +21,8 @@ public class LpTradeRequiredItem {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static LpTradeRequiredItem fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        LpTradeRequiredItem self = new LpTradeRequiredItem();
-        Map<String, Json> js = json.asJsonMap();
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

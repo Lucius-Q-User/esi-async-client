@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewMailOpenWindow extends JsonConvertible {
+public class NewMailOpenWindow implements ApiParameterObject {
     private String body;
     public void setBody(String val) {
         body = val;
     }
+    @JsonProperty("body")
     public String getBody() {
         return body;
     }
@@ -20,6 +21,7 @@ public class NewMailOpenWindow extends JsonConvertible {
     public void setRecipients(int[] val) {
         recipients = val;
     }
+    @JsonProperty("recipients")
     public int[] getRecipients() {
         return recipients;
     }
@@ -27,6 +29,7 @@ public class NewMailOpenWindow extends JsonConvertible {
     public void setSubject(String val) {
         subject = val;
     }
+    @JsonProperty("subject")
     public String getSubject() {
         return subject;
     }
@@ -34,6 +37,7 @@ public class NewMailOpenWindow extends JsonConvertible {
     public void setToCorpOrAllianceId(Integer val) {
         toCorpOrAllianceId = val;
     }
+    @JsonProperty("to_corp_or_alliance_id")
     public Integer getToCorpOrAllianceId() {
         return toCorpOrAllianceId;
     }
@@ -41,23 +45,8 @@ public class NewMailOpenWindow extends JsonConvertible {
     public void setToMailingListId(Integer val) {
         toMailingListId = val;
     }
+    @JsonProperty("to_mailing_list_id")
     public Integer getToMailingListId() {
         return toMailingListId;
-    }
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        object.set("body", Json.make(body));
-        {
-            Json arr = Json.array();
-            for (int i : recipients){
-                arr.add(Json.make(i));
-            }
-            object.set("recipients", arr);
-        }
-        object.set("subject", Json.make(subject));
-        object.set("to_corp_or_alliance_id", Json.make(toCorpOrAllianceId));
-        object.set("to_mailing_list_id", Json.make(toMailingListId));
-        return object;
     }
 }

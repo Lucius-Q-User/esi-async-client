@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MiningObservers {
+public class MiningObservers implements ApiParameterObject {
     private String lastUpdated;
     public void setLastUpdated(String val) {
         lastUpdated = val;
     }
+    @JsonProperty("last_updated")
     public String getLastUpdated() {
         return lastUpdated;
     }
@@ -20,6 +21,7 @@ public class MiningObservers {
     public void setObserverId(long val) {
         observerId = val;
     }
+    @JsonProperty("observer_id")
     public long getObserverId() {
         return observerId;
     }
@@ -27,26 +29,21 @@ public class MiningObservers {
     public void setObserverType(ObserverTypeEnum val) {
         observerType = val;
     }
+    @JsonProperty("observer_type")
     public ObserverTypeEnum getObserverType() {
         return observerType;
     }
-    static MiningObservers fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MiningObservers self = new MiningObservers();
-        Map<String, Json> js = json.asJsonMap();
-        self.lastUpdated = ApiClientBase.optGetString(js.get("last_updated"));
-        self.observerId = ApiClientBase.optGetLong(js.get("observer_id"));
-        self.observerType = ObserverTypeEnum.fromString(ApiClientBase.optGetString(js.get("observer_type")));
-        return self;
-    }
     public static enum ObserverTypeEnum {
         STRUCTURE("structure");
-        public final String stringValue;
+        private final String stringValue;
         private ObserverTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ObserverTypeEnum fromString(String str) {
             for (ObserverTypeEnum self : ObserverTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

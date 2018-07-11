@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class TrainedSkill {
+public class TrainedSkill implements ApiParameterObject {
     private int activeSkillLevel;
     public void setActiveSkillLevel(int val) {
         activeSkillLevel = val;
     }
+    @JsonProperty("active_skill_level")
     public int getActiveSkillLevel() {
         return activeSkillLevel;
     }
@@ -20,6 +21,7 @@ public class TrainedSkill {
     public void setSkillId(int val) {
         skillId = val;
     }
+    @JsonProperty("skill_id")
     public int getSkillId() {
         return skillId;
     }
@@ -27,6 +29,7 @@ public class TrainedSkill {
     public void setSkillpointsInSkill(long val) {
         skillpointsInSkill = val;
     }
+    @JsonProperty("skillpoints_in_skill")
     public long getSkillpointsInSkill() {
         return skillpointsInSkill;
     }
@@ -34,19 +37,8 @@ public class TrainedSkill {
     public void setTrainedSkillLevel(int val) {
         trainedSkillLevel = val;
     }
+    @JsonProperty("trained_skill_level")
     public int getTrainedSkillLevel() {
         return trainedSkillLevel;
-    }
-    static TrainedSkill fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        TrainedSkill self = new TrainedSkill();
-        Map<String, Json> js = json.asJsonMap();
-        self.activeSkillLevel = ApiClientBase.optGetInteger(js.get("active_skill_level"));
-        self.skillId = ApiClientBase.optGetInteger(js.get("skill_id"));
-        self.skillpointsInSkill = ApiClientBase.optGetLong(js.get("skillpoints_in_skill"));
-        self.trainedSkillLevel = ApiClientBase.optGetInteger(js.get("trained_skill_level"));
-        return self;
     }
 }

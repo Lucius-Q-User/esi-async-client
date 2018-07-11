@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PIPin {
+public class PIPin implements ApiParameterObject {
     private List<PIContext> contents;
     public void setContents(List<PIContext> val) {
         contents = val;
     }
+    @JsonProperty("contents")
     public List<PIContext> getContents() {
         return contents;
     }
@@ -20,6 +21,7 @@ public class PIPin {
     public void setExpiryTime(Instant val) {
         expiryTime = val;
     }
+    @JsonProperty("expiry_time")
     public Instant getExpiryTime() {
         return expiryTime;
     }
@@ -27,6 +29,7 @@ public class PIPin {
     public void setExtractorDetails(PIExtractor val) {
         extractorDetails = val;
     }
+    @JsonProperty("extractor_details")
     public PIExtractor getExtractorDetails() {
         return extractorDetails;
     }
@@ -34,6 +37,7 @@ public class PIPin {
     public void setFactoryDetails(PIFactory val) {
         factoryDetails = val;
     }
+    @JsonProperty("factory_details")
     public PIFactory getFactoryDetails() {
         return factoryDetails;
     }
@@ -41,6 +45,7 @@ public class PIPin {
     public void setInstallTime(Instant val) {
         installTime = val;
     }
+    @JsonProperty("install_time")
     public Instant getInstallTime() {
         return installTime;
     }
@@ -48,6 +53,7 @@ public class PIPin {
     public void setLastCycleStart(Instant val) {
         lastCycleStart = val;
     }
+    @JsonProperty("last_cycle_start")
     public Instant getLastCycleStart() {
         return lastCycleStart;
     }
@@ -55,6 +61,7 @@ public class PIPin {
     public void setLatitude(float val) {
         latitude = val;
     }
+    @JsonProperty("latitude")
     public float getLatitude() {
         return latitude;
     }
@@ -62,6 +69,7 @@ public class PIPin {
     public void setLongitude(float val) {
         longitude = val;
     }
+    @JsonProperty("longitude")
     public float getLongitude() {
         return longitude;
     }
@@ -69,6 +77,7 @@ public class PIPin {
     public void setPinId(long val) {
         pinId = val;
     }
+    @JsonProperty("pin_id")
     public long getPinId() {
         return pinId;
     }
@@ -76,6 +85,7 @@ public class PIPin {
     public void setSchematicId(Integer val) {
         schematicId = val;
     }
+    @JsonProperty("schematic_id")
     public Integer getSchematicId() {
         return schematicId;
     }
@@ -83,33 +93,8 @@ public class PIPin {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static PIPin fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PIPin self = new PIPin();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("contents").asJsonList();
-            List<PIContext> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(PIContext.fromJson(jl.get(i)));
-            }
-            self.contents = rt;
-        }
-        self.expiryTime = ApiClientBase.optGetInstant(js.get("expiry_time"));
-        self.extractorDetails = PIExtractor.fromJson(js.get("extractor_details"));
-        self.factoryDetails = PIFactory.fromJson(js.get("factory_details"));
-        self.installTime = ApiClientBase.optGetInstant(js.get("install_time"));
-        self.lastCycleStart = ApiClientBase.optGetInstant(js.get("last_cycle_start"));
-        self.latitude = ApiClientBase.optGetFloat(js.get("latitude"));
-        self.longitude = ApiClientBase.optGetFloat(js.get("longitude"));
-        self.pinId = ApiClientBase.optGetLong(js.get("pin_id"));
-        self.schematicId = ApiClientBase.optGetInteger(js.get("schematic_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

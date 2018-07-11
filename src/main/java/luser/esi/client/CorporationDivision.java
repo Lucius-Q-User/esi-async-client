@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationDivision {
+public class CorporationDivision implements ApiParameterObject {
     private List<DivisionInfo> hangar;
     public void setHangar(List<DivisionInfo> val) {
         hangar = val;
     }
+    @JsonProperty("hangar")
     public List<DivisionInfo> getHangar() {
         return hangar;
     }
@@ -20,31 +21,8 @@ public class CorporationDivision {
     public void setWallet(List<DivisionInfo> val) {
         wallet = val;
     }
+    @JsonProperty("wallet")
     public List<DivisionInfo> getWallet() {
         return wallet;
-    }
-    static CorporationDivision fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationDivision self = new CorporationDivision();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("hangar").asJsonList();
-            List<DivisionInfo> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DivisionInfo.fromJson(jl.get(i)));
-            }
-            self.hangar = rt;
-        }
-        {
-            List<Json> jl = js.get("wallet").asJsonList();
-            List<DivisionInfo> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(DivisionInfo.fromJson(jl.get(i)));
-            }
-            self.wallet = rt;
-        }
-        return self;
     }
 }

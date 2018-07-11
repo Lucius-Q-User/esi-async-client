@@ -1,5 +1,8 @@
 package luser.esi.client;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum AcceptLanguageEnum {
     DE("de"),
     EN_US("en-us"),
@@ -11,9 +14,11 @@ public enum AcceptLanguageEnum {
     private AcceptLanguageEnum(String stringValue) {
        this.stringValue = stringValue;
     }
+    @JsonValue
     public String getStringValue() {
         return stringValue;
     }
+    @JsonCreator
     public static AcceptLanguageEnum fromString(String str) {
         if (str == null) {
             return null;

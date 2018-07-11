@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterSearchResult {
+public class CharacterSearchResult implements ApiParameterObject {
     private int[] agent;
     public void setAgent(int[] val) {
         agent = val;
     }
+    @JsonProperty("agent")
     public int[] getAgent() {
         return agent;
     }
@@ -20,6 +21,7 @@ public class CharacterSearchResult {
     public void setAlliance(int[] val) {
         alliance = val;
     }
+    @JsonProperty("alliance")
     public int[] getAlliance() {
         return alliance;
     }
@@ -27,6 +29,7 @@ public class CharacterSearchResult {
     public void setCharacter(int[] val) {
         character = val;
     }
+    @JsonProperty("character")
     public int[] getCharacter() {
         return character;
     }
@@ -34,6 +37,7 @@ public class CharacterSearchResult {
     public void setConstellation(int[] val) {
         constellation = val;
     }
+    @JsonProperty("constellation")
     public int[] getConstellation() {
         return constellation;
     }
@@ -41,6 +45,7 @@ public class CharacterSearchResult {
     public void setCorporation(int[] val) {
         corporation = val;
     }
+    @JsonProperty("corporation")
     public int[] getCorporation() {
         return corporation;
     }
@@ -48,6 +53,7 @@ public class CharacterSearchResult {
     public void setFaction(int[] val) {
         faction = val;
     }
+    @JsonProperty("faction")
     public int[] getFaction() {
         return faction;
     }
@@ -55,6 +61,7 @@ public class CharacterSearchResult {
     public void setInventoryType(int[] val) {
         inventoryType = val;
     }
+    @JsonProperty("inventory_type")
     public int[] getInventoryType() {
         return inventoryType;
     }
@@ -62,6 +69,7 @@ public class CharacterSearchResult {
     public void setRegion(int[] val) {
         region = val;
     }
+    @JsonProperty("region")
     public int[] getRegion() {
         return region;
     }
@@ -69,6 +77,7 @@ public class CharacterSearchResult {
     public void setSolarSystem(int[] val) {
         solarSystem = val;
     }
+    @JsonProperty("solar_system")
     public int[] getSolarSystem() {
         return solarSystem;
     }
@@ -76,6 +85,7 @@ public class CharacterSearchResult {
     public void setStation(int[] val) {
         station = val;
     }
+    @JsonProperty("station")
     public int[] getStation() {
         return station;
     }
@@ -83,103 +93,8 @@ public class CharacterSearchResult {
     public void setStructure(long[] val) {
         structure = val;
     }
+    @JsonProperty("structure")
     public long[] getStructure() {
         return structure;
-    }
-    static CharacterSearchResult fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterSearchResult self = new CharacterSearchResult();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("agent").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.agent = rt;
-        }
-        {
-            List<Json> jl = js.get("alliance").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.alliance = rt;
-        }
-        {
-            List<Json> jl = js.get("character").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.character = rt;
-        }
-        {
-            List<Json> jl = js.get("constellation").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.constellation = rt;
-        }
-        {
-            List<Json> jl = js.get("corporation").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.corporation = rt;
-        }
-        {
-            List<Json> jl = js.get("faction").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.faction = rt;
-        }
-        {
-            List<Json> jl = js.get("inventory_type").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.inventoryType = rt;
-        }
-        {
-            List<Json> jl = js.get("region").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.region = rt;
-        }
-        {
-            List<Json> jl = js.get("solar_system").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.solarSystem = rt;
-        }
-        {
-            List<Json> jl = js.get("station").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.station = rt;
-        }
-        {
-            List<Json> jl = js.get("structure").asJsonList();
-            long[] rt = new long[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asLong();
-            }
-            self.structure = rt;
-        }
-        return self;
     }
 }

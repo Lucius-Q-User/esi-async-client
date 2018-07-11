@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SystemCostIndex {
+public class SystemCostIndex implements ApiParameterObject {
     private ActivityEnum activity;
     public void setActivity(ActivityEnum val) {
         activity = val;
     }
+    @JsonProperty("activity")
     public ActivityEnum getActivity() {
         return activity;
     }
@@ -20,18 +21,9 @@ public class SystemCostIndex {
     public void setCostIndex(float val) {
         costIndex = val;
     }
+    @JsonProperty("cost_index")
     public float getCostIndex() {
         return costIndex;
-    }
-    static SystemCostIndex fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SystemCostIndex self = new SystemCostIndex();
-        Map<String, Json> js = json.asJsonMap();
-        self.activity = ActivityEnum.fromString(ApiClientBase.optGetString(js.get("activity")));
-        self.costIndex = ApiClientBase.optGetFloat(js.get("cost_index"));
-        return self;
     }
     public static enum ActivityEnum {
         COPYING("copying"),
@@ -44,10 +36,15 @@ public class SystemCostIndex {
         RESEARCHING_TECHNOLOGY("researching_technology"),
         RESEARCHING_TIME_EFFICIENCY("researching_time_efficiency"),
         REVERSE_ENGINEERING("reverse_engineering");
-        public final String stringValue;
+        private final String stringValue;
         private ActivityEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ActivityEnum fromString(String str) {
             for (ActivityEnum self : ActivityEnum.values()) {
                 if (self.stringValue.equals(str)) {

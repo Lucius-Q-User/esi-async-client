@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CalendarEvent {
+public class CalendarEvent implements ApiParameterObject {
     private Instant date;
     public void setDate(Instant val) {
         date = val;
     }
+    @JsonProperty("date")
     public Instant getDate() {
         return date;
     }
@@ -20,6 +21,7 @@ public class CalendarEvent {
     public void setDuration(int val) {
         duration = val;
     }
+    @JsonProperty("duration")
     public int getDuration() {
         return duration;
     }
@@ -27,6 +29,7 @@ public class CalendarEvent {
     public void setEventId(int val) {
         eventId = val;
     }
+    @JsonProperty("event_id")
     public int getEventId() {
         return eventId;
     }
@@ -34,6 +37,7 @@ public class CalendarEvent {
     public void setImportance(int val) {
         importance = val;
     }
+    @JsonProperty("importance")
     public int getImportance() {
         return importance;
     }
@@ -41,6 +45,7 @@ public class CalendarEvent {
     public void setOwnerId(int val) {
         ownerId = val;
     }
+    @JsonProperty("owner_id")
     public int getOwnerId() {
         return ownerId;
     }
@@ -48,6 +53,7 @@ public class CalendarEvent {
     public void setOwnerName(String val) {
         ownerName = val;
     }
+    @JsonProperty("owner_name")
     public String getOwnerName() {
         return ownerName;
     }
@@ -55,6 +61,7 @@ public class CalendarEvent {
     public void setOwnerType(OwnerTypeEnum val) {
         ownerType = val;
     }
+    @JsonProperty("owner_type")
     public OwnerTypeEnum getOwnerType() {
         return ownerType;
     }
@@ -62,6 +69,7 @@ public class CalendarEvent {
     public void setResponse(String val) {
         response = val;
     }
+    @JsonProperty("response")
     public String getResponse() {
         return response;
     }
@@ -69,6 +77,7 @@ public class CalendarEvent {
     public void setText(String val) {
         text = val;
     }
+    @JsonProperty("text")
     public String getText() {
         return text;
     }
@@ -76,26 +85,9 @@ public class CalendarEvent {
     public void setTitle(String val) {
         title = val;
     }
+    @JsonProperty("title")
     public String getTitle() {
         return title;
-    }
-    static CalendarEvent fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CalendarEvent self = new CalendarEvent();
-        Map<String, Json> js = json.asJsonMap();
-        self.date = ApiClientBase.optGetInstant(js.get("date"));
-        self.duration = ApiClientBase.optGetInteger(js.get("duration"));
-        self.eventId = ApiClientBase.optGetInteger(js.get("event_id"));
-        self.importance = ApiClientBase.optGetInteger(js.get("importance"));
-        self.ownerId = ApiClientBase.optGetInteger(js.get("owner_id"));
-        self.ownerName = ApiClientBase.optGetString(js.get("owner_name"));
-        self.ownerType = OwnerTypeEnum.fromString(ApiClientBase.optGetString(js.get("owner_type")));
-        self.response = ApiClientBase.optGetString(js.get("response"));
-        self.text = ApiClientBase.optGetString(js.get("text"));
-        self.title = ApiClientBase.optGetString(js.get("title"));
-        return self;
     }
     public static enum OwnerTypeEnum {
         EVE_SERVER("eve_server"),
@@ -103,10 +95,15 @@ public class CalendarEvent {
         FACTION("faction"),
         CHARACTER("character"),
         ALLIANCE("alliance");
-        public final String stringValue;
+        private final String stringValue;
         private OwnerTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static OwnerTypeEnum fromString(String str) {
             for (OwnerTypeEnum self : OwnerTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

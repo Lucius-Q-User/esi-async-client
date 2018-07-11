@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class DgmEffectModifier {
+public class DgmEffectModifier implements ApiParameterObject {
     private String domain;
     public void setDomain(String val) {
         domain = val;
     }
+    @JsonProperty("domain")
     public String getDomain() {
         return domain;
     }
@@ -20,6 +21,7 @@ public class DgmEffectModifier {
     public void setEffectId(Integer val) {
         effectId = val;
     }
+    @JsonProperty("effect_id")
     public Integer getEffectId() {
         return effectId;
     }
@@ -27,6 +29,7 @@ public class DgmEffectModifier {
     public void setFunc(String val) {
         func = val;
     }
+    @JsonProperty("func")
     public String getFunc() {
         return func;
     }
@@ -34,6 +37,7 @@ public class DgmEffectModifier {
     public void setModifiedAttributeId(Integer val) {
         modifiedAttributeId = val;
     }
+    @JsonProperty("modified_attribute_id")
     public Integer getModifiedAttributeId() {
         return modifiedAttributeId;
     }
@@ -41,6 +45,7 @@ public class DgmEffectModifier {
     public void setModifyingAttributeId(Integer val) {
         modifyingAttributeId = val;
     }
+    @JsonProperty("modifying_attribute_id")
     public Integer getModifyingAttributeId() {
         return modifyingAttributeId;
     }
@@ -48,21 +53,8 @@ public class DgmEffectModifier {
     public void setOperator(Integer val) {
         operator = val;
     }
+    @JsonProperty("operator")
     public Integer getOperator() {
         return operator;
-    }
-    static DgmEffectModifier fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        DgmEffectModifier self = new DgmEffectModifier();
-        Map<String, Json> js = json.asJsonMap();
-        self.domain = ApiClientBase.optGetString(js.get("domain"));
-        self.effectId = ApiClientBase.optGetInteger(js.get("effect_id"));
-        self.func = ApiClientBase.optGetString(js.get("func"));
-        self.modifiedAttributeId = ApiClientBase.optGetInteger(js.get("modified_attribute_id"));
-        self.modifyingAttributeId = ApiClientBase.optGetInteger(js.get("modifying_attribute_id"));
-        self.operator = ApiClientBase.optGetInteger(js.get("operator"));
-        return self;
     }
 }

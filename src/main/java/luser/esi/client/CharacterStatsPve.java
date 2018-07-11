@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsPve {
+public class CharacterStatsPve implements ApiParameterObject {
     private Long dungeonsCompletedAgent;
     public void setDungeonsCompletedAgent(Long val) {
         dungeonsCompletedAgent = val;
     }
+    @JsonProperty("dungeons_completed_agent")
     public Long getDungeonsCompletedAgent() {
         return dungeonsCompletedAgent;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsPve {
     public void setDungeonsCompletedDistribution(Long val) {
         dungeonsCompletedDistribution = val;
     }
+    @JsonProperty("dungeons_completed_distribution")
     public Long getDungeonsCompletedDistribution() {
         return dungeonsCompletedDistribution;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsPve {
     public void setMissionsSucceeded(Long val) {
         missionsSucceeded = val;
     }
+    @JsonProperty("missions_succeeded")
     public Long getMissionsSucceeded() {
         return missionsSucceeded;
     }
@@ -34,19 +37,8 @@ public class CharacterStatsPve {
     public void setMissionsSucceededEpicArc(Long val) {
         missionsSucceededEpicArc = val;
     }
+    @JsonProperty("missions_succeeded_epic_arc")
     public Long getMissionsSucceededEpicArc() {
         return missionsSucceededEpicArc;
-    }
-    static CharacterStatsPve fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsPve self = new CharacterStatsPve();
-        Map<String, Json> js = json.asJsonMap();
-        self.dungeonsCompletedAgent = ApiClientBase.optGetLong(js.get("dungeons_completed_agent"));
-        self.dungeonsCompletedDistribution = ApiClientBase.optGetLong(js.get("dungeons_completed_distribution"));
-        self.missionsSucceeded = ApiClientBase.optGetLong(js.get("missions_succeeded"));
-        self.missionsSucceededEpicArc = ApiClientBase.optGetLong(js.get("missions_succeeded_epic_arc"));
-        return self;
     }
 }

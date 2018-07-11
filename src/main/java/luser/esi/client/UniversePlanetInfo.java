@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class UniversePlanetInfo {
+public class UniversePlanetInfo implements ApiParameterObject {
     private String name;
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -20,6 +21,7 @@ public class UniversePlanetInfo {
     public void setPlanetId(int val) {
         planetId = val;
     }
+    @JsonProperty("planet_id")
     public int getPlanetId() {
         return planetId;
     }
@@ -27,6 +29,7 @@ public class UniversePlanetInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -34,6 +37,7 @@ public class UniversePlanetInfo {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
     }
@@ -41,20 +45,8 @@ public class UniversePlanetInfo {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static UniversePlanetInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        UniversePlanetInfo self = new UniversePlanetInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.planetId = ApiClientBase.optGetInteger(js.get("planet_id"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
 }

@@ -1,5 +1,8 @@
 package luser.esi.client;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum FlagEnum {
     SHORTEST("shortest"),
     SECURE("secure"),
@@ -8,9 +11,11 @@ public enum FlagEnum {
     private FlagEnum(String stringValue) {
        this.stringValue = stringValue;
     }
+    @JsonValue
     public String getStringValue() {
         return stringValue;
     }
+    @JsonCreator
     public static FlagEnum fromString(String str) {
         if (str == null) {
             return null;

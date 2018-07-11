@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsIndustry {
+public class CharacterStatsIndustry implements ApiParameterObject {
     private Long hackingSuccesses;
     public void setHackingSuccesses(Long val) {
         hackingSuccesses = val;
     }
+    @JsonProperty("hacking_successes")
     public Long getHackingSuccesses() {
         return hackingSuccesses;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsIndustry {
     public void setJobsCancelled(Long val) {
         jobsCancelled = val;
     }
+    @JsonProperty("jobs_cancelled")
     public Long getJobsCancelled() {
         return jobsCancelled;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedCopyBlueprint(Long val) {
         jobsCompletedCopyBlueprint = val;
     }
+    @JsonProperty("jobs_completed_copy_blueprint")
     public Long getJobsCompletedCopyBlueprint() {
         return jobsCompletedCopyBlueprint;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedInvention(Long val) {
         jobsCompletedInvention = val;
     }
+    @JsonProperty("jobs_completed_invention")
     public Long getJobsCompletedInvention() {
         return jobsCompletedInvention;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufacture(Long val) {
         jobsCompletedManufacture = val;
     }
+    @JsonProperty("jobs_completed_manufacture")
     public Long getJobsCompletedManufacture() {
         return jobsCompletedManufacture;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureAsteroid(Long val) {
         jobsCompletedManufactureAsteroid = val;
     }
+    @JsonProperty("jobs_completed_manufacture_asteroid")
     public Long getJobsCompletedManufactureAsteroid() {
         return jobsCompletedManufactureAsteroid;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureAsteroidQuantity(Long val) {
         jobsCompletedManufactureAsteroidQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_asteroid_quantity")
     public Long getJobsCompletedManufactureAsteroidQuantity() {
         return jobsCompletedManufactureAsteroidQuantity;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureCharge(Long val) {
         jobsCompletedManufactureCharge = val;
     }
+    @JsonProperty("jobs_completed_manufacture_charge")
     public Long getJobsCompletedManufactureCharge() {
         return jobsCompletedManufactureCharge;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureChargeQuantity(Long val) {
         jobsCompletedManufactureChargeQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_charge_quantity")
     public Long getJobsCompletedManufactureChargeQuantity() {
         return jobsCompletedManufactureChargeQuantity;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureCommodity(Long val) {
         jobsCompletedManufactureCommodity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_commodity")
     public Long getJobsCompletedManufactureCommodity() {
         return jobsCompletedManufactureCommodity;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureCommodityQuantity(Long val) {
         jobsCompletedManufactureCommodityQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_commodity_quantity")
     public Long getJobsCompletedManufactureCommodityQuantity() {
         return jobsCompletedManufactureCommodityQuantity;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureDeployable(Long val) {
         jobsCompletedManufactureDeployable = val;
     }
+    @JsonProperty("jobs_completed_manufacture_deployable")
     public Long getJobsCompletedManufactureDeployable() {
         return jobsCompletedManufactureDeployable;
     }
@@ -97,6 +109,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureDeployableQuantity(Long val) {
         jobsCompletedManufactureDeployableQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_deployable_quantity")
     public Long getJobsCompletedManufactureDeployableQuantity() {
         return jobsCompletedManufactureDeployableQuantity;
     }
@@ -104,6 +117,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureDrone(Long val) {
         jobsCompletedManufactureDrone = val;
     }
+    @JsonProperty("jobs_completed_manufacture_drone")
     public Long getJobsCompletedManufactureDrone() {
         return jobsCompletedManufactureDrone;
     }
@@ -111,6 +125,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureDroneQuantity(Long val) {
         jobsCompletedManufactureDroneQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_drone_quantity")
     public Long getJobsCompletedManufactureDroneQuantity() {
         return jobsCompletedManufactureDroneQuantity;
     }
@@ -118,6 +133,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureImplant(Long val) {
         jobsCompletedManufactureImplant = val;
     }
+    @JsonProperty("jobs_completed_manufacture_implant")
     public Long getJobsCompletedManufactureImplant() {
         return jobsCompletedManufactureImplant;
     }
@@ -125,6 +141,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureImplantQuantity(Long val) {
         jobsCompletedManufactureImplantQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_implant_quantity")
     public Long getJobsCompletedManufactureImplantQuantity() {
         return jobsCompletedManufactureImplantQuantity;
     }
@@ -132,6 +149,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureModule(Long val) {
         jobsCompletedManufactureModule = val;
     }
+    @JsonProperty("jobs_completed_manufacture_module")
     public Long getJobsCompletedManufactureModule() {
         return jobsCompletedManufactureModule;
     }
@@ -139,6 +157,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureModuleQuantity(Long val) {
         jobsCompletedManufactureModuleQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_module_quantity")
     public Long getJobsCompletedManufactureModuleQuantity() {
         return jobsCompletedManufactureModuleQuantity;
     }
@@ -146,6 +165,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureOther(Long val) {
         jobsCompletedManufactureOther = val;
     }
+    @JsonProperty("jobs_completed_manufacture_other")
     public Long getJobsCompletedManufactureOther() {
         return jobsCompletedManufactureOther;
     }
@@ -153,6 +173,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureOtherQuantity(Long val) {
         jobsCompletedManufactureOtherQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_other_quantity")
     public Long getJobsCompletedManufactureOtherQuantity() {
         return jobsCompletedManufactureOtherQuantity;
     }
@@ -160,6 +181,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureShip(Long val) {
         jobsCompletedManufactureShip = val;
     }
+    @JsonProperty("jobs_completed_manufacture_ship")
     public Long getJobsCompletedManufactureShip() {
         return jobsCompletedManufactureShip;
     }
@@ -167,6 +189,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureShipQuantity(Long val) {
         jobsCompletedManufactureShipQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_ship_quantity")
     public Long getJobsCompletedManufactureShipQuantity() {
         return jobsCompletedManufactureShipQuantity;
     }
@@ -174,6 +197,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureStructure(Long val) {
         jobsCompletedManufactureStructure = val;
     }
+    @JsonProperty("jobs_completed_manufacture_structure")
     public Long getJobsCompletedManufactureStructure() {
         return jobsCompletedManufactureStructure;
     }
@@ -181,6 +205,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureStructureQuantity(Long val) {
         jobsCompletedManufactureStructureQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_structure_quantity")
     public Long getJobsCompletedManufactureStructureQuantity() {
         return jobsCompletedManufactureStructureQuantity;
     }
@@ -188,6 +213,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureSubsystem(Long val) {
         jobsCompletedManufactureSubsystem = val;
     }
+    @JsonProperty("jobs_completed_manufacture_subsystem")
     public Long getJobsCompletedManufactureSubsystem() {
         return jobsCompletedManufactureSubsystem;
     }
@@ -195,6 +221,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedManufactureSubsystemQuantity(Long val) {
         jobsCompletedManufactureSubsystemQuantity = val;
     }
+    @JsonProperty("jobs_completed_manufacture_subsystem_quantity")
     public Long getJobsCompletedManufactureSubsystemQuantity() {
         return jobsCompletedManufactureSubsystemQuantity;
     }
@@ -202,6 +229,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedMaterialProductivity(Long val) {
         jobsCompletedMaterialProductivity = val;
     }
+    @JsonProperty("jobs_completed_material_productivity")
     public Long getJobsCompletedMaterialProductivity() {
         return jobsCompletedMaterialProductivity;
     }
@@ -209,6 +237,7 @@ public class CharacterStatsIndustry {
     public void setJobsCompletedTimeProductivity(Long val) {
         jobsCompletedTimeProductivity = val;
     }
+    @JsonProperty("jobs_completed_time_productivity")
     public Long getJobsCompletedTimeProductivity() {
         return jobsCompletedTimeProductivity;
     }
@@ -216,6 +245,7 @@ public class CharacterStatsIndustry {
     public void setJobsStartedCopyBlueprint(Long val) {
         jobsStartedCopyBlueprint = val;
     }
+    @JsonProperty("jobs_started_copy_blueprint")
     public Long getJobsStartedCopyBlueprint() {
         return jobsStartedCopyBlueprint;
     }
@@ -223,6 +253,7 @@ public class CharacterStatsIndustry {
     public void setJobsStartedInvention(Long val) {
         jobsStartedInvention = val;
     }
+    @JsonProperty("jobs_started_invention")
     public Long getJobsStartedInvention() {
         return jobsStartedInvention;
     }
@@ -230,6 +261,7 @@ public class CharacterStatsIndustry {
     public void setJobsStartedManufacture(Long val) {
         jobsStartedManufacture = val;
     }
+    @JsonProperty("jobs_started_manufacture")
     public Long getJobsStartedManufacture() {
         return jobsStartedManufacture;
     }
@@ -237,6 +269,7 @@ public class CharacterStatsIndustry {
     public void setJobsStartedMaterialProductivity(Long val) {
         jobsStartedMaterialProductivity = val;
     }
+    @JsonProperty("jobs_started_material_productivity")
     public Long getJobsStartedMaterialProductivity() {
         return jobsStartedMaterialProductivity;
     }
@@ -244,6 +277,7 @@ public class CharacterStatsIndustry {
     public void setJobsStartedTimeProductivity(Long val) {
         jobsStartedTimeProductivity = val;
     }
+    @JsonProperty("jobs_started_time_productivity")
     public Long getJobsStartedTimeProductivity() {
         return jobsStartedTimeProductivity;
     }
@@ -251,6 +285,7 @@ public class CharacterStatsIndustry {
     public void setReprocessItem(Long val) {
         reprocessItem = val;
     }
+    @JsonProperty("reprocess_item")
     public Long getReprocessItem() {
         return reprocessItem;
     }
@@ -258,51 +293,8 @@ public class CharacterStatsIndustry {
     public void setReprocessItemQuantity(Long val) {
         reprocessItemQuantity = val;
     }
+    @JsonProperty("reprocess_item_quantity")
     public Long getReprocessItemQuantity() {
         return reprocessItemQuantity;
-    }
-    static CharacterStatsIndustry fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsIndustry self = new CharacterStatsIndustry();
-        Map<String, Json> js = json.asJsonMap();
-        self.hackingSuccesses = ApiClientBase.optGetLong(js.get("hacking_successes"));
-        self.jobsCancelled = ApiClientBase.optGetLong(js.get("jobs_cancelled"));
-        self.jobsCompletedCopyBlueprint = ApiClientBase.optGetLong(js.get("jobs_completed_copy_blueprint"));
-        self.jobsCompletedInvention = ApiClientBase.optGetLong(js.get("jobs_completed_invention"));
-        self.jobsCompletedManufacture = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture"));
-        self.jobsCompletedManufactureAsteroid = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_asteroid"));
-        self.jobsCompletedManufactureAsteroidQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_asteroid_quantity"));
-        self.jobsCompletedManufactureCharge = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_charge"));
-        self.jobsCompletedManufactureChargeQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_charge_quantity"));
-        self.jobsCompletedManufactureCommodity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_commodity"));
-        self.jobsCompletedManufactureCommodityQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_commodity_quantity"));
-        self.jobsCompletedManufactureDeployable = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_deployable"));
-        self.jobsCompletedManufactureDeployableQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_deployable_quantity"));
-        self.jobsCompletedManufactureDrone = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_drone"));
-        self.jobsCompletedManufactureDroneQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_drone_quantity"));
-        self.jobsCompletedManufactureImplant = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_implant"));
-        self.jobsCompletedManufactureImplantQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_implant_quantity"));
-        self.jobsCompletedManufactureModule = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_module"));
-        self.jobsCompletedManufactureModuleQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_module_quantity"));
-        self.jobsCompletedManufactureOther = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_other"));
-        self.jobsCompletedManufactureOtherQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_other_quantity"));
-        self.jobsCompletedManufactureShip = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_ship"));
-        self.jobsCompletedManufactureShipQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_ship_quantity"));
-        self.jobsCompletedManufactureStructure = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_structure"));
-        self.jobsCompletedManufactureStructureQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_structure_quantity"));
-        self.jobsCompletedManufactureSubsystem = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_subsystem"));
-        self.jobsCompletedManufactureSubsystemQuantity = ApiClientBase.optGetLong(js.get("jobs_completed_manufacture_subsystem_quantity"));
-        self.jobsCompletedMaterialProductivity = ApiClientBase.optGetLong(js.get("jobs_completed_material_productivity"));
-        self.jobsCompletedTimeProductivity = ApiClientBase.optGetLong(js.get("jobs_completed_time_productivity"));
-        self.jobsStartedCopyBlueprint = ApiClientBase.optGetLong(js.get("jobs_started_copy_blueprint"));
-        self.jobsStartedInvention = ApiClientBase.optGetLong(js.get("jobs_started_invention"));
-        self.jobsStartedManufacture = ApiClientBase.optGetLong(js.get("jobs_started_manufacture"));
-        self.jobsStartedMaterialProductivity = ApiClientBase.optGetLong(js.get("jobs_started_material_productivity"));
-        self.jobsStartedTimeProductivity = ApiClientBase.optGetLong(js.get("jobs_started_time_productivity"));
-        self.reprocessItem = ApiClientBase.optGetLong(js.get("reprocess_item"));
-        self.reprocessItemQuantity = ApiClientBase.optGetLong(js.get("reprocess_item_quantity"));
-        return self;
     }
 }

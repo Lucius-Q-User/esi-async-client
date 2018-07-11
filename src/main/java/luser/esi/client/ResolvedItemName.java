@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ResolvedItemName {
+public class ResolvedItemName implements ApiParameterObject {
     private CategoryEnum category;
     public void setCategory(CategoryEnum val) {
         category = val;
     }
+    @JsonProperty("category")
     public CategoryEnum getCategory() {
         return category;
     }
@@ -20,6 +21,7 @@ public class ResolvedItemName {
     public void setId(int val) {
         id = val;
     }
+    @JsonProperty("id")
     public int getId() {
         return id;
     }
@@ -27,19 +29,9 @@ public class ResolvedItemName {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
-    }
-    static ResolvedItemName fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ResolvedItemName self = new ResolvedItemName();
-        Map<String, Json> js = json.asJsonMap();
-        self.category = CategoryEnum.fromString(ApiClientBase.optGetString(js.get("category")));
-        self.id = ApiClientBase.optGetInteger(js.get("id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        return self;
     }
     public static enum CategoryEnum {
         ALLIANCE("alliance"),
@@ -50,10 +42,15 @@ public class ResolvedItemName {
         REGION("region"),
         SOLAR_SYSTEM("solar_system"),
         STATION("station");
-        public final String stringValue;
+        private final String stringValue;
         private CategoryEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static CategoryEnum fromString(String str) {
             for (CategoryEnum self : CategoryEnum.values()) {
                 if (self.stringValue.equals(str)) {

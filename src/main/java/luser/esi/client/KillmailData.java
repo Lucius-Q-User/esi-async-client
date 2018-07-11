@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class KillmailData {
+public class KillmailData implements ApiParameterObject {
     private List<KillAttacker> attackers;
     public void setAttackers(List<KillAttacker> val) {
         attackers = val;
     }
+    @JsonProperty("attackers")
     public List<KillAttacker> getAttackers() {
         return attackers;
     }
@@ -20,6 +21,7 @@ public class KillmailData {
     public void setKillmailId(int val) {
         killmailId = val;
     }
+    @JsonProperty("killmail_id")
     public int getKillmailId() {
         return killmailId;
     }
@@ -27,6 +29,7 @@ public class KillmailData {
     public void setKillmailTime(Instant val) {
         killmailTime = val;
     }
+    @JsonProperty("killmail_time")
     public Instant getKillmailTime() {
         return killmailTime;
     }
@@ -34,6 +37,7 @@ public class KillmailData {
     public void setMoonId(Integer val) {
         moonId = val;
     }
+    @JsonProperty("moon_id")
     public Integer getMoonId() {
         return moonId;
     }
@@ -41,6 +45,7 @@ public class KillmailData {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -48,6 +53,7 @@ public class KillmailData {
     public void setVictim(KillVictim val) {
         victim = val;
     }
+    @JsonProperty("victim")
     public KillVictim getVictim() {
         return victim;
     }
@@ -55,29 +61,8 @@ public class KillmailData {
     public void setWarId(Integer val) {
         warId = val;
     }
+    @JsonProperty("war_id")
     public Integer getWarId() {
         return warId;
-    }
-    static KillmailData fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        KillmailData self = new KillmailData();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("attackers").asJsonList();
-            List<KillAttacker> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(KillAttacker.fromJson(jl.get(i)));
-            }
-            self.attackers = rt;
-        }
-        self.killmailId = ApiClientBase.optGetInteger(js.get("killmail_id"));
-        self.killmailTime = ApiClientBase.optGetInstant(js.get("killmail_time"));
-        self.moonId = ApiClientBase.optGetInteger(js.get("moon_id"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.victim = KillVictim.fromJson(js.get("victim"));
-        self.warId = ApiClientBase.optGetInteger(js.get("war_id"));
-        return self;
     }
 }

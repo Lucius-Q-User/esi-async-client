@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NotificationInfo {
+public class NotificationInfo implements ApiParameterObject {
     private Boolean isRead;
     public void setIsRead(Boolean val) {
         isRead = val;
     }
+    @JsonProperty("is_read")
     public Boolean getIsRead() {
         return isRead;
     }
@@ -20,6 +21,7 @@ public class NotificationInfo {
     public void setNotificationId(long val) {
         notificationId = val;
     }
+    @JsonProperty("notification_id")
     public long getNotificationId() {
         return notificationId;
     }
@@ -27,6 +29,7 @@ public class NotificationInfo {
     public void setSenderId(int val) {
         senderId = val;
     }
+    @JsonProperty("sender_id")
     public int getSenderId() {
         return senderId;
     }
@@ -34,6 +37,7 @@ public class NotificationInfo {
     public void setSenderType(SenderTypeEnum val) {
         senderType = val;
     }
+    @JsonProperty("sender_type")
     public SenderTypeEnum getSenderType() {
         return senderType;
     }
@@ -41,6 +45,7 @@ public class NotificationInfo {
     public void setText(String val) {
         text = val;
     }
+    @JsonProperty("text")
     public String getText() {
         return text;
     }
@@ -48,6 +53,7 @@ public class NotificationInfo {
     public void setTimestamp(Instant val) {
         timestamp = val;
     }
+    @JsonProperty("timestamp")
     public Instant getTimestamp() {
         return timestamp;
     }
@@ -55,23 +61,9 @@ public class NotificationInfo {
     public void setType(TypeEnum val) {
         type = val;
     }
+    @JsonProperty("type")
     public TypeEnum getType() {
         return type;
-    }
-    static NotificationInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        NotificationInfo self = new NotificationInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.isRead = ApiClientBase.optGetBoolean(js.get("is_read"));
-        self.notificationId = ApiClientBase.optGetLong(js.get("notification_id"));
-        self.senderId = ApiClientBase.optGetInteger(js.get("sender_id"));
-        self.senderType = SenderTypeEnum.fromString(ApiClientBase.optGetString(js.get("sender_type")));
-        self.text = ApiClientBase.optGetString(js.get("text"));
-        self.timestamp = ApiClientBase.optGetInstant(js.get("timestamp"));
-        self.type = TypeEnum.fromString(ApiClientBase.optGetString(js.get("type")));
-        return self;
     }
     public static enum SenderTypeEnum {
         CHARACTER("character"),
@@ -79,10 +71,15 @@ public class NotificationInfo {
         ALLIANCE("alliance"),
         FACTION("faction"),
         OTHER("other");
-        public final String stringValue;
+        private final String stringValue;
         private SenderTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static SenderTypeEnum fromString(String str) {
             for (SenderTypeEnum self : SenderTypeEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -273,10 +270,15 @@ public class NotificationInfo {
         WARALLYOFFERDECLINEDMSG("WarAllyOfferDeclinedMsg"),
         WARSURRENDERDECLINEDMSG("WarSurrenderDeclinedMsg"),
         WARSURRENDEROFFERMSG("WarSurrenderOfferMsg");
-        public final String stringValue;
+        private final String stringValue;
         private TypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static TypeEnum fromString(String str) {
             for (TypeEnum self : TypeEnum.values()) {
                 if (self.stringValue.equals(str)) {

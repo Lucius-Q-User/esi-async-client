@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterTitles {
+public class CharacterTitles implements ApiParameterObject {
     private String name;
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -20,17 +21,8 @@ public class CharacterTitles {
     public void setTitleId(Integer val) {
         titleId = val;
     }
+    @JsonProperty("title_id")
     public Integer getTitleId() {
         return titleId;
-    }
-    static CharacterTitles fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterTitles self = new CharacterTitles();
-        Map<String, Json> js = json.asJsonMap();
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.titleId = ApiClientBase.optGetInteger(js.get("title_id"));
-        return self;
     }
 }

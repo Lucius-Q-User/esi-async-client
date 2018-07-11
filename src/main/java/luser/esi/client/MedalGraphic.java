@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MedalGraphic {
+public class MedalGraphic implements ApiParameterObject {
     private Integer color;
     public void setColor(Integer val) {
         color = val;
     }
+    @JsonProperty("color")
     public Integer getColor() {
         return color;
     }
@@ -20,6 +21,7 @@ public class MedalGraphic {
     public void setGraphic(String val) {
         graphic = val;
     }
+    @JsonProperty("graphic")
     public String getGraphic() {
         return graphic;
     }
@@ -27,6 +29,7 @@ public class MedalGraphic {
     public void setLayer(int val) {
         layer = val;
     }
+    @JsonProperty("layer")
     public int getLayer() {
         return layer;
     }
@@ -34,19 +37,8 @@ public class MedalGraphic {
     public void setPart(int val) {
         part = val;
     }
+    @JsonProperty("part")
     public int getPart() {
         return part;
-    }
-    static MedalGraphic fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MedalGraphic self = new MedalGraphic();
-        Map<String, Json> js = json.asJsonMap();
-        self.color = ApiClientBase.optGetInteger(js.get("color"));
-        self.graphic = ApiClientBase.optGetString(js.get("graphic"));
-        self.layer = ApiClientBase.optGetInteger(js.get("layer"));
-        self.part = ApiClientBase.optGetInteger(js.get("part"));
-        return self;
     }
 }

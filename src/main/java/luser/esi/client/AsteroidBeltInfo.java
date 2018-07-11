@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class AsteroidBeltInfo {
+public class AsteroidBeltInfo implements ApiParameterObject {
     private String name;
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -20,6 +21,7 @@ public class AsteroidBeltInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -27,18 +29,8 @@ public class AsteroidBeltInfo {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
-    }
-    static AsteroidBeltInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        AsteroidBeltInfo self = new AsteroidBeltInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        return self;
     }
 }

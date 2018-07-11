@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class FleetMemberList {
+public class FleetMemberList implements ApiParameterObject {
     private int characterId;
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -20,6 +21,7 @@ public class FleetMemberList {
     public void setJoinTime(Instant val) {
         joinTime = val;
     }
+    @JsonProperty("join_time")
     public Instant getJoinTime() {
         return joinTime;
     }
@@ -27,6 +29,7 @@ public class FleetMemberList {
     public void setRole(RoleEnum val) {
         role = val;
     }
+    @JsonProperty("role")
     public RoleEnum getRole() {
         return role;
     }
@@ -34,6 +37,7 @@ public class FleetMemberList {
     public void setRoleName(String val) {
         roleName = val;
     }
+    @JsonProperty("role_name")
     public String getRoleName() {
         return roleName;
     }
@@ -41,6 +45,7 @@ public class FleetMemberList {
     public void setShipTypeId(int val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public int getShipTypeId() {
         return shipTypeId;
     }
@@ -48,6 +53,7 @@ public class FleetMemberList {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -55,6 +61,7 @@ public class FleetMemberList {
     public void setSquadId(long val) {
         squadId = val;
     }
+    @JsonProperty("squad_id")
     public long getSquadId() {
         return squadId;
     }
@@ -62,6 +69,7 @@ public class FleetMemberList {
     public void setStationId(Long val) {
         stationId = val;
     }
+    @JsonProperty("station_id")
     public Long getStationId() {
         return stationId;
     }
@@ -69,6 +77,7 @@ public class FleetMemberList {
     public void setTakesFleetWarp(boolean val) {
         takesFleetWarp = val;
     }
+    @JsonProperty("takes_fleet_warp")
     public boolean getTakesFleetWarp() {
         return takesFleetWarp;
     }
@@ -76,36 +85,24 @@ public class FleetMemberList {
     public void setWingId(long val) {
         wingId = val;
     }
+    @JsonProperty("wing_id")
     public long getWingId() {
         return wingId;
-    }
-    static FleetMemberList fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        FleetMemberList self = new FleetMemberList();
-        Map<String, Json> js = json.asJsonMap();
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.joinTime = ApiClientBase.optGetInstant(js.get("join_time"));
-        self.role = RoleEnum.fromString(ApiClientBase.optGetString(js.get("role")));
-        self.roleName = ApiClientBase.optGetString(js.get("role_name"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.squadId = ApiClientBase.optGetLong(js.get("squad_id"));
-        self.stationId = ApiClientBase.optGetLong(js.get("station_id"));
-        self.takesFleetWarp = ApiClientBase.optGetBoolean(js.get("takes_fleet_warp"));
-        self.wingId = ApiClientBase.optGetLong(js.get("wing_id"));
-        return self;
     }
     public static enum RoleEnum {
         FLEET_COMMANDER("fleet_commander"),
         WING_COMMANDER("wing_commander"),
         SQUAD_COMMANDER("squad_commander"),
         SQUAD_MEMBER("squad_member");
-        public final String stringValue;
+        private final String stringValue;
         private RoleEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RoleEnum fromString(String str) {
             for (RoleEnum self : RoleEnum.values()) {
                 if (self.stringValue.equals(str)) {

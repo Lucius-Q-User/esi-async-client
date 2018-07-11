@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ResearchAgentInfo {
+public class ResearchAgentInfo implements ApiParameterObject {
     private int agentId;
     public void setAgentId(int val) {
         agentId = val;
     }
+    @JsonProperty("agent_id")
     public int getAgentId() {
         return agentId;
     }
@@ -20,6 +21,7 @@ public class ResearchAgentInfo {
     public void setPointsPerDay(float val) {
         pointsPerDay = val;
     }
+    @JsonProperty("points_per_day")
     public float getPointsPerDay() {
         return pointsPerDay;
     }
@@ -27,6 +29,7 @@ public class ResearchAgentInfo {
     public void setRemainderPoints(float val) {
         remainderPoints = val;
     }
+    @JsonProperty("remainder_points")
     public float getRemainderPoints() {
         return remainderPoints;
     }
@@ -34,6 +37,7 @@ public class ResearchAgentInfo {
     public void setSkillTypeId(int val) {
         skillTypeId = val;
     }
+    @JsonProperty("skill_type_id")
     public int getSkillTypeId() {
         return skillTypeId;
     }
@@ -41,20 +45,8 @@ public class ResearchAgentInfo {
     public void setStartedAt(Instant val) {
         startedAt = val;
     }
+    @JsonProperty("started_at")
     public Instant getStartedAt() {
         return startedAt;
-    }
-    static ResearchAgentInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ResearchAgentInfo self = new ResearchAgentInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.agentId = ApiClientBase.optGetInteger(js.get("agent_id"));
-        self.pointsPerDay = ApiClientBase.optGetFloat(js.get("points_per_day"));
-        self.remainderPoints = ApiClientBase.optGetFloat(js.get("remainder_points"));
-        self.skillTypeId = ApiClientBase.optGetInteger(js.get("skill_type_id"));
-        self.startedAt = ApiClientBase.optGetInstant(js.get("started_at"));
-        return self;
     }
 }

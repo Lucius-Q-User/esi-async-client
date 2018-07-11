@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class UniverseApi {
@@ -41,13 +41,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<AncestryInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<AncestryInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(AncestryInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<AncestryInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AncestryInfo>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -72,9 +67,8 @@ public class UniverseApi {
         parametersInUrl.put("asteroid_belt_id", String.valueOf(asteroidBeltId));
         String body = null;
         String method = "GET";
-        Function<String, AsteroidBeltInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return AsteroidBeltInfo.fromJson(js);
+        ResponseParser<AsteroidBeltInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, AsteroidBeltInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -102,13 +96,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<BloodlineInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<BloodlineInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(BloodlineInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<BloodlineInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<BloodlineInfo>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -132,13 +121,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -167,9 +151,8 @@ public class UniverseApi {
         parametersInUrl.put("category_id", String.valueOf(categoryId));
         String body = null;
         String method = "GET";
-        Function<String, ItemCategoryInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return ItemCategoryInfo.fromJson(js);
+        ResponseParser<ItemCategoryInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ItemCategoryInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -193,13 +176,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -228,9 +206,8 @@ public class UniverseApi {
         parametersInUrl.put("constellation_id", String.valueOf(constellationId));
         String body = null;
         String method = "GET";
-        Function<String, ConstellationInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return ConstellationInfo.fromJson(js);
+        ResponseParser<ConstellationInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ConstellationInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -254,13 +231,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -285,9 +257,8 @@ public class UniverseApi {
         parametersInUrl.put("graphic_id", String.valueOf(graphicId));
         String body = null;
         String method = "GET";
-        Function<String, GhaphicInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return GhaphicInfo.fromJson(js);
+        ResponseParser<GhaphicInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, GhaphicInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -316,13 +287,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -351,9 +317,8 @@ public class UniverseApi {
         parametersInUrl.put("group_id", String.valueOf(groupId));
         String body = null;
         String method = "GET";
-        Function<String, ItemGroupInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return ItemGroupInfo.fromJson(js);
+        ResponseParser<ItemGroupInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ItemGroupInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -378,9 +343,8 @@ public class UniverseApi {
         String body = null;
         body = ApiClientBase.renderToBody(names);
         String method = "POST";
-        Function<String, ResolvedItemId> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return ResolvedItemId.fromJson(js);
+        ResponseParser<ResolvedItemId> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ResolvedItemId.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -405,9 +369,8 @@ public class UniverseApi {
         parametersInUrl.put("moon_id", String.valueOf(moonId));
         String body = null;
         String method = "GET";
-        Function<String, MoonInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return MoonInfo.fromJson(js);
+        ResponseParser<MoonInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MoonInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -432,9 +395,8 @@ public class UniverseApi {
         parametersInUrl.put("planet_id", String.valueOf(planetId));
         String body = null;
         String method = "GET";
-        Function<String, UniversePlanetInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return UniversePlanetInfo.fromJson(js);
+        ResponseParser<UniversePlanetInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, UniversePlanetInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -462,13 +424,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<RaceInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<RaceInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(RaceInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<RaceInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<RaceInfo>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -492,13 +449,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -527,9 +479,8 @@ public class UniverseApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        Function<String, RegionInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return RegionInfo.fromJson(js);
+        ResponseParser<RegionInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, RegionInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -554,9 +505,8 @@ public class UniverseApi {
         parametersInUrl.put("stargate_id", String.valueOf(stargateId));
         String body = null;
         String method = "GET";
-        Function<String, StargateInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return StargateInfo.fromJson(js);
+        ResponseParser<StargateInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StargateInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -581,9 +531,8 @@ public class UniverseApi {
         parametersInUrl.put("star_id", String.valueOf(starId));
         String body = null;
         String method = "GET";
-        Function<String, StarInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return StarInfo.fromJson(js);
+        ResponseParser<StarInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StarInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -607,13 +556,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, long[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            long[] ret = new long[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asLong();
-            }
-            return ret;
+        ResponseParser<long[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, long[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -637,13 +581,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<SystemJumps>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SystemJumps> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SystemJumps.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SystemJumps>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SystemJumps>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -667,13 +606,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -702,13 +636,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, int[]> responseParser = (resp) -> {
-            List<Json> json = Json.read(resp).asJsonList();
-            int[] ret = new int[json.size()];
-            for (int i = 0; i < json.size(); i++) {
-                ret[i] = json.get(i).asInteger();
-            }
-            return ret;
+        ResponseParser<int[]> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -736,13 +665,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<UniverseFaction>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<UniverseFaction> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(UniverseFaction.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<UniverseFaction>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<UniverseFaction>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -763,13 +687,8 @@ public class UniverseApi {
         String body = null;
         body = ApiClientBase.renderToBody(ids);
         String method = "POST";
-        Function<String, List<ResolvedItemName>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ResolvedItemName> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ResolvedItemName.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ResolvedItemName>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedItemName>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -794,9 +713,8 @@ public class UniverseApi {
         parametersInUrl.put("station_id", String.valueOf(stationId));
         String body = null;
         String method = "GET";
-        Function<String, StationInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return StationInfo.fromJson(js);
+        ResponseParser<StationInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StationInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -821,9 +739,8 @@ public class UniverseApi {
         parametersInUrl.put("structure_id", String.valueOf(structureId));
         String body = null;
         String method = "GET";
-        Function<String, StructureInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return StructureInfo.fromJson(js);
+        ResponseParser<StructureInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StructureInfo.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -847,13 +764,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<SystemKills>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SystemKills> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SystemKills.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SystemKills>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SystemKills>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -882,9 +794,8 @@ public class UniverseApi {
         parametersInUrl.put("type_id", String.valueOf(typeId));
         String body = null;
         String method = "GET";
-        Function<String, TypeInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return TypeInfo.fromJson(js);
+        ResponseParser<TypeInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, TypeInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -913,9 +824,8 @@ public class UniverseApi {
         parametersInUrl.put("system_id", String.valueOf(systemId));
         String body = null;
         String method = "GET";
-        Function<String, SystemInfo> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return SystemInfo.fromJson(js);
+        ResponseParser<SystemInfo> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, SystemInfo.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

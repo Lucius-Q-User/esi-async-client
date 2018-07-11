@@ -3,16 +3,12 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ${title} \
-%if isRequest or title in specialSnowflakes:
-extends JsonConvertible \
-%endif
-{
+public class ${title} implements ApiParameterObject {
 <%
         enumsToGenerate = {}
     %>\
@@ -84,117 +80,11 @@ extends JsonConvertible \
     public void set${toUcaseJava(pname)}(${typeTag} val) {
         ${toLcaseJava(pname)} = val;
     }
+    @JsonProperty("${pname}")
     public ${typeTag} get${toUcaseJava(pname)}() {
         return ${toLcaseJava(pname)};
     }
     %endfor
-    %if isRequest or title in specialSnowflakes:
-    @Override
-    Json toJson() {
-        Json object = Json.object();
-        %for pname, ptype in properties.items():
-        %if ptype["type"] == "boolean" or ptype["type"] == "integer" or ptype["type"] == "string":
-        object.set("${pname}", Json.make(${toLcaseJava(pname)}${".stringValue" if "enum" in ptype else ""}));
-        %elif ptype["type"] == "array" and ptype["items"]["type"] == "integer":
-        {
-            Json arr = Json.array();
-            for (int i : ${toLcaseJava(pname)}){
-                arr.add(Json.make(i));
-            }
-            object.set("${pname}", arr);
-        }
-        %elif ptype["type"] == "array" and ptype["items"]["type"] == "object":
-        {
-            Json arr = Json.array();
-            for (JsonConvertible i : ${toLcaseJava(pname)}){
-                arr.add(i.toJson());
-            }
-            object.set("${pname}", arr);
-        }
-        %else:
-        object.set("${pname}", ApiClient.pass(${toLcaseJava(pname)}));
-        %endif
-        %endfor
-        return object;
-    }
-    %endif
-    %if not isRequest or title in specialSnowflakes:
-    static ${title} fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ${title} self = new ${title}();
-        Map<String, Json> js = json.asJsonMap();
-        %for pname, ptype in properties.items():
-        %if ptype["type"] == "boolean":
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetBoolean(js.get("${pname}"));
-        %elif ptype["type"] == "number" and ptype["format"] == "double":
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetDouble(js.get("${pname}"));
-        %elif ptype["type"] == "number" and ptype["format"] == "float":
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetFloat(js.get("${pname}"));
-        %elif ptype["type"] == "integer" and "format" in ptype and ptype["format"] == "int64":
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetLong(js.get("${pname}"));
-        %elif ptype["type"] == "integer" and ("format" not in ptype or ptype["format"] == "int32"):
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetInteger(js.get("${pname}"));
-        %elif ptype["type"] == "string" and "enum" in ptype:
-        self.${toLcaseJava(pname)} = ${toUcaseJava(pname) + "Enum"}.fromString(ApiClientBase.optGetString(js.get("${pname}")));
-        %elif ptype["type"] == "object":
-<%
-        tag = ptype["title"]
-        tag = toUcaseJava(tag)
-        tag = generateParameterObject(tag, None, None, None)
-        %>\
-        self.${toLcaseJava(pname)} = ${tag}.fromJson(js.get("${pname}"));
-        %elif ptype["type"] == "array" and ptype["items"]["type"] == "integer" and ptype["items"]["format"] == "int32":
-        {
-            List<Json> jl = js.get("${pname}").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.${toLcaseJava(pname)} = rt;
-        }
-        %elif ptype["type"] == "array" and ptype["items"]["type"] == "integer" and ptype["items"]["format"] == "int64":
-        {
-            List<Json> jl = js.get("${pname}").asJsonList();
-            long[] rt = new long[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asLong();
-            }
-            self.${toLcaseJava(pname)} = rt;
-        }
-        %elif ptype["type"] == "array" and ptype["items"]["type"] == "string" and "enum" in ptype["items"]:
-        {
-            List<Json> jl = js.get("${pname}").asJsonList();
-            List<${toUcaseJava(pname) + "Enum"}> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(${toUcaseJava(pname) + "Enum"}.fromString(jl.get(i).asString()));
-            }
-            self.${toLcaseJava(pname)} = rt;
-        }
-        %elif ptype["type"] == "array" and ptype["items"]["type"] == "object":
-<%
-        tag = ptype["items"]["title"]
-        tag = toUcaseJava(tag)
-        tag = generateParameterObject(tag, None, None, isRequest)
-        %>\
-        {
-            List<Json> jl = js.get("${pname}").asJsonList();
-            List<${tag}> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(${tag}.fromJson(jl.get(i)));
-            }
-            self.${toLcaseJava(pname)} = rt;
-        }
-        %elif ptype["type"] == "string" and "format" in ptype and ptype["format"] == "date-time":
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetInstant(js.get("${pname}"));
-        %else:
-        self.${toLcaseJava(pname)} = ApiClientBase.optGetString(js.get("${pname}"));
-        %endif
-        %endfor
-        return self;
-    }
-    %endif
     %for tag, members in enumsToGenerate.items():
     public static enum ${tag} {
         %for member in members:
@@ -211,10 +101,15 @@ extends JsonConvertible \
 ;
         %endif
         %endfor
-        public final String stringValue;
+        private final String stringValue;
         private ${tag}(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ${tag} fromString(String str) {
             for (${tag} self : ${tag}.values()) {
                 if (self.stringValue.equals(str)) {

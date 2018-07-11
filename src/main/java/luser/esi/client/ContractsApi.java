@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class ContractsApi {
@@ -43,13 +43,8 @@ public class ContractsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<ContractInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ContractInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ContractInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ContractInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContractInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -75,13 +70,8 @@ public class ContractsApi {
         parametersInUrl.put("contract_id", String.valueOf(contractId));
         String body = null;
         String method = "GET";
-        Function<String, List<AuctionBid>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<AuctionBid> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(AuctionBid.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<AuctionBid>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AuctionBid>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -107,13 +97,8 @@ public class ContractsApi {
         parametersInUrl.put("contract_id", String.valueOf(contractId));
         String body = null;
         String method = "GET";
-        Function<String, List<ContractedItem>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ContractedItem> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ContractedItem.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ContractedItem>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContractedItem>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -143,13 +128,8 @@ public class ContractsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<ContractInfo>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ContractInfo> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ContractInfo.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ContractInfo>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContractInfo>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -180,13 +160,8 @@ public class ContractsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<AuctionBid>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<AuctionBid> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(AuctionBid.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<AuctionBid>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AuctionBid>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -212,13 +187,8 @@ public class ContractsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        Function<String, List<ContractedItem>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<ContractedItem> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(ContractedItem.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<ContractedItem>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContractedItem>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

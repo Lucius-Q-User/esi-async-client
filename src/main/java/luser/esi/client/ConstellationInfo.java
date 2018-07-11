@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class ConstellationInfo {
+public class ConstellationInfo implements ApiParameterObject {
     private int constellationId;
     public void setConstellationId(int val) {
         constellationId = val;
     }
+    @JsonProperty("constellation_id")
     public int getConstellationId() {
         return constellationId;
     }
@@ -20,6 +21,7 @@ public class ConstellationInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,6 +29,7 @@ public class ConstellationInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -34,6 +37,7 @@ public class ConstellationInfo {
     public void setRegionId(int val) {
         regionId = val;
     }
+    @JsonProperty("region_id")
     public int getRegionId() {
         return regionId;
     }
@@ -41,27 +45,8 @@ public class ConstellationInfo {
     public void setSystems(int[] val) {
         systems = val;
     }
+    @JsonProperty("systems")
     public int[] getSystems() {
         return systems;
-    }
-    static ConstellationInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        ConstellationInfo self = new ConstellationInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.constellationId = ApiClientBase.optGetInteger(js.get("constellation_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.regionId = ApiClientBase.optGetInteger(js.get("region_id"));
-        {
-            List<Json> jl = js.get("systems").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.systems = rt;
-        }
-        return self;
     }
 }

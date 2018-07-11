@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationMedals {
+public class CorporationMedals implements ApiParameterObject {
     private Instant createdAt;
     public void setCreatedAt(Instant val) {
         createdAt = val;
     }
+    @JsonProperty("created_at")
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -20,6 +21,7 @@ public class CorporationMedals {
     public void setCreatorId(int val) {
         creatorId = val;
     }
+    @JsonProperty("creator_id")
     public int getCreatorId() {
         return creatorId;
     }
@@ -27,6 +29,7 @@ public class CorporationMedals {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -34,6 +37,7 @@ public class CorporationMedals {
     public void setMedalId(int val) {
         medalId = val;
     }
+    @JsonProperty("medal_id")
     public int getMedalId() {
         return medalId;
     }
@@ -41,20 +45,8 @@ public class CorporationMedals {
     public void setTitle(String val) {
         title = val;
     }
+    @JsonProperty("title")
     public String getTitle() {
         return title;
-    }
-    static CorporationMedals fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationMedals self = new CorporationMedals();
-        Map<String, Json> js = json.asJsonMap();
-        self.createdAt = ApiClientBase.optGetInstant(js.get("created_at"));
-        self.creatorId = ApiClientBase.optGetInteger(js.get("creator_id"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.medalId = ApiClientBase.optGetInteger(js.get("medal_id"));
-        self.title = ApiClientBase.optGetString(js.get("title"));
-        return self;
     }
 }

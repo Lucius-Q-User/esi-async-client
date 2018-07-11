@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationBlueprint {
+public class CorporationBlueprint implements ApiParameterObject {
     private long itemId;
     public void setItemId(long val) {
         itemId = val;
     }
+    @JsonProperty("item_id")
     public long getItemId() {
         return itemId;
     }
@@ -20,6 +21,7 @@ public class CorporationBlueprint {
     public void setLocationFlag(LocationFlagEnum val) {
         locationFlag = val;
     }
+    @JsonProperty("location_flag")
     public LocationFlagEnum getLocationFlag() {
         return locationFlag;
     }
@@ -27,6 +29,7 @@ public class CorporationBlueprint {
     public void setLocationId(long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public long getLocationId() {
         return locationId;
     }
@@ -34,6 +37,7 @@ public class CorporationBlueprint {
     public void setMaterialEfficiency(int val) {
         materialEfficiency = val;
     }
+    @JsonProperty("material_efficiency")
     public int getMaterialEfficiency() {
         return materialEfficiency;
     }
@@ -41,6 +45,7 @@ public class CorporationBlueprint {
     public void setQuantity(int val) {
         quantity = val;
     }
+    @JsonProperty("quantity")
     public int getQuantity() {
         return quantity;
     }
@@ -48,6 +53,7 @@ public class CorporationBlueprint {
     public void setRuns(int val) {
         runs = val;
     }
+    @JsonProperty("runs")
     public int getRuns() {
         return runs;
     }
@@ -55,6 +61,7 @@ public class CorporationBlueprint {
     public void setTimeEfficiency(int val) {
         timeEfficiency = val;
     }
+    @JsonProperty("time_efficiency")
     public int getTimeEfficiency() {
         return timeEfficiency;
     }
@@ -62,24 +69,9 @@ public class CorporationBlueprint {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static CorporationBlueprint fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationBlueprint self = new CorporationBlueprint();
-        Map<String, Json> js = json.asJsonMap();
-        self.itemId = ApiClientBase.optGetLong(js.get("item_id"));
-        self.locationFlag = LocationFlagEnum.fromString(ApiClientBase.optGetString(js.get("location_flag")));
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.materialEfficiency = ApiClientBase.optGetInteger(js.get("material_efficiency"));
-        self.quantity = ApiClientBase.optGetInteger(js.get("quantity"));
-        self.runs = ApiClientBase.optGetInteger(js.get("runs"));
-        self.timeEfficiency = ApiClientBase.optGetInteger(js.get("time_efficiency"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
     public static enum LocationFlagEnum {
         ASSETSAFETY("AssetSafety"),
@@ -197,10 +189,15 @@ public class CorporationBlueprint {
         UNLOCKED("Unlocked"),
         WALLET("Wallet"),
         WARDROBE("Wardrobe");
-        public final String stringValue;
+        private final String stringValue;
         private LocationFlagEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static LocationFlagEnum fromString(String str) {
             for (LocationFlagEnum self : LocationFlagEnum.values()) {
                 if (self.stringValue.equals(str)) {

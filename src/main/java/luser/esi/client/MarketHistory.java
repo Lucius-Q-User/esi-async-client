@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MarketHistory {
+public class MarketHistory implements ApiParameterObject {
     private double average;
     public void setAverage(double val) {
         average = val;
     }
+    @JsonProperty("average")
     public double getAverage() {
         return average;
     }
@@ -20,6 +21,7 @@ public class MarketHistory {
     public void setDate(String val) {
         date = val;
     }
+    @JsonProperty("date")
     public String getDate() {
         return date;
     }
@@ -27,6 +29,7 @@ public class MarketHistory {
     public void setHighest(double val) {
         highest = val;
     }
+    @JsonProperty("highest")
     public double getHighest() {
         return highest;
     }
@@ -34,6 +37,7 @@ public class MarketHistory {
     public void setLowest(double val) {
         lowest = val;
     }
+    @JsonProperty("lowest")
     public double getLowest() {
         return lowest;
     }
@@ -41,6 +45,7 @@ public class MarketHistory {
     public void setOrderCount(long val) {
         orderCount = val;
     }
+    @JsonProperty("order_count")
     public long getOrderCount() {
         return orderCount;
     }
@@ -48,21 +53,8 @@ public class MarketHistory {
     public void setVolume(long val) {
         volume = val;
     }
+    @JsonProperty("volume")
     public long getVolume() {
         return volume;
-    }
-    static MarketHistory fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MarketHistory self = new MarketHistory();
-        Map<String, Json> js = json.asJsonMap();
-        self.average = ApiClientBase.optGetDouble(js.get("average"));
-        self.date = ApiClientBase.optGetString(js.get("date"));
-        self.highest = ApiClientBase.optGetDouble(js.get("highest"));
-        self.lowest = ApiClientBase.optGetDouble(js.get("lowest"));
-        self.orderCount = ApiClientBase.optGetLong(js.get("order_count"));
-        self.volume = ApiClientBase.optGetLong(js.get("volume"));
-        return self;
     }
 }

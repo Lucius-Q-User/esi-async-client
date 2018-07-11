@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class AuctionBid {
+public class AuctionBid implements ApiParameterObject {
     private float amount;
     public void setAmount(float val) {
         amount = val;
     }
+    @JsonProperty("amount")
     public float getAmount() {
         return amount;
     }
@@ -20,6 +21,7 @@ public class AuctionBid {
     public void setBidId(int val) {
         bidId = val;
     }
+    @JsonProperty("bid_id")
     public int getBidId() {
         return bidId;
     }
@@ -27,6 +29,7 @@ public class AuctionBid {
     public void setBidderId(int val) {
         bidderId = val;
     }
+    @JsonProperty("bidder_id")
     public int getBidderId() {
         return bidderId;
     }
@@ -34,19 +37,8 @@ public class AuctionBid {
     public void setDateBid(Instant val) {
         dateBid = val;
     }
+    @JsonProperty("date_bid")
     public Instant getDateBid() {
         return dateBid;
-    }
-    static AuctionBid fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        AuctionBid self = new AuctionBid();
-        Map<String, Json> js = json.asJsonMap();
-        self.amount = ApiClientBase.optGetFloat(js.get("amount"));
-        self.bidId = ApiClientBase.optGetInteger(js.get("bid_id"));
-        self.bidderId = ApiClientBase.optGetInteger(js.get("bidder_id"));
-        self.dateBid = ApiClientBase.optGetInstant(js.get("date_bid"));
-        return self;
     }
 }

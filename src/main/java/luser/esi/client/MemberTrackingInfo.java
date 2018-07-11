@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class MemberTrackingInfo {
+public class MemberTrackingInfo implements ApiParameterObject {
     private Integer baseId;
     public void setBaseId(Integer val) {
         baseId = val;
     }
+    @JsonProperty("base_id")
     public Integer getBaseId() {
         return baseId;
     }
@@ -20,6 +21,7 @@ public class MemberTrackingInfo {
     public void setCharacterId(int val) {
         characterId = val;
     }
+    @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
@@ -27,6 +29,7 @@ public class MemberTrackingInfo {
     public void setLocationId(Long val) {
         locationId = val;
     }
+    @JsonProperty("location_id")
     public Long getLocationId() {
         return locationId;
     }
@@ -34,6 +37,7 @@ public class MemberTrackingInfo {
     public void setLogoffDate(Instant val) {
         logoffDate = val;
     }
+    @JsonProperty("logoff_date")
     public Instant getLogoffDate() {
         return logoffDate;
     }
@@ -41,6 +45,7 @@ public class MemberTrackingInfo {
     public void setLogonDate(Instant val) {
         logonDate = val;
     }
+    @JsonProperty("logon_date")
     public Instant getLogonDate() {
         return logonDate;
     }
@@ -48,6 +53,7 @@ public class MemberTrackingInfo {
     public void setShipTypeId(Integer val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public Integer getShipTypeId() {
         return shipTypeId;
     }
@@ -55,22 +61,8 @@ public class MemberTrackingInfo {
     public void setStartDate(Instant val) {
         startDate = val;
     }
+    @JsonProperty("start_date")
     public Instant getStartDate() {
         return startDate;
-    }
-    static MemberTrackingInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        MemberTrackingInfo self = new MemberTrackingInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.baseId = ApiClientBase.optGetInteger(js.get("base_id"));
-        self.characterId = ApiClientBase.optGetInteger(js.get("character_id"));
-        self.locationId = ApiClientBase.optGetLong(js.get("location_id"));
-        self.logoffDate = ApiClientBase.optGetInstant(js.get("logoff_date"));
-        self.logonDate = ApiClientBase.optGetInstant(js.get("logon_date"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
-        return self;
     }
 }

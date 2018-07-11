@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class IndustryJobInfo {
+public class IndustryJobInfo implements ApiParameterObject {
     private int activityId;
     public void setActivityId(int val) {
         activityId = val;
     }
+    @JsonProperty("activity_id")
     public int getActivityId() {
         return activityId;
     }
@@ -20,6 +21,7 @@ public class IndustryJobInfo {
     public void setBlueprintId(long val) {
         blueprintId = val;
     }
+    @JsonProperty("blueprint_id")
     public long getBlueprintId() {
         return blueprintId;
     }
@@ -27,6 +29,7 @@ public class IndustryJobInfo {
     public void setBlueprintLocationId(long val) {
         blueprintLocationId = val;
     }
+    @JsonProperty("blueprint_location_id")
     public long getBlueprintLocationId() {
         return blueprintLocationId;
     }
@@ -34,6 +37,7 @@ public class IndustryJobInfo {
     public void setBlueprintTypeId(int val) {
         blueprintTypeId = val;
     }
+    @JsonProperty("blueprint_type_id")
     public int getBlueprintTypeId() {
         return blueprintTypeId;
     }
@@ -41,6 +45,7 @@ public class IndustryJobInfo {
     public void setCompletedCharacterId(Integer val) {
         completedCharacterId = val;
     }
+    @JsonProperty("completed_character_id")
     public Integer getCompletedCharacterId() {
         return completedCharacterId;
     }
@@ -48,6 +53,7 @@ public class IndustryJobInfo {
     public void setCompletedDate(Instant val) {
         completedDate = val;
     }
+    @JsonProperty("completed_date")
     public Instant getCompletedDate() {
         return completedDate;
     }
@@ -55,6 +61,7 @@ public class IndustryJobInfo {
     public void setCost(Double val) {
         cost = val;
     }
+    @JsonProperty("cost")
     public Double getCost() {
         return cost;
     }
@@ -62,6 +69,7 @@ public class IndustryJobInfo {
     public void setDuration(int val) {
         duration = val;
     }
+    @JsonProperty("duration")
     public int getDuration() {
         return duration;
     }
@@ -69,6 +77,7 @@ public class IndustryJobInfo {
     public void setEndDate(Instant val) {
         endDate = val;
     }
+    @JsonProperty("end_date")
     public Instant getEndDate() {
         return endDate;
     }
@@ -76,6 +85,7 @@ public class IndustryJobInfo {
     public void setFacilityId(long val) {
         facilityId = val;
     }
+    @JsonProperty("facility_id")
     public long getFacilityId() {
         return facilityId;
     }
@@ -83,6 +93,7 @@ public class IndustryJobInfo {
     public void setInstallerId(int val) {
         installerId = val;
     }
+    @JsonProperty("installer_id")
     public int getInstallerId() {
         return installerId;
     }
@@ -90,6 +101,7 @@ public class IndustryJobInfo {
     public void setJobId(int val) {
         jobId = val;
     }
+    @JsonProperty("job_id")
     public int getJobId() {
         return jobId;
     }
@@ -97,6 +109,7 @@ public class IndustryJobInfo {
     public void setLicensedRuns(Integer val) {
         licensedRuns = val;
     }
+    @JsonProperty("licensed_runs")
     public Integer getLicensedRuns() {
         return licensedRuns;
     }
@@ -104,6 +117,7 @@ public class IndustryJobInfo {
     public void setOutputLocationId(long val) {
         outputLocationId = val;
     }
+    @JsonProperty("output_location_id")
     public long getOutputLocationId() {
         return outputLocationId;
     }
@@ -111,6 +125,7 @@ public class IndustryJobInfo {
     public void setPauseDate(Instant val) {
         pauseDate = val;
     }
+    @JsonProperty("pause_date")
     public Instant getPauseDate() {
         return pauseDate;
     }
@@ -118,6 +133,7 @@ public class IndustryJobInfo {
     public void setProbability(Float val) {
         probability = val;
     }
+    @JsonProperty("probability")
     public Float getProbability() {
         return probability;
     }
@@ -125,6 +141,7 @@ public class IndustryJobInfo {
     public void setProductTypeId(Integer val) {
         productTypeId = val;
     }
+    @JsonProperty("product_type_id")
     public Integer getProductTypeId() {
         return productTypeId;
     }
@@ -132,6 +149,7 @@ public class IndustryJobInfo {
     public void setRuns(int val) {
         runs = val;
     }
+    @JsonProperty("runs")
     public int getRuns() {
         return runs;
     }
@@ -139,6 +157,7 @@ public class IndustryJobInfo {
     public void setStartDate(Instant val) {
         startDate = val;
     }
+    @JsonProperty("start_date")
     public Instant getStartDate() {
         return startDate;
     }
@@ -146,6 +165,7 @@ public class IndustryJobInfo {
     public void setStationId(long val) {
         stationId = val;
     }
+    @JsonProperty("station_id")
     public long getStationId() {
         return stationId;
     }
@@ -153,6 +173,7 @@ public class IndustryJobInfo {
     public void setStatus(StatusEnum val) {
         status = val;
     }
+    @JsonProperty("status")
     public StatusEnum getStatus() {
         return status;
     }
@@ -160,38 +181,9 @@ public class IndustryJobInfo {
     public void setSuccessfulRuns(Integer val) {
         successfulRuns = val;
     }
+    @JsonProperty("successful_runs")
     public Integer getSuccessfulRuns() {
         return successfulRuns;
-    }
-    static IndustryJobInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        IndustryJobInfo self = new IndustryJobInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.activityId = ApiClientBase.optGetInteger(js.get("activity_id"));
-        self.blueprintId = ApiClientBase.optGetLong(js.get("blueprint_id"));
-        self.blueprintLocationId = ApiClientBase.optGetLong(js.get("blueprint_location_id"));
-        self.blueprintTypeId = ApiClientBase.optGetInteger(js.get("blueprint_type_id"));
-        self.completedCharacterId = ApiClientBase.optGetInteger(js.get("completed_character_id"));
-        self.completedDate = ApiClientBase.optGetInstant(js.get("completed_date"));
-        self.cost = ApiClientBase.optGetDouble(js.get("cost"));
-        self.duration = ApiClientBase.optGetInteger(js.get("duration"));
-        self.endDate = ApiClientBase.optGetInstant(js.get("end_date"));
-        self.facilityId = ApiClientBase.optGetLong(js.get("facility_id"));
-        self.installerId = ApiClientBase.optGetInteger(js.get("installer_id"));
-        self.jobId = ApiClientBase.optGetInteger(js.get("job_id"));
-        self.licensedRuns = ApiClientBase.optGetInteger(js.get("licensed_runs"));
-        self.outputLocationId = ApiClientBase.optGetLong(js.get("output_location_id"));
-        self.pauseDate = ApiClientBase.optGetInstant(js.get("pause_date"));
-        self.probability = ApiClientBase.optGetFloat(js.get("probability"));
-        self.productTypeId = ApiClientBase.optGetInteger(js.get("product_type_id"));
-        self.runs = ApiClientBase.optGetInteger(js.get("runs"));
-        self.startDate = ApiClientBase.optGetInstant(js.get("start_date"));
-        self.stationId = ApiClientBase.optGetLong(js.get("station_id"));
-        self.status = StatusEnum.fromString(ApiClientBase.optGetString(js.get("status")));
-        self.successfulRuns = ApiClientBase.optGetInteger(js.get("successful_runs"));
-        return self;
     }
     public static enum StatusEnum {
         ACTIVE("active"),
@@ -200,10 +192,15 @@ public class IndustryJobInfo {
         PAUSED("paused"),
         READY("ready"),
         REVERTED("reverted");
-        public final String stringValue;
+        private final String stringValue;
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static StatusEnum fromString(String str) {
             for (StatusEnum self : StatusEnum.values()) {
                 if (self.stringValue.equals(str)) {

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StarInfo {
+public class StarInfo implements ApiParameterObject {
     private long age;
     public void setAge(long val) {
         age = val;
     }
+    @JsonProperty("age")
     public long getAge() {
         return age;
     }
@@ -20,6 +21,7 @@ public class StarInfo {
     public void setLuminosity(float val) {
         luminosity = val;
     }
+    @JsonProperty("luminosity")
     public float getLuminosity() {
         return luminosity;
     }
@@ -27,6 +29,7 @@ public class StarInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -34,6 +37,7 @@ public class StarInfo {
     public void setRadius(long val) {
         radius = val;
     }
+    @JsonProperty("radius")
     public long getRadius() {
         return radius;
     }
@@ -41,6 +45,7 @@ public class StarInfo {
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
@@ -48,6 +53,7 @@ public class StarInfo {
     public void setSpectralClass(SpectralClassEnum val) {
         spectralClass = val;
     }
+    @JsonProperty("spectral_class")
     public SpectralClassEnum getSpectralClass() {
         return spectralClass;
     }
@@ -55,6 +61,7 @@ public class StarInfo {
     public void setTemperature(int val) {
         temperature = val;
     }
+    @JsonProperty("temperature")
     public int getTemperature() {
         return temperature;
     }
@@ -62,24 +69,9 @@ public class StarInfo {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static StarInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StarInfo self = new StarInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.age = ApiClientBase.optGetLong(js.get("age"));
-        self.luminosity = ApiClientBase.optGetFloat(js.get("luminosity"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.radius = ApiClientBase.optGetLong(js.get("radius"));
-        self.solarSystemId = ApiClientBase.optGetInteger(js.get("solar_system_id"));
-        self.spectralClass = SpectralClassEnum.fromString(ApiClientBase.optGetString(js.get("spectral_class")));
-        self.temperature = ApiClientBase.optGetInteger(js.get("temperature"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
     public static enum SpectralClassEnum {
         K2_V("K2 V"),
@@ -171,10 +163,15 @@ public class StarInfo {
         A0("A0"),
         A0IV("A0IV"),
         A0IV2("A0IV2");
-        public final String stringValue;
+        private final String stringValue;
         private SpectralClassEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static SpectralClassEnum fromString(String str) {
             for (SpectralClassEnum self : SpectralClassEnum.values()) {
                 if (self.stringValue.equals(str)) {

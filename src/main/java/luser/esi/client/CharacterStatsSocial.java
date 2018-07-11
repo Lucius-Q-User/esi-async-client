@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CharacterStatsSocial {
+public class CharacterStatsSocial implements ApiParameterObject {
     private Long addContactBad;
     public void setAddContactBad(Long val) {
         addContactBad = val;
     }
+    @JsonProperty("add_contact_bad")
     public Long getAddContactBad() {
         return addContactBad;
     }
@@ -20,6 +21,7 @@ public class CharacterStatsSocial {
     public void setAddContactGood(Long val) {
         addContactGood = val;
     }
+    @JsonProperty("add_contact_good")
     public Long getAddContactGood() {
         return addContactGood;
     }
@@ -27,6 +29,7 @@ public class CharacterStatsSocial {
     public void setAddContactHigh(Long val) {
         addContactHigh = val;
     }
+    @JsonProperty("add_contact_high")
     public Long getAddContactHigh() {
         return addContactHigh;
     }
@@ -34,6 +37,7 @@ public class CharacterStatsSocial {
     public void setAddContactHorrible(Long val) {
         addContactHorrible = val;
     }
+    @JsonProperty("add_contact_horrible")
     public Long getAddContactHorrible() {
         return addContactHorrible;
     }
@@ -41,6 +45,7 @@ public class CharacterStatsSocial {
     public void setAddContactNeutral(Long val) {
         addContactNeutral = val;
     }
+    @JsonProperty("add_contact_neutral")
     public Long getAddContactNeutral() {
         return addContactNeutral;
     }
@@ -48,6 +53,7 @@ public class CharacterStatsSocial {
     public void setAddNote(Long val) {
         addNote = val;
     }
+    @JsonProperty("add_note")
     public Long getAddNote() {
         return addNote;
     }
@@ -55,6 +61,7 @@ public class CharacterStatsSocial {
     public void setAddedAsContactBad(Long val) {
         addedAsContactBad = val;
     }
+    @JsonProperty("added_as_contact_bad")
     public Long getAddedAsContactBad() {
         return addedAsContactBad;
     }
@@ -62,6 +69,7 @@ public class CharacterStatsSocial {
     public void setAddedAsContactGood(Long val) {
         addedAsContactGood = val;
     }
+    @JsonProperty("added_as_contact_good")
     public Long getAddedAsContactGood() {
         return addedAsContactGood;
     }
@@ -69,6 +77,7 @@ public class CharacterStatsSocial {
     public void setAddedAsContactHigh(Long val) {
         addedAsContactHigh = val;
     }
+    @JsonProperty("added_as_contact_high")
     public Long getAddedAsContactHigh() {
         return addedAsContactHigh;
     }
@@ -76,6 +85,7 @@ public class CharacterStatsSocial {
     public void setAddedAsContactHorrible(Long val) {
         addedAsContactHorrible = val;
     }
+    @JsonProperty("added_as_contact_horrible")
     public Long getAddedAsContactHorrible() {
         return addedAsContactHorrible;
     }
@@ -83,6 +93,7 @@ public class CharacterStatsSocial {
     public void setAddedAsContactNeutral(Long val) {
         addedAsContactNeutral = val;
     }
+    @JsonProperty("added_as_contact_neutral")
     public Long getAddedAsContactNeutral() {
         return addedAsContactNeutral;
     }
@@ -90,6 +101,7 @@ public class CharacterStatsSocial {
     public void setCalendarEventCreated(Long val) {
         calendarEventCreated = val;
     }
+    @JsonProperty("calendar_event_created")
     public Long getCalendarEventCreated() {
         return calendarEventCreated;
     }
@@ -97,6 +109,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesAlliance(Long val) {
         chatMessagesAlliance = val;
     }
+    @JsonProperty("chat_messages_alliance")
     public Long getChatMessagesAlliance() {
         return chatMessagesAlliance;
     }
@@ -104,6 +117,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesConstellation(Long val) {
         chatMessagesConstellation = val;
     }
+    @JsonProperty("chat_messages_constellation")
     public Long getChatMessagesConstellation() {
         return chatMessagesConstellation;
     }
@@ -111,6 +125,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesCorporation(Long val) {
         chatMessagesCorporation = val;
     }
+    @JsonProperty("chat_messages_corporation")
     public Long getChatMessagesCorporation() {
         return chatMessagesCorporation;
     }
@@ -118,6 +133,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesFleet(Long val) {
         chatMessagesFleet = val;
     }
+    @JsonProperty("chat_messages_fleet")
     public Long getChatMessagesFleet() {
         return chatMessagesFleet;
     }
@@ -125,6 +141,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesRegion(Long val) {
         chatMessagesRegion = val;
     }
+    @JsonProperty("chat_messages_region")
     public Long getChatMessagesRegion() {
         return chatMessagesRegion;
     }
@@ -132,6 +149,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesSolarsystem(Long val) {
         chatMessagesSolarsystem = val;
     }
+    @JsonProperty("chat_messages_solarsystem")
     public Long getChatMessagesSolarsystem() {
         return chatMessagesSolarsystem;
     }
@@ -139,6 +157,7 @@ public class CharacterStatsSocial {
     public void setChatMessagesWarfaction(Long val) {
         chatMessagesWarfaction = val;
     }
+    @JsonProperty("chat_messages_warfaction")
     public Long getChatMessagesWarfaction() {
         return chatMessagesWarfaction;
     }
@@ -146,6 +165,7 @@ public class CharacterStatsSocial {
     public void setChatTotalMessageLength(Long val) {
         chatTotalMessageLength = val;
     }
+    @JsonProperty("chat_total_message_length")
     public Long getChatTotalMessageLength() {
         return chatTotalMessageLength;
     }
@@ -153,6 +173,7 @@ public class CharacterStatsSocial {
     public void setDirectTrades(Long val) {
         directTrades = val;
     }
+    @JsonProperty("direct_trades")
     public Long getDirectTrades() {
         return directTrades;
     }
@@ -160,6 +181,7 @@ public class CharacterStatsSocial {
     public void setFleetBroadcasts(Long val) {
         fleetBroadcasts = val;
     }
+    @JsonProperty("fleet_broadcasts")
     public Long getFleetBroadcasts() {
         return fleetBroadcasts;
     }
@@ -167,6 +189,7 @@ public class CharacterStatsSocial {
     public void setFleetJoins(Long val) {
         fleetJoins = val;
     }
+    @JsonProperty("fleet_joins")
     public Long getFleetJoins() {
         return fleetJoins;
     }
@@ -174,6 +197,7 @@ public class CharacterStatsSocial {
     public void setMailsReceived(Long val) {
         mailsReceived = val;
     }
+    @JsonProperty("mails_received")
     public Long getMailsReceived() {
         return mailsReceived;
     }
@@ -181,40 +205,8 @@ public class CharacterStatsSocial {
     public void setMailsSent(Long val) {
         mailsSent = val;
     }
+    @JsonProperty("mails_sent")
     public Long getMailsSent() {
         return mailsSent;
-    }
-    static CharacterStatsSocial fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CharacterStatsSocial self = new CharacterStatsSocial();
-        Map<String, Json> js = json.asJsonMap();
-        self.addContactBad = ApiClientBase.optGetLong(js.get("add_contact_bad"));
-        self.addContactGood = ApiClientBase.optGetLong(js.get("add_contact_good"));
-        self.addContactHigh = ApiClientBase.optGetLong(js.get("add_contact_high"));
-        self.addContactHorrible = ApiClientBase.optGetLong(js.get("add_contact_horrible"));
-        self.addContactNeutral = ApiClientBase.optGetLong(js.get("add_contact_neutral"));
-        self.addNote = ApiClientBase.optGetLong(js.get("add_note"));
-        self.addedAsContactBad = ApiClientBase.optGetLong(js.get("added_as_contact_bad"));
-        self.addedAsContactGood = ApiClientBase.optGetLong(js.get("added_as_contact_good"));
-        self.addedAsContactHigh = ApiClientBase.optGetLong(js.get("added_as_contact_high"));
-        self.addedAsContactHorrible = ApiClientBase.optGetLong(js.get("added_as_contact_horrible"));
-        self.addedAsContactNeutral = ApiClientBase.optGetLong(js.get("added_as_contact_neutral"));
-        self.calendarEventCreated = ApiClientBase.optGetLong(js.get("calendar_event_created"));
-        self.chatMessagesAlliance = ApiClientBase.optGetLong(js.get("chat_messages_alliance"));
-        self.chatMessagesConstellation = ApiClientBase.optGetLong(js.get("chat_messages_constellation"));
-        self.chatMessagesCorporation = ApiClientBase.optGetLong(js.get("chat_messages_corporation"));
-        self.chatMessagesFleet = ApiClientBase.optGetLong(js.get("chat_messages_fleet"));
-        self.chatMessagesRegion = ApiClientBase.optGetLong(js.get("chat_messages_region"));
-        self.chatMessagesSolarsystem = ApiClientBase.optGetLong(js.get("chat_messages_solarsystem"));
-        self.chatMessagesWarfaction = ApiClientBase.optGetLong(js.get("chat_messages_warfaction"));
-        self.chatTotalMessageLength = ApiClientBase.optGetLong(js.get("chat_total_message_length"));
-        self.directTrades = ApiClientBase.optGetLong(js.get("direct_trades"));
-        self.fleetBroadcasts = ApiClientBase.optGetLong(js.get("fleet_broadcasts"));
-        self.fleetJoins = ApiClientBase.optGetLong(js.get("fleet_joins"));
-        self.mailsReceived = ApiClientBase.optGetLong(js.get("mails_received"));
-        self.mailsSent = ApiClientBase.optGetLong(js.get("mails_sent"));
-        return self;
     }
 }

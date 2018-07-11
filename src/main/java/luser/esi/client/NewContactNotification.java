@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class NewContactNotification {
+public class NewContactNotification implements ApiParameterObject {
     private String message;
     public void setMessage(String val) {
         message = val;
     }
+    @JsonProperty("message")
     public String getMessage() {
         return message;
     }
@@ -20,6 +21,7 @@ public class NewContactNotification {
     public void setNotificationId(int val) {
         notificationId = val;
     }
+    @JsonProperty("notification_id")
     public int getNotificationId() {
         return notificationId;
     }
@@ -27,6 +29,7 @@ public class NewContactNotification {
     public void setSendDate(Instant val) {
         sendDate = val;
     }
+    @JsonProperty("send_date")
     public Instant getSendDate() {
         return sendDate;
     }
@@ -34,6 +37,7 @@ public class NewContactNotification {
     public void setSenderCharacterId(int val) {
         senderCharacterId = val;
     }
+    @JsonProperty("sender_character_id")
     public int getSenderCharacterId() {
         return senderCharacterId;
     }
@@ -41,20 +45,8 @@ public class NewContactNotification {
     public void setStandingLevel(float val) {
         standingLevel = val;
     }
+    @JsonProperty("standing_level")
     public float getStandingLevel() {
         return standingLevel;
-    }
-    static NewContactNotification fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        NewContactNotification self = new NewContactNotification();
-        Map<String, Json> js = json.asJsonMap();
-        self.message = ApiClientBase.optGetString(js.get("message"));
-        self.notificationId = ApiClientBase.optGetInteger(js.get("notification_id"));
-        self.sendDate = ApiClientBase.optGetInstant(js.get("send_date"));
-        self.senderCharacterId = ApiClientBase.optGetInteger(js.get("sender_character_id"));
-        self.standingLevel = ApiClientBase.optGetFloat(js.get("standing_level"));
-        return self;
     }
 }

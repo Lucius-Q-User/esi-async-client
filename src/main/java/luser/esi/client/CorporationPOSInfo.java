@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationPOSInfo {
+public class CorporationPOSInfo implements ApiParameterObject {
     private boolean allowAllianceMembers;
     public void setAllowAllianceMembers(boolean val) {
         allowAllianceMembers = val;
     }
+    @JsonProperty("allow_alliance_members")
     public boolean getAllowAllianceMembers() {
         return allowAllianceMembers;
     }
@@ -20,6 +21,7 @@ public class CorporationPOSInfo {
     public void setAllowCorporationMembers(boolean val) {
         allowCorporationMembers = val;
     }
+    @JsonProperty("allow_corporation_members")
     public boolean getAllowCorporationMembers() {
         return allowCorporationMembers;
     }
@@ -27,6 +29,7 @@ public class CorporationPOSInfo {
     public void setAnchor(AnchorEnum val) {
         anchor = val;
     }
+    @JsonProperty("anchor")
     public AnchorEnum getAnchor() {
         return anchor;
     }
@@ -34,6 +37,7 @@ public class CorporationPOSInfo {
     public void setAttackIfAtWar(boolean val) {
         attackIfAtWar = val;
     }
+    @JsonProperty("attack_if_at_war")
     public boolean getAttackIfAtWar() {
         return attackIfAtWar;
     }
@@ -41,6 +45,7 @@ public class CorporationPOSInfo {
     public void setAttackIfOtherSecurityStatusDropping(boolean val) {
         attackIfOtherSecurityStatusDropping = val;
     }
+    @JsonProperty("attack_if_other_security_status_dropping")
     public boolean getAttackIfOtherSecurityStatusDropping() {
         return attackIfOtherSecurityStatusDropping;
     }
@@ -48,6 +53,7 @@ public class CorporationPOSInfo {
     public void setAttackSecurityStatusThreshold(Float val) {
         attackSecurityStatusThreshold = val;
     }
+    @JsonProperty("attack_security_status_threshold")
     public Float getAttackSecurityStatusThreshold() {
         return attackSecurityStatusThreshold;
     }
@@ -55,6 +61,7 @@ public class CorporationPOSInfo {
     public void setAttackStandingThreshold(Float val) {
         attackStandingThreshold = val;
     }
+    @JsonProperty("attack_standing_threshold")
     public Float getAttackStandingThreshold() {
         return attackStandingThreshold;
     }
@@ -62,6 +69,7 @@ public class CorporationPOSInfo {
     public void setFuelBayTake(FuelBayTakeEnum val) {
         fuelBayTake = val;
     }
+    @JsonProperty("fuel_bay_take")
     public FuelBayTakeEnum getFuelBayTake() {
         return fuelBayTake;
     }
@@ -69,6 +77,7 @@ public class CorporationPOSInfo {
     public void setFuelBayView(FuelBayViewEnum val) {
         fuelBayView = val;
     }
+    @JsonProperty("fuel_bay_view")
     public FuelBayViewEnum getFuelBayView() {
         return fuelBayView;
     }
@@ -76,6 +85,7 @@ public class CorporationPOSInfo {
     public void setFuels(List<StarbaseFuel> val) {
         fuels = val;
     }
+    @JsonProperty("fuels")
     public List<StarbaseFuel> getFuels() {
         return fuels;
     }
@@ -83,6 +93,7 @@ public class CorporationPOSInfo {
     public void setOffline(OfflineEnum val) {
         offline = val;
     }
+    @JsonProperty("offline")
     public OfflineEnum getOffline() {
         return offline;
     }
@@ -90,6 +101,7 @@ public class CorporationPOSInfo {
     public void setOnline(OnlineEnum val) {
         online = val;
     }
+    @JsonProperty("online")
     public OnlineEnum getOnline() {
         return online;
     }
@@ -97,6 +109,7 @@ public class CorporationPOSInfo {
     public void setUnanchor(UnanchorEnum val) {
         unanchor = val;
     }
+    @JsonProperty("unanchor")
     public UnanchorEnum getUnanchor() {
         return unanchor;
     }
@@ -104,47 +117,24 @@ public class CorporationPOSInfo {
     public void setUseAllianceStandings(boolean val) {
         useAllianceStandings = val;
     }
+    @JsonProperty("use_alliance_standings")
     public boolean getUseAllianceStandings() {
         return useAllianceStandings;
-    }
-    static CorporationPOSInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationPOSInfo self = new CorporationPOSInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.allowAllianceMembers = ApiClientBase.optGetBoolean(js.get("allow_alliance_members"));
-        self.allowCorporationMembers = ApiClientBase.optGetBoolean(js.get("allow_corporation_members"));
-        self.anchor = AnchorEnum.fromString(ApiClientBase.optGetString(js.get("anchor")));
-        self.attackIfAtWar = ApiClientBase.optGetBoolean(js.get("attack_if_at_war"));
-        self.attackIfOtherSecurityStatusDropping = ApiClientBase.optGetBoolean(js.get("attack_if_other_security_status_dropping"));
-        self.attackSecurityStatusThreshold = ApiClientBase.optGetFloat(js.get("attack_security_status_threshold"));
-        self.attackStandingThreshold = ApiClientBase.optGetFloat(js.get("attack_standing_threshold"));
-        self.fuelBayTake = FuelBayTakeEnum.fromString(ApiClientBase.optGetString(js.get("fuel_bay_take")));
-        self.fuelBayView = FuelBayViewEnum.fromString(ApiClientBase.optGetString(js.get("fuel_bay_view")));
-        {
-            List<Json> jl = js.get("fuels").asJsonList();
-            List<StarbaseFuel> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(StarbaseFuel.fromJson(jl.get(i)));
-            }
-            self.fuels = rt;
-        }
-        self.offline = OfflineEnum.fromString(ApiClientBase.optGetString(js.get("offline")));
-        self.online = OnlineEnum.fromString(ApiClientBase.optGetString(js.get("online")));
-        self.unanchor = UnanchorEnum.fromString(ApiClientBase.optGetString(js.get("unanchor")));
-        self.useAllianceStandings = ApiClientBase.optGetBoolean(js.get("use_alliance_standings"));
-        return self;
     }
     public static enum AnchorEnum {
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
         STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        public final String stringValue;
+        private final String stringValue;
         private AnchorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static AnchorEnum fromString(String str) {
             for (AnchorEnum self : AnchorEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -159,10 +149,15 @@ public class CorporationPOSInfo {
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
         STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        public final String stringValue;
+        private final String stringValue;
         private FuelBayTakeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static FuelBayTakeEnum fromString(String str) {
             for (FuelBayTakeEnum self : FuelBayTakeEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -177,10 +172,15 @@ public class CorporationPOSInfo {
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
         STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        public final String stringValue;
+        private final String stringValue;
         private FuelBayViewEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static FuelBayViewEnum fromString(String str) {
             for (FuelBayViewEnum self : FuelBayViewEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -195,10 +195,15 @@ public class CorporationPOSInfo {
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
         STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        public final String stringValue;
+        private final String stringValue;
         private OfflineEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static OfflineEnum fromString(String str) {
             for (OfflineEnum self : OfflineEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -213,10 +218,15 @@ public class CorporationPOSInfo {
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
         STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        public final String stringValue;
+        private final String stringValue;
         private OnlineEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static OnlineEnum fromString(String str) {
             for (OnlineEnum self : OnlineEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -231,10 +241,15 @@ public class CorporationPOSInfo {
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
         STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        public final String stringValue;
+        private final String stringValue;
         private UnanchorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static UnanchorEnum fromString(String str) {
             for (UnanchorEnum self : UnanchorEnum.values()) {
                 if (self.stringValue.equals(str)) {

@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SystemPlanetInfo {
+public class SystemPlanetInfo implements ApiParameterObject {
     private int[] asteroidBelts;
     public void setAsteroidBelts(int[] val) {
         asteroidBelts = val;
     }
+    @JsonProperty("asteroid_belts")
     public int[] getAsteroidBelts() {
         return asteroidBelts;
     }
@@ -20,6 +21,7 @@ public class SystemPlanetInfo {
     public void setMoons(int[] val) {
         moons = val;
     }
+    @JsonProperty("moons")
     public int[] getMoons() {
         return moons;
     }
@@ -27,32 +29,8 @@ public class SystemPlanetInfo {
     public void setPlanetId(int val) {
         planetId = val;
     }
+    @JsonProperty("planet_id")
     public int getPlanetId() {
         return planetId;
-    }
-    static SystemPlanetInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SystemPlanetInfo self = new SystemPlanetInfo();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("asteroid_belts").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.asteroidBelts = rt;
-        }
-        {
-            List<Json> jl = js.get("moons").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.moons = rt;
-        }
-        self.planetId = ApiClientBase.optGetInteger(js.get("planet_id"));
-        return self;
     }
 }

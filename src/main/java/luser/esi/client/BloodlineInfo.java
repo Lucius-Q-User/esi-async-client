@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class BloodlineInfo {
+public class BloodlineInfo implements ApiParameterObject {
     private int bloodlineId;
     public void setBloodlineId(int val) {
         bloodlineId = val;
     }
+    @JsonProperty("bloodline_id")
     public int getBloodlineId() {
         return bloodlineId;
     }
@@ -20,6 +21,7 @@ public class BloodlineInfo {
     public void setCharisma(int val) {
         charisma = val;
     }
+    @JsonProperty("charisma")
     public int getCharisma() {
         return charisma;
     }
@@ -27,6 +29,7 @@ public class BloodlineInfo {
     public void setCorporationId(int val) {
         corporationId = val;
     }
+    @JsonProperty("corporation_id")
     public int getCorporationId() {
         return corporationId;
     }
@@ -34,6 +37,7 @@ public class BloodlineInfo {
     public void setDescription(String val) {
         description = val;
     }
+    @JsonProperty("description")
     public String getDescription() {
         return description;
     }
@@ -41,6 +45,7 @@ public class BloodlineInfo {
     public void setIntelligence(int val) {
         intelligence = val;
     }
+    @JsonProperty("intelligence")
     public int getIntelligence() {
         return intelligence;
     }
@@ -48,6 +53,7 @@ public class BloodlineInfo {
     public void setMemory(int val) {
         memory = val;
     }
+    @JsonProperty("memory")
     public int getMemory() {
         return memory;
     }
@@ -55,6 +61,7 @@ public class BloodlineInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -62,6 +69,7 @@ public class BloodlineInfo {
     public void setPerception(int val) {
         perception = val;
     }
+    @JsonProperty("perception")
     public int getPerception() {
         return perception;
     }
@@ -69,6 +77,7 @@ public class BloodlineInfo {
     public void setRaceId(int val) {
         raceId = val;
     }
+    @JsonProperty("race_id")
     public int getRaceId() {
         return raceId;
     }
@@ -76,6 +85,7 @@ public class BloodlineInfo {
     public void setShipTypeId(int val) {
         shipTypeId = val;
     }
+    @JsonProperty("ship_type_id")
     public int getShipTypeId() {
         return shipTypeId;
     }
@@ -83,26 +93,8 @@ public class BloodlineInfo {
     public void setWillpower(int val) {
         willpower = val;
     }
+    @JsonProperty("willpower")
     public int getWillpower() {
         return willpower;
-    }
-    static BloodlineInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        BloodlineInfo self = new BloodlineInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.bloodlineId = ApiClientBase.optGetInteger(js.get("bloodline_id"));
-        self.charisma = ApiClientBase.optGetInteger(js.get("charisma"));
-        self.corporationId = ApiClientBase.optGetInteger(js.get("corporation_id"));
-        self.description = ApiClientBase.optGetString(js.get("description"));
-        self.intelligence = ApiClientBase.optGetInteger(js.get("intelligence"));
-        self.memory = ApiClientBase.optGetInteger(js.get("memory"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.perception = ApiClientBase.optGetInteger(js.get("perception"));
-        self.raceId = ApiClientBase.optGetInteger(js.get("race_id"));
-        self.shipTypeId = ApiClientBase.optGetInteger(js.get("ship_type_id"));
-        self.willpower = ApiClientBase.optGetInteger(js.get("willpower"));
-        return self;
     }
 }

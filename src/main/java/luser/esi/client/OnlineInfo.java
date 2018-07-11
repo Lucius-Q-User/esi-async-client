@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class OnlineInfo {
+public class OnlineInfo implements ApiParameterObject {
     private Instant lastLogin;
     public void setLastLogin(Instant val) {
         lastLogin = val;
     }
+    @JsonProperty("last_login")
     public Instant getLastLogin() {
         return lastLogin;
     }
@@ -20,6 +21,7 @@ public class OnlineInfo {
     public void setLastLogout(Instant val) {
         lastLogout = val;
     }
+    @JsonProperty("last_logout")
     public Instant getLastLogout() {
         return lastLogout;
     }
@@ -27,6 +29,7 @@ public class OnlineInfo {
     public void setLogins(Integer val) {
         logins = val;
     }
+    @JsonProperty("logins")
     public Integer getLogins() {
         return logins;
     }
@@ -34,19 +37,8 @@ public class OnlineInfo {
     public void setOnline(boolean val) {
         online = val;
     }
+    @JsonProperty("online")
     public boolean getOnline() {
         return online;
-    }
-    static OnlineInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        OnlineInfo self = new OnlineInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.lastLogin = ApiClientBase.optGetInstant(js.get("last_login"));
-        self.lastLogout = ApiClientBase.optGetInstant(js.get("last_logout"));
-        self.logins = ApiClientBase.optGetInteger(js.get("logins"));
-        self.online = ApiClientBase.optGetBoolean(js.get("online"));
-        return self;
     }
 }

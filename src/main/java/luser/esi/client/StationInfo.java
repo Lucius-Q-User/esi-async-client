@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class StationInfo {
+public class StationInfo implements ApiParameterObject {
     private float maxDockableShipVolume;
     public void setMaxDockableShipVolume(float val) {
         maxDockableShipVolume = val;
     }
+    @JsonProperty("max_dockable_ship_volume")
     public float getMaxDockableShipVolume() {
         return maxDockableShipVolume;
     }
@@ -20,6 +21,7 @@ public class StationInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,6 +29,7 @@ public class StationInfo {
     public void setOfficeRentalCost(float val) {
         officeRentalCost = val;
     }
+    @JsonProperty("office_rental_cost")
     public float getOfficeRentalCost() {
         return officeRentalCost;
     }
@@ -34,6 +37,7 @@ public class StationInfo {
     public void setOwner(Integer val) {
         owner = val;
     }
+    @JsonProperty("owner")
     public Integer getOwner() {
         return owner;
     }
@@ -41,6 +45,7 @@ public class StationInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -48,6 +53,7 @@ public class StationInfo {
     public void setRaceId(Integer val) {
         raceId = val;
     }
+    @JsonProperty("race_id")
     public Integer getRaceId() {
         return raceId;
     }
@@ -55,6 +61,7 @@ public class StationInfo {
     public void setReprocessingEfficiency(float val) {
         reprocessingEfficiency = val;
     }
+    @JsonProperty("reprocessing_efficiency")
     public float getReprocessingEfficiency() {
         return reprocessingEfficiency;
     }
@@ -62,6 +69,7 @@ public class StationInfo {
     public void setReprocessingStationsTake(float val) {
         reprocessingStationsTake = val;
     }
+    @JsonProperty("reprocessing_stations_take")
     public float getReprocessingStationsTake() {
         return reprocessingStationsTake;
     }
@@ -69,6 +77,7 @@ public class StationInfo {
     public void setServices(List<ServicesEnum> val) {
         services = val;
     }
+    @JsonProperty("services")
     public List<ServicesEnum> getServices() {
         return services;
     }
@@ -76,6 +85,7 @@ public class StationInfo {
     public void setStationId(int val) {
         stationId = val;
     }
+    @JsonProperty("station_id")
     public int getStationId() {
         return stationId;
     }
@@ -83,6 +93,7 @@ public class StationInfo {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
     }
@@ -90,35 +101,9 @@ public class StationInfo {
     public void setTypeId(int val) {
         typeId = val;
     }
+    @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
-    }
-    static StationInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        StationInfo self = new StationInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.maxDockableShipVolume = ApiClientBase.optGetFloat(js.get("max_dockable_ship_volume"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        self.officeRentalCost = ApiClientBase.optGetFloat(js.get("office_rental_cost"));
-        self.owner = ApiClientBase.optGetInteger(js.get("owner"));
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.raceId = ApiClientBase.optGetInteger(js.get("race_id"));
-        self.reprocessingEfficiency = ApiClientBase.optGetFloat(js.get("reprocessing_efficiency"));
-        self.reprocessingStationsTake = ApiClientBase.optGetFloat(js.get("reprocessing_stations_take"));
-        {
-            List<Json> jl = js.get("services").asJsonList();
-            List<ServicesEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(ServicesEnum.fromString(jl.get(i).asString()));
-            }
-            self.services = rt;
-        }
-        self.stationId = ApiClientBase.optGetInteger(js.get("station_id"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        self.typeId = ApiClientBase.optGetInteger(js.get("type_id"));
-        return self;
     }
     public static enum ServicesEnum {
         BOUNTY_MISSIONS("bounty-missions"),
@@ -148,10 +133,15 @@ public class StationInfo {
         LOYALTY_POINT_STORE("loyalty-point-store"),
         NAVY_OFFICES("navy-offices"),
         SECURITY_OFFICES("security-offices");
-        public final String stringValue;
+        private final String stringValue;
         private ServicesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static ServicesEnum fromString(String str) {
             for (ServicesEnum self : ServicesEnum.values()) {
                 if (self.stringValue.equals(str)) {

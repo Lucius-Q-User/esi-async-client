@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SystemInfo {
+public class SystemInfo implements ApiParameterObject {
     private int constellationId;
     public void setConstellationId(int val) {
         constellationId = val;
     }
+    @JsonProperty("constellation_id")
     public int getConstellationId() {
         return constellationId;
     }
@@ -20,6 +21,7 @@ public class SystemInfo {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -27,6 +29,7 @@ public class SystemInfo {
     public void setPlanets(List<SystemPlanetInfo> val) {
         planets = val;
     }
+    @JsonProperty("planets")
     public List<SystemPlanetInfo> getPlanets() {
         return planets;
     }
@@ -34,6 +37,7 @@ public class SystemInfo {
     public void setPosition(Coordinate val) {
         position = val;
     }
+    @JsonProperty("position")
     public Coordinate getPosition() {
         return position;
     }
@@ -41,6 +45,7 @@ public class SystemInfo {
     public void setSecurityClass(String val) {
         securityClass = val;
     }
+    @JsonProperty("security_class")
     public String getSecurityClass() {
         return securityClass;
     }
@@ -48,6 +53,7 @@ public class SystemInfo {
     public void setSecurityStatus(float val) {
         securityStatus = val;
     }
+    @JsonProperty("security_status")
     public float getSecurityStatus() {
         return securityStatus;
     }
@@ -55,6 +61,7 @@ public class SystemInfo {
     public void setStarId(Integer val) {
         starId = val;
     }
+    @JsonProperty("star_id")
     public Integer getStarId() {
         return starId;
     }
@@ -62,6 +69,7 @@ public class SystemInfo {
     public void setStargates(int[] val) {
         stargates = val;
     }
+    @JsonProperty("stargates")
     public int[] getStargates() {
         return stargates;
     }
@@ -69,6 +77,7 @@ public class SystemInfo {
     public void setStations(int[] val) {
         stations = val;
     }
+    @JsonProperty("stations")
     public int[] getStations() {
         return stations;
     }
@@ -76,46 +85,8 @@ public class SystemInfo {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
-    }
-    static SystemInfo fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SystemInfo self = new SystemInfo();
-        Map<String, Json> js = json.asJsonMap();
-        self.constellationId = ApiClientBase.optGetInteger(js.get("constellation_id"));
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        {
-            List<Json> jl = js.get("planets").asJsonList();
-            List<SystemPlanetInfo> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(SystemPlanetInfo.fromJson(jl.get(i)));
-            }
-            self.planets = rt;
-        }
-        self.position = Coordinate.fromJson(js.get("position"));
-        self.securityClass = ApiClientBase.optGetString(js.get("security_class"));
-        self.securityStatus = ApiClientBase.optGetFloat(js.get("security_status"));
-        self.starId = ApiClientBase.optGetInteger(js.get("star_id"));
-        {
-            List<Json> jl = js.get("stargates").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.stargates = rt;
-        }
-        {
-            List<Json> jl = js.get("stations").asJsonList();
-            int[] rt = new int[jl.size()];
-            for (int i = 0; i < jl.size(); i++) {
-                rt[i] = jl.get(i).asInteger();
-            }
-            self.stations = rt;
-        }
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        return self;
     }
 }

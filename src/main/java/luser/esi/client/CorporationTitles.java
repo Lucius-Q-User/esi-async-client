@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class CorporationTitles {
+public class CorporationTitles implements ApiParameterObject {
     private List<GrantableRolesEnum> grantableRoles;
     public void setGrantableRoles(List<GrantableRolesEnum> val) {
         grantableRoles = val;
     }
+    @JsonProperty("grantable_roles")
     public List<GrantableRolesEnum> getGrantableRoles() {
         return grantableRoles;
     }
@@ -20,6 +21,7 @@ public class CorporationTitles {
     public void setGrantableRolesAtBase(List<GrantableRolesAtBaseEnum> val) {
         grantableRolesAtBase = val;
     }
+    @JsonProperty("grantable_roles_at_base")
     public List<GrantableRolesAtBaseEnum> getGrantableRolesAtBase() {
         return grantableRolesAtBase;
     }
@@ -27,6 +29,7 @@ public class CorporationTitles {
     public void setGrantableRolesAtHq(List<GrantableRolesAtHqEnum> val) {
         grantableRolesAtHq = val;
     }
+    @JsonProperty("grantable_roles_at_hq")
     public List<GrantableRolesAtHqEnum> getGrantableRolesAtHq() {
         return grantableRolesAtHq;
     }
@@ -34,6 +37,7 @@ public class CorporationTitles {
     public void setGrantableRolesAtOther(List<GrantableRolesAtOtherEnum> val) {
         grantableRolesAtOther = val;
     }
+    @JsonProperty("grantable_roles_at_other")
     public List<GrantableRolesAtOtherEnum> getGrantableRolesAtOther() {
         return grantableRolesAtOther;
     }
@@ -41,6 +45,7 @@ public class CorporationTitles {
     public void setName(String val) {
         name = val;
     }
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -48,6 +53,7 @@ public class CorporationTitles {
     public void setRoles(List<RolesEnum> val) {
         roles = val;
     }
+    @JsonProperty("roles")
     public List<RolesEnum> getRoles() {
         return roles;
     }
@@ -55,6 +61,7 @@ public class CorporationTitles {
     public void setRolesAtBase(List<RolesAtBaseEnum> val) {
         rolesAtBase = val;
     }
+    @JsonProperty("roles_at_base")
     public List<RolesAtBaseEnum> getRolesAtBase() {
         return rolesAtBase;
     }
@@ -62,6 +69,7 @@ public class CorporationTitles {
     public void setRolesAtHq(List<RolesAtHqEnum> val) {
         rolesAtHq = val;
     }
+    @JsonProperty("roles_at_hq")
     public List<RolesAtHqEnum> getRolesAtHq() {
         return rolesAtHq;
     }
@@ -69,6 +77,7 @@ public class CorporationTitles {
     public void setRolesAtOther(List<RolesAtOtherEnum> val) {
         rolesAtOther = val;
     }
+    @JsonProperty("roles_at_other")
     public List<RolesAtOtherEnum> getRolesAtOther() {
         return rolesAtOther;
     }
@@ -76,82 +85,9 @@ public class CorporationTitles {
     public void setTitleId(Integer val) {
         titleId = val;
     }
+    @JsonProperty("title_id")
     public Integer getTitleId() {
         return titleId;
-    }
-    static CorporationTitles fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        CorporationTitles self = new CorporationTitles();
-        Map<String, Json> js = json.asJsonMap();
-        {
-            List<Json> jl = js.get("grantable_roles").asJsonList();
-            List<GrantableRolesEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(GrantableRolesEnum.fromString(jl.get(i).asString()));
-            }
-            self.grantableRoles = rt;
-        }
-        {
-            List<Json> jl = js.get("grantable_roles_at_base").asJsonList();
-            List<GrantableRolesAtBaseEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(GrantableRolesAtBaseEnum.fromString(jl.get(i).asString()));
-            }
-            self.grantableRolesAtBase = rt;
-        }
-        {
-            List<Json> jl = js.get("grantable_roles_at_hq").asJsonList();
-            List<GrantableRolesAtHqEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(GrantableRolesAtHqEnum.fromString(jl.get(i).asString()));
-            }
-            self.grantableRolesAtHq = rt;
-        }
-        {
-            List<Json> jl = js.get("grantable_roles_at_other").asJsonList();
-            List<GrantableRolesAtOtherEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(GrantableRolesAtOtherEnum.fromString(jl.get(i).asString()));
-            }
-            self.grantableRolesAtOther = rt;
-        }
-        self.name = ApiClientBase.optGetString(js.get("name"));
-        {
-            List<Json> jl = js.get("roles").asJsonList();
-            List<RolesEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(RolesEnum.fromString(jl.get(i).asString()));
-            }
-            self.roles = rt;
-        }
-        {
-            List<Json> jl = js.get("roles_at_base").asJsonList();
-            List<RolesAtBaseEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(RolesAtBaseEnum.fromString(jl.get(i).asString()));
-            }
-            self.rolesAtBase = rt;
-        }
-        {
-            List<Json> jl = js.get("roles_at_hq").asJsonList();
-            List<RolesAtHqEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(RolesAtHqEnum.fromString(jl.get(i).asString()));
-            }
-            self.rolesAtHq = rt;
-        }
-        {
-            List<Json> jl = js.get("roles_at_other").asJsonList();
-            List<RolesAtOtherEnum> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(RolesAtOtherEnum.fromString(jl.get(i).asString()));
-            }
-            self.rolesAtOther = rt;
-        }
-        self.titleId = ApiClientBase.optGetInteger(js.get("title_id"));
-        return self;
     }
     public static enum GrantableRolesEnum {
         ACCOUNT_TAKE_1("Account_Take_1"),
@@ -204,10 +140,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private GrantableRolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static GrantableRolesEnum fromString(String str) {
             for (GrantableRolesEnum self : GrantableRolesEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -268,10 +209,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private GrantableRolesAtBaseEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static GrantableRolesAtBaseEnum fromString(String str) {
             for (GrantableRolesAtBaseEnum self : GrantableRolesAtBaseEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -332,10 +278,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private GrantableRolesAtHqEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static GrantableRolesAtHqEnum fromString(String str) {
             for (GrantableRolesAtHqEnum self : GrantableRolesAtHqEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -396,10 +347,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private GrantableRolesAtOtherEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static GrantableRolesAtOtherEnum fromString(String str) {
             for (GrantableRolesAtOtherEnum self : GrantableRolesAtOtherEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -460,10 +416,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private RolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RolesEnum fromString(String str) {
             for (RolesEnum self : RolesEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -524,10 +485,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private RolesAtBaseEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RolesAtBaseEnum fromString(String str) {
             for (RolesAtBaseEnum self : RolesAtBaseEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -588,10 +554,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private RolesAtHqEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RolesAtHqEnum fromString(String str) {
             for (RolesAtHqEnum self : RolesAtHqEnum.values()) {
                 if (self.stringValue.equals(str)) {
@@ -652,10 +623,15 @@ public class CorporationTitles {
         TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
         TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
         TRADER("Trader");
-        public final String stringValue;
+        private final String stringValue;
         private RolesAtOtherEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @JsonValue
+        public String getStringValue() {
+            return stringValue;
+        }
+        @JsonCreator
         public static RolesAtOtherEnum fromString(String str) {
             for (RolesAtOtherEnum self : RolesAtOtherEnum.values()) {
                 if (self.stringValue.equals(str)) {

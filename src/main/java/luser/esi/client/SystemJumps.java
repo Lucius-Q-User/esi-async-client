@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class SystemJumps {
+public class SystemJumps implements ApiParameterObject {
     private int shipJumps;
     public void setShipJumps(int val) {
         shipJumps = val;
     }
+    @JsonProperty("ship_jumps")
     public int getShipJumps() {
         return shipJumps;
     }
@@ -20,17 +21,8 @@ public class SystemJumps {
     public void setSystemId(int val) {
         systemId = val;
     }
+    @JsonProperty("system_id")
     public int getSystemId() {
         return systemId;
-    }
-    static SystemJumps fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        SystemJumps self = new SystemJumps();
-        Map<String, Json> js = json.asJsonMap();
-        self.shipJumps = ApiClientBase.optGetInteger(js.get("ship_jumps"));
-        self.systemId = ApiClientBase.optGetInteger(js.get("system_id"));
-        return self;
     }
 }

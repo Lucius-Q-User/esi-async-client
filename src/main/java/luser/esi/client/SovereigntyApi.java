@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class SovereigntyApi {
@@ -37,13 +37,8 @@ public class SovereigntyApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<SovereigntyCampaign>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SovereigntyCampaign> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SovereigntyCampaign.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SovereigntyCampaign>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SovereigntyCampaign>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -67,13 +62,8 @@ public class SovereigntyApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<SovMap>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SovMap> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SovMap.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SovMap>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SovMap>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -97,13 +87,8 @@ public class SovereigntyApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        Function<String, List<SovStructures>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SovStructures> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SovStructures.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SovStructures>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SovStructures>>() {});
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

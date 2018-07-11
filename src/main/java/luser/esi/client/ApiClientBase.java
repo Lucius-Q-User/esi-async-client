@@ -1,5 +1,6 @@
 package luser.esi.client;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -10,15 +11,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 import java.util.stream.StreamSupport;
 
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import io.netty.handler.codec.http.HttpHeaders;
-import mjson.Json;
 
 abstract class ApiClientBase {
 
@@ -28,7 +32,7 @@ abstract class ApiClientBase {
     private String refreshToken;
     private Instant authTokenExpiry;
     private CompletableFuture<String> inflightRefresh;
-
+    static final ObjectMapper GLOBAL_OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     public synchronized String getClientId() {
         return clientId;
     }
@@ -84,29 +88,41 @@ abstract class ApiClientBase {
         if (authTokenExpiry.isAfter(Instant.now())) {
             return CompletableFuture.completedFuture(authToken);
         }
-        String authVal = "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8));
-        Json authBody = Json.object("grant_type", "refresh_token", "refresh_token", refreshToken);
-        RequestBuilder builder = Dsl.post("https://login.eveonline.com/oauth/token")
-                .addHeader("Authorization", authVal)
-                .addHeader("Content-Type", "application/json")
-                .setBody(authBody.toString());
-        inflightRefresh = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenApply((resp) -> {
-            Map<String, Json> js = Json.read(resp.getResponseBody()).asJsonMap();
-            synchronized (this) {
-                inflightRefresh = null;
-                authToken = js.get("access_token").asString();
-                authTokenExpiry = Instant.now().plus(js.get("expires_in").asLong(), ChronoUnit.SECONDS);
-            }
-            return authToken;
-        });
-        return inflightRefresh;
+        try {
+            String authVal = "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8));
+            ObjectNode authBody = GLOBAL_OBJECT_MAPPER.createObjectNode();
+            authBody.put("grant_type", "refresh_token");
+            authBody.put("refresh_token", refreshToken);
+            RequestBuilder builder = Dsl.post("https://login.eveonline.com/oauth/token")
+                    .addHeader("Authorization", authVal)
+                    .addHeader("Content-Type", "application/json")
+                    .setBody(GLOBAL_OBJECT_MAPPER.writeValueAsString(authBody));
+            inflightRefresh = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
+                try {
+                    ObjectNode js = (ObjectNode) GLOBAL_OBJECT_MAPPER.readTree(resp.getResponseBody());
+                    synchronized (this) {
+                        inflightRefresh = null;
+                        authToken = js.get("access_token").asText();
+                        authTokenExpiry = Instant.now().plus(js.get("expires_in").asLong(), ChronoUnit.SECONDS);
+                    }
+                    return CompletableFuture.completedFuture(authToken);
+                } catch (IOException e) {
+                    CompletableFuture<String> err = new CompletableFuture<>();
+                    err.completeExceptionally(e);
+                    return err;
+                }
+            });
+            return inflightRefresh;
+        } catch (JsonProcessingException e) {
+            throw new Error(e);
+        }
     }
 
 
 
     private static final AsyncHttpClient asyncHttpClient = Dsl.asyncHttpClient();
 
-    private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, Function<String, T> responseParser) {
+    private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, ResponseParser<T> responseParser) {
         return asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
             int statusCode = resp.getStatusCode();
             String resultBody = resp.getResponseBody();
@@ -117,14 +133,23 @@ abstract class ApiClientBase {
                 future.completeExceptionally(new ApiException(statusCode, headers, resultBody));
                 return future;
             } else {
-                T parsedResponse = responseParser.apply(resultBody);
-                return CompletableFuture.completedFuture(new EsiResponseWrapper<>(statusCode, headers, parsedResponse));
+                try {
+                    T parsedResponse = responseParser.apply(resultBody);
+                    return CompletableFuture.completedFuture(new EsiResponseWrapper<>(statusCode, headers, parsedResponse));
+                } catch (IOException e) {
+                    CompletableFuture<EsiResponseWrapper<T>> future = new CompletableFuture<>();
+                    future.completeExceptionally(e);
+                    return future;
+                }
             }
+        }).exceptionally((ex) -> {
+            ex.printStackTrace();
+            return null;
         });
     }
 
     <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(String url, Map<String, String> parametersInHeaders, Map<String, String> parametersInUrl, Map<String, String> parametersInQuery, String body, String method,
-            boolean needsAuth, Function<String, T> responseParser) {
+            boolean needsAuth, ResponseParser<T> responseParser) {
         for (Entry<String, String> e : parametersInUrl.entrySet()) {
             url = url.replace("{" + e.getKey() + "}", e.getValue());
         }
@@ -194,59 +219,19 @@ abstract class ApiClientBase {
         return "[" + renderArrayToQuery(itemIds, null) + "]";
     }
 
-    static String renderToBody(Iterable<String> names) {
-        Json ar = Json.array();
-        for (String name : names) {
-            ar.add(Json.make(name));
+    static String renderToBody(List<String> names) {
+        try {
+            return GLOBAL_OBJECT_MAPPER.writeValueAsString(names);
+        } catch (JsonProcessingException e) {
+            throw new Error(e);
         }
-        return ar.toString();
     }
-
-    static String renderToBody(JsonConvertible jsc) {
-        return jsc.toJson().toString();
-    }
-    static Double optGetDouble(Json js) {
-        if (js == null) {
-            return null;
+    static String renderToBody(ApiParameterObject jsc) {
+        try {
+            return GLOBAL_OBJECT_MAPPER.writeValueAsString(jsc);
+        } catch (JsonProcessingException e) {
+            throw new Error(e);
         }
-        return js.asDouble();
-    }
-    static Float optGetFloat(Json js) {
-        if (js == null) {
-            return null;
-        }
-        return js.asFloat();
-    }
-    static Integer optGetInteger(Json js) {
-        if (js == null) {
-            return null;
-        }
-        return js.asInteger();
-    }
-    static Long optGetLong(Json js) {
-        if (js == null) {
-            return null;
-        }
-        return js.asLong();
-    }
-    static Boolean optGetBoolean(Json js) {
-        if (js == null) {
-            return null;
-        }
-        return js.asBoolean();
-    }
-    static String optGetString(Json js) {
-        if (js == null) {
-            return null;
-        }
-        return js.asString();
-    }
-    static Instant optGetInstant(Json js) {
-        String st = optGetString(js);
-        if (st == null) {
-            return null;
-        }
-        return Instant.parse(st);
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import mjson.Json;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @SuppressWarnings("unused")
 public class FittingsApi {
@@ -38,13 +38,8 @@ public class FittingsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        Function<String, List<SavedFitting>> responseParser = (resp) -> {
-            List<Json> js = Json.read(resp).asJsonList();
-            List<SavedFitting> ret = new ArrayList<>(js.size());
-            for (Json jo : js) {
-                ret.add(SavedFitting.fromJson(jo));
-            }
-            return ret;
+        ResponseParser<List<SavedFitting>> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SavedFitting>>() {});
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -66,9 +61,8 @@ public class FittingsApi {
         String body = null;
         body = ApiClientBase.renderToBody(fitting);
         String method = "POST";
-        Function<String, FittingCreatedResponse> responseParser = (resp) -> {
-            Json js = Json.read(resp);
-            return FittingCreatedResponse.fromJson(js);
+        ResponseParser<FittingCreatedResponse> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FittingCreatedResponse.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -90,7 +84,7 @@ public class FittingsApi {
         parametersInUrl.put("fitting_id", String.valueOf(fittingId));
         String body = null;
         String method = "DELETE";
-        Function<String, Void> responseParser = (resp) -> {
+        ResponseParser<Void> responseParser = (resp) -> {
             return null;
         };
         boolean needsAuth = true;

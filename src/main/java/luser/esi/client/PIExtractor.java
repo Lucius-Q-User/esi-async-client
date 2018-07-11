@@ -3,16 +3,17 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
-import mjson.Json;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
-public class PIExtractor {
+public class PIExtractor implements ApiParameterObject {
     private Integer cycleTime;
     public void setCycleTime(Integer val) {
         cycleTime = val;
     }
+    @JsonProperty("cycle_time")
     public Integer getCycleTime() {
         return cycleTime;
     }
@@ -20,6 +21,7 @@ public class PIExtractor {
     public void setHeadRadius(Float val) {
         headRadius = val;
     }
+    @JsonProperty("head_radius")
     public Float getHeadRadius() {
         return headRadius;
     }
@@ -27,6 +29,7 @@ public class PIExtractor {
     public void setHeads(List<PIExtractorHead> val) {
         heads = val;
     }
+    @JsonProperty("heads")
     public List<PIExtractorHead> getHeads() {
         return heads;
     }
@@ -34,6 +37,7 @@ public class PIExtractor {
     public void setProductTypeId(Integer val) {
         productTypeId = val;
     }
+    @JsonProperty("product_type_id")
     public Integer getProductTypeId() {
         return productTypeId;
     }
@@ -41,27 +45,8 @@ public class PIExtractor {
     public void setQtyPerCycle(Integer val) {
         qtyPerCycle = val;
     }
+    @JsonProperty("qty_per_cycle")
     public Integer getQtyPerCycle() {
         return qtyPerCycle;
-    }
-    static PIExtractor fromJson(Json json) {
-        if (json == null) {
-            return null;
-        }
-        PIExtractor self = new PIExtractor();
-        Map<String, Json> js = json.asJsonMap();
-        self.cycleTime = ApiClientBase.optGetInteger(js.get("cycle_time"));
-        self.headRadius = ApiClientBase.optGetFloat(js.get("head_radius"));
-        {
-            List<Json> jl = js.get("heads").asJsonList();
-            List<PIExtractorHead> rt = new ArrayList<>(jl.size());
-            for (int i = 0; i < jl.size(); i++) {
-                rt.add(PIExtractorHead.fromJson(jl.get(i)));
-            }
-            self.heads = rt;
-        }
-        self.productTypeId = ApiClientBase.optGetInteger(js.get("product_type_id"));
-        self.qtyPerCycle = ApiClientBase.optGetInteger(js.get("qty_per_cycle"));
-        return self;
     }
 }
