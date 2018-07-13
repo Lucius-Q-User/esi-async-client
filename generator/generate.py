@@ -1,16 +1,10 @@
-from mako import exceptions
 import sys
 import os
 import re
 import json
-from mako.template import Template
+from pathlib import Path
+
 myDir = os.path.dirname(os.path.abspath(__file__))
-apiClientTemplate = Template(filename=os.path.join(myDir, "ApiClient.java.mako"))
-swg = json.loads(open(os.path.join(myDir, "swagger.json")).read())
-apiObjectTemplate = Template(filename=os.path.join(myDir, "ApiObject.java.mako"))
-stringEnumTemplate = Template(filename=os.path.join(myDir, "StringEnumTemplate.java.mako"))
-parameterObjectTemplate = Template(filename=os.path.join(myDir, "RequestObject.java.mako"))
-parameterRefs = {}
 generateIn = "."
 for i in range(len(sys.argv)):
    if sys.argv[i] == "-o" or sys.argv[i] == "--output":
@@ -19,6 +13,27 @@ for i in range(len(sys.argv)):
       generateIn = sys.argv[i][9:]
 os.makedirs(generateIn, exist_ok=True)
 os.chdir(generateIn)
+def shouldUpdate():
+   try:
+      tstamp = os.path.getmtime("timestamp.gen")
+      return any(os.path.getmtime(os.path.join(myDir, x)) > tstamp for x in os.listdir(myDir));
+   except:
+      return True
+if not shouldUpdate():
+   exit(0)
+
+from mako import exceptions
+from mako.template import Template
+
+
+
+apiClientTemplate = Template(filename=os.path.join(myDir, "ApiClient.java.mako"))
+swg = json.loads(open(os.path.join(myDir, "swagger.json")).read())
+apiObjectTemplate = Template(filename=os.path.join(myDir, "ApiObject.java.mako"))
+stringEnumTemplate = Template(filename=os.path.join(myDir, "StringEnumTemplate.java.mako"))
+parameterObjectTemplate = Template(filename=os.path.join(myDir, "RequestObject.java.mako"))
+parameterRefs = {}
+
 for parameter in swg["parameters"]:
    parameterRefs["#/parameters/" + parameter] = swg["parameters"][parameter]
 
@@ -484,3 +499,5 @@ for tag, paths in tags.items():
                                          getReturnTypeName=getReturnTypeName, getFunctionName=getFunctionName,
                                          getArgNames=getArgNames, swg=swg, parameterRefs=parameterRefs, retTypeKind=retTypeKind,
                                          toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower))
+
+Path('timestamp.gen').touch()
