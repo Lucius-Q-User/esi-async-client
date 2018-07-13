@@ -1,14 +1,24 @@
 from mako import exceptions
+import sys
 import os
 import re
 import json
 from mako.template import Template
-apiClientTemplate = Template(filename="ApiClient.java.mako")
-swg = json.loads(open("swagger.json").read())
-apiObjectTemplate = Template(filename="ApiObject.java.mako")
-stringEnumTemplate = Template(filename="StringEnumTemplate.java.mako")
-parameterObjectTemplate = Template(filename="RequestObject.java.mako")
+myDir = os.path.dirname(os.path.abspath(__file__))
+apiClientTemplate = Template(filename=os.path.join(myDir, "ApiClient.java.mako"))
+swg = json.loads(open(os.path.join(myDir, "swagger.json")).read())
+apiObjectTemplate = Template(filename=os.path.join(myDir, "ApiObject.java.mako"))
+stringEnumTemplate = Template(filename=os.path.join(myDir, "StringEnumTemplate.java.mako"))
+parameterObjectTemplate = Template(filename=os.path.join(myDir, "RequestObject.java.mako"))
 parameterRefs = {}
+generateIn = "."
+for i in range(len(sys.argv)):
+   if sys.argv[i] == "-o" or sys.argv[i] == "--output":
+      generateIn = sys.argv[i + 1]
+   elif sys.argv[i].startswith("--output="):
+      generateIn = sys.argv[i][9:]
+os.makedirs(generateIn, exist_ok=True)
+os.chdir(generateIn)
 for parameter in swg["parameters"]:
    parameterRefs["#/parameters/" + parameter] = swg["parameters"][parameter]
 
