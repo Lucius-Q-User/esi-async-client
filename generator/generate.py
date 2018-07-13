@@ -21,10 +21,12 @@ def shouldUpdate():
       return True
 if not shouldUpdate():
    exit(0)
-
-from mako import exceptions
-from mako.template import Template
-
+try:
+   from mako import exceptions
+   from mako.template import Template
+except:
+   print("Unable to import mako; exiting")
+   exit(0)
 
 
 apiClientTemplate = Template(filename=os.path.join(myDir, "ApiClient.java.mako"))
