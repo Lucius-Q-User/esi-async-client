@@ -24,7 +24,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import io.netty.handler.codec.http.HttpHeaders;
 
-abstract class ApiClientBase {
+abstract class ApiClientBase implements AutoCloseable {
 
     private String clientId;
     private String clientSecret;
@@ -32,6 +32,38 @@ abstract class ApiClientBase {
     private String refreshToken;
     private Instant authTokenExpiry;
     private CompletableFuture<String> inflightRefresh;
+    private static AsyncHttpClient asyncHttpClient = null;
+    private static long activeClients = 0;
+    private static final Object LOCK = new Object();
+    private boolean disposed = false;
+    public ApiClientBase() {
+        synchronized (LOCK) {
+            if (activeClients == 0) {
+                asyncHttpClient = Dsl.asyncHttpClient();
+            }
+            activeClients++;
+        }
+    }
+    @Override
+    public synchronized void close() {
+        if (!disposed) {
+            disposed = true;
+            synchronized (LOCK) {
+                activeClients--;
+                if (activeClients == 0) {
+                    try {
+                        asyncHttpClient.close();
+                    } catch (Exception e) {
+                        throw new Error(e);
+                    }
+                }
+            }
+        }
+    }
+    @Override
+    protected void finalize() throws Throwable {
+        close();
+    }
     static final ObjectMapper GLOBAL_OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     public synchronized String getClientId() {
         return clientId;
@@ -120,7 +152,7 @@ abstract class ApiClientBase {
 
 
 
-    private static final AsyncHttpClient asyncHttpClient = Dsl.asyncHttpClient();
+
 
     private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, ResponseParser<T> responseParser) {
         return asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
