@@ -20,6 +20,13 @@ public class ${tag}Api {
     }
     % for path in paths:
     % for method in swg["paths"][path]:
+    /**
+     * ${swg["paths"][path][method]["description"].replace("\n", "\n     * ")}
+%for doc, var in getArgDocstring(path, method):
+     * @param ${var} ${doc}
+%endfor
+     * @return ${getReturnDocstring(path, method)}
+     */
     <% returnType = getReturnTypeName(path, method) %>
     public CompletableFuture<EsiResponseWrapper<${returnType}>> \
 ${getFunctionName(path, method)}(\

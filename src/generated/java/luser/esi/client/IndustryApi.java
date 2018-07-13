@@ -18,6 +18,18 @@ public class IndustryApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * List industry jobs placed by a character
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param includeCompleted Whether retrieve completed character industry jobs as well
+     * @return Industry jobs placed by a character
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getCharactersCharacterIdIndustryJobs(int characterId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/industry/jobs/";
@@ -49,6 +61,18 @@ public class IndustryApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Paginated record of all mining done by a character for the past 30 days
+     * 
+     * ---
+     * 
+     * This route is cached for up to 600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return Mining ledger of a character
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getCharactersCharacterIdMining(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mining/";
@@ -80,6 +104,21 @@ public class IndustryApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 1800 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Structure_manager
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return A list of chunk timers
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getCorporationCorporationIdMiningExtractions(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/extractions/";
@@ -111,6 +150,21 @@ public class IndustryApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Paginated list of all entities capable of observing and recording mining for a corporation
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return Observer list of a corporation
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getCorporationCorporationIdMiningObservers(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/";
@@ -142,6 +196,22 @@ public class IndustryApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Paginated record of all mining seen by an observer
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param observerId A mining observer id
+     * @param page Which page of results to return
+     * @return Mining ledger of an observer
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getCorporationCorporationIdMiningObserversObserverId(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long observerId, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/{observer_id}/";
@@ -174,6 +244,22 @@ public class IndustryApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * List industry jobs run by a corporation
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): FactoryManager
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param includeCompleted Whether retrieve completed industry jobs as well
+     * @param page Which page of results to return
+     * @return A list of corporation industry jobs
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getCorporationsCorporationIdIndustryJobs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/industry/jobs/";
@@ -210,6 +296,16 @@ public class IndustryApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of industry facilities
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of facilities
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/industry/facilities/";
@@ -235,6 +331,16 @@ public class IndustryApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return cost indices for solar systems
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of cost indicies
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/industry/systems/";

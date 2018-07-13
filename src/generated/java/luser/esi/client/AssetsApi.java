@@ -18,6 +18,16 @@ public class AssetsApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.
+     * 
+     * ---
+     * 
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param itemIds A list of item ids
+     * @return List of asset names
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> postCharactersCharacterIdAssetsNames(int characterId, DatasourceEnum datasource, long[] itemIds) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/assets/names/";
@@ -41,6 +51,17 @@ public class AssetsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships.
+     * 
+     * ---
+     * 
+     * Requires one of the following EVE corporation role(s): Director
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param itemIds A list of item ids
+     * @return List of asset names
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> postCorporationsCorporationIdAssetsNames(int corporationId, DatasourceEnum datasource, long[] itemIds) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/assets/names/";
@@ -64,6 +85,16 @@ public class AssetsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)
+     * 
+     * ---
+     * 
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param itemIds A list of item ids
+     * @return List of asset locations
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> postCharactersCharacterIdAssetsLocations(int characterId, DatasourceEnum datasource, long[] itemIds) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/assets/locations/";
@@ -87,6 +118,17 @@ public class AssetsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)
+     * 
+     * ---
+     * 
+     * Requires one of the following EVE corporation role(s): Director
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param itemIds A list of item ids
+     * @return List of asset locations
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> postCorporationsCorporationIdAssetsLocations(int corporationId, DatasourceEnum datasource, long[] itemIds) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/assets/locations/";
@@ -110,6 +152,18 @@ public class AssetsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of the characters assets
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return A flat list of the users assets
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharactersCharacterIdAssets(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/assets/";
@@ -141,6 +195,21 @@ public class AssetsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of the corporation assets
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Director
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return A list of assets
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationsCorporationIdAssets(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/assets/";

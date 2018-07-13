@@ -18,6 +18,17 @@ public class FittingsApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Return fittings of a character
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of fittings
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getCharactersCharacterIdFittings(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/";
@@ -44,6 +55,16 @@ public class FittingsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Save a new fitting for a character
+     * 
+     * ---
+     * 
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param fitting Details about the new fitting
+     * @return A list of fittings
+     */
     
     public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> postCharactersCharacterIdFittings(int characterId, DatasourceEnum datasource, NewStoredFitting fitting) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/";
@@ -67,6 +88,16 @@ public class FittingsApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Delete a fitting from a character
+     * 
+     * ---
+     * 
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param fittingId ID for a fitting of this character
+     * @return Fitting deleted
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> deleteCharactersCharacterIdFittingsFittingId(int characterId, DatasourceEnum datasource, int fittingId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/{fitting_id}/";

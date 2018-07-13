@@ -18,6 +18,16 @@ public class IncursionsApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Return a list of current incursions
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of incursions
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ActiveIncursions>>> getIncursions(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/incursions/";

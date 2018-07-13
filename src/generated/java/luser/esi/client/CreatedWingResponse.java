@@ -10,9 +10,15 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class CreatedWingResponse implements ApiParameterObject {
     private long wingId;
+    /**
+     * The wing_id of the newly created wing
+     */
     public void setWingId(long val) {
         wingId = val;
     }
+    /**
+     * The wing_id of the newly created wing
+     */
     @JsonProperty("wing_id")
     public long getWingId() {
         return wingId;

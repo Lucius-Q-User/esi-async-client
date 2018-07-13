@@ -10,33 +10,57 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class CharacterRoles implements ApiParameterObject {
     private List<RolesEnum> roles;
+    /**
+     * roles array
+     */
     public void setRoles(List<RolesEnum> val) {
         roles = val;
     }
+    /**
+     * roles array
+     */
     @JsonProperty("roles")
     public List<RolesEnum> getRoles() {
         return roles;
     }
     private List<RolesAtBaseEnum> rolesAtBase;
+    /**
+     * roles_at_base array
+     */
     public void setRolesAtBase(List<RolesAtBaseEnum> val) {
         rolesAtBase = val;
     }
+    /**
+     * roles_at_base array
+     */
     @JsonProperty("roles_at_base")
     public List<RolesAtBaseEnum> getRolesAtBase() {
         return rolesAtBase;
     }
     private List<RolesAtHqEnum> rolesAtHq;
+    /**
+     * roles_at_hq array
+     */
     public void setRolesAtHq(List<RolesAtHqEnum> val) {
         rolesAtHq = val;
     }
+    /**
+     * roles_at_hq array
+     */
     @JsonProperty("roles_at_hq")
     public List<RolesAtHqEnum> getRolesAtHq() {
         return rolesAtHq;
     }
     private List<RolesAtOtherEnum> rolesAtOther;
+    /**
+     * roles_at_other array
+     */
     public void setRolesAtOther(List<RolesAtOtherEnum> val) {
         rolesAtOther = val;
     }
+    /**
+     * roles_at_other array
+     */
     @JsonProperty("roles_at_other")
     public List<RolesAtOtherEnum> getRolesAtOther() {
         return rolesAtOther;

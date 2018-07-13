@@ -18,6 +18,20 @@ public class SearchApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Search for entities that match a given sub-string.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param acceptLanguage Language to use in the response
+     * @param categories Type of entities to search for
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param search The string to search on
+     * @param strict Whether the search should be a strict match
+     * @return A list of search results
+     */
     
     public CompletableFuture<EsiResponseWrapper<SearchResult>> getSearch(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v2/search/";
@@ -62,6 +76,21 @@ public class SearchApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Search for entities that match a given sub-string.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param acceptLanguage Language to use in the response
+     * @param categories Type of entities to search for
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param search The string to search on
+     * @param strict Whether the search should be a strict match
+     * @return A list of search results
+     */
     
     public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> getCharactersCharacterIdSearch(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/search/";

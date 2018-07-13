@@ -18,6 +18,21 @@ public class RoutesApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Get the systems between origin and destination
+     * 
+     * ---
+     * 
+     * This route is cached for up to 86400 seconds
+     * @param avoid avoid solar system ID(s)
+     * @param connections connected solar system pairs
+     * @param datasource The server name you would like data from
+     * @param destination destination solar system ID
+     * @param flag route security preference
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param origin origin solar system ID
+     * @return Solar systems in route from origin to destination
+     */
     
     public CompletableFuture<EsiResponseWrapper<int[]>> getRouteOriginDestination(int[] avoid, List<int[]> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
         String url = "https://esi.evetech.net/v1/route/{origin}/{destination}/";

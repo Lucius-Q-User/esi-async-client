@@ -18,6 +18,16 @@ public class SovereigntyApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Shows sovereignty data for campaigns.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 5 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of sovereignty campaigns
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/campaigns/";
@@ -43,6 +53,16 @@ public class SovereigntyApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Shows sovereignty information for solar systems
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of sovereignty information for solar systems in New Eden
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/map/";
@@ -68,6 +88,16 @@ public class SovereigntyApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Shows sovereignty data for structures.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 120 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of sovereignty structures
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/structures/";

@@ -10,17 +10,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class EventAttendee implements ApiParameterObject {
     private Integer characterId;
+    /**
+     * character_id integer
+     */
     public void setCharacterId(Integer val) {
         characterId = val;
     }
+    /**
+     * character_id integer
+     */
     @JsonProperty("character_id")
     public Integer getCharacterId() {
         return characterId;
     }
     private EventResponseEnum eventResponse;
+    /**
+     * event_response string
+     */
     public void setEventResponse(EventResponseEnum val) {
         eventResponse = val;
     }
+    /**
+     * event_response string
+     */
     @JsonProperty("event_response")
     public EventResponseEnum getEventResponse() {
         return eventResponse;

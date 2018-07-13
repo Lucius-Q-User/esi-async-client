@@ -10,17 +10,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class MailRecipient implements ApiParameterObject {
     private int recipientId;
+    /**
+     * recipient_id integer
+     */
     public void setRecipientId(int val) {
         recipientId = val;
     }
+    /**
+     * recipient_id integer
+     */
     @JsonProperty("recipient_id")
     public int getRecipientId() {
         return recipientId;
     }
     private RecipientTypeEnum recipientType;
+    /**
+     * recipient_type string
+     */
     public void setRecipientType(RecipientTypeEnum val) {
         recipientType = val;
     }
+    /**
+     * recipient_type string
+     */
     @JsonProperty("recipient_type")
     public RecipientTypeEnum getRecipientType() {
         return recipientType;

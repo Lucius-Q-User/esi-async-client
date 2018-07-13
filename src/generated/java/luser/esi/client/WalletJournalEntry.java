@@ -10,105 +10,183 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class WalletJournalEntry implements ApiParameterObject {
     private Double amount;
+    /**
+     * The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
+     */
     public void setAmount(Double val) {
         amount = val;
     }
+    /**
+     * The amount of ISK given or taken from the wallet as a result of the given transaction. Positive when ISK is deposited into the wallet and negative when ISK is withdrawn
+     */
     @JsonProperty("amount")
     public Double getAmount() {
         return amount;
     }
     private Double balance;
+    /**
+     * Wallet balance after transaction occurred
+     */
     public void setBalance(Double val) {
         balance = val;
     }
+    /**
+     * Wallet balance after transaction occurred
+     */
     @JsonProperty("balance")
     public Double getBalance() {
         return balance;
     }
     private Long contextId;
+    /**
+     * An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id
+     */
     public void setContextId(Long val) {
         contextId = val;
     }
+    /**
+     * An ID that gives extra context to the particular transaction. Because of legacy reasons the context is completely different per ref_type and means different things. It is also possible to not have a context_id
+     */
     @JsonProperty("context_id")
     public Long getContextId() {
         return contextId;
     }
     private ContextIdTypeEnum contextIdType;
+    /**
+     * The type of the given context_id if present
+     */
     public void setContextIdType(ContextIdTypeEnum val) {
         contextIdType = val;
     }
+    /**
+     * The type of the given context_id if present
+     */
     @JsonProperty("context_id_type")
     public ContextIdTypeEnum getContextIdType() {
         return contextIdType;
     }
     private Instant date;
+    /**
+     * Date and time of transaction
+     */
     public void setDate(Instant val) {
         date = val;
     }
+    /**
+     * Date and time of transaction
+     */
     @JsonProperty("date")
     public Instant getDate() {
         return date;
     }
     private String description;
+    /**
+     * The reason for the transaction, mirrors what is seen in the client
+     */
     public void setDescription(String val) {
         description = val;
     }
+    /**
+     * The reason for the transaction, mirrors what is seen in the client
+     */
     @JsonProperty("description")
     public String getDescription() {
         return description;
     }
     private Integer firstPartyId;
+    /**
+     * The id of the first party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
+     */
     public void setFirstPartyId(Integer val) {
         firstPartyId = val;
     }
+    /**
+     * The id of the first party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
+     */
     @JsonProperty("first_party_id")
     public Integer getFirstPartyId() {
         return firstPartyId;
     }
     private long id;
+    /**
+     * Unique journal reference ID
+     */
     public void setId(long val) {
         id = val;
     }
+    /**
+     * Unique journal reference ID
+     */
     @JsonProperty("id")
     public long getId() {
         return id;
     }
     private String reason;
+    /**
+     * The user stated reason for the transaction. Only applies to some ref_types
+     */
     public void setReason(String val) {
         reason = val;
     }
+    /**
+     * The user stated reason for the transaction. Only applies to some ref_types
+     */
     @JsonProperty("reason")
     public String getReason() {
         return reason;
     }
     private RefTypeEnum refType;
+    /**
+     * The transaction type for the given transaction. Different transaction types will populate different attributes. Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can look at the following file to see string->int mappings: https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py
+     */
     public void setRefType(RefTypeEnum val) {
         refType = val;
     }
+    /**
+     * The transaction type for the given transaction. Different transaction types will populate different attributes. Note: If you have an existing XML API application that is using ref_types, you will need to know which string ESI ref_type maps to which integer. You can look at the following file to see string->int mappings: https://github.com/ccpgames/eve-glue/blob/master/eve_glue/wallet_journal_ref.py
+     */
     @JsonProperty("ref_type")
     public RefTypeEnum getRefType() {
         return refType;
     }
     private Integer secondPartyId;
+    /**
+     * The id of the second party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
+     */
     public void setSecondPartyId(Integer val) {
         secondPartyId = val;
     }
+    /**
+     * The id of the second party involved in the transaction. This attribute has no consistency and is different or non existant for particular ref_types. The description attribute will help make sense of what this attribute means. For more info about the given ID it can be dropped into the /universe/names/ ESI route to determine its type and name
+     */
     @JsonProperty("second_party_id")
     public Integer getSecondPartyId() {
         return secondPartyId;
     }
     private Double tax;
+    /**
+     * Tax amount received. Only applies to tax related transactions
+     */
     public void setTax(Double val) {
         tax = val;
     }
+    /**
+     * Tax amount received. Only applies to tax related transactions
+     */
     @JsonProperty("tax")
     public Double getTax() {
         return tax;
     }
     private Integer taxReceiverId;
+    /**
+     * The corporation ID receiving any tax paid. Only applies to tax related transactions
+     */
     public void setTaxReceiverId(Integer val) {
         taxReceiverId = val;
     }
+    /**
+     * The corporation ID receiving any tax paid. Only applies to tax related transactions
+     */
     @JsonProperty("tax_receiver_id")
     public Integer getTaxReceiverId() {
         return taxReceiverId;

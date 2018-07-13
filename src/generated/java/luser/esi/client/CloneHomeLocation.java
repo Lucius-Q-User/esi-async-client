@@ -10,17 +10,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class CloneHomeLocation implements ApiParameterObject {
     private Long locationId;
+    /**
+     * location_id integer
+     */
     public void setLocationId(Long val) {
         locationId = val;
     }
+    /**
+     * location_id integer
+     */
     @JsonProperty("location_id")
     public Long getLocationId() {
         return locationId;
     }
     private LocationTypeEnum locationType;
+    /**
+     * location_type string
+     */
     public void setLocationType(LocationTypeEnum val) {
         locationType = val;
     }
+    /**
+     * location_type string
+     */
     @JsonProperty("location_type")
     public LocationTypeEnum getLocationType() {
         return locationType;

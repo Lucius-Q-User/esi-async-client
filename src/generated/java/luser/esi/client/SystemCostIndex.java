@@ -10,17 +10,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class SystemCostIndex implements ApiParameterObject {
     private ActivityEnum activity;
+    /**
+     * activity string
+     */
     public void setActivity(ActivityEnum val) {
         activity = val;
     }
+    /**
+     * activity string
+     */
     @JsonProperty("activity")
     public ActivityEnum getActivity() {
         return activity;
     }
     private float costIndex;
+    /**
+     * cost_index number
+     */
     public void setCostIndex(float val) {
         costIndex = val;
     }
+    /**
+     * cost_index number
+     */
     @JsonProperty("cost_index")
     public float getCostIndex() {
         return costIndex;

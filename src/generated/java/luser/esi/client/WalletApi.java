@@ -18,6 +18,17 @@ public class WalletApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Returns a character's wallet balance
+     * 
+     * ---
+     * 
+     * This route is cached for up to 120 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Wallet balance
+     */
     
     public CompletableFuture<EsiResponseWrapper<Double>> getCharactersCharacterIdWallet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/wallet/";
@@ -44,6 +55,18 @@ public class WalletApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get wallet transactions of a character
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param fromId Only show transactions happened before the one referenced by this id
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Wallet transactions
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getCharactersCharacterIdWalletTransactions(int characterId, DatasourceEnum datasource, Long fromId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/wallet/transactions/";
@@ -75,6 +98,20 @@ public class WalletApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get a corporation's wallets
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant, Junior_Accountant
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return List of corporation wallets
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getCorporationsCorporationIdWallets(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/wallets/";
@@ -101,6 +138,22 @@ public class WalletApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get wallet transactions of a corporation
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant, Junior_Accountant
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param division Wallet key of the division to fetch journals from
+     * @param fromId Only show journal entries happened before the transaction referenced by this id
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Wallet transactions
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getCorporationsCorporationIdWalletsDivisionTransactions(int corporationId, DatasourceEnum datasource, int division, Long fromId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/wallets/{division}/transactions/";
@@ -133,6 +186,22 @@ public class WalletApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Retrieve the given corporation's wallet journal for the given division going 30 days back
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant, Junior_Accountant
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param division Wallet key of the division to fetch journals from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return Journal entries
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getCorporationsCorporationIdWalletsDivisionJournal(int corporationId, DatasourceEnum datasource, int division, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/wallets/{division}/journal/";
@@ -165,6 +234,18 @@ public class WalletApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Retrieve the given character's wallet journal going 30 days back
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return Journal entries
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getCharactersCharacterIdWalletJournal(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/wallet/journal/";

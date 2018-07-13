@@ -10,25 +10,43 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class ResolvedItemName implements ApiParameterObject {
     private CategoryEnum category;
+    /**
+     * category string
+     */
     public void setCategory(CategoryEnum val) {
         category = val;
     }
+    /**
+     * category string
+     */
     @JsonProperty("category")
     public CategoryEnum getCategory() {
         return category;
     }
     private int id;
+    /**
+     * id integer
+     */
     public void setId(int val) {
         id = val;
     }
+    /**
+     * id integer
+     */
     @JsonProperty("id")
     public int getId() {
         return id;
     }
     private String name;
+    /**
+     * name string
+     */
     public void setName(String val) {
         name = val;
     }
+    /**
+     * name string
+     */
     @JsonProperty("name")
     public String getName() {
         return name;

@@ -10,9 +10,15 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class EventResponse implements ApiParameterObject {
     private ResponseEnum response;
+    /**
+     * response string
+     */
     public void setResponse(ResponseEnum val) {
         response = val;
     }
+    /**
+     * response string
+     */
     @JsonProperty("response")
     public ResponseEnum getResponse() {
         return response;

@@ -18,6 +18,17 @@ public class FactionWarfareApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Statistical overview of a character involved in faction warfare
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Faction warfare statistics for a given character
+     */
     
     public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getCharactersCharacterIdFwStats(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fw/stats/";
@@ -44,6 +55,17 @@ public class FactionWarfareApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Statistics about a corporation involved in faction warfare
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Faction warfare statistics for a given corporation
+     */
     
     public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationsCorporationIdFwStats(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/fw/stats/";
@@ -70,6 +92,16 @@ public class FactionWarfareApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday.
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Corporation leaderboard of kills and victory points within faction warfare.
+     */
     
     public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/";
@@ -95,6 +127,16 @@ public class FactionWarfareApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday.
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Character leaderboard of kills and victory points within faction warfare.
+     */
     
     public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwLeaderboardsCharacters(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/characters/";
@@ -120,6 +162,16 @@ public class FactionWarfareApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday.
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Corporation leaderboard of kills and victory points within faction warfare.
+     */
     
     public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwLeaderboardsCorporations(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/corporations/";
@@ -145,6 +197,16 @@ public class FactionWarfareApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Statistical overviews of factions involved in faction warfare
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Per faction breakdown of faction warfare statistics
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/stats/";
@@ -170,6 +232,16 @@ public class FactionWarfareApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Data about which NPC factions are at war
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of NPC factions at war
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/wars/";
@@ -195,6 +267,16 @@ public class FactionWarfareApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * An overview of the current ownership of faction warfare solar systems
+     * 
+     * ---
+     * 
+     * This route is cached for up to 1800 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return All faction warfare solar systems
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/fw/systems/";

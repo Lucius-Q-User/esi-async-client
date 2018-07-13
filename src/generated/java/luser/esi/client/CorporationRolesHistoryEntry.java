@@ -10,49 +10,85 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class CorporationRolesHistoryEntry implements ApiParameterObject {
     private Instant changedAt;
+    /**
+     * changed_at string
+     */
     public void setChangedAt(Instant val) {
         changedAt = val;
     }
+    /**
+     * changed_at string
+     */
     @JsonProperty("changed_at")
     public Instant getChangedAt() {
         return changedAt;
     }
     private int characterId;
+    /**
+     * The character whose roles are changed
+     */
     public void setCharacterId(int val) {
         characterId = val;
     }
+    /**
+     * The character whose roles are changed
+     */
     @JsonProperty("character_id")
     public int getCharacterId() {
         return characterId;
     }
     private int issuerId;
+    /**
+     * ID of the character who issued this change
+     */
     public void setIssuerId(int val) {
         issuerId = val;
     }
+    /**
+     * ID of the character who issued this change
+     */
     @JsonProperty("issuer_id")
     public int getIssuerId() {
         return issuerId;
     }
     private List<NewRolesEnum> newRoles;
+    /**
+     * new_roles array
+     */
     public void setNewRoles(List<NewRolesEnum> val) {
         newRoles = val;
     }
+    /**
+     * new_roles array
+     */
     @JsonProperty("new_roles")
     public List<NewRolesEnum> getNewRoles() {
         return newRoles;
     }
     private List<OldRolesEnum> oldRoles;
+    /**
+     * old_roles array
+     */
     public void setOldRoles(List<OldRolesEnum> val) {
         oldRoles = val;
     }
+    /**
+     * old_roles array
+     */
     @JsonProperty("old_roles")
     public List<OldRolesEnum> getOldRoles() {
         return oldRoles;
     }
     private RoleTypeEnum roleType;
+    /**
+     * role_type string
+     */
     public void setRoleType(RoleTypeEnum val) {
         roleType = val;
     }
+    /**
+     * role_type string
+     */
     @JsonProperty("role_type")
     public RoleTypeEnum getRoleType() {
         return roleType;

@@ -18,6 +18,17 @@ public class ClonesApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Return implants on the active clone of a character
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of implant type ids
+     */
     
     public CompletableFuture<EsiResponseWrapper<int[]>> getCharactersCharacterIdImplants(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/implants/";
@@ -44,6 +55,17 @@ public class ClonesApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * A list of the character's clones
+     * 
+     * ---
+     * 
+     * This route is cached for up to 120 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Clone information for the given character
+     */
     
     public CompletableFuture<EsiResponseWrapper<CloneInfo>> getCharactersCharacterIdClones(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/clones/";

@@ -108,6 +108,13 @@ def getReturnTypeName(path, method):
          return "List<" + tag + ">"
 
       return "BLANK"
+def getReturnDocstring(path, method):
+   rtypes = swg["paths"][path][method]["responses"]
+   for code, rtype in rtypes.items():
+      code = int(code)
+      if code // 100 != 2:
+         continue
+      return swg["paths"][path][method]["responses"][str(code)]["description"]
 
 generatedEnums = set()
 
@@ -472,6 +479,21 @@ def getTypeTag(par, topLevel, nameOverride=None):
       type = tag
    return type
 
+def getArgDocstring(path, method):
+   parDefs = swg["paths"][path][method]["parameters"]
+   ret = []
+   for par in parDefs:
+      if "$ref" in par:
+         if par["$ref"] == "#/parameters/token":
+            continue
+         par = parameterRefs[par["$ref"]]
+      if par["name"] == "language":
+         continue
+      name = toLcaseJava(par["name"])
+      doc = par["description"]
+      ret.append((doc, name))
+   return ret
+
 def getArgNames(path, method):
    parDefs = swg["paths"][path][method]["parameters"]
    ret = []
@@ -500,6 +522,7 @@ for tag, paths in tags.items():
       apf.write(apiObjectTemplate.render(tag=tag, paths=paths,
                                          getReturnTypeName=getReturnTypeName, getFunctionName=getFunctionName,
                                          getArgNames=getArgNames, swg=swg, parameterRefs=parameterRefs, retTypeKind=retTypeKind,
-                                         toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower))
+                                         toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower,
+                                         getArgDocstring=getArgDocstring, getReturnDocstring=getReturnDocstring))
 
 Path('timestamp.gen').touch()

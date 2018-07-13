@@ -18,6 +18,17 @@ public class PlanetaryInteractionApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Returns a list of all planetary colonies owned by a character.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return List of colonies
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getCharactersCharacterIdPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/planets/";
@@ -44,6 +55,21 @@ public class PlanetaryInteractionApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * List customs offices owned by a corporation
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Director
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return A list of customs offices and their settings
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCorporationsCorporationIdCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/customs_offices/";
@@ -75,6 +101,17 @@ public class PlanetaryInteractionApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get information on a planetary factory schematic
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param schematicId A PI schematic ID
+     * @return Public data about a schematic
+     */
     
     public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getUniverseSchematicsSchematicId(DatasourceEnum datasource, String ifNoneMatch, int schematicId) {
         String url = "https://esi.evetech.net/v1/universe/schematics/{schematic_id}/";
@@ -101,6 +138,18 @@ public class PlanetaryInteractionApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param planetId Planet id of the target planet
+     * @return Colony layout
+     */
     
     public CompletableFuture<EsiResponseWrapper<PlanetContents>> getCharactersCharacterIdPlanetsPlanetId(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/planets/{planet_id}/";

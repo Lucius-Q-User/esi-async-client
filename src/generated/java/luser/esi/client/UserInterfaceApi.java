@@ -18,6 +18,15 @@ public class UserInterfaceApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Open the contract window inside the client
+     * 
+     * ---
+     * 
+     * @param contractId The contract to open
+     * @param datasource The server name you would like data from
+     * @return Open window request received
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowContract(int contractId, DatasourceEnum datasource) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/contract/";
@@ -44,6 +53,15 @@ public class UserInterfaceApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Open the information window for a character, corporation or alliance inside the client
+     * 
+     * ---
+     * 
+     * @param datasource The server name you would like data from
+     * @param targetId The target to open
+     * @return Open window request received
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowInformation(DatasourceEnum datasource, int targetId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/information/";
@@ -70,6 +88,15 @@ public class UserInterfaceApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Open the market details window for a specific typeID inside the client
+     * 
+     * ---
+     * 
+     * @param datasource The server name you would like data from
+     * @param typeId The item type to open in market window
+     * @return Open window request received
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowMarketdetails(DatasourceEnum datasource, int typeId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/marketdetails/";
@@ -96,6 +123,15 @@ public class UserInterfaceApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Open the New Mail window, according to settings from the request if applicable
+     * 
+     * ---
+     * 
+     * @param datasource The server name you would like data from
+     * @param newMail The details of mail to create
+     * @return Open window request received
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowNewmail(DatasourceEnum datasource, NewMailOpenWindow newMail) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/newmail/";
@@ -118,6 +154,17 @@ public class UserInterfaceApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Set a solar system as autopilot waypoint
+     * 
+     * ---
+     * 
+     * @param addToBeginning Whether this solar system should be added to the beginning of all waypoints
+     * @param clearOtherWaypoints Whether clean other waypoints beforing adding this one
+     * @param datasource The server name you would like data from
+     * @param destinationId The destination to travel to, can be solar system, station or structure's id
+     * @return Open window request received
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> postUiAutopilotWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, DatasourceEnum datasource, long destinationId) {
         String url = "https://esi.evetech.net/v2/ui/autopilot/waypoint/";

@@ -10,25 +10,45 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class MiningObservers implements ApiParameterObject {
     private String lastUpdated;
+    /**
+     * last_updated string
+     */
     public void setLastUpdated(String val) {
         lastUpdated = val;
     }
+    /**
+     * last_updated string
+     */
     @JsonProperty("last_updated")
     public String getLastUpdated() {
         return lastUpdated;
     }
     private long observerId;
+    /**
+     * The entity that was observing the asteroid field when it was mined.
+
+     */
     public void setObserverId(long val) {
         observerId = val;
     }
+    /**
+     * The entity that was observing the asteroid field when it was mined.
+
+     */
     @JsonProperty("observer_id")
     public long getObserverId() {
         return observerId;
     }
     private ObserverTypeEnum observerType;
+    /**
+     * The category of the observing entity
+     */
     public void setObserverType(ObserverTypeEnum val) {
         observerType = val;
     }
+    /**
+     * The category of the observing entity
+     */
     @JsonProperty("observer_type")
     public ObserverTypeEnum getObserverType() {
         return observerType;

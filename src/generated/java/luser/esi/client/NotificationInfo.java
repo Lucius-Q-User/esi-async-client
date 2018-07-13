@@ -10,57 +10,99 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class NotificationInfo implements ApiParameterObject {
     private Boolean isRead;
+    /**
+     * is_read boolean
+     */
     public void setIsRead(Boolean val) {
         isRead = val;
     }
+    /**
+     * is_read boolean
+     */
     @JsonProperty("is_read")
     public Boolean getIsRead() {
         return isRead;
     }
     private long notificationId;
+    /**
+     * notification_id integer
+     */
     public void setNotificationId(long val) {
         notificationId = val;
     }
+    /**
+     * notification_id integer
+     */
     @JsonProperty("notification_id")
     public long getNotificationId() {
         return notificationId;
     }
     private int senderId;
+    /**
+     * sender_id integer
+     */
     public void setSenderId(int val) {
         senderId = val;
     }
+    /**
+     * sender_id integer
+     */
     @JsonProperty("sender_id")
     public int getSenderId() {
         return senderId;
     }
     private SenderTypeEnum senderType;
+    /**
+     * sender_type string
+     */
     public void setSenderType(SenderTypeEnum val) {
         senderType = val;
     }
+    /**
+     * sender_type string
+     */
     @JsonProperty("sender_type")
     public SenderTypeEnum getSenderType() {
         return senderType;
     }
     private String text;
+    /**
+     * text string
+     */
     public void setText(String val) {
         text = val;
     }
+    /**
+     * text string
+     */
     @JsonProperty("text")
     public String getText() {
         return text;
     }
     private Instant timestamp;
+    /**
+     * timestamp string
+     */
     public void setTimestamp(Instant val) {
         timestamp = val;
     }
+    /**
+     * timestamp string
+     */
     @JsonProperty("timestamp")
     public Instant getTimestamp() {
         return timestamp;
     }
     private TypeEnum type;
+    /**
+     * type string
+     */
     public void setType(TypeEnum val) {
         type = val;
     }
+    /**
+     * type string
+     */
     @JsonProperty("type")
     public TypeEnum getType() {
         return type;

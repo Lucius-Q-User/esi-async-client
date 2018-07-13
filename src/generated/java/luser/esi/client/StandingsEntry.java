@@ -10,25 +10,43 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class StandingsEntry implements ApiParameterObject {
     private int fromId;
+    /**
+     * from_id integer
+     */
     public void setFromId(int val) {
         fromId = val;
     }
+    /**
+     * from_id integer
+     */
     @JsonProperty("from_id")
     public int getFromId() {
         return fromId;
     }
     private FromTypeEnum fromType;
+    /**
+     * from_type string
+     */
     public void setFromType(FromTypeEnum val) {
         fromType = val;
     }
+    /**
+     * from_type string
+     */
     @JsonProperty("from_type")
     public FromTypeEnum getFromType() {
         return fromType;
     }
     private float standing;
+    /**
+     * standing number
+     */
     public void setStanding(float val) {
         standing = val;
     }
+    /**
+     * standing number
+     */
     @JsonProperty("standing")
     public float getStanding() {
         return standing;

@@ -10,81 +10,141 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class CorporationTitles implements ApiParameterObject {
     private List<GrantableRolesEnum> grantableRoles;
+    /**
+     * grantable_roles array
+     */
     public void setGrantableRoles(List<GrantableRolesEnum> val) {
         grantableRoles = val;
     }
+    /**
+     * grantable_roles array
+     */
     @JsonProperty("grantable_roles")
     public List<GrantableRolesEnum> getGrantableRoles() {
         return grantableRoles;
     }
     private List<GrantableRolesAtBaseEnum> grantableRolesAtBase;
+    /**
+     * grantable_roles_at_base array
+     */
     public void setGrantableRolesAtBase(List<GrantableRolesAtBaseEnum> val) {
         grantableRolesAtBase = val;
     }
+    /**
+     * grantable_roles_at_base array
+     */
     @JsonProperty("grantable_roles_at_base")
     public List<GrantableRolesAtBaseEnum> getGrantableRolesAtBase() {
         return grantableRolesAtBase;
     }
     private List<GrantableRolesAtHqEnum> grantableRolesAtHq;
+    /**
+     * grantable_roles_at_hq array
+     */
     public void setGrantableRolesAtHq(List<GrantableRolesAtHqEnum> val) {
         grantableRolesAtHq = val;
     }
+    /**
+     * grantable_roles_at_hq array
+     */
     @JsonProperty("grantable_roles_at_hq")
     public List<GrantableRolesAtHqEnum> getGrantableRolesAtHq() {
         return grantableRolesAtHq;
     }
     private List<GrantableRolesAtOtherEnum> grantableRolesAtOther;
+    /**
+     * grantable_roles_at_other array
+     */
     public void setGrantableRolesAtOther(List<GrantableRolesAtOtherEnum> val) {
         grantableRolesAtOther = val;
     }
+    /**
+     * grantable_roles_at_other array
+     */
     @JsonProperty("grantable_roles_at_other")
     public List<GrantableRolesAtOtherEnum> getGrantableRolesAtOther() {
         return grantableRolesAtOther;
     }
     private String name;
+    /**
+     * name string
+     */
     public void setName(String val) {
         name = val;
     }
+    /**
+     * name string
+     */
     @JsonProperty("name")
     public String getName() {
         return name;
     }
     private List<RolesEnum> roles;
+    /**
+     * roles array
+     */
     public void setRoles(List<RolesEnum> val) {
         roles = val;
     }
+    /**
+     * roles array
+     */
     @JsonProperty("roles")
     public List<RolesEnum> getRoles() {
         return roles;
     }
     private List<RolesAtBaseEnum> rolesAtBase;
+    /**
+     * roles_at_base array
+     */
     public void setRolesAtBase(List<RolesAtBaseEnum> val) {
         rolesAtBase = val;
     }
+    /**
+     * roles_at_base array
+     */
     @JsonProperty("roles_at_base")
     public List<RolesAtBaseEnum> getRolesAtBase() {
         return rolesAtBase;
     }
     private List<RolesAtHqEnum> rolesAtHq;
+    /**
+     * roles_at_hq array
+     */
     public void setRolesAtHq(List<RolesAtHqEnum> val) {
         rolesAtHq = val;
     }
+    /**
+     * roles_at_hq array
+     */
     @JsonProperty("roles_at_hq")
     public List<RolesAtHqEnum> getRolesAtHq() {
         return rolesAtHq;
     }
     private List<RolesAtOtherEnum> rolesAtOther;
+    /**
+     * roles_at_other array
+     */
     public void setRolesAtOther(List<RolesAtOtherEnum> val) {
         rolesAtOther = val;
     }
+    /**
+     * roles_at_other array
+     */
     @JsonProperty("roles_at_other")
     public List<RolesAtOtherEnum> getRolesAtOther() {
         return rolesAtOther;
     }
     private Integer titleId;
+    /**
+     * title_id integer
+     */
     public void setTitleId(Integer val) {
         titleId = val;
     }
+    /**
+     * title_id integer
+     */
     @JsonProperty("title_id")
     public Integer getTitleId() {
         return titleId;

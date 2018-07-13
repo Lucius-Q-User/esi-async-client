@@ -18,6 +18,18 @@ public class MarketApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * List cancelled and expired market orders placed by a character up to 90 days in the past.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return Expired and cancelled market orders placed by a character
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharactersCharacterIdOrdersHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/orders/history/";
@@ -49,6 +61,16 @@ public class MarketApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get a list of item groups
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of item group ids
+     */
     
     public CompletableFuture<EsiResponseWrapper<int[]>> getMarketsGroups(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/groups/";
@@ -74,6 +96,18 @@ public class MarketApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get information on an item group
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param acceptLanguage Language to use in the response
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param marketGroupId An Eve item group ID
+     * @return Information about an item group
+     */
     
     public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketsGroupsMarketGroupId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int marketGroupId) {
         String url = "https://esi.evetech.net/v1/markets/groups/{market_group_id}/";
@@ -104,6 +138,16 @@ public class MarketApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of prices
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A list of prices
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketsPrices(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/prices/";
@@ -129,6 +173,18 @@ public class MarketApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return all orders in a structure
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @param structureId Return orders in this structure
+     * @return A list of orders
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getMarketsStructuresStructureId(DatasourceEnum datasource, String ifNoneMatch, Integer page, long structureId) {
         String url = "https://esi.evetech.net/v1/markets/structures/{structure_id}/";
@@ -160,6 +216,18 @@ public class MarketApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of historical market statistics for the specified type in a region
+     * 
+     * ---
+     * 
+     * This route expires daily at 11:05
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param regionId Return statistics in this region
+     * @param typeId Return statistics for this type
+     * @return A list of historical market statistics
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketsRegionIdHistory(DatasourceEnum datasource, String ifNoneMatch, int regionId, int typeId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/history/";
@@ -191,6 +259,20 @@ public class MarketApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of orders in a region
+     * 
+     * ---
+     * 
+     * This route is cached for up to 300 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param orderType Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.
+     * @param page Which page of results to return
+     * @param regionId Return orders in this region
+     * @param typeId Return orders only for this type
+     * @return A list of orders
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketsRegionIdOrders(DatasourceEnum datasource, String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/orders/";
@@ -232,6 +314,18 @@ public class MarketApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of type IDs that have active orders in the region, for efficient market indexing.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @param regionId Return statistics in this region
+     * @return A list of type IDs
+     */
     
     public CompletableFuture<EsiResponseWrapper<int[]>> getMarketsRegionIdTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/types/";
@@ -263,6 +357,17 @@ public class MarketApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * List open market orders placed by a character
+     * 
+     * ---
+     * 
+     * This route is cached for up to 1200 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Open market orders placed by a character
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getCharactersCharacterIdOrders(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/orders/";
@@ -289,6 +394,21 @@ public class MarketApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant, Trader
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return Expired and cancelled market orders placed on behalf of a corporation
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationsCorporationIdOrdersHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/orders/history/";
@@ -320,6 +440,21 @@ public class MarketApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * List open market orders placed on behalf of a corporation
+     * 
+     * ---
+     * 
+     * This route is cached for up to 1200 seconds
+     * 
+     * ---
+     * Requires one of the following EVE corporation role(s): Accountant, Trader
+     * @param corporationId An EVE corporation ID
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @return A list of open market orders
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getCorporationsCorporationIdOrders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/orders/";

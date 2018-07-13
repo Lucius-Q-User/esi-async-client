@@ -77,9 +77,15 @@ public class ${title} implements ApiParameterObject {
             typeTag = "BLANK"
     %>\
     private ${typeTag} ${toLcaseJava(pname)};
+    /**
+     * ${ptype["description"]}
+     */
     public void set${toUcaseJava(pname)}(${typeTag} val) {
         ${toLcaseJava(pname)} = val;
     }
+    /**
+     * ${ptype["description"]}
+     */
     @JsonProperty("${pname}")
     public ${typeTag} get${toUcaseJava(pname)}() {
         return ${toLcaseJava(pname)};

@@ -18,6 +18,16 @@ public class StatusApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * EVE Server status
+     * 
+     * ---
+     * 
+     * This route is cached for up to 30 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Server status
+     */
     
     public CompletableFuture<EsiResponseWrapper<ServerStatus>> getStatus(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/status/";

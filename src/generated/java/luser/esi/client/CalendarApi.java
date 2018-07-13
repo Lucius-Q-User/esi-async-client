@@ -18,6 +18,18 @@ public class CalendarApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event.
+     * 
+     * ---
+     * 
+     * This route is cached for up to 5 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param fromEvent The event ID to retrieve events from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return A collection of event summaries
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCharactersCharacterIdCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/";
@@ -49,6 +61,18 @@ public class CalendarApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get all invited attendees for a given event
+     * 
+     * ---
+     * 
+     * This route is cached for up to 600 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param eventId The id of the event requested
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return List of attendees
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCharactersCharacterIdCalendarEventIdAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/{event_id}/attendees/";
@@ -76,6 +100,18 @@ public class CalendarApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Get all the information for a specific event
+     * 
+     * ---
+     * 
+     * This route is cached for up to 5 seconds
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param eventId The id of the event requested
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @return Full details of a specific event
+     */
     
     public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCharactersCharacterIdCalendarEventId(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
@@ -103,6 +139,17 @@ public class CalendarApi {
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Set your response status to an event
+     * 
+     * ---
+     * 
+     * @param characterId An EVE character ID
+     * @param datasource The server name you would like data from
+     * @param eventId The ID of the event requested
+     * @param response The response value to set, overriding current value.
+     * @return Event updated
+     */
     
     public CompletableFuture<EsiResponseWrapper<Void>> putCharactersCharacterIdCalendarEventId(int characterId, DatasourceEnum datasource, int eventId, EventResponse response) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";

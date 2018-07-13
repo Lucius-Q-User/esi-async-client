@@ -18,6 +18,17 @@ public class WarsApi {
     public ApiClient getApiClient() {
         return apiClient;
     }
+    /**
+     * Return a list of wars
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param maxWarId Only return wars with ID smaller than this.
+     * @return A list of war IDs, in decending order by war_id.
+     */
     
     public CompletableFuture<EsiResponseWrapper<int[]>> getWars(DatasourceEnum datasource, String ifNoneMatch, Integer maxWarId) {
         String url = "https://esi.evetech.net/v1/wars/";
@@ -48,6 +59,17 @@ public class WarsApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return details about a war
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param warId ID for a war
+     * @return Details about a war
+     */
     
     public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarsWarId(DatasourceEnum datasource, String ifNoneMatch, int warId) {
         String url = "https://esi.evetech.net/v1/wars/{war_id}/";
@@ -74,6 +96,18 @@ public class WarsApi {
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
     }
+    /**
+     * Return a list of kills related to a war
+     * 
+     * ---
+     * 
+     * This route is cached for up to 3600 seconds
+     * @param datasource The server name you would like data from
+     * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param page Which page of results to return
+     * @param warId A valid war ID
+     * @return A list of killmail IDs and hashes
+     */
     
     public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarsWarIdKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId) {
         String url = "https://esi.evetech.net/v1/wars/{war_id}/killmails/";

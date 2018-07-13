@@ -10,65 +10,113 @@ import com.fasterxml.jackson.annotation.JsonValue;
 @SuppressWarnings("unused")
 public class StarInfo implements ApiParameterObject {
     private long age;
+    /**
+     * Age of star in years
+     */
     public void setAge(long val) {
         age = val;
     }
+    /**
+     * Age of star in years
+     */
     @JsonProperty("age")
     public long getAge() {
         return age;
     }
     private float luminosity;
+    /**
+     * luminosity number
+     */
     public void setLuminosity(float val) {
         luminosity = val;
     }
+    /**
+     * luminosity number
+     */
     @JsonProperty("luminosity")
     public float getLuminosity() {
         return luminosity;
     }
     private String name;
+    /**
+     * name string
+     */
     public void setName(String val) {
         name = val;
     }
+    /**
+     * name string
+     */
     @JsonProperty("name")
     public String getName() {
         return name;
     }
     private long radius;
+    /**
+     * radius integer
+     */
     public void setRadius(long val) {
         radius = val;
     }
+    /**
+     * radius integer
+     */
     @JsonProperty("radius")
     public long getRadius() {
         return radius;
     }
     private int solarSystemId;
+    /**
+     * solar_system_id integer
+     */
     public void setSolarSystemId(int val) {
         solarSystemId = val;
     }
+    /**
+     * solar_system_id integer
+     */
     @JsonProperty("solar_system_id")
     public int getSolarSystemId() {
         return solarSystemId;
     }
     private SpectralClassEnum spectralClass;
+    /**
+     * spectral_class string
+     */
     public void setSpectralClass(SpectralClassEnum val) {
         spectralClass = val;
     }
+    /**
+     * spectral_class string
+     */
     @JsonProperty("spectral_class")
     public SpectralClassEnum getSpectralClass() {
         return spectralClass;
     }
     private int temperature;
+    /**
+     * temperature integer
+     */
     public void setTemperature(int val) {
         temperature = val;
     }
+    /**
+     * temperature integer
+     */
     @JsonProperty("temperature")
     public int getTemperature() {
         return temperature;
     }
     private int typeId;
+    /**
+     * type_id integer
+     */
     public void setTypeId(int val) {
         typeId = val;
     }
+    /**
+     * type_id integer
+     */
     @JsonProperty("type_id")
     public int getTypeId() {
         return typeId;
