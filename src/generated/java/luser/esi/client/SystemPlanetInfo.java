@@ -3,38 +3,40 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
 public class SystemPlanetInfo implements ApiParameterObject {
-    private int[] asteroidBelts;
+    private IntArrayList asteroidBelts;
     /**
      * asteroid_belts array
      */
-    public void setAsteroidBelts(int[] val) {
+    public void setAsteroidBelts(IntArrayList val) {
         asteroidBelts = val;
     }
     /**
      * asteroid_belts array
      */
     @JsonProperty("asteroid_belts")
-    public int[] getAsteroidBelts() {
+    public IntArrayList getAsteroidBelts() {
         return asteroidBelts;
     }
-    private int[] moons;
+    private IntArrayList moons;
     /**
      * moons array
      */
-    public void setMoons(int[] val) {
+    public void setMoons(IntArrayList val) {
         moons = val;
     }
     /**
      * moons array
      */
     @JsonProperty("moons")
-    public int[] getMoons() {
+    public IntArrayList getMoons() {
         return moons;
     }
     private int planetId;

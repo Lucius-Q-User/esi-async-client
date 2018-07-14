@@ -3,24 +3,26 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
 public class JumpCloneContents implements ApiParameterObject {
-    private int[] implants;
+    private IntArrayList implants;
     /**
      * implants array
      */
-    public void setImplants(int[] val) {
+    public void setImplants(IntArrayList val) {
         implants = val;
     }
     /**
      * implants array
      */
     @JsonProperty("implants")
-    public int[] getImplants() {
+    public IntArrayList getImplants() {
         return implants;
     }
     private int jumpCloneId;

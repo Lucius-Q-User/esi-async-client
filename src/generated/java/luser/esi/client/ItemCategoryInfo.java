@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -23,18 +25,18 @@ public class ItemCategoryInfo implements ApiParameterObject {
     public int getCategoryId() {
         return categoryId;
     }
-    private int[] groups;
+    private IntArrayList groups;
     /**
      * groups array
      */
-    public void setGroups(int[] val) {
+    public void setGroups(IntArrayList val) {
         groups = val;
     }
     /**
      * groups array
      */
     @JsonProperty("groups")
-    public int[] getGroups() {
+    public IntArrayList getGroups() {
         return groups;
     }
     private String name;

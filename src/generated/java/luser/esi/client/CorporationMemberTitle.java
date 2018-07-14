@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -23,18 +25,18 @@ public class CorporationMemberTitle implements ApiParameterObject {
     public int getCharacterId() {
         return characterId;
     }
-    private int[] titles;
+    private IntArrayList titles;
     /**
      * A list of title_id
      */
-    public void setTitles(int[] val) {
+    public void setTitles(IntArrayList val) {
         titles = val;
     }
     /**
      * A list of title_id
      */
     @JsonProperty("titles")
-    public int[] getTitles() {
+    public IntArrayList getTitles() {
         return titles;
     }
 }

@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -52,9 +54,9 @@ public class ${title} implements ApiParameterObject {
             items = ptype["items"]
             if items["type"] == "integer":
                 if "format" not in items or items["format"] == "int32":
-                    typeTag = "int[]"
+                    typeTag = "IntArrayList"
                 else:
-                    typeTag = "long[]"
+                    typeTag = "LongArrayList"
             elif items["type"] == "object":
                 tag = items["title"]
                 tag = toUcaseJava(tag)

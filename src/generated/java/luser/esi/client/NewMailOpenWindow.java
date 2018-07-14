@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -23,18 +25,18 @@ public class NewMailOpenWindow implements ApiParameterObject {
     public String getBody() {
         return body;
     }
-    private int[] recipients;
+    private IntArrayList recipients;
     /**
      * recipients array
      */
-    public void setRecipients(int[] val) {
+    public void setRecipients(IntArrayList val) {
         recipients = val;
     }
     /**
      * recipients array
      */
     @JsonProperty("recipients")
-    public int[] getRecipients() {
+    public IntArrayList getRecipients() {
         return recipients;
     }
     private String subject;

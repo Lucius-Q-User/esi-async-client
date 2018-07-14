@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class ${tag}Api {
@@ -105,7 +107,7 @@ if (${toLcaseJava(par["name"])} != null) \
             return Float.parseFloat(resp);
             %elif returnType == "Double":
             return Double.parseDouble(resp);
-            %elif returnType == "int[]" or returnType == "long[]" or retTypeKind(path, method) == "object":
+            %elif returnType == "IntArrayList" or returnType == "LongArrayList" or retTypeKind(path, method) == "object":
             return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ${returnType}.class);
             %elif retTypeKind(path, method) == "object[]":
             return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<${returnType}>() {});

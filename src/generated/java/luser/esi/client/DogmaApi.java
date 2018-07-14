@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class DogmaApi {
@@ -29,7 +31,7 @@ public class DogmaApi {
      * @return A list of dogma attribute ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getDogmaAttributes(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getDogmaAttributes(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/attributes/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -47,8 +49,8 @@ public class DogmaApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -140,7 +142,7 @@ public class DogmaApi {
      * @return A list of dogma effect ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getDogmaEffects(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getDogmaEffects(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/effects/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -158,8 +160,8 @@ public class DogmaApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

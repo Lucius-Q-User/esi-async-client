@@ -3,164 +3,166 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
 public class CharacterSearchResult implements ApiParameterObject {
-    private int[] agent;
+    private IntArrayList agent;
     /**
      * agent array
      */
-    public void setAgent(int[] val) {
+    public void setAgent(IntArrayList val) {
         agent = val;
     }
     /**
      * agent array
      */
     @JsonProperty("agent")
-    public int[] getAgent() {
+    public IntArrayList getAgent() {
         return agent;
     }
-    private int[] alliance;
+    private IntArrayList alliance;
     /**
      * alliance array
      */
-    public void setAlliance(int[] val) {
+    public void setAlliance(IntArrayList val) {
         alliance = val;
     }
     /**
      * alliance array
      */
     @JsonProperty("alliance")
-    public int[] getAlliance() {
+    public IntArrayList getAlliance() {
         return alliance;
     }
-    private int[] character;
+    private IntArrayList character;
     /**
      * character array
      */
-    public void setCharacter(int[] val) {
+    public void setCharacter(IntArrayList val) {
         character = val;
     }
     /**
      * character array
      */
     @JsonProperty("character")
-    public int[] getCharacter() {
+    public IntArrayList getCharacter() {
         return character;
     }
-    private int[] constellation;
+    private IntArrayList constellation;
     /**
      * constellation array
      */
-    public void setConstellation(int[] val) {
+    public void setConstellation(IntArrayList val) {
         constellation = val;
     }
     /**
      * constellation array
      */
     @JsonProperty("constellation")
-    public int[] getConstellation() {
+    public IntArrayList getConstellation() {
         return constellation;
     }
-    private int[] corporation;
+    private IntArrayList corporation;
     /**
      * corporation array
      */
-    public void setCorporation(int[] val) {
+    public void setCorporation(IntArrayList val) {
         corporation = val;
     }
     /**
      * corporation array
      */
     @JsonProperty("corporation")
-    public int[] getCorporation() {
+    public IntArrayList getCorporation() {
         return corporation;
     }
-    private int[] faction;
+    private IntArrayList faction;
     /**
      * faction array
      */
-    public void setFaction(int[] val) {
+    public void setFaction(IntArrayList val) {
         faction = val;
     }
     /**
      * faction array
      */
     @JsonProperty("faction")
-    public int[] getFaction() {
+    public IntArrayList getFaction() {
         return faction;
     }
-    private int[] inventoryType;
+    private IntArrayList inventoryType;
     /**
      * inventory_type array
      */
-    public void setInventoryType(int[] val) {
+    public void setInventoryType(IntArrayList val) {
         inventoryType = val;
     }
     /**
      * inventory_type array
      */
     @JsonProperty("inventory_type")
-    public int[] getInventoryType() {
+    public IntArrayList getInventoryType() {
         return inventoryType;
     }
-    private int[] region;
+    private IntArrayList region;
     /**
      * region array
      */
-    public void setRegion(int[] val) {
+    public void setRegion(IntArrayList val) {
         region = val;
     }
     /**
      * region array
      */
     @JsonProperty("region")
-    public int[] getRegion() {
+    public IntArrayList getRegion() {
         return region;
     }
-    private int[] solarSystem;
+    private IntArrayList solarSystem;
     /**
      * solar_system array
      */
-    public void setSolarSystem(int[] val) {
+    public void setSolarSystem(IntArrayList val) {
         solarSystem = val;
     }
     /**
      * solar_system array
      */
     @JsonProperty("solar_system")
-    public int[] getSolarSystem() {
+    public IntArrayList getSolarSystem() {
         return solarSystem;
     }
-    private int[] station;
+    private IntArrayList station;
     /**
      * station array
      */
-    public void setStation(int[] val) {
+    public void setStation(IntArrayList val) {
         station = val;
     }
     /**
      * station array
      */
     @JsonProperty("station")
-    public int[] getStation() {
+    public IntArrayList getStation() {
         return station;
     }
-    private long[] structure;
+    private LongArrayList structure;
     /**
      * structure array
      */
-    public void setStructure(long[] val) {
+    public void setStructure(LongArrayList val) {
         structure = val;
     }
     /**
      * structure array
      */
     @JsonProperty("structure")
-    public long[] getStructure() {
+    public LongArrayList getStructure() {
         return structure;
     }
 }

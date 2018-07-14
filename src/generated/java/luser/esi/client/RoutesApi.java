@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class RoutesApi {
@@ -34,7 +36,7 @@ public class RoutesApi {
      * @return Solar systems in route from origin to destination
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getRouteOriginDestination(int[] avoid, List<int[]> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRouteOriginDestination(int[] avoid, List<IntArrayList> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
         String url = "https://esi.evetech.net/v1/route/{origin}/{destination}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -69,8 +71,8 @@ public class RoutesApi {
         parametersInUrl.put("origin", String.valueOf(origin));
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

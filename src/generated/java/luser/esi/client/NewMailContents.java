@@ -3,24 +3,26 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
 public class NewMailContents implements ApiParameterObject {
-    private int[] labels;
+    private IntArrayList labels;
     /**
      * Labels to assign to the mail. Pre-existing labels are unassigned.
      */
-    public void setLabels(int[] val) {
+    public void setLabels(IntArrayList val) {
         labels = val;
     }
     /**
      * Labels to assign to the mail. Pre-existing labels are unassigned.
      */
     @JsonProperty("labels")
-    public int[] getLabels() {
+    public IntArrayList getLabels() {
         return labels;
     }
     private Boolean read;

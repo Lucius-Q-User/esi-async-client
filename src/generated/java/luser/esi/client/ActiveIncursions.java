@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -51,18 +53,18 @@ public class ActiveIncursions implements ApiParameterObject {
     public boolean getHasBoss() {
         return hasBoss;
     }
-    private int[] infestedSolarSystems;
+    private IntArrayList infestedSolarSystems;
     /**
      * A list of infested solar system ids that are a part of this incursion
      */
-    public void setInfestedSolarSystems(int[] val) {
+    public void setInfestedSolarSystems(IntArrayList val) {
         infestedSolarSystems = val;
     }
     /**
      * A list of infested solar system ids that are a part of this incursion
      */
     @JsonProperty("infested_solar_systems")
-    public int[] getInfestedSolarSystems() {
+    public IntArrayList getInfestedSolarSystems() {
         return infestedSolarSystems;
     }
     private float influence;

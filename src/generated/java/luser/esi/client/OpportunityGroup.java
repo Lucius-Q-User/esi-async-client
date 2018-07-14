@@ -3,24 +3,26 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @SuppressWarnings("unused")
 public class OpportunityGroup implements ApiParameterObject {
-    private int[] connectedGroups;
+    private IntArrayList connectedGroups;
     /**
      * The groups that are connected to this group on the opportunities map
      */
-    public void setConnectedGroups(int[] val) {
+    public void setConnectedGroups(IntArrayList val) {
         connectedGroups = val;
     }
     /**
      * The groups that are connected to this group on the opportunities map
      */
     @JsonProperty("connected_groups")
-    public int[] getConnectedGroups() {
+    public IntArrayList getConnectedGroups() {
         return connectedGroups;
     }
     private String description;
@@ -79,18 +81,18 @@ public class OpportunityGroup implements ApiParameterObject {
     public String getNotification() {
         return notification;
     }
-    private int[] requiredTasks;
+    private IntArrayList requiredTasks;
     /**
      * Tasks need to complete for this group
      */
-    public void setRequiredTasks(int[] val) {
+    public void setRequiredTasks(IntArrayList val) {
         requiredTasks = val;
     }
     /**
      * Tasks need to complete for this group
      */
     @JsonProperty("required_tasks")
-    public int[] getRequiredTasks() {
+    public IntArrayList getRequiredTasks() {
         return requiredTasks;
     }
 }

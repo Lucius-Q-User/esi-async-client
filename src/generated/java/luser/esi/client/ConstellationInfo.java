@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -65,18 +67,18 @@ public class ConstellationInfo implements ApiParameterObject {
     public int getRegionId() {
         return regionId;
     }
-    private int[] systems;
+    private IntArrayList systems;
     /**
      * systems array
      */
-    public void setSystems(int[] val) {
+    public void setSystems(IntArrayList val) {
         systems = val;
     }
     /**
      * systems array
      */
     @JsonProperty("systems")
-    public int[] getSystems() {
+    public IntArrayList getSystems() {
         return systems;
     }
 }

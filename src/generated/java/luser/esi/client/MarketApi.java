@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class MarketApi {
@@ -72,7 +74,7 @@ public class MarketApi {
      * @return A list of item group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getMarketsGroups(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketsGroups(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -90,8 +92,8 @@ public class MarketApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -327,7 +329,7 @@ public class MarketApi {
      * @return A list of type IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getMarketsRegionIdTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketsRegionIdTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/types/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -351,8 +353,8 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

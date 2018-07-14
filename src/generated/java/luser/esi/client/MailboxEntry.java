@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -37,18 +39,18 @@ public class MailboxEntry implements ApiParameterObject {
     public Boolean getIsRead() {
         return isRead;
     }
-    private int[] labels;
+    private IntArrayList labels;
     /**
      * labels array
      */
-    public void setLabels(int[] val) {
+    public void setLabels(IntArrayList val) {
         labels = val;
     }
     /**
      * labels array
      */
     @JsonProperty("labels")
-    public int[] getLabels() {
+    public IntArrayList getLabels() {
         return labels;
     }
     private Integer mailId;

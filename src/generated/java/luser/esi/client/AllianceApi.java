@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class AllianceApi {
@@ -29,7 +31,7 @@ public class AllianceApi {
      * @return List of Alliance IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getAlliances(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -47,8 +49,8 @@ public class AllianceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -65,7 +67,7 @@ public class AllianceApi {
      * @return List of corporation IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getAlliancesAllianceIdCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliancesAllianceIdCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/corporations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -84,8 +86,8 @@ public class AllianceApi {
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

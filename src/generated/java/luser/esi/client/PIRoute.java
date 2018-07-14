@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -79,18 +81,18 @@ public class PIRoute implements ApiParameterObject {
     public long getSourcePinId() {
         return sourcePinId;
     }
-    private long[] waypoints;
+    private LongArrayList waypoints;
     /**
      * list of pin ID waypoints
      */
-    public void setWaypoints(long[] val) {
+    public void setWaypoints(LongArrayList val) {
         waypoints = val;
     }
     /**
      * list of pin ID waypoints
      */
     @JsonProperty("waypoints")
-    public long[] getWaypoints() {
+    public LongArrayList getWaypoints() {
         return waypoints;
     }
 }

@@ -17,6 +17,7 @@ import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
+import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -236,9 +237,9 @@ abstract class ApiClientBase implements AutoCloseable {
         return String.join(",", it);
     }
 
-    static String renderArrayToQuery(Iterable<int[]> connections, int[] typeTrace) {
+    static String renderArrayToQuery(Iterable<IntArrayList> connections, IntArrayList typeTrace) {
         Iterable<String> it = StreamSupport.stream(connections.spliterator(), false).map((c) -> {
-            return c[0] + "|" + c[1];
+            return c.get(0) + "|" + c.get(1);
         })::iterator;
         return String.join(",", it);
     }

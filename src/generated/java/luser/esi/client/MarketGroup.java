@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -65,18 +67,18 @@ public class MarketGroup implements ApiParameterObject {
     public Integer getParentGroupId() {
         return parentGroupId;
     }
-    private int[] types;
+    private IntArrayList types;
     /**
      * types array
      */
-    public void setTypes(int[] val) {
+    public void setTypes(IntArrayList val) {
         types = val;
     }
     /**
      * types array
      */
     @JsonProperty("types")
-    public int[] getTypes() {
+    public IntArrayList getTypes() {
         return types;
     }
 }

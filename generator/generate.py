@@ -90,9 +90,9 @@ def getReturnTypeName(path, method):
          return first_upper(rtype["schema"]["format"])
       if rtype["schema"]["type"] == "array" and rtype["schema"]["items"]["type"] == "integer":
          if rtype["schema"]["items"]["format"] == "int32":
-            return "int[]"
+            return "IntArrayList"
          else:
-            return "long[]"
+            return "LongArrayList"
       if rtype["schema"]["type"] == "object":
          par = rtype["schema"]
          title = par["title"]
@@ -471,7 +471,7 @@ def getTypeTag(par, topLevel, nameOverride=None):
       elif par["items"]["type"] == "integer":
          type = getTypeTag(par["items"], False) + "[]"
       elif par["items"]["type"] == "array" and par["items"]["items"]["type"] == "integer":
-         type = "List<int[]>"
+         type = "List<IntArrayList>"
    elif par["type"] == "object":
       title = par["title"]
       tag = toUcaseJava(title)

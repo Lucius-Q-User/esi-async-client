@@ -3,6 +3,8 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -107,32 +109,32 @@ public class SystemInfo implements ApiParameterObject {
     public Integer getStarId() {
         return starId;
     }
-    private int[] stargates;
+    private IntArrayList stargates;
     /**
      * stargates array
      */
-    public void setStargates(int[] val) {
+    public void setStargates(IntArrayList val) {
         stargates = val;
     }
     /**
      * stargates array
      */
     @JsonProperty("stargates")
-    public int[] getStargates() {
+    public IntArrayList getStargates() {
         return stargates;
     }
-    private int[] stations;
+    private IntArrayList stations;
     /**
      * stations array
      */
-    public void setStations(int[] val) {
+    public void setStations(IntArrayList val) {
         stations = val;
     }
     /**
      * stations array
      */
     @JsonProperty("stations")
-    public int[] getStations() {
+    public IntArrayList getStations() {
         return stations;
     }
     private int systemId;

@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class ContactsApi {
@@ -266,7 +268,7 @@ public class ContactsApi {
      * @return A list of contact ids that successfully created
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> postCharactersCharacterIdContacts(int characterId, int[] contactIds, DatasourceEnum datasource, long[] labelIds, double standing, Boolean watched) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> postCharactersCharacterIdContacts(int characterId, int[] contactIds, DatasourceEnum datasource, long[] labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -297,8 +299,8 @@ public class ContactsApi {
         String body = null;
         body = ApiClientBase.renderToBody(contactIds);
         String method = "POST";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = true;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

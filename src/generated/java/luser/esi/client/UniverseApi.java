@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class UniverseApi {
@@ -146,7 +148,7 @@ public class UniverseApi {
      * @return A list of item category ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseCategories(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseCategories(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/categories/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -164,8 +166,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -223,7 +225,7 @@ public class UniverseApi {
      * @return A list of constellation ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseConstellations(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseConstellations(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/constellations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -241,8 +243,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -300,7 +302,7 @@ public class UniverseApi {
      * @return A list of graphic ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseGraphics(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseGraphics(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/graphics/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -318,8 +320,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -373,7 +375,7 @@ public class UniverseApi {
      * @return A list of item group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseGroups(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseGroups(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/universe/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -396,8 +398,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -605,7 +607,7 @@ public class UniverseApi {
      * @return A list of region ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseRegions(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseRegions(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/regions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -623,8 +625,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -756,7 +758,7 @@ public class UniverseApi {
      * @return List of public structure IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<long[]>> getUniverseStructures(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getUniverseStructures(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/structures/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -774,8 +776,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<long[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, long[].class);
+        ResponseParser<LongArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, LongArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -826,7 +828,7 @@ public class UniverseApi {
      * @return A list of solar system ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseSystems(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseSystems(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/systems/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -844,8 +846,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -862,7 +864,7 @@ public class UniverseApi {
      * @return A list of type ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getUniverseTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/universe/types/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -885,8 +887,8 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);

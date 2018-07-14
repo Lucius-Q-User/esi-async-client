@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 
 @SuppressWarnings("unused")
 public class OpportunitiesApi {
@@ -66,7 +68,7 @@ public class OpportunitiesApi {
      * @return A list of opportunities group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getOpportunitiesGroups(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunitiesGroups(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -84,8 +86,8 @@ public class OpportunitiesApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
@@ -143,7 +145,7 @@ public class OpportunitiesApi {
      * @return A list of opportunities task ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<int[]>> getOpportunitiesTasks(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunitiesTasks(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -161,8 +163,8 @@ public class OpportunitiesApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<int[]> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, int[].class);
+        ResponseParser<IntArrayList> responseParser = (resp) -> {
+            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
         };
         boolean needsAuth = false;
         return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
