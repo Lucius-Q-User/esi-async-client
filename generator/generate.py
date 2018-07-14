@@ -222,8 +222,6 @@ renameObjects  = {
    "PostCorporationsCorporationIdAssetsNamesOk": "ResolvedAssetName",
    "PostCharactersCharacterIdAssetsLocationsOk": "ResolvedItemLocation",
    "PostCorporationsCorporationIdAssetsLocationsOk": "ResolvedItemLocation",
-
-
    "GetAlliancesAllianceIdContactsOk": "AllianceContact",
    "GetAlliancesAllianceIdIconsOk": "AllianceIcons",
    "GetAlliancesAllianceIdOk": "AllianceInfo",
@@ -406,7 +404,17 @@ renameObjects  = {
 }
 generatedObjects = set()
 
-
+imports = {
+   "Instant": "java.time",
+   "List": "java.util",
+   "Map": "java.util",
+   "IntArrayList": "com.carrotsearch.hppc",
+   "LongArrayList": "com.carrotsearch.hppc",
+   "JsonProperty": "com.fasterxml.jackson.annotation",
+   "JsonCreator": "com.fasterxml.jackson.annotation",
+   "JsonValue": "com.fasterxml.jackson.annotation",
+   "TypeReference": "com.fasterxml.jackson.core.type",
+}
 
 def generateParameterObject(title, properties, required, isRequest):
    if title in renameObjects:
@@ -417,13 +425,18 @@ def generateParameterObject(title, properties, required, isRequest):
       return title
    with open(title + ".java", "w") as fil:
       try:
-         fil.write(parameterObjectTemplate.render(title=title,
-                                                  properties=properties,
-                                                  required=required,
-                                                  toLcaseJava=toLcaseJava,
-                                                  toUcaseJava=toUcaseJava,
-                                                  generateParameterObject=generateParameterObject,
-                                                  isRequest=isRequest, specialSnowflakes=specialSnowflakes))
+         render = parameterObjectTemplate.render(title=title,
+                                                 properties=properties,
+                                                 required=required,
+                                                 toLcaseJava=toLcaseJava,
+                                                 toUcaseJava=toUcaseJava,
+                                                 generateParameterObject=generateParameterObject,
+                                                 isRequest=isRequest, specialSnowflakes=specialSnowflakes)
+         ipt = [];
+         for k, v in imports.items():
+            if re.search("\W" + k + "\W", render):
+               ipt.append("import " + v + "." + k + ";")
+         fil.write(render.replace("{{PUT_IMPORTS_HERE}}", "\n".join(ipt)))
       except:
          print(exceptions.text_error_template().render())
          os._exit(0)
@@ -519,10 +532,15 @@ with open("ApiClient.java", "w") as acl:
 
 for tag, paths in tags.items():
    with open(tag + "Api.java", "w") as apf:
-      apf.write(apiObjectTemplate.render(tag=tag, paths=paths,
-                                         getReturnTypeName=getReturnTypeName, getFunctionName=getFunctionName,
-                                         getArgNames=getArgNames, swg=swg, parameterRefs=parameterRefs, retTypeKind=retTypeKind,
-                                         toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower,
-                                         getArgDocstring=getArgDocstring, getReturnDocstring=getReturnDocstring))
+      render = apiObjectTemplate.render(tag=tag, paths=paths,
+                                        getReturnTypeName=getReturnTypeName, getFunctionName=getFunctionName,
+                                        getArgNames=getArgNames, swg=swg, parameterRefs=parameterRefs, retTypeKind=retTypeKind,
+                                        toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower,
+                                        getArgDocstring=getArgDocstring, getReturnDocstring=getReturnDocstring)
+      ipt = [];
+      for k, v in imports.items():
+         if re.search(r'^[^*]*\W(' + k + r')\W', render, re.M):
+            ipt.append("import " + v + "." + k + ";")
+      apf.write(render.replace("{{PUT_IMPORTS_HERE}}", "\n".join(ipt)))
 
 Path('timestamp.gen').touch()

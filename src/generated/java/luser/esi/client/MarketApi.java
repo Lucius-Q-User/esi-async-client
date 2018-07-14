@@ -1,17 +1,12 @@
 package luser.esi.client;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.carrotsearch.hppc.IntArrayList;
-import com.carrotsearch.hppc.LongArrayList;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("unused")
 public class MarketApi {
     private ApiClient apiClient;
     MarketApi(ApiClient apiClient) {

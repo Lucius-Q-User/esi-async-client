@@ -1,17 +1,9 @@
 package luser.esi.client;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.carrotsearch.hppc.IntArrayList;
-import com.carrotsearch.hppc.LongArrayList;
-
-@SuppressWarnings("unused")
 public class UserInterfaceApi {
     private ApiClient apiClient;
     UserInterfaceApi(ApiClient apiClient) {
