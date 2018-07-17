@@ -30,7 +30,7 @@ public class RoutesApi {
      * @return Solar systems in route from origin to destination
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRouteOriginDestination(int[] avoid, List<IntArrayList> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
         String url = "https://esi.evetech.net/v1/route/{origin}/{destination}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

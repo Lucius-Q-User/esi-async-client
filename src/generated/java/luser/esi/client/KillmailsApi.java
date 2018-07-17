@@ -27,7 +27,7 @@ public class KillmailsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharactersCharacterIdKillmailsRecent(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/killmails/recent/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -73,7 +73,7 @@ public class KillmailsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationsCorporationIdKillmailsRecent(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/killmails/recent/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -116,7 +116,7 @@ public class KillmailsApi {
      * @return A killmail
      */
     
-    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmailsKillmailIdKillmailHash(DatasourceEnum datasource, String ifNoneMatch, String killmailHash, int killmailId) {
+    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(DatasourceEnum datasource, String ifNoneMatch, String killmailHash, int killmailId) {
         String url = "https://esi.evetech.net/v1/killmails/{killmail_id}/{killmail_hash}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

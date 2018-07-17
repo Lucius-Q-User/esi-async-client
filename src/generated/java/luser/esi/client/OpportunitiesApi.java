@@ -27,7 +27,7 @@ public class OpportunitiesApi {
      * @return A list of opportunities task ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getCharactersCharacterIdOpportunities(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/opportunities/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -63,7 +63,7 @@ public class OpportunitiesApi {
      * @return A list of opportunities group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunitiesGroups(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -100,7 +100,7 @@ public class OpportunitiesApi {
      * @return Details of an opportunities group
      */
     
-    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunitiesGroupsGroupId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/{group_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -140,7 +140,7 @@ public class OpportunitiesApi {
      * @return A list of opportunities task ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunitiesTasks(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -176,7 +176,7 @@ public class OpportunitiesApi {
      * @return Details of an opportunities task
      */
     
-    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunitiesTasksTaskId(DatasourceEnum datasource, String ifNoneMatch, int taskId) {
+    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(DatasourceEnum datasource, String ifNoneMatch, int taskId) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/{task_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

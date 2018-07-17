@@ -26,7 +26,7 @@ public class PlanetaryInteractionApi {
      * @return List of colonies
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getCharactersCharacterIdPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/planets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -67,7 +67,7 @@ public class PlanetaryInteractionApi {
      * @return A list of customs offices and their settings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCorporationsCorporationIdCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/customs_offices/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -109,7 +109,7 @@ public class PlanetaryInteractionApi {
      * @return Public data about a schematic
      */
     
-    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getUniverseSchematicsSchematicId(DatasourceEnum datasource, String ifNoneMatch, int schematicId) {
+    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(DatasourceEnum datasource, String ifNoneMatch, int schematicId) {
         String url = "https://esi.evetech.net/v1/universe/schematics/{schematic_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -147,7 +147,7 @@ public class PlanetaryInteractionApi {
      * @return Colony layout
      */
     
-    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getCharactersCharacterIdPlanetsPlanetId(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId) {
+    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/planets/{planet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

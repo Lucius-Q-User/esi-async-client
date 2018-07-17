@@ -27,7 +27,7 @@ public class BookmarksApi {
      * @return List of corporation owned bookmarks
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCorporationsCorporationIdBookmarks(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCorporationBookmarks(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/bookmarks/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -70,7 +70,7 @@ public class BookmarksApi {
      * @return List of corporation owned bookmark folders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationBookmarkFolder>>> getCorporationsCorporationIdBookmarksFolders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationBookmarkFolder>>> getCorporationBookmarkFolders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/bookmarks/folders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -113,7 +113,7 @@ public class BookmarksApi {
      * @return A list of bookmarks
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCharactersCharacterIdBookmarks(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCharacterBookmarks(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/bookmarks/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -156,7 +156,7 @@ public class BookmarksApi {
      * @return List of bookmark folders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharactersCharacterIdBookmarksFolders(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharacterBookmarkFolders(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/bookmarks/folders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

@@ -28,7 +28,7 @@ public class MarketApi {
      * @return Expired and cancelled market orders placed by a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharactersCharacterIdOrdersHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharacterOrderHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/orders/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -69,7 +69,7 @@ public class MarketApi {
      * @return A list of item group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketsGroups(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketGroups(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -106,7 +106,7 @@ public class MarketApi {
      * @return Information about an item group
      */
     
-    public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketsGroupsMarketGroupId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int marketGroupId) {
+    public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int marketGroupId) {
         String url = "https://esi.evetech.net/v1/markets/groups/{market_group_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -146,7 +146,7 @@ public class MarketApi {
      * @return A list of prices
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketsPrices(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketPrices(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/prices/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -183,7 +183,7 @@ public class MarketApi {
      * @return A list of orders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getMarketsStructuresStructureId(DatasourceEnum datasource, String ifNoneMatch, Integer page, long structureId) {
+    public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getStructureMarket(DatasourceEnum datasource, String ifNoneMatch, Integer page, long structureId) {
         String url = "https://esi.evetech.net/v1/markets/structures/{structure_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -226,7 +226,7 @@ public class MarketApi {
      * @return A list of historical market statistics
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketsRegionIdHistory(DatasourceEnum datasource, String ifNoneMatch, int regionId, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketHistory(DatasourceEnum datasource, String ifNoneMatch, int regionId, int typeId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -271,7 +271,7 @@ public class MarketApi {
      * @return A list of orders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketsRegionIdOrders(DatasourceEnum datasource, String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId) {
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketOrders(DatasourceEnum datasource, String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/orders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -324,7 +324,7 @@ public class MarketApi {
      * @return A list of type IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketsRegionIdTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/types/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -366,7 +366,7 @@ public class MarketApi {
      * @return Open market orders placed by a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getCharactersCharacterIdOrders(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getOrders(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/orders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -407,7 +407,7 @@ public class MarketApi {
      * @return Expired and cancelled market orders placed on behalf of a corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationsCorporationIdOrdersHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationOrderHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/orders/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -453,7 +453,7 @@ public class MarketApi {
      * @return A list of open market orders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getCorporationsCorporationIdOrders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getOrders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/orders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

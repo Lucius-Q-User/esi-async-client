@@ -26,7 +26,7 @@ public class FleetsApi {
      * @return Details about the character's fleet
      */
     
-    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getCharactersCharacterIdFleet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fleet/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -63,7 +63,7 @@ public class FleetsApi {
      * @return Details about a fleet
      */
     
-    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetsFleetId(DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -99,7 +99,7 @@ public class FleetsApi {
      * @return Fleet updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putFleetsFleetId(DatasourceEnum datasource, long fleetId, NewFleetSettings newSettings) {
+    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(DatasourceEnum datasource, long fleetId, NewFleetSettings newSettings) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -134,7 +134,7 @@ public class FleetsApi {
      * @return A list of fleet members
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getFleetsFleetIdMembers(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -174,7 +174,7 @@ public class FleetsApi {
      * @return Fleet invitation sent
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> postFleetsFleetIdMembers(DatasourceEnum datasource, long fleetId, FleetInvitation invitation) {
+    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(DatasourceEnum datasource, long fleetId, FleetInvitation invitation) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -207,7 +207,7 @@ public class FleetsApi {
      * @return Fleet member kicked
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetsFleetIdMembersMemberId(DatasourceEnum datasource, long fleetId, int memberId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(DatasourceEnum datasource, long fleetId, int memberId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/{member_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -241,7 +241,7 @@ public class FleetsApi {
      * @return Fleet invitation sent
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putFleetsFleetIdMembersMemberId(DatasourceEnum datasource, long fleetId, int memberId, FleetMovementRequest movement) {
+    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(DatasourceEnum datasource, long fleetId, int memberId, FleetMovementRequest movement) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/{member_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -275,7 +275,7 @@ public class FleetsApi {
      * @return Squad deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetsFleetIdSquadsSquadId(DatasourceEnum datasource, long fleetId, long squadId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(DatasourceEnum datasource, long fleetId, long squadId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/squads/{squad_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -309,7 +309,7 @@ public class FleetsApi {
      * @return Squad renamed
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putFleetsFleetIdSquadsSquadId(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long squadId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long squadId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/squads/{squad_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -345,7 +345,7 @@ public class FleetsApi {
      * @return A list of fleet wings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getFleetsFleetIdWings(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -384,7 +384,7 @@ public class FleetsApi {
      * @return Wing created
      */
     
-    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> postFleetsFleetIdWings(DatasourceEnum datasource, long fleetId) {
+    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(DatasourceEnum datasource, long fleetId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -416,7 +416,7 @@ public class FleetsApi {
      * @return Wing deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetsFleetIdWingsWingId(DatasourceEnum datasource, long fleetId, long wingId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(DatasourceEnum datasource, long fleetId, long wingId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -450,7 +450,7 @@ public class FleetsApi {
      * @return Wing renamed
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putFleetsFleetIdWingsWingId(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long wingId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long wingId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -484,7 +484,7 @@ public class FleetsApi {
      * @return Squad created
      */
     
-    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> postFleetsFleetIdWingsWingIdSquads(DatasourceEnum datasource, long fleetId, long wingId) {
+    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(DatasourceEnum datasource, long fleetId, long wingId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/squads/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);

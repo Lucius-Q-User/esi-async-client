@@ -28,7 +28,7 @@ public class SearchApi {
      * @return A list of search results
      */
     
-    public CompletableFuture<EsiResponseWrapper<SearchResult>> getSearch(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
+    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v2/search/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -87,7 +87,7 @@ public class SearchApi {
      * @return A list of search results
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> getCharactersCharacterIdSearch(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
+    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/search/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);

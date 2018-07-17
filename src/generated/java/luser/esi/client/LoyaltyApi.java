@@ -26,7 +26,7 @@ public class LoyaltyApi {
      * @return A list of loyalty points
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getCharactersCharacterIdLoyaltyPoints(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/loyalty/points/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -63,7 +63,7 @@ public class LoyaltyApi {
      * @return A list of offers
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoresCorporationIdOffers(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/loyalty/stores/{corporation_id}/offers/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

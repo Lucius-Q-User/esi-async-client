@@ -26,7 +26,7 @@ public class WalletApi {
      * @return Wallet balance
      */
     
-    public CompletableFuture<EsiResponseWrapper<Double>> getCharactersCharacterIdWallet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<Double>> getWallet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/wallet/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -64,7 +64,7 @@ public class WalletApi {
      * @return Wallet transactions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getCharactersCharacterIdWalletTransactions(int characterId, DatasourceEnum datasource, Long fromId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletTransactions(int characterId, DatasourceEnum datasource, Long fromId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/wallet/transactions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -109,7 +109,7 @@ public class WalletApi {
      * @return List of corporation wallets
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getCorporationsCorporationIdWallets(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getWallets(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/wallets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -151,7 +151,7 @@ public class WalletApi {
      * @return Wallet transactions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getCorporationsCorporationIdWalletsDivisionTransactions(int corporationId, DatasourceEnum datasource, int division, Long fromId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletDivisionTransactions(int corporationId, DatasourceEnum datasource, int division, Long fromId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/wallets/{division}/transactions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -199,7 +199,7 @@ public class WalletApi {
      * @return Journal entries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getCorporationsCorporationIdWalletsDivisionJournal(int corporationId, DatasourceEnum datasource, int division, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletDivisionJournal(int corporationId, DatasourceEnum datasource, int division, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/wallets/{division}/journal/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -243,7 +243,7 @@ public class WalletApi {
      * @return Journal entries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getCharactersCharacterIdWalletJournal(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletJournal(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/wallet/journal/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

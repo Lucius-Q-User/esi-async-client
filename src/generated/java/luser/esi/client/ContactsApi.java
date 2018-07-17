@@ -3,6 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
@@ -27,7 +28,7 @@ public class ContactsApi {
      * @return A list of alliance contact labels
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAlliancesAllianceIdContactsLabels(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/contacts/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -64,7 +65,7 @@ public class ContactsApi {
      * @return A list of contact labels
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharactersCharacterIdContactsLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/contacts/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -101,7 +102,7 @@ public class ContactsApi {
      * @return A list of corporation contact labels
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationsCorporationIdContactsLabels(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/contacts/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -139,7 +140,7 @@ public class ContactsApi {
      * @return A list of contacts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAlliancesAllianceIdContacts(int allianceId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/alliances/{alliance_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -180,7 +181,7 @@ public class ContactsApi {
      * @return Contacts deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharactersCharacterIdContacts(int characterId, int[] contactIds, DatasourceEnum datasource) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -219,7 +220,7 @@ public class ContactsApi {
      * @return A list of contacts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharactersCharacterIdContacts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -263,7 +264,7 @@ public class ContactsApi {
      * @return A list of contact ids that successfully created
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> postCharactersCharacterIdContacts(int characterId, int[] contactIds, DatasourceEnum datasource, long[] labelIds, double standing, Boolean watched) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource, LongArrayList labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -314,7 +315,7 @@ public class ContactsApi {
      * @return Contacts updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putCharactersCharacterIdContacts(int characterId, int[] contactIds, DatasourceEnum datasource, long[] labelIds, double standing, Boolean watched) {
+    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource, LongArrayList labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -364,7 +365,7 @@ public class ContactsApi {
      * @return A list of contacts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationsCorporationIdContacts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

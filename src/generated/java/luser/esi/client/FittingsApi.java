@@ -26,7 +26,7 @@ public class FittingsApi {
      * @return A list of fittings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getCharactersCharacterIdFittings(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -62,7 +62,7 @@ public class FittingsApi {
      * @return A list of fittings
      */
     
-    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> postCharactersCharacterIdFittings(int characterId, DatasourceEnum datasource, NewStoredFitting fitting) {
+    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, DatasourceEnum datasource, NewStoredFitting fitting) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -95,7 +95,7 @@ public class FittingsApi {
      * @return Fitting deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharactersCharacterIdFittingsFittingId(int characterId, DatasourceEnum datasource, int fittingId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, DatasourceEnum datasource, int fittingId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/{fitting_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);

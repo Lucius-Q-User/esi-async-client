@@ -27,7 +27,7 @@ public class ContractsApi {
      * @return A list of contracts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCharactersCharacterIdContracts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCharacterContracts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/contracts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -70,7 +70,7 @@ public class ContractsApi {
      * @return A list of bids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getCharactersCharacterIdContractsContractIdBids(int characterId, int contractId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getCharacterContractBids(int characterId, int contractId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/contracts/{contract_id}/bids/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -109,7 +109,7 @@ public class ContractsApi {
      * @return A list of items in this contract
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCharactersCharacterIdContractsContractIdItems(int characterId, int contractId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCharacterContractItems(int characterId, int contractId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/contracts/{contract_id}/items/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -148,7 +148,7 @@ public class ContractsApi {
      * @return A list of contracts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCorporationsCorporationIdContracts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCorporationContracts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/contracts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -192,7 +192,7 @@ public class ContractsApi {
      * @return A list of bids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getCorporationsCorporationIdContractsContractIdBids(int contractId, int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getContractBids(int contractId, int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/contracts/{contract_id}/bids/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -236,7 +236,7 @@ public class ContractsApi {
      * @return A list of items in this contract
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCorporationsCorporationIdContractsContractIdItems(int contractId, int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCorporationContractItems(int contractId, int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/contracts/{contract_id}/items/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

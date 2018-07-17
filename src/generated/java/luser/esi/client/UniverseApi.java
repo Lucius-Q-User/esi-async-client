@@ -28,7 +28,7 @@ public class UniverseApi {
      * @return A list of ancestries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AncestryInfo>>> getUniverseAncestries(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<AncestryInfo>>> getAncestries(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/ancestries/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -68,7 +68,7 @@ public class UniverseApi {
      * @return Information about an asteroid belt
      */
     
-    public CompletableFuture<EsiResponseWrapper<AsteroidBeltInfo>> getUniverseAsteroidBeltsAsteroidBeltId(int asteroidBeltId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<AsteroidBeltInfo>> getAsteroidBeltInfo(int asteroidBeltId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/asteroid_belts/{asteroid_belt_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -105,7 +105,7 @@ public class UniverseApi {
      * @return A list of bloodlines
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<BloodlineInfo>>> getUniverseBloodlines(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<BloodlineInfo>>> getBloodlines(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/bloodlines/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -144,7 +144,7 @@ public class UniverseApi {
      * @return A list of item category ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseCategories(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCategories(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/categories/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -181,7 +181,7 @@ public class UniverseApi {
      * @return Information about an item category
      */
     
-    public CompletableFuture<EsiResponseWrapper<ItemCategoryInfo>> getUniverseCategoriesCategoryId(AcceptLanguageEnum acceptLanguage, int categoryId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ItemCategoryInfo>> getCategoryInfo(AcceptLanguageEnum acceptLanguage, int categoryId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/categories/{category_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -221,7 +221,7 @@ public class UniverseApi {
      * @return A list of constellation ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseConstellations(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getConstellations(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/constellations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -258,7 +258,7 @@ public class UniverseApi {
      * @return Information about a constellation
      */
     
-    public CompletableFuture<EsiResponseWrapper<ConstellationInfo>> getUniverseConstellationsConstellationId(AcceptLanguageEnum acceptLanguage, int constellationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ConstellationInfo>> getConstellationInfo(AcceptLanguageEnum acceptLanguage, int constellationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/constellations/{constellation_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -298,7 +298,7 @@ public class UniverseApi {
      * @return A list of graphic ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseGraphics(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGraphics(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/graphics/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -334,7 +334,7 @@ public class UniverseApi {
      * @return Information about a graphic
      */
     
-    public CompletableFuture<EsiResponseWrapper<GhaphicInfo>> getUniverseGraphicsGraphicId(DatasourceEnum datasource, int graphicId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<GhaphicInfo>> getGraphicInfo(DatasourceEnum datasource, int graphicId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/graphics/{graphic_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -371,7 +371,7 @@ public class UniverseApi {
      * @return A list of item group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseGroups(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGroups(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/universe/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -413,7 +413,7 @@ public class UniverseApi {
      * @return Information about an item group
      */
     
-    public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getUniverseGroupsGroupId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/groups/{group_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -453,7 +453,7 @@ public class UniverseApi {
      * @return List of id/name associations for a set of names divided by category. Any name passed in that did not have a match will be ommitted.
      */
     
-    public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> postUniverseIds(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, List<String> names) {
+    public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> resolveIds(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, List<String> names) {
         String url = "https://esi.evetech.net/v1/universe/ids/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -490,7 +490,7 @@ public class UniverseApi {
      * @return Information about a moon
      */
     
-    public CompletableFuture<EsiResponseWrapper<MoonInfo>> getUniverseMoonsMoonId(DatasourceEnum datasource, String ifNoneMatch, int moonId) {
+    public CompletableFuture<EsiResponseWrapper<MoonInfo>> getMoonInfo(DatasourceEnum datasource, String ifNoneMatch, int moonId) {
         String url = "https://esi.evetech.net/v1/universe/moons/{moon_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -527,7 +527,7 @@ public class UniverseApi {
      * @return Information about a planet
      */
     
-    public CompletableFuture<EsiResponseWrapper<UniversePlanetInfo>> getUniversePlanetsPlanetId(DatasourceEnum datasource, String ifNoneMatch, int planetId) {
+    public CompletableFuture<EsiResponseWrapper<UniversePlanetInfo>> getPlanetInfo(DatasourceEnum datasource, String ifNoneMatch, int planetId) {
         String url = "https://esi.evetech.net/v1/universe/planets/{planet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -564,7 +564,7 @@ public class UniverseApi {
      * @return A list of character races
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<RaceInfo>>> getUniverseRaces(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<RaceInfo>>> getRaces(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/races/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -603,7 +603,7 @@ public class UniverseApi {
      * @return A list of region ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseRegions(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRegions(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/regions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -640,7 +640,7 @@ public class UniverseApi {
      * @return Information about a region
      */
     
-    public CompletableFuture<EsiResponseWrapper<RegionInfo>> getUniverseRegionsRegionId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int regionId) {
+    public CompletableFuture<EsiResponseWrapper<RegionInfo>> getRegionInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int regionId) {
         String url = "https://esi.evetech.net/v1/universe/regions/{region_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -681,7 +681,7 @@ public class UniverseApi {
      * @return Information about a stargate
      */
     
-    public CompletableFuture<EsiResponseWrapper<StargateInfo>> getUniverseStargatesStargateId(DatasourceEnum datasource, String ifNoneMatch, int stargateId) {
+    public CompletableFuture<EsiResponseWrapper<StargateInfo>> getStargateInfo(DatasourceEnum datasource, String ifNoneMatch, int stargateId) {
         String url = "https://esi.evetech.net/v1/universe/stargates/{stargate_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -718,7 +718,7 @@ public class UniverseApi {
      * @return Information about a star
      */
     
-    public CompletableFuture<EsiResponseWrapper<StarInfo>> getUniverseStarsStarId(DatasourceEnum datasource, String ifNoneMatch, int starId) {
+    public CompletableFuture<EsiResponseWrapper<StarInfo>> getStarInfo(DatasourceEnum datasource, String ifNoneMatch, int starId) {
         String url = "https://esi.evetech.net/v1/universe/stars/{star_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -754,7 +754,7 @@ public class UniverseApi {
      * @return List of public structure IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getUniverseStructures(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getStructures(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/structures/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -789,7 +789,7 @@ public class UniverseApi {
      * @return A list of systems and number of jumps
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getUniverseSystemJumps(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getSystemJumps(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/system_jumps/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -824,7 +824,7 @@ public class UniverseApi {
      * @return A list of solar system ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseSystems(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getSystems(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/systems/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -860,7 +860,7 @@ public class UniverseApi {
      * @return A list of type ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getUniverseTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/universe/types/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -901,7 +901,7 @@ public class UniverseApi {
      * @return A list of factions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getUniverseFactions(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getFactions(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/universe/factions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -939,7 +939,7 @@ public class UniverseApi {
      * @return List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned.
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> postUniverseNames(DatasourceEnum datasource, int[] ids) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> resolveNames(DatasourceEnum datasource, IntArrayList ids) {
         String url = "https://esi.evetech.net/v2/universe/names/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -972,7 +972,7 @@ public class UniverseApi {
      * @return Information about a station
      */
     
-    public CompletableFuture<EsiResponseWrapper<StationInfo>> getUniverseStationsStationId(DatasourceEnum datasource, String ifNoneMatch, int stationId) {
+    public CompletableFuture<EsiResponseWrapper<StationInfo>> getStationInfo(DatasourceEnum datasource, String ifNoneMatch, int stationId) {
         String url = "https://esi.evetech.net/v2/universe/stations/{station_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -1009,7 +1009,7 @@ public class UniverseApi {
      * @return Data about a structure
      */
     
-    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getUniverseStructuresStructureId(DatasourceEnum datasource, String ifNoneMatch, long structureId) {
+    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getStructureInfo(DatasourceEnum datasource, String ifNoneMatch, long structureId) {
         String url = "https://esi.evetech.net/v2/universe/structures/{structure_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -1045,7 +1045,7 @@ public class UniverseApi {
      * @return A list of systems and number of ship, pod and NPC kills
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getUniverseSystemKills(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getSystemKills(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/universe/system_kills/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -1082,7 +1082,7 @@ public class UniverseApi {
      * @return Information about a type
      */
     
-    public CompletableFuture<EsiResponseWrapper<TypeInfo>> getUniverseTypesTypeId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<TypeInfo>> getTypeInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int typeId) {
         String url = "https://esi.evetech.net/v3/universe/types/{type_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -1124,7 +1124,7 @@ public class UniverseApi {
      * @return Information about a solar system
      */
     
-    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getUniverseSystemsSystemId(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int systemId) {
+    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getSystemInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int systemId) {
         String url = "https://esi.evetech.net/v4/universe/systems/{system_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);

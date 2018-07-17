@@ -26,7 +26,7 @@ public class CorporationApi {
      * @return A list of npc corporation ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporationsNpccorps(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getsNpccorps(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/npccorps/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -65,7 +65,7 @@ public class CorporationApi {
      * @return List of corporation division names
      */
     
-    public CompletableFuture<EsiResponseWrapper<CorporationDivision>> getCorporationsCorporationIdDivisions(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CorporationDivision>> getDivisions(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/divisions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -105,7 +105,7 @@ public class CorporationApi {
      * @return List of corporation facilities
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationFacility>>> getCorporationsCorporationIdFacilities(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationFacility>>> getFacilities(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/facilities/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -142,7 +142,7 @@ public class CorporationApi {
      * @return Urls for icons for the given corporation id and server
      */
     
-    public CompletableFuture<EsiResponseWrapper<CorporationIcons>> getCorporationsCorporationIdIcons(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CorporationIcons>> getIcons(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/icons/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -180,7 +180,7 @@ public class CorporationApi {
      * @return A list of medals
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMedals>>> getCorporationsCorporationIdMedals(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMedals>>> getMedals(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/medals/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -226,7 +226,7 @@ public class CorporationApi {
      * @return A list of issued medals
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationIssuedMedals>>> getCorporationsCorporationIdMedalsIssued(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationIssuedMedals>>> getIssuedMedals(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/medals/issued/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -271,7 +271,7 @@ public class CorporationApi {
      * @return The corporation's member limit
      */
     
-    public CompletableFuture<EsiResponseWrapper<Integer>> getCorporationsCorporationIdMembersLimit(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<Integer>> getMemberLimit(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/members/limit/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -311,7 +311,7 @@ public class CorporationApi {
      * @return A list of members and theirs titles
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMemberTitle>>> getCorporationsCorporationIdMembersTitles(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMemberTitle>>> getMemberTitles(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/members/titles/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -351,7 +351,7 @@ public class CorporationApi {
      * @return List of member character IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MemberTrackingInfo>>> getCorporationsCorporationIdMembertracking(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<MemberTrackingInfo>>> getMembertracking(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/membertracking/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -388,7 +388,7 @@ public class CorporationApi {
      * @return List of member character ID's and roles
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationRoles>>> getCorporationsCorporationIdRoles(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationRoles>>> getRoles(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/roles/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -429,7 +429,7 @@ public class CorporationApi {
      * @return List of role changes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationRolesHistoryEntry>>> getCorporationsCorporationIdRolesHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationRolesHistoryEntry>>> getRolesHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/roles/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -475,7 +475,7 @@ public class CorporationApi {
      * @return List of shareholders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationShareholders>>> getCorporationsCorporationIdShareholders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationShareholders>>> getShareholders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/shareholders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -518,7 +518,7 @@ public class CorporationApi {
      * @return A list of standings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getCorporationsCorporationIdStandings(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/standings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -564,7 +564,7 @@ public class CorporationApi {
      * @return List of starbases (POSes)
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationPOS>>> getCorporationsCorporationIdStarbases(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationPOS>>> getStarbases(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/starbases/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -611,7 +611,7 @@ public class CorporationApi {
      * @return List of starbases (POSes)
      */
     
-    public CompletableFuture<EsiResponseWrapper<CorporationPOSInfo>> getCorporationsCorporationIdStarbasesStarbaseId(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long starbaseId, int systemId) {
+    public CompletableFuture<EsiResponseWrapper<CorporationPOSInfo>> getStarbaseInfo(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long starbaseId, int systemId) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/starbases/{starbase_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -657,7 +657,7 @@ public class CorporationApi {
      * @return A list of titles
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationTitles>>> getCorporationsCorporationIdTitles(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationTitles>>> getTitles(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/titles/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -694,7 +694,7 @@ public class CorporationApi {
      * @return Alliance history for the given corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AllianceHistoryEntry>>> getCorporationsCorporationIdAlliancehistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<AllianceHistoryEntry>>> getAlliancehistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/alliancehistory/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -735,7 +735,7 @@ public class CorporationApi {
      * @return List of corporation blueprints
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationBlueprint>>> getCorporationsCorporationIdBlueprints(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationBlueprint>>> getBlueprints(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/blueprints/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -781,7 +781,7 @@ public class CorporationApi {
      * @return List of corporation ALSC logs
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContainerLogEntry>>> getCorporationsCorporationIdContainersLogs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<ContainerLogEntry>>> getContainerLogs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/containers/logs/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -828,7 +828,7 @@ public class CorporationApi {
      * @return List of corporation structures' information
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationStructures>>> getCorporationsCorporationIdStructures(AcceptLanguageEnum acceptLanguage, int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationStructures>>> getStructures(AcceptLanguageEnum acceptLanguage, int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/structures/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -874,7 +874,7 @@ public class CorporationApi {
      * @return List of member character IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporationsCorporationIdMembers(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMembers(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/members/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -911,7 +911,7 @@ public class CorporationApi {
      * @return Public information about a corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<CorporationInfo>> getCorporationsCorporationId(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CorporationInfo>> getCorporationInfo(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/corporations/{corporation_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

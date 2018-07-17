@@ -25,7 +25,7 @@ public class ClonesApi {
      * @return A list of implant type ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCharactersCharacterIdImplants(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getImplants(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/implants/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -62,7 +62,7 @@ public class ClonesApi {
      * @return Clone information for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CloneInfo>> getCharactersCharacterIdClones(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CloneInfo>> getClones(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/clones/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

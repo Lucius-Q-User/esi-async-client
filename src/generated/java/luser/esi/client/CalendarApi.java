@@ -27,7 +27,7 @@ public class CalendarApi {
      * @return A collection of event summaries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCharactersCharacterIdCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -70,7 +70,7 @@ public class CalendarApi {
      * @return List of attendees
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCharactersCharacterIdCalendarEventIdAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/{event_id}/attendees/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -109,7 +109,7 @@ public class CalendarApi {
      * @return Full details of a specific event
      */
     
-    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCharactersCharacterIdCalendarEventId(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -147,7 +147,7 @@ public class CalendarApi {
      * @return Event updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putCharactersCharacterIdCalendarEventId(int characterId, DatasourceEnum datasource, int eventId, EventResponse response) {
+    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, DatasourceEnum datasource, int eventId, EventResponse response) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);

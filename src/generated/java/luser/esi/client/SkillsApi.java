@@ -26,7 +26,7 @@ public class SkillsApi {
      * @return Attributes of a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getCharactersCharacterIdAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/attributes/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -63,7 +63,7 @@ public class SkillsApi {
      * @return The current skill queue, sorted ascending by finishing time
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getCharactersCharacterIdSkillqueue(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/skillqueue/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -100,7 +100,7 @@ public class SkillsApi {
      * @return Known skills for the character
      */
     
-    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getCharactersCharacterIdSkills(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/skills/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

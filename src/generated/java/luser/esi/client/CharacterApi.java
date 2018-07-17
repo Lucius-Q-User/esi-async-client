@@ -2,6 +2,7 @@ package luser.esi.client;
 
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
@@ -25,7 +26,7 @@ public class CharacterApi {
      * @return Character corporation, alliance and faction IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedCharacterAffiliation>>> postCharactersAffiliation(int[] characters, DatasourceEnum datasource) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedCharacterAffiliation>>> resolveCharacterAffiliations(IntArrayList characters, DatasourceEnum datasource) {
         String url = "https://esi.evetech.net/v1/characters/affiliation/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -58,7 +59,7 @@ public class CharacterApi {
      * @return A list of agents research information
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResearchAgentInfo>>> getCharactersCharacterIdAgentsResearch(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ResearchAgentInfo>>> getAgentsResearch(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/agents_research/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -95,7 +96,7 @@ public class CharacterApi {
      * @return Corporation history for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationHistoryEntry>>> getCharactersCharacterIdCorporationhistory(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationHistoryEntry>>> getCorpHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/corporationhistory/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -132,7 +133,7 @@ public class CharacterApi {
      * @return Jump activation and fatigue information
      */
     
-    public CompletableFuture<EsiResponseWrapper<JumpAidsInfo>> getCharactersCharacterIdFatigue(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<JumpAidsInfo>> getJumpAids(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fatigue/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -169,7 +170,7 @@ public class CharacterApi {
      * @return A list of medals
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMedal>>> getCharactersCharacterIdMedals(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMedal>>> getMedals(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/medals/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -206,7 +207,7 @@ public class CharacterApi {
      * @return A list of contact notifications
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<NewContactNotification>>> getCharactersCharacterIdNotificationsContacts(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<NewContactNotification>>> getContactNotifications(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/notifications/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -243,7 +244,7 @@ public class CharacterApi {
      * @return A list of standings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getCharactersCharacterIdStandings(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/standings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -280,7 +281,7 @@ public class CharacterApi {
      * @return A list of titles
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterTitles>>> getCharactersCharacterIdTitles(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterTitles>>> getTitles(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/titles/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -318,7 +319,7 @@ public class CharacterApi {
      * @return A list of blueprints
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterBlueprint>>> getCharactersCharacterIdBlueprints(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterBlueprint>>> getBlueprints(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/blueprints/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -360,7 +361,7 @@ public class CharacterApi {
      * @return Returns your recent notifications
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<NotificationInfo>>> getCharactersCharacterIdNotifications(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<NotificationInfo>>> getNotifications(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/notifications/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -397,7 +398,7 @@ public class CharacterApi {
      * @return Public data for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterPortrait>> getCharactersCharacterIdPortrait(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterPortrait>> getPortrait(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/portrait/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -434,7 +435,7 @@ public class CharacterApi {
      * @return The character's roles in thier corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterRoles>> getCharactersCharacterIdRoles(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterRoles>> getRoles(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/roles/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -471,7 +472,7 @@ public class CharacterApi {
      * @return Character stats
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterStats>>> getCharactersCharacterIdStats(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterStats>>> getStats(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/stats/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -508,7 +509,7 @@ public class CharacterApi {
      * @return Public data for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterInfo>> getCharactersCharacterId(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterInfo>> getCharacterInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -544,7 +545,7 @@ public class CharacterApi {
      * @return Aggregate cost of sending a mail from the source character to the target characters, in ISK
      */
     
-    public CompletableFuture<EsiResponseWrapper<Float>> postCharactersCharacterIdCspa(int characterId, int[] characters, DatasourceEnum datasource) {
+    public CompletableFuture<EsiResponseWrapper<Float>> resolveCSPACost(int characterId, IntArrayList characters, DatasourceEnum datasource) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/cspa/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);

@@ -68,7 +68,7 @@ public class WarsApi {
      * @return Details about a war
      */
     
-    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarsWarId(DatasourceEnum datasource, String ifNoneMatch, int warId) {
+    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(DatasourceEnum datasource, String ifNoneMatch, int warId) {
         String url = "https://esi.evetech.net/v1/wars/{war_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -106,7 +106,7 @@ public class WarsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarsWarIdKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId) {
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId) {
         String url = "https://esi.evetech.net/v1/wars/{war_id}/killmails/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

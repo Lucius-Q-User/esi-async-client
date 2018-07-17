@@ -60,7 +60,7 @@ public class AllianceApi {
      * @return List of corporation IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliancesAllianceIdCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/corporations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -97,7 +97,7 @@ public class AllianceApi {
      * @return Icon URLs for the given alliance id and server
      */
     
-    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getAlliancesAllianceIdIcons(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/icons/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -134,7 +134,7 @@ public class AllianceApi {
      * @return Public data about an alliance
      */
     
-    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAlliancesAllianceId(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/alliances/{alliance_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

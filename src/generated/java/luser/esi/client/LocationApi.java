@@ -24,7 +24,7 @@ public class LocationApi {
      * @return Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
      */
     
-    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getCharactersCharacterIdLocation(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/location/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -61,7 +61,7 @@ public class LocationApi {
      * @return Get the current ship type, name and id
      */
     
-    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getCharactersCharacterIdShip(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/ship/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -98,7 +98,7 @@ public class LocationApi {
      * @return Object describing the character's online status
      */
     
-    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getCharactersCharacterIdOnline(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/online/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

@@ -22,7 +22,7 @@ public class UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowContract(int contractId, DatasourceEnum datasource) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId, DatasourceEnum datasource) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/contract/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -57,7 +57,7 @@ public class UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowInformation(DatasourceEnum datasource, int targetId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(DatasourceEnum datasource, int targetId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/information/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -92,7 +92,7 @@ public class UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowMarketdetails(DatasourceEnum datasource, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(DatasourceEnum datasource, int typeId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/marketdetails/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -127,7 +127,7 @@ public class UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> postUiOpenwindowNewmail(DatasourceEnum datasource, NewMailOpenWindow newMail) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(DatasourceEnum datasource, NewMailOpenWindow newMail) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/newmail/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -160,7 +160,7 @@ public class UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> postUiAutopilotWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, DatasourceEnum datasource, long destinationId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, DatasourceEnum datasource, long destinationId) {
         String url = "https://esi.evetech.net/v2/ui/autopilot/waypoint/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);

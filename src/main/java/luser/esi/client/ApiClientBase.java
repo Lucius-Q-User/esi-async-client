@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
@@ -18,6 +19,10 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 import com.carrotsearch.hppc.IntArrayList;
+import com.carrotsearch.hppc.IntContainer;
+import com.carrotsearch.hppc.LongContainer;
+import com.carrotsearch.hppc.cursors.IntCursor;
+import com.carrotsearch.hppc.cursors.LongCursor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -222,14 +227,20 @@ abstract class ApiClientBase implements AutoCloseable {
         return ret;
     }
 
-    static String renderArrayToQuery(int[] labels, Object o) {
-        Iterable<String> it = Arrays.stream(labels).mapToObj(String::valueOf)::iterator;
-        return String.join(",", it);
+    static String renderArrayToQuery(IntContainer ints, Object o) {
+        ArrayList<String> strs = new ArrayList<>(ints.size());
+        for (IntCursor cursor : ints) {
+            strs.add(String.valueOf(cursor.value));
+        }
+        return String.join(",", strs);
     }
 
-    static String renderArrayToQuery(long[] labelIds, Object o) {
-        Iterable<String> it = Arrays.stream(labelIds).mapToObj(String::valueOf)::iterator;
-        return String.join(",", it);
+    static String renderArrayToQuery(LongContainer longs, Object o) {
+        ArrayList<String> strs = new ArrayList<>(longs.size());
+        for (LongCursor cursor : longs) {
+            strs.add(String.valueOf(cursor.value));
+        }
+        return String.join(",", strs);
     }
 
     static String renderArrayToQuery(Iterable<CategoriesEnum> categories, CategoriesEnum typeTrace) {
@@ -244,15 +255,15 @@ abstract class ApiClientBase implements AutoCloseable {
         return String.join(",", it);
     }
 
-    static String renderToBody(int[] characters) {
+    static String renderToBody(IntContainer characters) {
         return "[" + renderArrayToQuery(characters, null) + "]";
     }
 
-    static String renderToBody(long[] itemIds) {
+    static String renderToBody(LongContainer itemIds) {
         return "[" + renderArrayToQuery(itemIds, null) + "]";
     }
 
-    static String renderToBody(List<String> names) {
+    static String renderToBody(Iterable<String> names) {
         try {
             return GLOBAL_OBJECT_MAPPER.writeValueAsString(names);
         } catch (JsonProcessingException e) {

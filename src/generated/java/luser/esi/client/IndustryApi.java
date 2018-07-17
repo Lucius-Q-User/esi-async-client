@@ -27,7 +27,7 @@ public class IndustryApi {
      * @return Industry jobs placed by a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getCharactersCharacterIdIndustryJobs(int characterId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/industry/jobs/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -70,7 +70,7 @@ public class IndustryApi {
      * @return Mining ledger of a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getCharactersCharacterIdMining(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mining/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -116,7 +116,7 @@ public class IndustryApi {
      * @return A list of chunk timers
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getCorporationCorporationIdMiningExtractions(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/extractions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -162,7 +162,7 @@ public class IndustryApi {
      * @return Observer list of a corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getCorporationCorporationIdMiningObservers(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -209,7 +209,7 @@ public class IndustryApi {
      * @return Mining ledger of an observer
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getCorporationCorporationIdMiningObserversObserverId(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long observerId, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long observerId, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/{observer_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -257,7 +257,7 @@ public class IndustryApi {
      * @return A list of corporation industry jobs
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getCorporationsCorporationIdIndustryJobs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/industry/jobs/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

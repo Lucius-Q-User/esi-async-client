@@ -24,7 +24,7 @@ public class DogmaApi {
      * @return A list of dogma attribute ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getDogmaAttributes(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAttributes(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/attributes/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -60,7 +60,7 @@ public class DogmaApi {
      * @return Information about a dogma attribute
      */
     
-    public CompletableFuture<EsiResponseWrapper<DogmaAttributeInfo>> getDogmaAttributesAttributeId(int attributeId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<DogmaAttributeInfo>> getAttributeInfo(int attributeId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/attributes/{attribute_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -98,7 +98,7 @@ public class DogmaApi {
      * @return Details about a dynamic item
      */
     
-    public CompletableFuture<EsiResponseWrapper<DogmaDynamicItemInfo>> getDogmaDynamicItemsTypeIdItemId(DatasourceEnum datasource, String ifNoneMatch, long itemId, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<DogmaDynamicItemInfo>> getDynamicItemStats(DatasourceEnum datasource, String ifNoneMatch, long itemId, int typeId) {
         String url = "https://esi.evetech.net/v1/dogma/dynamic/items/{type_id}/{item_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -135,7 +135,7 @@ public class DogmaApi {
      * @return A list of dogma effect ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getDogmaEffects(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getEffects(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/effects/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -171,7 +171,7 @@ public class DogmaApi {
      * @return Information about a dogma effect
      */
     
-    public CompletableFuture<EsiResponseWrapper<DogmaEffectIfno>> getDogmaEffectsEffectId(DatasourceEnum datasource, int effectId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<DogmaEffectIfno>> getEffectInfo(DatasourceEnum datasource, int effectId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/dogma/effects/{effect_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

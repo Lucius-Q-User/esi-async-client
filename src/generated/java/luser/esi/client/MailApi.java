@@ -2,6 +2,7 @@ package luser.esi.client;
 
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
@@ -28,7 +29,7 @@ public class MailApi {
      * @return The requested mail
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getCharactersCharacterIdMail(int characterId, DatasourceEnum datasource, String ifNoneMatch, int[] labels, Integer lastMailId) {
+    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, DatasourceEnum datasource, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -74,7 +75,7 @@ public class MailApi {
      * @return Mail created
      */
     
-    public CompletableFuture<EsiResponseWrapper<Integer>> postCharactersCharacterIdMail(int characterId, DatasourceEnum datasource, NewMail mail) {
+    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, DatasourceEnum datasource, NewMail mail) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -107,7 +108,7 @@ public class MailApi {
      * @return Label deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharactersCharacterIdMailLabelsLabelId(int characterId, DatasourceEnum datasource, int labelId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, DatasourceEnum datasource, int labelId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/labels/{label_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -141,7 +142,7 @@ public class MailApi {
      * @return Mailing lists
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getCharactersCharacterIdMailLists(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/lists/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -177,7 +178,7 @@ public class MailApi {
      * @return Mail deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharactersCharacterIdMailMailId(int characterId, DatasourceEnum datasource, int mailId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, DatasourceEnum datasource, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -212,7 +213,7 @@ public class MailApi {
      * @return Contents of a mail
      */
     
-    public CompletableFuture<EsiResponseWrapper<MailContents>> getCharactersCharacterIdMailMailId(int characterId, DatasourceEnum datasource, String ifNoneMatch, int mailId) {
+    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, DatasourceEnum datasource, String ifNoneMatch, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -250,7 +251,7 @@ public class MailApi {
      * @return Mail updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> putCharactersCharacterIdMailMailId(int characterId, NewMailContents contents, DatasourceEnum datasource, int mailId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, DatasourceEnum datasource, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -284,7 +285,7 @@ public class MailApi {
      * @return Label created
      */
     
-    public CompletableFuture<EsiResponseWrapper<Integer>> postCharactersCharacterIdMailLabels(int characterId, DatasourceEnum datasource, NewMailLabel label) {
+    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, DatasourceEnum datasource, NewMailLabel label) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/mail/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -318,7 +319,7 @@ public class MailApi {
      * @return A list of mail labels and unread counts
      */
     
-    public CompletableFuture<EsiResponseWrapper<MailLabels>> getCharactersCharacterIdMailLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/mail/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

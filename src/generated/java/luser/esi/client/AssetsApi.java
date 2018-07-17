@@ -2,6 +2,7 @@ package luser.esi.client;
 
 import java.util.List;
 import java.util.Map;
+import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
@@ -25,7 +26,7 @@ public class AssetsApi {
      * @return List of asset names
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> postCharactersCharacterIdAssetsNames(int characterId, DatasourceEnum datasource, long[] itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCharacterAssetNames(int characterId, DatasourceEnum datasource, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/assets/names/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -59,7 +60,7 @@ public class AssetsApi {
      * @return List of asset names
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> postCorporationsCorporationIdAssetsNames(int corporationId, DatasourceEnum datasource, long[] itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCorporationAssetNames(int corporationId, DatasourceEnum datasource, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/assets/names/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -92,7 +93,7 @@ public class AssetsApi {
      * @return List of asset locations
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> postCharactersCharacterIdAssetsLocations(int characterId, DatasourceEnum datasource, long[] itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCharacterAssetLocations(int characterId, DatasourceEnum datasource, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/assets/locations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -126,7 +127,7 @@ public class AssetsApi {
      * @return List of asset locations
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> postCorporationsCorporationIdAssetsLocations(int corporationId, DatasourceEnum datasource, long[] itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCorporationAssetLocations(int corporationId, DatasourceEnum datasource, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/assets/locations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
@@ -161,7 +162,7 @@ public class AssetsApi {
      * @return A flat list of the users assets
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharactersCharacterIdAssets(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharacterAssets(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/assets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -207,7 +208,7 @@ public class AssetsApi {
      * @return A list of assets
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationsCorporationIdAssets(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationAssets(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/assets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);

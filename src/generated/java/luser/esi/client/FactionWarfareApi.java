@@ -26,7 +26,7 @@ public class FactionWarfareApi {
      * @return Faction warfare statistics for a given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getCharactersCharacterIdFwStats(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fw/stats/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -63,7 +63,7 @@ public class FactionWarfareApi {
      * @return Faction warfare statistics for a given corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationsCorporationIdFwStats(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/fw/stats/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -99,7 +99,7 @@ public class FactionWarfareApi {
      * @return Corporation leaderboard of kills and victory points within faction warfare.
      */
     
-    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -134,7 +134,7 @@ public class FactionWarfareApi {
      * @return Character leaderboard of kills and victory points within faction warfare.
      */
     
-    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwLeaderboardsCharacters(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/characters/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -169,7 +169,7 @@ public class FactionWarfareApi {
      * @return Corporation leaderboard of kills and victory points within faction warfare.
      */
     
-    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwLeaderboardsCorporations(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/corporations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
