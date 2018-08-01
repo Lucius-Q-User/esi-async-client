@@ -47,11 +47,9 @@ public class ContactsApi {
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<ContactLabel>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContactLabel>>() {});
-        };
+        TypeReference<List<ContactLabel>> responseTypeRef = new TypeReference<List<ContactLabel>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return custom labels for a character's contacts
@@ -84,11 +82,9 @@ public class ContactsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<ContactLabel>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContactLabel>>() {});
-        };
+        TypeReference<List<ContactLabel>> responseTypeRef = new TypeReference<List<ContactLabel>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return custom labels for a corporation's contacts
@@ -121,11 +117,9 @@ public class ContactsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<ContactLabel>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContactLabel>>() {});
-        };
+        TypeReference<List<ContactLabel>> responseTypeRef = new TypeReference<List<ContactLabel>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return contacts of an alliance
@@ -164,11 +158,9 @@ public class ContactsApi {
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<AllianceContact>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AllianceContact>>() {});
-        };
+        TypeReference<List<AllianceContact>> responseTypeRef = new TypeReference<List<AllianceContact>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Bulk delete contacts
@@ -201,11 +193,9 @@ public class ContactsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return contacts of a character
@@ -244,11 +234,9 @@ public class ContactsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CharacterContact>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterContact>>() {});
-        };
+        TypeReference<List<CharacterContact>> responseTypeRef = new TypeReference<List<CharacterContact>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Bulk add contacts with same settings
@@ -295,11 +283,9 @@ public class ContactsApi {
         String body = null;
         body = ApiClientBase.renderToBody(contactIds);
         String method = "POST";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Bulk edit contacts with same settings
@@ -346,11 +332,9 @@ public class ContactsApi {
         String body = null;
         body = ApiClientBase.renderToBody(contactIds);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return contacts of a corporation
@@ -389,10 +373,8 @@ public class ContactsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationContact>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationContact>>() {});
-        };
+        TypeReference<List<CorporationContact>> responseTypeRef = new TypeReference<List<CorporationContact>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

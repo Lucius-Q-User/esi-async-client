@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class JumpCloneContents implements ApiParameterObject {
+public class JumpCloneContents {
     private IntArrayList implants;
     /**
      * implants array

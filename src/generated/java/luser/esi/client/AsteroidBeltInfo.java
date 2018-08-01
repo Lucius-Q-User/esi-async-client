@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AsteroidBeltInfo implements ApiParameterObject {
+public class AsteroidBeltInfo {
     private String name;
     /**
      * name string

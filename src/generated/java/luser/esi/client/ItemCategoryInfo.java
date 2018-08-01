@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ItemCategoryInfo implements ApiParameterObject {
+public class ItemCategoryInfo {
     private int categoryId;
     /**
      * category_id integer

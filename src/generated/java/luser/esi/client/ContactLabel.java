@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ContactLabel implements ApiParameterObject {
+public class ContactLabel {
     private long labelId;
     /**
      * label_id integer

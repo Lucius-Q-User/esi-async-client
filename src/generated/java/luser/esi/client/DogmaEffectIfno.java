@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DogmaEffectIfno implements ApiParameterObject {
+public class DogmaEffectIfno {
     private String description;
     /**
      * description string

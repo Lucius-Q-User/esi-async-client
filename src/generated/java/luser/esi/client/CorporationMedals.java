@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorporationMedals implements ApiParameterObject {
+public class CorporationMedals {
     private Instant createdAt;
     /**
      * created_at string

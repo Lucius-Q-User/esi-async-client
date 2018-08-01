@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TypeInfo implements ApiParameterObject {
+public class TypeInfo {
     private Float capacity;
     /**
      * capacity number

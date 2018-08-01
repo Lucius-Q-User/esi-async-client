@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RegionInfo implements ApiParameterObject {
+public class RegionInfo {
     private IntArrayList constellations;
     /**
      * constellations array

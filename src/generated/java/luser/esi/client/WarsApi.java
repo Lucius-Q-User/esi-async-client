@@ -50,11 +50,9 @@ public class WarsApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return details about a war
@@ -87,11 +85,9 @@ public class WarsApi {
         parametersInUrl.put("war_id", String.valueOf(warId));
         String body = null;
         String method = "GET";
-        ResponseParser<WarInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, WarInfo.class);
-        };
+        TypeReference<WarInfo> responseTypeRef = new TypeReference<WarInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of kills related to a war
@@ -130,10 +126,8 @@ public class WarsApi {
         parametersInUrl.put("war_id", String.valueOf(warId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<KillmailRef>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<KillmailRef>>() {});
-        };
+        TypeReference<List<KillmailRef>> responseTypeRef = new TypeReference<List<KillmailRef>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

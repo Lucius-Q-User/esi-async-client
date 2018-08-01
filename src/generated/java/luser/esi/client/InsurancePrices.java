@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class InsurancePrices implements ApiParameterObject {
+public class InsurancePrices {
     private List<IsurancePrices> levels;
     /**
      * A list of a available insurance levels for this ship type

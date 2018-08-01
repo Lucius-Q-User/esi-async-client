@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResolvedCharacterAffiliation implements ApiParameterObject {
+public class ResolvedCharacterAffiliation {
     private Integer allianceId;
     /**
      * The character's alliance ID, if their corporation is in an alliance

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LpTradeRequiredItem implements ApiParameterObject {
+public class LpTradeRequiredItem {
     private int quantity;
     /**
      * quantity integer

@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JumpAidsInfo implements ApiParameterObject {
+public class JumpAidsInfo {
     private Instant jumpFatigueExpireDate;
     /**
      * Character's jump fatigue expiry

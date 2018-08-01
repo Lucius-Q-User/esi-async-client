@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterPortrait implements ApiParameterObject {
+public class CharacterPortrait {
     private String px128x128;
     /**
      * px128x128 string

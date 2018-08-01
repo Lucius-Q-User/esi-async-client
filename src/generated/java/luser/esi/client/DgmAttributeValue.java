@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DgmAttributeValue implements ApiParameterObject {
+public class DgmAttributeValue {
     private int attributeId;
     /**
      * attribute_id integer

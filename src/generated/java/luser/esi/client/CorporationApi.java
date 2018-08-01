@@ -44,11 +44,9 @@ public class CorporationApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return corporation hangar and wallet division names, only show if a division is not using the default name
@@ -84,11 +82,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<CorporationDivision> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationDivision.class);
-        };
+        TypeReference<CorporationDivision> responseTypeRef = new TypeReference<CorporationDivision>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a corporation's facilities
@@ -124,11 +120,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationFacility>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationFacility>>() {});
-        };
+        TypeReference<List<CorporationFacility>> responseTypeRef = new TypeReference<List<CorporationFacility>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get the icon urls for a corporation
@@ -161,11 +155,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<CorporationIcons> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationIcons.class);
-        };
+        TypeReference<CorporationIcons> responseTypeRef = new TypeReference<CorporationIcons>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns a corporation's medals
@@ -204,11 +196,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationMedals>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMedals>>() {});
-        };
+        TypeReference<List<CorporationMedals>> responseTypeRef = new TypeReference<List<CorporationMedals>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns medals issued by a corporation
@@ -250,11 +240,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationIssuedMedals>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationIssuedMedals>>() {});
-        };
+        TypeReference<List<CorporationIssuedMedals>> responseTypeRef = new TypeReference<List<CorporationIssuedMedals>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a corporation's member limit, not including CEO himself
@@ -290,11 +278,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<Integer> responseParser = (resp) -> {
-            return Integer.parseInt(resp);
-        };
+        TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns a corporation's members' titles
@@ -330,11 +316,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationMemberTitle>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMemberTitle>>() {});
-        };
+        TypeReference<List<CorporationMemberTitle>> responseTypeRef = new TypeReference<List<CorporationMemberTitle>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns additional information about a corporation's members which helps tracking their activities
@@ -370,11 +354,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<MemberTrackingInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MemberTrackingInfo>>() {});
-        };
+        TypeReference<List<MemberTrackingInfo>> responseTypeRef = new TypeReference<List<MemberTrackingInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return the roles of all members if the character has the personnel manager role or any grantable role.
@@ -407,11 +389,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationRoles>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationRoles>>() {});
-        };
+        TypeReference<List<CorporationRoles>> responseTypeRef = new TypeReference<List<CorporationRoles>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return how roles have changed for a coporation's members, up to a month
@@ -453,11 +433,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationRolesHistoryEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationRolesHistoryEntry>>() {});
-        };
+        TypeReference<List<CorporationRolesHistoryEntry>> responseTypeRef = new TypeReference<List<CorporationRolesHistoryEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return the current shareholders of a corporation.
@@ -499,11 +477,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationShareholders>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationShareholders>>() {});
-        };
+        TypeReference<List<CorporationShareholders>> responseTypeRef = new TypeReference<List<CorporationShareholders>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return corporation standings from agents, NPC corporations, and factions
@@ -542,11 +518,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<StandingsEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<StandingsEntry>>() {});
-        };
+        TypeReference<List<StandingsEntry>> responseTypeRef = new TypeReference<List<StandingsEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns list of corporation starbases (POSes)
@@ -588,11 +562,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationPOS>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationPOS>>() {});
-        };
+        TypeReference<List<CorporationPOS>> responseTypeRef = new TypeReference<List<CorporationPOS>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns various settings and fuels of a starbase (POS)
@@ -636,11 +608,9 @@ public class CorporationApi {
         parametersInUrl.put("starbase_id", String.valueOf(starbaseId));
         String body = null;
         String method = "GET";
-        ResponseParser<CorporationPOSInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationPOSInfo.class);
-        };
+        TypeReference<CorporationPOSInfo> responseTypeRef = new TypeReference<CorporationPOSInfo>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns a corporation's titles
@@ -676,11 +646,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationTitles>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationTitles>>() {});
-        };
+        TypeReference<List<CorporationTitles>> responseTypeRef = new TypeReference<List<CorporationTitles>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of all the alliances a corporation has been a member of
@@ -713,11 +681,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<AllianceHistoryEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AllianceHistoryEntry>>() {});
-        };
+        TypeReference<List<AllianceHistoryEntry>> responseTypeRef = new TypeReference<List<AllianceHistoryEntry>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns a list of blueprints the corporation owns
@@ -759,11 +725,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationBlueprint>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationBlueprint>>() {});
-        };
+        TypeReference<List<CorporationBlueprint>> responseTypeRef = new TypeReference<List<CorporationBlueprint>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation
@@ -805,11 +769,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<ContainerLogEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ContainerLogEntry>>() {});
-        };
+        TypeReference<List<ContainerLogEntry>> responseTypeRef = new TypeReference<List<ContainerLogEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th
@@ -856,11 +818,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationStructures>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationStructures>>() {});
-        };
+        TypeReference<List<CorporationStructures>> responseTypeRef = new TypeReference<List<CorporationStructures>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return the current member list of a corporation, the token's character need to be a member of the corporation.
@@ -893,11 +853,9 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Public information about a corporation
@@ -930,10 +888,8 @@ public class CorporationApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<CorporationInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationInfo.class);
-        };
+        TypeReference<CorporationInfo> responseTypeRef = new TypeReference<CorporationInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

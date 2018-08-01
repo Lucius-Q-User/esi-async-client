@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorporationMemberTitle implements ApiParameterObject {
+public class CorporationMemberTitle {
     private int characterId;
     /**
      * character_id integer

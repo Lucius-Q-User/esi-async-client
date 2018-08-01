@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class WalletTransaction implements ApiParameterObject {
+public class WalletTransaction {
     private int clientId;
     /**
      * client_id integer

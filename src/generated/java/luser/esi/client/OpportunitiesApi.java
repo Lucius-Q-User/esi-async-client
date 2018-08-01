@@ -46,11 +46,9 @@ public class OpportunitiesApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<OpportunityInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<OpportunityInfo>>() {});
-        };
+        TypeReference<List<OpportunityInfo>> responseTypeRef = new TypeReference<List<OpportunityInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of opportunities groups
@@ -81,11 +79,9 @@ public class OpportunitiesApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return information of an opportunities group
@@ -123,11 +119,9 @@ public class OpportunitiesApi {
         parametersInUrl.put("group_id", String.valueOf(groupId));
         String body = null;
         String method = "GET";
-        ResponseParser<OpportunityGroup> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, OpportunityGroup.class);
-        };
+        TypeReference<OpportunityGroup> responseTypeRef = new TypeReference<OpportunityGroup>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of opportunities tasks
@@ -158,11 +152,9 @@ public class OpportunitiesApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return information of an opportunities task
@@ -195,10 +187,8 @@ public class OpportunitiesApi {
         parametersInUrl.put("task_id", String.valueOf(taskId));
         String body = null;
         String method = "GET";
-        ResponseParser<OpportunityTaks> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, OpportunityTaks.class);
-        };
+        TypeReference<OpportunityTaks> responseTypeRef = new TypeReference<OpportunityTaks>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

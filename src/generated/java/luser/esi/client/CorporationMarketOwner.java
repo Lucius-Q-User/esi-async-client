@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CorporationMarketOwner implements ApiParameterObject {
+public class CorporationMarketOwner {
     private int duration;
     /**
      * Number of days for which order is valid (starting from the issued date). An order expires at time issued + duration

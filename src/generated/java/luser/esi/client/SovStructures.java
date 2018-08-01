@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SovStructures implements ApiParameterObject {
+public class SovStructures {
     private int allianceId;
     /**
      * The alliance that owns the structure.

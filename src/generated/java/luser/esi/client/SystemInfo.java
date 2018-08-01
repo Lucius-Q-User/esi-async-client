@@ -4,7 +4,7 @@ import java.util.List;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SystemInfo implements ApiParameterObject {
+public class SystemInfo {
     private int constellationId;
     /**
      * The constellation this solar system is in

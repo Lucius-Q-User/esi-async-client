@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MemberTrackingInfo implements ApiParameterObject {
+public class MemberTrackingInfo {
     private Integer baseId;
     /**
      * base_id integer

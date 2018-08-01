@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class SovereigntyCampaign implements ApiParameterObject {
+public class SovereigntyCampaign {
     private Float attackersScore;
     /**
      * Score for all attacking parties, only present in Defense Events.

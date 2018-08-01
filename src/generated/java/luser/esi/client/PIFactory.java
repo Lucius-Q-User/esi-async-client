@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PIFactory implements ApiParameterObject {
+public class PIFactory {
     private int schematicId;
     /**
      * schematic_id integer

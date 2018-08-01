@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class PlanetInfo implements ApiParameterObject {
+public class PlanetInfo {
     private Instant lastUpdate;
     /**
      * last_update string

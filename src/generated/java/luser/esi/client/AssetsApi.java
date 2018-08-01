@@ -42,11 +42,9 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        ResponseParser<List<ResolvedAssetName>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedAssetName>>() {});
-        };
+        TypeReference<List<ResolvedAssetName>> responseTypeRef = new TypeReference<List<ResolvedAssetName>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships.
@@ -76,11 +74,9 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        ResponseParser<List<ResolvedAssetName>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedAssetName>>() {});
-        };
+        TypeReference<List<ResolvedAssetName>> responseTypeRef = new TypeReference<List<ResolvedAssetName>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)
@@ -109,11 +105,9 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        ResponseParser<List<ResolvedItemLocation>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedItemLocation>>() {});
-        };
+        TypeReference<List<ResolvedItemLocation>> responseTypeRef = new TypeReference<List<ResolvedItemLocation>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)
@@ -143,11 +137,9 @@ public class AssetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(itemIds);
         String method = "POST";
-        ResponseParser<List<ResolvedItemLocation>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedItemLocation>>() {});
-        };
+        TypeReference<List<ResolvedItemLocation>> responseTypeRef = new TypeReference<List<ResolvedItemLocation>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of the characters assets
@@ -186,11 +178,9 @@ public class AssetsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CharacterAssetsEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterAssetsEntry>>() {});
-        };
+        TypeReference<List<CharacterAssetsEntry>> responseTypeRef = new TypeReference<List<CharacterAssetsEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of the corporation assets
@@ -232,10 +222,8 @@ public class AssetsApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationAssetsEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationAssetsEntry>>() {});
-        };
+        TypeReference<List<CorporationAssetsEntry>> responseTypeRef = new TypeReference<List<CorporationAssetsEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

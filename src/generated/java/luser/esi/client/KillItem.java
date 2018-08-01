@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class KillItem implements ApiParameterObject {
+public class KillItem {
     private int flag;
     /**
      * flag integer

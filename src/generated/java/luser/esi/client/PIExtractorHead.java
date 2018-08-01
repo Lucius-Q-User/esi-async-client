@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PIExtractorHead implements ApiParameterObject {
+public class PIExtractorHead {
     private int headId;
     /**
      * head_id integer

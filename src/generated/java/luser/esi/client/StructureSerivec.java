@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class StructureSerivec implements ApiParameterObject {
+public class StructureSerivec {
     private String name;
     /**
      * name string

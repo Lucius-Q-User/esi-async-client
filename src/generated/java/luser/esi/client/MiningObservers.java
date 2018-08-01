@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class MiningObservers implements ApiParameterObject {
+public class MiningObservers {
     private String lastUpdated;
     /**
      * last_updated string

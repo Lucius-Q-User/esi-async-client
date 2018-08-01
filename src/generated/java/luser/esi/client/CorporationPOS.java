@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CorporationPOS implements ApiParameterObject {
+public class CorporationPOS {
     private Integer moonId;
     /**
      * The moon this starbase (POS) is anchored on, unanchored POSes do not have this information

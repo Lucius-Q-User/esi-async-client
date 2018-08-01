@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorporationDivision implements ApiParameterObject {
+public class CorporationDivision {
     private List<DivisionInfo> hangar;
     /**
      * hangar array

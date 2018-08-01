@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class WarParticipantInfo implements ApiParameterObject {
+public class WarParticipantInfo {
     private Integer allianceId;
     /**
      * Alliance ID if and only if the aggressor is an alliance

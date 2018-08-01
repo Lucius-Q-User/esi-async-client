@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class ActiveFleetInfo implements ApiParameterObject {
+public class ActiveFleetInfo {
     private long fleetId;
     /**
      * The character's current fleet ID

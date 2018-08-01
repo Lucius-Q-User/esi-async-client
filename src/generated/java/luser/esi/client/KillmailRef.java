@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class KillmailRef implements ApiParameterObject {
+public class KillmailRef {
     private String killmailHash;
     /**
      * A hash of this killmail

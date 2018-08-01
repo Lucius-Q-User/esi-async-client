@@ -5,7 +5,7 @@ import java.util.List;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MailboxEntry implements ApiParameterObject {
+public class MailboxEntry {
     private Integer from;
     /**
      * From whom the mail was sent

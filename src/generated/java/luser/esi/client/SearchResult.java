@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SearchResult implements ApiParameterObject {
+public class SearchResult {
     private IntArrayList agent;
     /**
      * agent array

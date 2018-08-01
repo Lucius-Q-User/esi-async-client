@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class StarInfo implements ApiParameterObject {
+public class StarInfo {
     private long age;
     /**
      * Age of star in years

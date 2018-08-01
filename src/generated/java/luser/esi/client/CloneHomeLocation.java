@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CloneHomeLocation implements ApiParameterObject {
+public class CloneHomeLocation {
     private Long locationId;
     /**
      * location_id integer

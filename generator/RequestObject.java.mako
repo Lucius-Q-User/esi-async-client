@@ -2,7 +2,7 @@ package luser.esi.client;
 
 {{PUT_IMPORTS_HERE}}
 
-public class ${title} implements ApiParameterObject {
+public class ${title} {
 <%
         enumsToGenerate = {}
     %>\

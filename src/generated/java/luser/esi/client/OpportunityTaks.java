@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OpportunityTaks implements ApiParameterObject {
+public class OpportunityTaks {
     private String description;
     /**
      * description string

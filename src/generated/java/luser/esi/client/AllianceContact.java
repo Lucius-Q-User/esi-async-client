@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class AllianceContact implements ApiParameterObject {
+public class AllianceContact {
     private int contactId;
     /**
      * contact_id integer

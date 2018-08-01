@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CharacterBlueprint implements ApiParameterObject {
+public class CharacterBlueprint {
     private long itemId;
     /**
      * Unique ID for this item.

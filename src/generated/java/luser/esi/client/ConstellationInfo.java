@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ConstellationInfo implements ApiParameterObject {
+public class ConstellationInfo {
     private int constellationId;
     /**
      * constellation_id integer

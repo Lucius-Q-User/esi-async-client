@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NewMail implements ApiParameterObject {
+public class NewMail {
     private Long approvedCost;
     /**
      * approved_cost integer

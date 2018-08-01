@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ServerStatus implements ApiParameterObject {
+public class ServerStatus {
     private int players;
     /**
      * Current online player count

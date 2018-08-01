@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CharacterAssetsEntry implements ApiParameterObject {
+public class CharacterAssetsEntry {
     private Boolean isBlueprintCopy;
     /**
      * is_blueprint_copy boolean

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsModules implements ApiParameterObject {
+public class CharacterStatsModules {
     private Long activationsArmorHardener;
     /**
      * activations_armor_hardener integer

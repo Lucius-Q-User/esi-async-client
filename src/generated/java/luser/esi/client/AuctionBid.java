@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AuctionBid implements ApiParameterObject {
+public class AuctionBid {
     private float amount;
     /**
      * The amount bid, in ISK

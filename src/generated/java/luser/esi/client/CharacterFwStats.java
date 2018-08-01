@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterFwStats implements ApiParameterObject {
+public class CharacterFwStats {
     private Integer currentRank;
     /**
      * The given character's current faction rank

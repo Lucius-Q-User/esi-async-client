@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreatedSquadResponse implements ApiParameterObject {
+public class CreatedSquadResponse {
     private long squadId;
     /**
      * The squad_id of the newly created squad

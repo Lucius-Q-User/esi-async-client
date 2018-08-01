@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SchematicInfo implements ApiParameterObject {
+public class SchematicInfo {
     private int cycleTime;
     /**
      * Time in seconds to process a run

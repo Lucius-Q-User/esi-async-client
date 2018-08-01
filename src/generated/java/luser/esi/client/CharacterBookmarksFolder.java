@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterBookmarksFolder implements ApiParameterObject {
+public class CharacterBookmarksFolder {
     private int folderId;
     /**
      * folder_id integer

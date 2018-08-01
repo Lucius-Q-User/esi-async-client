@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorporationFwStatsResponse implements ApiParameterObject {
+public class CorporationFwStatsResponse {
     private Instant enlistedOn;
     /**
      * The enlistment date of the given corporation into faction warfare. Will not be included if corporation is not enlisted in faction warfare

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SystemKills implements ApiParameterObject {
+public class SystemKills {
     private int npcKills;
     /**
      * Number of NPC ships killed in this system

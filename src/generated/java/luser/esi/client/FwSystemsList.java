@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class FwSystemsList implements ApiParameterObject {
+public class FwSystemsList {
     private ContestedEnum contested;
     /**
      * contested string

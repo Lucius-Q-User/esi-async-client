@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SystemPlanetInfo implements ApiParameterObject {
+public class SystemPlanetInfo {
     private IntArrayList asteroidBelts;
     /**
      * asteroid_belts array

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class FleetInvitation implements ApiParameterObject {
+public class FleetInvitation {
     private int characterId;
     /**
      * The character you want to invite

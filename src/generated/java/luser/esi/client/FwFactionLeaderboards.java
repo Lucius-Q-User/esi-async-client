@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwFactionLeaderboards implements ApiParameterObject {
+public class FwFactionLeaderboards {
     private FwFactionLeaderboard kills;
     /**
      * Top 4 rankings of factions by number of kills from yesterday, last week and in total.

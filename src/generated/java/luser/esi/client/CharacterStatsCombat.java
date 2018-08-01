@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsCombat implements ApiParameterObject {
+public class CharacterStatsCombat {
     private Long capDrainedbyNpc;
     /**
      * cap_drainedby_npc integer

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Coordinate implements ApiParameterObject {
+public class Coordinate {
     private double x;
     /**
      * x number

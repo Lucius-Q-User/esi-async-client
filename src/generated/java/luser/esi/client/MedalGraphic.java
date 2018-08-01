@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MedalGraphic implements ApiParameterObject {
+public class MedalGraphic {
     private Integer color;
     /**
      * color integer

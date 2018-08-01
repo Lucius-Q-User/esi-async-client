@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class StructureMarkets implements ApiParameterObject {
+public class StructureMarkets {
     private int duration;
     /**
      * duration integer

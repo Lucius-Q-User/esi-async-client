@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SovMap implements ApiParameterObject {
+public class SovMap {
     private Integer allianceId;
     /**
      * alliance_id integer

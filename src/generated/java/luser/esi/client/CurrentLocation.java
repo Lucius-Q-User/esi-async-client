@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CurrentLocation implements ApiParameterObject {
+public class CurrentLocation {
     private int solarSystemId;
     /**
      * solar_system_id integer

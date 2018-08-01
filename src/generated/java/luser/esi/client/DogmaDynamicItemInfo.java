@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DogmaDynamicItemInfo implements ApiParameterObject {
+public class DogmaDynamicItemInfo {
     private int createdBy;
     /**
      * The ID of the character who created the item

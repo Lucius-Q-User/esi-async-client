@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsOrbital implements ApiParameterObject {
+public class CharacterStatsOrbital {
     private Long strikeCharactersKilled;
     /**
      * strike_characters_killed integer

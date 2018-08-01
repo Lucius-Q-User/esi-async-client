@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class StructureInfo implements ApiParameterObject {
+public class StructureInfo {
     private String name;
     /**
      * The full name of the structure

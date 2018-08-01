@@ -52,11 +52,9 @@ public class MarketApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CharacterOrderHistoryEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterOrderHistoryEntry>>() {});
-        };
+        TypeReference<List<CharacterOrderHistoryEntry>> responseTypeRef = new TypeReference<List<CharacterOrderHistoryEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of item groups
@@ -87,11 +85,9 @@ public class MarketApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on an item group
@@ -129,11 +125,9 @@ public class MarketApi {
         parametersInUrl.put("market_group_id", String.valueOf(marketGroupId));
         String body = null;
         String method = "GET";
-        ResponseParser<MarketGroup> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MarketGroup.class);
-        };
+        TypeReference<MarketGroup> responseTypeRef = new TypeReference<MarketGroup>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of prices
@@ -164,11 +158,9 @@ public class MarketApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<MarketPrices>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MarketPrices>>() {});
-        };
+        TypeReference<List<MarketPrices>> responseTypeRef = new TypeReference<List<MarketPrices>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return all orders in a structure
@@ -207,11 +199,9 @@ public class MarketApi {
         parametersInUrl.put("structure_id", String.valueOf(structureId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<StructureMarkets>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<StructureMarkets>>() {});
-        };
+        TypeReference<List<StructureMarkets>> responseTypeRef = new TypeReference<List<StructureMarkets>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of historical market statistics for the specified type in a region
@@ -250,11 +240,9 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<MarketHistory>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MarketHistory>>() {});
-        };
+        TypeReference<List<MarketHistory>> responseTypeRef = new TypeReference<List<MarketHistory>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of orders in a region
@@ -305,11 +293,9 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<ActiveMarketOrder>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ActiveMarketOrder>>() {});
-        };
+        TypeReference<List<ActiveMarketOrder>> responseTypeRef = new TypeReference<List<ActiveMarketOrder>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of type IDs that have active orders in the region, for efficient market indexing.
@@ -348,11 +334,9 @@ public class MarketApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List open market orders placed by a character
@@ -385,11 +369,9 @@ public class MarketApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CharacterMarketOrder>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterMarketOrder>>() {});
-        };
+        TypeReference<List<CharacterMarketOrder>> responseTypeRef = new TypeReference<List<CharacterMarketOrder>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.
@@ -431,11 +413,9 @@ public class MarketApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationMarketOrderHistoryEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMarketOrderHistoryEntry>>() {});
-        };
+        TypeReference<List<CorporationMarketOrderHistoryEntry>> responseTypeRef = new TypeReference<List<CorporationMarketOrderHistoryEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List open market orders placed on behalf of a corporation
@@ -477,10 +457,8 @@ public class MarketApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationMarketOwner>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationMarketOwner>>() {});
-        };
+        TypeReference<List<CorporationMarketOwner>> responseTypeRef = new TypeReference<List<CorporationMarketOwner>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class StargateDestination implements ApiParameterObject {
+public class StargateDestination {
     private int stargateId;
     /**
      * The stargate this stargate connects to

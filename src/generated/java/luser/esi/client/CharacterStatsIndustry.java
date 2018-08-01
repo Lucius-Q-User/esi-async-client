@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsIndustry implements ApiParameterObject {
+public class CharacterStatsIndustry {
     private Long hackingSuccesses;
     /**
      * hacking_successes integer

@@ -45,11 +45,9 @@ public class FactionWarfareApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<CharacterFwStats> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterFwStats.class);
-        };
+        TypeReference<CharacterFwStats> responseTypeRef = new TypeReference<CharacterFwStats>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Statistics about a corporation involved in faction warfare
@@ -82,11 +80,9 @@ public class FactionWarfareApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<CorporationFwStatsResponse> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CorporationFwStatsResponse.class);
-        };
+        TypeReference<CorporationFwStatsResponse> responseTypeRef = new TypeReference<CorporationFwStatsResponse>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday.
@@ -117,11 +113,9 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<FwFactionLeaderboards> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FwFactionLeaderboards.class);
-        };
+        TypeReference<FwFactionLeaderboards> responseTypeRef = new TypeReference<FwFactionLeaderboards>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday.
@@ -152,11 +146,9 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<FwCharacterLeaderboards> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FwCharacterLeaderboards.class);
-        };
+        TypeReference<FwCharacterLeaderboards> responseTypeRef = new TypeReference<FwCharacterLeaderboards>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday.
@@ -187,11 +179,9 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<FWCorporationLeaderboards> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FWCorporationLeaderboards.class);
-        };
+        TypeReference<FWCorporationLeaderboards> responseTypeRef = new TypeReference<FWCorporationLeaderboards>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Statistical overviews of factions involved in faction warfare
@@ -222,11 +212,9 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<GlobalFwStats>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<GlobalFwStats>>() {});
-        };
+        TypeReference<List<GlobalFwStats>> responseTypeRef = new TypeReference<List<GlobalFwStats>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Data about which NPC factions are at war
@@ -257,11 +245,9 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<FwActiveWars>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FwActiveWars>>() {});
-        };
+        TypeReference<List<FwActiveWars>> responseTypeRef = new TypeReference<List<FwActiveWars>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * An overview of the current ownership of faction warfare solar systems
@@ -292,10 +278,8 @@ public class FactionWarfareApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<FwSystemsList>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FwSystemsList>>() {});
-        };
+        TypeReference<List<FwSystemsList>> responseTypeRef = new TypeReference<List<FwSystemsList>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

@@ -24,8 +24,8 @@ import com.carrotsearch.hppc.LongContainer;
 import com.carrotsearch.hppc.cursors.IntCursor;
 import com.carrotsearch.hppc.cursors.LongCursor;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import io.netty.handler.codec.http.HttpHeaders;
@@ -45,7 +45,7 @@ abstract class ApiClientBase implements AutoCloseable {
     public ApiClientBase() {
         synchronized (LOCK) {
             if (activeClients == 0) {
-                asyncHttpClient = Dsl.asyncHttpClient();
+                asyncHttpClient = Dsl.asyncHttpClient(Dsl.config().setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko"));
             }
             activeClients++;
         }
@@ -115,7 +115,9 @@ abstract class ApiClientBase implements AutoCloseable {
     public SsoApi getSsoApi() {
         return ssoApi;
     }
-
+    String getAuthorizationString() {
+        return "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8));
+    }
     private synchronized CompletableFuture<String> getAuth() {
         if (inflightRefresh != null) {
             return inflightRefresh;
@@ -127,21 +129,19 @@ abstract class ApiClientBase implements AutoCloseable {
             return CompletableFuture.completedFuture(authToken);
         }
         try {
-            String authVal = "Basic " + Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8));
-            ObjectNode authBody = GLOBAL_OBJECT_MAPPER.createObjectNode();
-            authBody.put("grant_type", "refresh_token");
-            authBody.put("refresh_token", refreshToken);
+            String authVal = getAuthorizationString();
+            TokenRequest authBody = TokenRequest.forRefToken(refreshToken);
             RequestBuilder builder = Dsl.post("https://login.eveonline.com/oauth/token")
                     .addHeader("Authorization", authVal)
                     .addHeader("Content-Type", "application/json")
                     .setBody(GLOBAL_OBJECT_MAPPER.writeValueAsString(authBody));
             inflightRefresh = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
                 try {
-                    ObjectNode js = (ObjectNode) GLOBAL_OBJECT_MAPPER.readTree(resp.getResponseBody());
+                    TokenExchangeResponse js = GLOBAL_OBJECT_MAPPER.readValue(resp.getResponseBody(), TokenExchangeResponse.class);
                     synchronized (this) {
                         inflightRefresh = null;
-                        authToken = js.get("access_token").asText();
-                        authTokenExpiry = Instant.now().plus(js.get("expires_in").asLong(), ChronoUnit.SECONDS);
+                        authToken = js.getAccessToken();
+                        authTokenExpiry = Instant.now().plus(js.getExpiresIn(), ChronoUnit.SECONDS);
                     }
                     return CompletableFuture.completedFuture(authToken);
                 } catch (IOException e) {
@@ -156,12 +156,8 @@ abstract class ApiClientBase implements AutoCloseable {
         }
     }
 
-
-
-
-
-    private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, ResponseParser<T> responseParser) {
-        return asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
+    private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, TypeReference<T> responseTypeRef) {
+        CompletableFuture<EsiResponseWrapper<T>> ftr = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
             int statusCode = resp.getStatusCode();
             String resultBody = resp.getResponseBody();
             Map<String, List<String>> headers = headersToMap(resp.getHeaders());
@@ -172,7 +168,12 @@ abstract class ApiClientBase implements AutoCloseable {
                 return future;
             } else {
                 try {
-                    T parsedResponse = responseParser.apply(resultBody);
+                    T parsedResponse;
+                    if (responseTypeRef != null) {
+                        parsedResponse = GLOBAL_OBJECT_MAPPER.readValue(resultBody, responseTypeRef);
+                    } else {
+                        parsedResponse = null;
+                    }
                     return CompletableFuture.completedFuture(new EsiResponseWrapper<>(statusCode, headers, parsedResponse));
                 } catch (IOException e) {
                     CompletableFuture<EsiResponseWrapper<T>> future = new CompletableFuture<>();
@@ -180,23 +181,28 @@ abstract class ApiClientBase implements AutoCloseable {
                     return future;
                 }
             }
-        }).exceptionally((ex) -> {
-            ex.printStackTrace();
-            return null;
         });
+        return ftr;
     }
 
+
     <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(String url, Map<String, String> parametersInHeaders, Map<String, String> parametersInUrl, Map<String, String> parametersInQuery, String body, String method,
-            boolean needsAuth, ResponseParser<T> responseParser) {
-        for (Entry<String, String> e : parametersInUrl.entrySet()) {
-            url = url.replace("{" + e.getKey() + "}", e.getValue());
+            boolean needsAuth, TypeReference<T> responseTypeRef) {
+        if (parametersInUrl != null) {
+            for (Entry<String, String> e : parametersInUrl.entrySet()) {
+                url = url.replace("{" + e.getKey() + "}", e.getValue());
+            }
         }
         RequestBuilder builder = Dsl.request(method, url);
-        for (Entry<String, String> e : parametersInQuery.entrySet()) {
-            builder = builder.addQueryParam(e.getKey(), e.getValue());
+        if (parametersInQuery != null) {
+            for (Entry<String, String> e : parametersInQuery.entrySet()) {
+                builder = builder.addQueryParam(e.getKey(), e.getValue());
+            }
         }
-        for (Entry<String, String> e : parametersInHeaders.entrySet()) {
-            builder = builder.addHeader(e.getKey(), e.getValue());
+        if (parametersInHeaders != null) {
+            for (Entry<String, String> e : parametersInHeaders.entrySet()) {
+                builder = builder.addHeader(e.getKey(), e.getValue());
+            }
         }
         if (body != null) {
             builder = builder.setBody(body);
@@ -204,11 +210,11 @@ abstract class ApiClientBase implements AutoCloseable {
         //fixing the "local var must be effectively final"
         RequestBuilder builder0 = builder;
         if (!needsAuth) {
-            return invokeApi(builder0, responseParser);
+            return invokeApi(builder0, responseTypeRef);
         }
         return getAuth().thenCompose((authToken) -> {
             builder0.addHeader("Authorization", "Bearer " + authToken);
-            return invokeApi(builder0, responseParser);
+            return invokeApi(builder0, responseTypeRef);
         });
     }
 
@@ -255,22 +261,7 @@ abstract class ApiClientBase implements AutoCloseable {
         return String.join(",", it);
     }
 
-    static String renderToBody(IntContainer characters) {
-        return "[" + renderArrayToQuery(characters, null) + "]";
-    }
-
-    static String renderToBody(LongContainer itemIds) {
-        return "[" + renderArrayToQuery(itemIds, null) + "]";
-    }
-
-    static String renderToBody(Iterable<String> names) {
-        try {
-            return GLOBAL_OBJECT_MAPPER.writeValueAsString(names);
-        } catch (JsonProcessingException e) {
-            throw new Error(e);
-        }
-    }
-    static String renderToBody(ApiParameterObject jsc) {
+    static String renderToBody(Object jsc) {
         try {
             return GLOBAL_OBJECT_MAPPER.writeValueAsString(jsc);
         } catch (JsonProcessingException e) {

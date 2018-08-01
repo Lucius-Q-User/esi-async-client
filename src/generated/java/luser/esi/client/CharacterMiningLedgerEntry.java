@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterMiningLedgerEntry implements ApiParameterObject {
+public class CharacterMiningLedgerEntry {
     private String date;
     /**
      * date string

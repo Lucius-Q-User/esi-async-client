@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CorporationCustomsOffice implements ApiParameterObject {
+public class CorporationCustomsOffice {
     private Float allianceTaxRate;
     /**
      * Only present if alliance access is allowed

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CharacterOrderHistoryEntry implements ApiParameterObject {
+public class CharacterOrderHistoryEntry {
     private int duration;
     /**
      * Number of days the order was valid for (starting from the issued date). An order expires at time issued + duration

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PIContext implements ApiParameterObject {
+public class PIContext {
     private long amount;
     /**
      * amount integer

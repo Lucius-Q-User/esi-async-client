@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class SystemCostIndex implements ApiParameterObject {
+public class SystemCostIndex {
     private ActivityEnum activity;
     /**
      * activity string

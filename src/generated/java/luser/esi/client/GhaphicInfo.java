@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GhaphicInfo implements ApiParameterObject {
+public class GhaphicInfo {
     private String collisionFile;
     /**
      * collision_file string

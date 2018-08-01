@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SystemJumps implements ApiParameterObject {
+public class SystemJumps {
     private int shipJumps;
     /**
      * ship_jumps integer

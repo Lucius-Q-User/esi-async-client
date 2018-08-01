@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MoonInfo implements ApiParameterObject {
+public class MoonInfo {
     private int moonId;
     /**
      * moon_id integer

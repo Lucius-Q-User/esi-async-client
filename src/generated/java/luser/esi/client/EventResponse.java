@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class EventResponse implements ApiParameterObject {
+public class EventResponse {
     private ResponseEnum response;
     /**
      * response string

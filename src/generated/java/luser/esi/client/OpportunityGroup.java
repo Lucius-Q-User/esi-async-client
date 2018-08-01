@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OpportunityGroup implements ApiParameterObject {
+public class OpportunityGroup {
     private IntArrayList connectedGroups;
     /**
      * The groups that are connected to this group on the opportunities map

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PILink implements ApiParameterObject {
+public class PILink {
     private long destinationPinId;
     /**
      * destination_pin_id integer

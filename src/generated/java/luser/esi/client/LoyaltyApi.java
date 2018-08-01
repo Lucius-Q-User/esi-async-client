@@ -45,11 +45,9 @@ public class LoyaltyApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<LoyaltyPointsInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<LoyaltyPointsInfo>>() {});
-        };
+        TypeReference<List<LoyaltyPointsInfo>> responseTypeRef = new TypeReference<List<LoyaltyPointsInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of offers from a specific corporation's loyalty store
@@ -82,10 +80,8 @@ public class LoyaltyApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<LoyaltyStoreOffer>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<LoyaltyStoreOffer>>() {});
-        };
+        TypeReference<List<LoyaltyStoreOffer>> responseTypeRef = new TypeReference<List<LoyaltyStoreOffer>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

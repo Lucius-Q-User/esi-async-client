@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DogmaAttributeInfo implements ApiParameterObject {
+public class DogmaAttributeInfo {
     private int attributeId;
     /**
      * attribute_id integer

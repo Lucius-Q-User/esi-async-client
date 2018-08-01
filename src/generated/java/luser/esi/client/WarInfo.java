@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class WarInfo implements ApiParameterObject {
+public class WarInfo {
     private WarParticipantInfo aggressor;
     /**
      * The aggressor corporation or alliance that declared this war, only contains either corporation_id or alliance_id

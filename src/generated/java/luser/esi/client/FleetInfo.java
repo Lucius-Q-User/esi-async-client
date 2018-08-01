@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FleetInfo implements ApiParameterObject {
+public class FleetInfo {
     private boolean isFreeMove;
     /**
      * Is free-move enabled

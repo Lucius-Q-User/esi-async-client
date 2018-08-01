@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsPve implements ApiParameterObject {
+public class CharacterStatsPve {
     private Long dungeonsCompletedAgent;
     /**
      * dungeons_completed_agent integer

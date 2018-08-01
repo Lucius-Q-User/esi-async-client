@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class IndustryJobInfo implements ApiParameterObject {
+public class IndustryJobInfo {
     private int activityId;
     /**
      * Job activity ID

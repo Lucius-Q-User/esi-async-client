@@ -50,11 +50,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<AncestryInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<AncestryInfo>>() {});
-        };
+        TypeReference<List<AncestryInfo>> responseTypeRef = new TypeReference<List<AncestryInfo>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on an asteroid belt
@@ -87,11 +85,9 @@ public class UniverseApi {
         parametersInUrl.put("asteroid_belt_id", String.valueOf(asteroidBeltId));
         String body = null;
         String method = "GET";
-        ResponseParser<AsteroidBeltInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, AsteroidBeltInfo.class);
-        };
+        TypeReference<AsteroidBeltInfo> responseTypeRef = new TypeReference<AsteroidBeltInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of bloodlines
@@ -127,11 +123,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<BloodlineInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<BloodlineInfo>>() {});
-        };
+        TypeReference<List<BloodlineInfo>> responseTypeRef = new TypeReference<List<BloodlineInfo>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of item categories
@@ -162,11 +156,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information of an item category
@@ -204,11 +196,9 @@ public class UniverseApi {
         parametersInUrl.put("category_id", String.valueOf(categoryId));
         String body = null;
         String method = "GET";
-        ResponseParser<ItemCategoryInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ItemCategoryInfo.class);
-        };
+        TypeReference<ItemCategoryInfo> responseTypeRef = new TypeReference<ItemCategoryInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of constellations
@@ -239,11 +229,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a constellation
@@ -281,11 +269,9 @@ public class UniverseApi {
         parametersInUrl.put("constellation_id", String.valueOf(constellationId));
         String body = null;
         String method = "GET";
-        ResponseParser<ConstellationInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ConstellationInfo.class);
-        };
+        TypeReference<ConstellationInfo> responseTypeRef = new TypeReference<ConstellationInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of graphics
@@ -316,11 +302,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a graphic
@@ -353,11 +337,9 @@ public class UniverseApi {
         parametersInUrl.put("graphic_id", String.valueOf(graphicId));
         String body = null;
         String method = "GET";
-        ResponseParser<GhaphicInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, GhaphicInfo.class);
-        };
+        TypeReference<GhaphicInfo> responseTypeRef = new TypeReference<GhaphicInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of item groups
@@ -394,11 +376,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on an item group
@@ -436,11 +416,9 @@ public class UniverseApi {
         parametersInUrl.put("group_id", String.valueOf(groupId));
         String body = null;
         String method = "GET";
-        ResponseParser<ItemGroupInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ItemGroupInfo.class);
-        };
+        TypeReference<ItemGroupInfo> responseTypeRef = new TypeReference<ItemGroupInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours.
@@ -472,11 +450,9 @@ public class UniverseApi {
         String body = null;
         body = ApiClientBase.renderToBody(names);
         String method = "POST";
-        ResponseParser<ResolvedItemId> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ResolvedItemId.class);
-        };
+        TypeReference<ResolvedItemId> responseTypeRef = new TypeReference<ResolvedItemId>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a moon
@@ -509,11 +485,9 @@ public class UniverseApi {
         parametersInUrl.put("moon_id", String.valueOf(moonId));
         String body = null;
         String method = "GET";
-        ResponseParser<MoonInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MoonInfo.class);
-        };
+        TypeReference<MoonInfo> responseTypeRef = new TypeReference<MoonInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a planet
@@ -546,11 +520,9 @@ public class UniverseApi {
         parametersInUrl.put("planet_id", String.valueOf(planetId));
         String body = null;
         String method = "GET";
-        ResponseParser<UniversePlanetInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, UniversePlanetInfo.class);
-        };
+        TypeReference<UniversePlanetInfo> responseTypeRef = new TypeReference<UniversePlanetInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of character races
@@ -586,11 +558,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<RaceInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<RaceInfo>>() {});
-        };
+        TypeReference<List<RaceInfo>> responseTypeRef = new TypeReference<List<RaceInfo>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of regions
@@ -621,11 +591,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a region
@@ -663,11 +631,9 @@ public class UniverseApi {
         parametersInUrl.put("region_id", String.valueOf(regionId));
         String body = null;
         String method = "GET";
-        ResponseParser<RegionInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, RegionInfo.class);
-        };
+        TypeReference<RegionInfo> responseTypeRef = new TypeReference<RegionInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a stargate
@@ -700,11 +666,9 @@ public class UniverseApi {
         parametersInUrl.put("stargate_id", String.valueOf(stargateId));
         String body = null;
         String method = "GET";
-        ResponseParser<StargateInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StargateInfo.class);
-        };
+        TypeReference<StargateInfo> responseTypeRef = new TypeReference<StargateInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a star
@@ -737,11 +701,9 @@ public class UniverseApi {
         parametersInUrl.put("star_id", String.valueOf(starId));
         String body = null;
         String method = "GET";
-        ResponseParser<StarInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StarInfo.class);
-        };
+        TypeReference<StarInfo> responseTypeRef = new TypeReference<StarInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List all public structures
@@ -772,11 +734,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<LongArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, LongArrayList.class);
-        };
+        TypeReference<LongArrayList> responseTypeRef = new TypeReference<LongArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed
@@ -807,11 +767,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<SystemJumps>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SystemJumps>>() {});
-        };
+        TypeReference<List<SystemJumps>> responseTypeRef = new TypeReference<List<SystemJumps>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of solar systems
@@ -842,11 +800,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of type ids
@@ -883,11 +839,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of factions
@@ -923,11 +877,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<UniverseFaction>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<UniverseFaction>>() {});
-        };
+        TypeReference<List<UniverseFaction>> responseTypeRef = new TypeReference<List<UniverseFaction>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.
@@ -954,11 +906,9 @@ public class UniverseApi {
         String body = null;
         body = ApiClientBase.renderToBody(ids);
         String method = "POST";
-        ResponseParser<List<ResolvedItemName>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ResolvedItemName>>() {});
-        };
+        TypeReference<List<ResolvedItemName>> responseTypeRef = new TypeReference<List<ResolvedItemName>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a station
@@ -991,11 +941,9 @@ public class UniverseApi {
         parametersInUrl.put("station_id", String.valueOf(stationId));
         String body = null;
         String method = "GET";
-        ResponseParser<StationInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StationInfo.class);
-        };
+        TypeReference<StationInfo> responseTypeRef = new TypeReference<StationInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs.
@@ -1028,11 +976,9 @@ public class UniverseApi {
         parametersInUrl.put("structure_id", String.valueOf(structureId));
         String body = null;
         String method = "GET";
-        ResponseParser<StructureInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, StructureInfo.class);
-        };
+        TypeReference<StructureInfo> responseTypeRef = new TypeReference<StructureInfo>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed
@@ -1063,11 +1009,9 @@ public class UniverseApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<SystemKills>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SystemKills>>() {});
-        };
+        TypeReference<List<SystemKills>> responseTypeRef = new TypeReference<List<SystemKills>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a type
@@ -1105,11 +1049,9 @@ public class UniverseApi {
         parametersInUrl.put("type_id", String.valueOf(typeId));
         String body = null;
         String method = "GET";
-        ResponseParser<TypeInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, TypeInfo.class);
-        };
+        TypeReference<TypeInfo> responseTypeRef = new TypeReference<TypeInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a solar system.
@@ -1147,10 +1089,8 @@ public class UniverseApi {
         parametersInUrl.put("system_id", String.valueOf(systemId));
         String body = null;
         String method = "GET";
-        ResponseParser<SystemInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, SystemInfo.class);
-        };
+        TypeReference<SystemInfo> responseTypeRef = new TypeReference<SystemInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

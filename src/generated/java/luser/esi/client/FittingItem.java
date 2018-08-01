@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FittingItem implements ApiParameterObject {
+public class FittingItem {
     private int flag;
     /**
      * flag integer

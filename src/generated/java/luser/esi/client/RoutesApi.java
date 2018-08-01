@@ -3,6 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
@@ -65,10 +66,8 @@ public class RoutesApi {
         parametersInUrl.put("origin", String.valueOf(origin));
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

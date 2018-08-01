@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResearchAgentInfo implements ApiParameterObject {
+public class ResearchAgentInfo {
     private int agentId;
     /**
      * agent_id integer

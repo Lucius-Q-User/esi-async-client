@@ -2,6 +2,7 @@ package luser.esi.client;
 
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
@@ -65,11 +66,9 @@ public class SearchApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<SearchResult> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, SearchResult.class);
-        };
+        TypeReference<SearchResult> responseTypeRef = new TypeReference<SearchResult>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Search for entities that match a given sub-string.
@@ -125,10 +124,8 @@ public class SearchApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<CharacterSearchResult> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CharacterSearchResult.class);
-        };
+        TypeReference<CharacterSearchResult> responseTypeRef = new TypeReference<CharacterSearchResult>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

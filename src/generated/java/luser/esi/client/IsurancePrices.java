@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class IsurancePrices implements ApiParameterObject {
+public class IsurancePrices {
     private float cost;
     /**
      * cost number

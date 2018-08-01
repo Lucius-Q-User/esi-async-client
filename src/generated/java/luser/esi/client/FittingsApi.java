@@ -45,11 +45,9 @@ public class FittingsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<SavedFitting>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<SavedFitting>>() {});
-        };
+        TypeReference<List<SavedFitting>> responseTypeRef = new TypeReference<List<SavedFitting>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Save a new fitting for a character
@@ -78,11 +76,9 @@ public class FittingsApi {
         String body = null;
         body = ApiClientBase.renderToBody(fitting);
         String method = "POST";
-        ResponseParser<FittingCreatedResponse> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FittingCreatedResponse.class);
-        };
+        TypeReference<FittingCreatedResponse> responseTypeRef = new TypeReference<FittingCreatedResponse>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Delete a fitting from a character
@@ -111,10 +107,8 @@ public class FittingsApi {
         parametersInUrl.put("fitting_id", String.valueOf(fittingId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

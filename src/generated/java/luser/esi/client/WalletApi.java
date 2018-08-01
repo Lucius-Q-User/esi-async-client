@@ -45,11 +45,9 @@ public class WalletApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<Double> responseParser = (resp) -> {
-            return Double.parseDouble(resp);
-        };
+        TypeReference<Double> responseTypeRef = new TypeReference<Double>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get wallet transactions of a character
@@ -88,11 +86,9 @@ public class WalletApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<WalletTransaction>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletTransaction>>() {});
-        };
+        TypeReference<List<WalletTransaction>> responseTypeRef = new TypeReference<List<WalletTransaction>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a corporation's wallets
@@ -128,11 +124,9 @@ public class WalletApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationWallets>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationWallets>>() {});
-        };
+        TypeReference<List<CorporationWallets>> responseTypeRef = new TypeReference<List<CorporationWallets>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get wallet transactions of a corporation
@@ -176,11 +170,9 @@ public class WalletApi {
         parametersInUrl.put("division", String.valueOf(division));
         String body = null;
         String method = "GET";
-        ResponseParser<List<WalletTransaction>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletTransaction>>() {});
-        };
+        TypeReference<List<WalletTransaction>> responseTypeRef = new TypeReference<List<WalletTransaction>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Retrieve the given corporation's wallet journal for the given division going 30 days back
@@ -224,11 +216,9 @@ public class WalletApi {
         parametersInUrl.put("division", String.valueOf(division));
         String body = null;
         String method = "GET";
-        ResponseParser<List<WalletJournalEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletJournalEntry>>() {});
-        };
+        TypeReference<List<WalletJournalEntry>> responseTypeRef = new TypeReference<List<WalletJournalEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Retrieve the given character's wallet journal going 30 days back
@@ -267,10 +257,8 @@ public class WalletApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<WalletJournalEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<WalletJournalEntry>>() {});
-        };
+        TypeReference<List<WalletJournalEntry>> responseTypeRef = new TypeReference<List<WalletJournalEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SavedFitting implements ApiParameterObject {
+public class SavedFitting {
     private String description;
     /**
      * description string

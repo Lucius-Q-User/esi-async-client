@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CharacterInfo implements ApiParameterObject {
+public class CharacterInfo {
     private Integer allianceId;
     /**
      * The character's alliance ID

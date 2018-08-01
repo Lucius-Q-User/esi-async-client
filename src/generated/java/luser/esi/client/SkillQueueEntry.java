@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SkillQueueEntry implements ApiParameterObject {
+public class SkillQueueEntry {
     private Instant finishDate;
     /**
      * finish_date string

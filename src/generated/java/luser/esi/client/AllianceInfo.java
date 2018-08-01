@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AllianceInfo implements ApiParameterObject {
+public class AllianceInfo {
     private int creatorCorporationId;
     /**
      * ID of the corporation that created the alliance

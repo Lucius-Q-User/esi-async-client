@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CorporationPOSInfo implements ApiParameterObject {
+public class CorporationPOSInfo {
     private boolean allowAllianceMembers;
     /**
      * allow_alliance_members boolean

@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResolvedItemId implements ApiParameterObject {
+public class ResolvedItemId {
     private List<ResolvedName> agents;
     /**
      * agents array

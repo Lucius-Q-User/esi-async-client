@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PlanetContents implements ApiParameterObject {
+public class PlanetContents {
     private List<PILink> links;
     /**
      * links array

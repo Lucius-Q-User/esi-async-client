@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SquadsInWing implements ApiParameterObject {
+public class SquadsInWing {
     private long id;
     /**
      * id integer

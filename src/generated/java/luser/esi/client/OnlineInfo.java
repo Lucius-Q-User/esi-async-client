@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OnlineInfo implements ApiParameterObject {
+public class OnlineInfo {
     private Instant lastLogin;
     /**
      * Timestamp of the last login

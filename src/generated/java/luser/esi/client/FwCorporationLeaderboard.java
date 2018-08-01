@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwCorporationLeaderboard implements ApiParameterObject {
+public class FwCorporationLeaderboard {
     private List<FwCorporationLeaderboardEntry> activeTotal;
     /**
      * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days.

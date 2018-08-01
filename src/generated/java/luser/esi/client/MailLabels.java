@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MailLabels implements ApiParameterObject {
+public class MailLabels {
     private List<MailLabel> labels;
     /**
      * labels array

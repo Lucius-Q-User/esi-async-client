@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CalendarInfo implements ApiParameterObject {
+public class CalendarInfo {
     private Instant eventDate;
     /**
      * event_date string

@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class IndustrySystems implements ApiParameterObject {
+public class IndustrySystems {
     private List<SystemCostIndex> costIndices;
     /**
      * cost_indices array

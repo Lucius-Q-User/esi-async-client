@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MarketHistory implements ApiParameterObject {
+public class MarketHistory {
     private double average;
     /**
      * average number

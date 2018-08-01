@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class BloodlineInfo implements ApiParameterObject {
+public class BloodlineInfo {
     private int bloodlineId;
     /**
      * bloodline_id integer

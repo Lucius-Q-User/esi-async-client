@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsGeneral implements ApiParameterObject {
+public class CharacterStatsGeneral {
     private Long daysOfActivity;
     /**
      * days_of_activity integer

@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterAttributes implements ApiParameterObject {
+public class CharacterAttributes {
     private Instant accruedRemapCooldownDate;
     /**
      * Neural remapping cooldown after a character uses remap accrued over time

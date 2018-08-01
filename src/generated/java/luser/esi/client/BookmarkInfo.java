@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class BookmarkInfo implements ApiParameterObject {
+public class BookmarkInfo {
     private int bookmarkId;
     /**
      * bookmark_id integer

@@ -1,6 +1,7 @@
 package luser.esi.client;
 
 import java.util.Map;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
@@ -41,10 +42,8 @@ public class StatusApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<ServerStatus> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ServerStatus.class);
-        };
+        TypeReference<ServerStatus> responseTypeRef = new TypeReference<ServerStatus>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

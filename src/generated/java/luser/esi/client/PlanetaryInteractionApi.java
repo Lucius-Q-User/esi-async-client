@@ -45,11 +45,9 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<PlanetInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<PlanetInfo>>() {});
-        };
+        TypeReference<List<PlanetInfo>> responseTypeRef = new TypeReference<List<PlanetInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List customs offices owned by a corporation
@@ -91,11 +89,9 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CorporationCustomsOffice>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CorporationCustomsOffice>>() {});
-        };
+        TypeReference<List<CorporationCustomsOffice>> responseTypeRef = new TypeReference<List<CorporationCustomsOffice>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a planetary factory schematic
@@ -128,11 +124,9 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("schematic_id", String.valueOf(schematicId));
         String body = null;
         String method = "GET";
-        ResponseParser<SchematicInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, SchematicInfo.class);
-        };
+        TypeReference<SchematicInfo> responseTypeRef = new TypeReference<SchematicInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.
@@ -167,10 +161,8 @@ public class PlanetaryInteractionApi {
         parametersInUrl.put("planet_id", String.valueOf(planetId));
         String body = null;
         String method = "GET";
-        ResponseParser<PlanetContents> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, PlanetContents.class);
-        };
+        TypeReference<PlanetContents> responseTypeRef = new TypeReference<PlanetContents>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

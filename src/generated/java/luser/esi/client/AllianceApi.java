@@ -2,6 +2,7 @@ package luser.esi.client;
 
 import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
@@ -42,11 +43,9 @@ public class AllianceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List all current member corporations of an alliance
@@ -79,11 +78,9 @@ public class AllianceApi {
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get the icon urls for a alliance
@@ -116,11 +113,9 @@ public class AllianceApi {
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
         String body = null;
         String method = "GET";
-        ResponseParser<AllianceIcons> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, AllianceIcons.class);
-        };
+        TypeReference<AllianceIcons> responseTypeRef = new TypeReference<AllianceIcons>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Public information about an alliance
@@ -153,10 +148,8 @@ public class AllianceApi {
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
         String body = null;
         String method = "GET";
-        ResponseParser<AllianceInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, AllianceInfo.class);
-        };
+        TypeReference<AllianceInfo> responseTypeRef = new TypeReference<AllianceInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

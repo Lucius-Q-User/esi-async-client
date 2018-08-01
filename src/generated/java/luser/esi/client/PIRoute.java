@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PIRoute implements ApiParameterObject {
+public class PIRoute {
     private int contentTypeId;
     /**
      * content_type_id integer

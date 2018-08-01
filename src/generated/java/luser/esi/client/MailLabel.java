@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class MailLabel implements ApiParameterObject {
+public class MailLabel {
     private ColorEnum color;
     /**
      * color string

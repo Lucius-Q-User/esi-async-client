@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwFactionLeaderboard implements ApiParameterObject {
+public class FwFactionLeaderboard {
     private List<FwFactionLeaderboardEntry> activeTotal;
     /**
      * Top 4 ranking of factions active in faction warfare by total kills. A faction is considered "active" if they have participated in faction warfare in the past 14 days.

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GlobalFwStats implements ApiParameterObject {
+public class GlobalFwStats {
     private int factionId;
     /**
      * faction_id integer

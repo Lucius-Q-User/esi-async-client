@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AncestryInfo implements ApiParameterObject {
+public class AncestryInfo {
     private int bloodlineId;
     /**
      * The bloodline associated with this ancestry

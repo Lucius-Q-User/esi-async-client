@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FleetUnitName implements ApiParameterObject {
+public class FleetUnitName {
     private String name;
     /**
      * name string

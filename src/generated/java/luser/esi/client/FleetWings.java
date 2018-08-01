@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FleetWings implements ApiParameterObject {
+public class FleetWings {
     private long id;
     /**
      * id integer

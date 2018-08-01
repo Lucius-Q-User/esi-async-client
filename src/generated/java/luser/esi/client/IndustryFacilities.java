@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class IndustryFacilities implements ApiParameterObject {
+public class IndustryFacilities {
     private long facilityId;
     /**
      * ID of the facility

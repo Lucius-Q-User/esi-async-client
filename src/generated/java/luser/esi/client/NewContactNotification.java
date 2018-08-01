@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NewContactNotification implements ApiParameterObject {
+public class NewContactNotification {
     private String message;
     /**
      * message string

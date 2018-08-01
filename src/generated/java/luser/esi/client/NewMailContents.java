@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NewMailContents implements ApiParameterObject {
+public class NewMailContents {
     private IntArrayList labels;
     /**
      * Labels to assign to the mail. Pre-existing labels are unassigned.

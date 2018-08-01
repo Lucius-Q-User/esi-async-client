@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class StandingsEntry implements ApiParameterObject {
+public class StandingsEntry {
     private int fromId;
     /**
      * from_id integer

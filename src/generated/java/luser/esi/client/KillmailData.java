@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class KillmailData implements ApiParameterObject {
+public class KillmailData {
     private List<KillAttacker> attackers;
     /**
      * attackers array

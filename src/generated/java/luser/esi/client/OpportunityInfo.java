@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OpportunityInfo implements ApiParameterObject {
+public class OpportunityInfo {
     private Instant completedAt;
     /**
      * completed_at string

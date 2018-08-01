@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CharacterMedal implements ApiParameterObject {
+public class CharacterMedal {
     private int corporationId;
     /**
      * corporation_id integer

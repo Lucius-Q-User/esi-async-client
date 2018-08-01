@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DgmEffectValue implements ApiParameterObject {
+public class DgmEffectValue {
     private int effectId;
     /**
      * effect_id integer

@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PIPin implements ApiParameterObject {
+public class PIPin {
     private List<PIContext> contents;
     /**
      * contents array

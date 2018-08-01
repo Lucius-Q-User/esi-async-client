@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class FleetMemberList implements ApiParameterObject {
+public class FleetMemberList {
     private int characterId;
     /**
      * character_id integer

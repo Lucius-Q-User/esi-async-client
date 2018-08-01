@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MailingList implements ApiParameterObject {
+public class MailingList {
     private int mailingListId;
     /**
      * Mailing list ID

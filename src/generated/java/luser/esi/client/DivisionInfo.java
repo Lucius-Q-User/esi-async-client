@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DivisionInfo implements ApiParameterObject {
+public class DivisionInfo {
     private Integer division;
     /**
      * division integer

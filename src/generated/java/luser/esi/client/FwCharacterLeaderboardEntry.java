@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwCharacterLeaderboardEntry implements ApiParameterObject {
+public class FwCharacterLeaderboardEntry {
     private Integer amount;
     /**
      * Amount of kills

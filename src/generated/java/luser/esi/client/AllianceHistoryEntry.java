@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AllianceHistoryEntry implements ApiParameterObject {
+public class AllianceHistoryEntry {
     private Integer allianceId;
     /**
      * alliance_id integer

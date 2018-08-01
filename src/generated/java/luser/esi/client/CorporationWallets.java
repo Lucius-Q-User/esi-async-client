@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorporationWallets implements ApiParameterObject {
+public class CorporationWallets {
     private double balance;
     /**
      * balance number

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class ActiveIncursions implements ApiParameterObject {
+public class ActiveIncursions {
     private int constellationId;
     /**
      * The constellation id in which this incursion takes place

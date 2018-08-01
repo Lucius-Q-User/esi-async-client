@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CreatedWingResponse implements ApiParameterObject {
+public class CreatedWingResponse {
     private long wingId;
     /**
      * The wing_id of the newly created wing

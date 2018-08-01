@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RaceInfo implements ApiParameterObject {
+public class RaceInfo {
     private int allianceId;
     /**
      * The alliance generally associated with this race

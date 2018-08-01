@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ActiveMoonExtraction implements ApiParameterObject {
+public class ActiveMoonExtraction {
     private Instant chunkArrivalTime;
     /**
      * The time at which the chunk being extracted will arrive and can be fractured by the moon mining drill.

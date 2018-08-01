@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwStats implements ApiParameterObject {
+public class FwStats {
     private int lastWeek;
     /**
      * Last week's total number of kills by a given character against enemy factions

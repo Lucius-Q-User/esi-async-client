@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MiningObserverInfo implements ApiParameterObject {
+public class MiningObserverInfo {
     private int characterId;
     /**
      * The character that did the mining

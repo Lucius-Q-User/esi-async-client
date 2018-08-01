@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DgmEffectModifier implements ApiParameterObject {
+public class DgmEffectModifier {
     private String domain;
     /**
      * domain string

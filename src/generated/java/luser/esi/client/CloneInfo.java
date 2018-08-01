@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CloneInfo implements ApiParameterObject {
+public class CloneInfo {
     private CloneHomeLocation homeLocation;
     /**
      * home_location object

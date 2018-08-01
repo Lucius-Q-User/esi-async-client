@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsMining implements ApiParameterObject {
+public class CharacterStatsMining {
     private Long droneMine;
     /**
      * drone_mine integer

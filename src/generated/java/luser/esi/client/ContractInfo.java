@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class ContractInfo implements ApiParameterObject {
+public class ContractInfo {
     private int acceptorId;
     /**
      * Who will accept the contract

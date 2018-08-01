@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class NewMailOpenWindow implements ApiParameterObject {
+public class NewMailOpenWindow {
     private String body;
     /**
      * body string

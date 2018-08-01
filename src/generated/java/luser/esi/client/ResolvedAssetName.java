@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResolvedAssetName implements ApiParameterObject {
+public class ResolvedAssetName {
     private long itemId;
     /**
      * item_id integer

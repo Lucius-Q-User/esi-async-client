@@ -1,6 +1,7 @@
 package luser.esi.client;
 
 import java.util.Map;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
@@ -41,11 +42,9 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Open the information window for a character, corporation or alliance inside the client
@@ -76,11 +75,9 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Open the market details window for a specific typeID inside the client
@@ -111,11 +108,9 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Open the New Mail window, according to settings from the request if applicable
@@ -142,11 +137,9 @@ public class UserInterfaceApi {
         String body = null;
         body = ApiClientBase.renderToBody(newMail);
         String method = "POST";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Set a solar system as autopilot waypoint
@@ -189,10 +182,8 @@ public class UserInterfaceApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "POST";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UniversePlanetInfo implements ApiParameterObject {
+public class UniversePlanetInfo {
     private String name;
     /**
      * name string

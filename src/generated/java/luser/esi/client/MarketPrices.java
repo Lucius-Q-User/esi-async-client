@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MarketPrices implements ApiParameterObject {
+public class MarketPrices {
     private Double adjustedPrice;
     /**
      * adjusted_price number

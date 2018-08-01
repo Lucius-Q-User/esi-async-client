@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorporationHistoryEntry implements ApiParameterObject {
+public class CorporationHistoryEntry {
     private int corporationId;
     /**
      * corporation_id integer

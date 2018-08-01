@@ -90,25 +90,14 @@ if (${toLcaseJava(par["name"])} != null) \
         body = ApiClientBase.renderToBody(${toLcaseJava(bodyPar["name"])});
         %endif
         String method = "${method.upper()}";
-        ResponseParser<${returnType}> responseParser = (resp) -> {
-            %if returnType == "Void":
-            return null;
-            %elif returnType == "Integer":
-            return Integer.parseInt(resp);
-            %elif returnType == "Float":
-            return Float.parseFloat(resp);
-            %elif returnType == "Double":
-            return Double.parseDouble(resp);
-            %elif returnType == "IntArrayList" or returnType == "LongArrayList" or retTypeKind(path, method) == "object":
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ${returnType}.class);
-            %elif retTypeKind(path, method) == "object[]":
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<${returnType}>() {});
-            %else:
-            BLANK
-            %endif
-        };
+        TypeReference<${returnType}> responseTypeRef = \
+%if returnType == "Void":
+null;
+%else:
+new TypeReference<${returnType}>() {};
+%endif
         boolean needsAuth = ${first_lower(str("security" in swg["paths"][path][method]))};
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     %endfor
     %endfor

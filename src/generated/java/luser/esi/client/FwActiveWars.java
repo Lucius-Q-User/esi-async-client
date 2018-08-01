@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwActiveWars implements ApiParameterObject {
+public class FwActiveWars {
     private int againstId;
     /**
      * The faction ID of the enemy faction.

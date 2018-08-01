@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CorporationStructures implements ApiParameterObject {
+public class CorporationStructures {
     private int corporationId;
     /**
      * ID of the corporation that owns the structure

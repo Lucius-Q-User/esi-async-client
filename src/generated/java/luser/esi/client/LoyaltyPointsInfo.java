@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LoyaltyPointsInfo implements ApiParameterObject {
+public class LoyaltyPointsInfo {
     private int corporationId;
     /**
      * corporation_id integer

@@ -51,11 +51,9 @@ public class IndustryApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<IndustryJobInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustryJobInfo>>() {});
-        };
+        TypeReference<List<IndustryJobInfo>> responseTypeRef = new TypeReference<List<IndustryJobInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Paginated record of all mining done by a character for the past 30 days
@@ -94,11 +92,9 @@ public class IndustryApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CharacterMiningLedgerEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CharacterMiningLedgerEntry>>() {});
-        };
+        TypeReference<List<CharacterMiningLedgerEntry>> responseTypeRef = new TypeReference<List<CharacterMiningLedgerEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.
@@ -140,11 +136,9 @@ public class IndustryApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<ActiveMoonExtraction>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<ActiveMoonExtraction>>() {});
-        };
+        TypeReference<List<ActiveMoonExtraction>> responseTypeRef = new TypeReference<List<ActiveMoonExtraction>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Paginated list of all entities capable of observing and recording mining for a corporation
@@ -186,11 +180,9 @@ public class IndustryApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<MiningObservers>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MiningObservers>>() {});
-        };
+        TypeReference<List<MiningObservers>> responseTypeRef = new TypeReference<List<MiningObservers>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Paginated record of all mining seen by an observer
@@ -234,11 +226,9 @@ public class IndustryApi {
         parametersInUrl.put("observer_id", String.valueOf(observerId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<MiningObserverInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MiningObserverInfo>>() {});
-        };
+        TypeReference<List<MiningObserverInfo>> responseTypeRef = new TypeReference<List<MiningObserverInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * List industry jobs run by a corporation
@@ -286,11 +276,9 @@ public class IndustryApi {
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<IndustryJobInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustryJobInfo>>() {});
-        };
+        TypeReference<List<IndustryJobInfo>> responseTypeRef = new TypeReference<List<IndustryJobInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of industry facilities
@@ -321,11 +309,9 @@ public class IndustryApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<IndustryFacilities>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustryFacilities>>() {});
-        };
+        TypeReference<List<IndustryFacilities>> responseTypeRef = new TypeReference<List<IndustryFacilities>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return cost indices for solar systems
@@ -356,10 +342,8 @@ public class IndustryApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<List<IndustrySystems>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<IndustrySystems>>() {});
-        };
+        TypeReference<List<IndustrySystems>> responseTypeRef = new TypeReference<List<IndustrySystems>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

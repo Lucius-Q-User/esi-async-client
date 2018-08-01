@@ -5,7 +5,7 @@ import java.util.List;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MailContents implements ApiParameterObject {
+public class MailContents {
     private String body;
     /**
      * Mail's body

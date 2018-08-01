@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PIExtractor implements ApiParameterObject {
+public class PIExtractor {
     private Integer cycleTime;
     /**
      * in seconds

@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LoyaltyStoreOffer implements ApiParameterObject {
+public class LoyaltyStoreOffer {
     private Integer akCost;
     /**
      * Analysis kredit cost

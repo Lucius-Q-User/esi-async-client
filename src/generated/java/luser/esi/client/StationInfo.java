@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class StationInfo implements ApiParameterObject {
+public class StationInfo {
     private float maxDockableShipVolume;
     /**
      * max_dockable_ship_volume number

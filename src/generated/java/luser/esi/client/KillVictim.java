@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class KillVictim implements ApiParameterObject {
+public class KillVictim {
     private Integer allianceId;
     /**
      * alliance_id integer

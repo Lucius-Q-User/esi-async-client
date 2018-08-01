@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class EventAttendee implements ApiParameterObject {
+public class EventAttendee {
     private Integer characterId;
     /**
      * character_id integer

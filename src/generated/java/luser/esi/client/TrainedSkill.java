@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TrainedSkill implements ApiParameterObject {
+public class TrainedSkill {
     private int activeSkillLevel;
     /**
      * active_skill_level integer

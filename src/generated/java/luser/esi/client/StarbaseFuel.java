@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class StarbaseFuel implements ApiParameterObject {
+public class StarbaseFuel {
     private int quantity;
     /**
      * quantity integer

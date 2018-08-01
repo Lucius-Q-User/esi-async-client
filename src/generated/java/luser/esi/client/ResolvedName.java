@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResolvedName implements ApiParameterObject {
+public class ResolvedName {
     private Integer id;
     /**
      * id integer

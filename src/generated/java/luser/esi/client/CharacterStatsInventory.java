@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterStatsInventory implements ApiParameterObject {
+public class CharacterStatsInventory {
     private Long abandonLootQuantity;
     /**
      * abandon_loot_quantity integer

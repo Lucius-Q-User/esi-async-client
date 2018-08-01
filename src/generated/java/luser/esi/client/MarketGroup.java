@@ -3,7 +3,7 @@ package luser.esi.client;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MarketGroup implements ApiParameterObject {
+public class MarketGroup {
     private String description;
     /**
      * description string

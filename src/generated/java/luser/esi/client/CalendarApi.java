@@ -51,11 +51,9 @@ public class CalendarApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<CalendarInfo>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<CalendarInfo>>() {});
-        };
+        TypeReference<List<CalendarInfo>> responseTypeRef = new TypeReference<List<CalendarInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get all invited attendees for a given event
@@ -90,11 +88,9 @@ public class CalendarApi {
         parametersInUrl.put("event_id", String.valueOf(eventId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<EventAttendee>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<EventAttendee>>() {});
-        };
+        TypeReference<List<EventAttendee>> responseTypeRef = new TypeReference<List<EventAttendee>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get all the information for a specific event
@@ -129,11 +125,9 @@ public class CalendarApi {
         parametersInUrl.put("event_id", String.valueOf(eventId));
         String body = null;
         String method = "GET";
-        ResponseParser<CalendarEvent> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CalendarEvent.class);
-        };
+        TypeReference<CalendarEvent> responseTypeRef = new TypeReference<CalendarEvent>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Set your response status to an event
@@ -164,10 +158,8 @@ public class CalendarApi {
         String body = null;
         body = ApiClientBase.renderToBody(response);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

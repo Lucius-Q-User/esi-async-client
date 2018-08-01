@@ -58,11 +58,9 @@ public class MailApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<MailboxEntry>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MailboxEntry>>() {});
-        };
+        TypeReference<List<MailboxEntry>> responseTypeRef = new TypeReference<List<MailboxEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Create and send a new mail
@@ -91,11 +89,9 @@ public class MailApi {
         String body = null;
         body = ApiClientBase.renderToBody(mail);
         String method = "POST";
-        ResponseParser<Integer> responseParser = (resp) -> {
-            return Integer.parseInt(resp);
-        };
+        TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Delete a mail label
@@ -124,11 +120,9 @@ public class MailApi {
         parametersInUrl.put("label_id", String.valueOf(labelId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return all mailing lists that the character is subscribed to
@@ -161,11 +155,9 @@ public class MailApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<MailingList>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<MailingList>>() {});
-        };
+        TypeReference<List<MailingList>> responseTypeRef = new TypeReference<List<MailingList>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Delete a mail
@@ -194,11 +186,9 @@ public class MailApi {
         parametersInUrl.put("mail_id", String.valueOf(mailId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return the contents of an EVE mail
@@ -233,11 +223,9 @@ public class MailApi {
         parametersInUrl.put("mail_id", String.valueOf(mailId));
         String body = null;
         String method = "GET";
-        ResponseParser<MailContents> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MailContents.class);
-        };
+        TypeReference<MailContents> responseTypeRef = new TypeReference<MailContents>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Update metadata about a mail
@@ -268,11 +256,9 @@ public class MailApi {
         String body = null;
         body = ApiClientBase.renderToBody(contents);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Create a mail label
@@ -301,11 +287,9 @@ public class MailApi {
         String body = null;
         body = ApiClientBase.renderToBody(label);
         String method = "POST";
-        ResponseParser<Integer> responseParser = (resp) -> {
-            return Integer.parseInt(resp);
-        };
+        TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return a list of the users mail labels, unread counts for each label and a total unread count.
@@ -338,10 +322,8 @@ public class MailApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<MailLabels> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, MailLabels.class);
-        };
+        TypeReference<MailLabels> responseTypeRef = new TypeReference<MailLabels>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

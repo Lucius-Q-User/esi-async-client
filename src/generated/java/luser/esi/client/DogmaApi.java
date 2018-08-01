@@ -2,6 +2,7 @@ package luser.esi.client;
 
 import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
@@ -42,11 +43,9 @@ public class DogmaApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a dogma attribute
@@ -79,11 +78,9 @@ public class DogmaApi {
         parametersInUrl.put("attribute_id", String.valueOf(attributeId));
         String body = null;
         String method = "GET";
-        ResponseParser<DogmaAttributeInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, DogmaAttributeInfo.class);
-        };
+        TypeReference<DogmaAttributeInfo> responseTypeRef = new TypeReference<DogmaAttributeInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Returns info about a dynamic item resulting from mutation with a mutaplasmid.
@@ -118,11 +115,9 @@ public class DogmaApi {
         parametersInUrl.put("type_id", String.valueOf(typeId));
         String body = null;
         String method = "GET";
-        ResponseParser<DogmaDynamicItemInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, DogmaDynamicItemInfo.class);
-        };
+        TypeReference<DogmaDynamicItemInfo> responseTypeRef = new TypeReference<DogmaDynamicItemInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get a list of dogma effect ids
@@ -153,11 +148,9 @@ public class DogmaApi {
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
         String method = "GET";
-        ResponseParser<IntArrayList> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, IntArrayList.class);
-        };
+        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Get information on a dogma effect
@@ -190,10 +183,8 @@ public class DogmaApi {
         parametersInUrl.put("effect_id", String.valueOf(effectId));
         String body = null;
         String method = "GET";
-        ResponseParser<DogmaEffectIfno> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, DogmaEffectIfno.class);
-        };
+        TypeReference<DogmaEffectIfno> responseTypeRef = new TypeReference<DogmaEffectIfno>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

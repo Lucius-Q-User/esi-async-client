@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class NotificationInfo implements ApiParameterObject {
+public class NotificationInfo {
     private Boolean isRead;
     /**
      * is_read boolean

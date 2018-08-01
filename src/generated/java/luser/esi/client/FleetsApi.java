@@ -45,11 +45,9 @@ public class FleetsApi {
         parametersInUrl.put("character_id", String.valueOf(characterId));
         String body = null;
         String method = "GET";
-        ResponseParser<ActiveFleetInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, ActiveFleetInfo.class);
-        };
+        TypeReference<ActiveFleetInfo> responseTypeRef = new TypeReference<ActiveFleetInfo>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return details about a fleet
@@ -82,11 +80,9 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "GET";
-        ResponseParser<FleetInfo> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, FleetInfo.class);
-        };
+        TypeReference<FleetInfo> responseTypeRef = new TypeReference<FleetInfo>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Update settings about a fleet
@@ -115,11 +111,9 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(newSettings);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return information about fleet members
@@ -157,11 +151,9 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<FleetMemberList>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FleetMemberList>>() {});
-        };
+        TypeReference<List<FleetMemberList>> responseTypeRef = new TypeReference<List<FleetMemberList>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI
@@ -190,11 +182,9 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(invitation);
         String method = "POST";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Kick a fleet member
@@ -223,11 +213,9 @@ public class FleetsApi {
         parametersInUrl.put("member_id", String.valueOf(memberId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Move a fleet member around
@@ -258,11 +246,9 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(movement);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Delete a fleet squad, only empty squads can be deleted
@@ -291,11 +277,9 @@ public class FleetsApi {
         parametersInUrl.put("squad_id", String.valueOf(squadId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Rename a fleet squad
@@ -326,11 +310,9 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(naming);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Return information about wings in a fleet
@@ -368,11 +350,9 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "GET";
-        ResponseParser<List<FleetWings>> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, new TypeReference<List<FleetWings>>() {});
-        };
+        TypeReference<List<FleetWings>> responseTypeRef = new TypeReference<List<FleetWings>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Create a new wing in a fleet
@@ -399,11 +379,9 @@ public class FleetsApi {
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
         String body = null;
         String method = "POST";
-        ResponseParser<CreatedWingResponse> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CreatedWingResponse.class);
-        };
+        TypeReference<CreatedWingResponse> responseTypeRef = new TypeReference<CreatedWingResponse>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty
@@ -432,11 +410,9 @@ public class FleetsApi {
         parametersInUrl.put("wing_id", String.valueOf(wingId));
         String body = null;
         String method = "DELETE";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Rename a fleet wing
@@ -467,11 +443,9 @@ public class FleetsApi {
         String body = null;
         body = ApiClientBase.renderToBody(naming);
         String method = "PUT";
-        ResponseParser<Void> responseParser = (resp) -> {
-            return null;
-        };
+        TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
     /**
      * Create a new squad in a fleet
@@ -500,10 +474,8 @@ public class FleetsApi {
         parametersInUrl.put("wing_id", String.valueOf(wingId));
         String body = null;
         String method = "POST";
-        ResponseParser<CreatedSquadResponse> responseParser = (resp) -> {
-            return ApiClientBase.GLOBAL_OBJECT_MAPPER.readValue(resp, CreatedSquadResponse.class);
-        };
+        TypeReference<CreatedSquadResponse> responseTypeRef = new TypeReference<CreatedSquadResponse>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseParser);
+        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
     }
 }

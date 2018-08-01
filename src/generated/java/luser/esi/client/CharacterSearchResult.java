@@ -4,7 +4,7 @@ import com.carrotsearch.hppc.IntArrayList;
 import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterSearchResult implements ApiParameterObject {
+public class CharacterSearchResult {
     private IntArrayList agent;
     /**
      * agent array

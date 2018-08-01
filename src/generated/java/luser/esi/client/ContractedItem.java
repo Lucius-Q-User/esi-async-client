@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ContractedItem implements ApiParameterObject {
+public class ContractedItem {
     private boolean isIncluded;
     /**
      * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract.

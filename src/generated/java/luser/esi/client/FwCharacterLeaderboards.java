@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwCharacterLeaderboards implements ApiParameterObject {
+public class FwCharacterLeaderboards {
     private FwCharacterLeaderboard kills;
     /**
      * Top 100 rankings of pilots by number of kills from yesterday, last week and in total.

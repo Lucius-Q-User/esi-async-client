@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public class CorporationTitles implements ApiParameterObject {
+public class CorporationTitles {
     private List<GrantableRolesEnum> grantableRoles;
     /**
      * grantable_roles array

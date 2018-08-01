@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class FwCharacterLeaderboard implements ApiParameterObject {
+public class FwCharacterLeaderboard {
     private List<FwCharacterLeaderboardEntry> activeTotal;
     /**
      * Top 100 ranking of pilots active in faction warfare by total kills. A pilot is considered "active" if they have participated in faction warfare in the past 14 days.

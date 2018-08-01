@@ -2,7 +2,7 @@ package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharacterTitles implements ApiParameterObject {
+public class CharacterTitles {
     private String name;
     /**
      * name string

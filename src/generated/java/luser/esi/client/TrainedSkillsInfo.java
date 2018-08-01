@@ -3,7 +3,7 @@ package luser.esi.client;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TrainedSkillsInfo implements ApiParameterObject {
+public class TrainedSkillsInfo {
     private List<TrainedSkill> skills;
     /**
      * skills array
