@@ -679,6 +679,7 @@ def getTypeTag(par, topLevel, nameOverride=None):
       enumTag = toUcaseJava(par["name"] if nameOverride == None else nameOverride) + "Enum"
       if enumTag not in generatedEnums:
          with open(enumTag + ".java", "w") as enm:
+            print(par)
             enm.write(stringEnumTemplate.render(enumTag=enumTag, enumCases=par["enum"]))
          generatedEnums.add(enumTag)
       type = enumTag

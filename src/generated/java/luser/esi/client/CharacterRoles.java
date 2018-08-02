@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CharacterRoles {
@@ -62,7 +61,7 @@ public class CharacterRoles {
     public List<RolesAtOtherEnum> getRolesAtOther() {
         return rolesAtOther;
     }
-    public static enum RolesEnum {
+    public static enum RolesEnum implements StringyEnum{
         ACCOUNT_TAKE_1("Account_Take_1"),
         ACCOUNT_TAKE_2("Account_Take_2"),
         ACCOUNT_TAKE_3("Account_Take_3"),
@@ -117,21 +116,13 @@ public class CharacterRoles {
         private RolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static RolesEnum fromString(String str) {
-            for (RolesEnum self : RolesEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum RolesAtBaseEnum {
+    public static enum RolesAtBaseEnum implements StringyEnum{
         ACCOUNT_TAKE_1("Account_Take_1"),
         ACCOUNT_TAKE_2("Account_Take_2"),
         ACCOUNT_TAKE_3("Account_Take_3"),
@@ -186,21 +177,13 @@ public class CharacterRoles {
         private RolesAtBaseEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static RolesAtBaseEnum fromString(String str) {
-            for (RolesAtBaseEnum self : RolesAtBaseEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum RolesAtHqEnum {
+    public static enum RolesAtHqEnum implements StringyEnum{
         ACCOUNT_TAKE_1("Account_Take_1"),
         ACCOUNT_TAKE_2("Account_Take_2"),
         ACCOUNT_TAKE_3("Account_Take_3"),
@@ -255,21 +238,13 @@ public class CharacterRoles {
         private RolesAtHqEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static RolesAtHqEnum fromString(String str) {
-            for (RolesAtHqEnum self : RolesAtHqEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum RolesAtOtherEnum {
+    public static enum RolesAtOtherEnum implements StringyEnum{
         ACCOUNT_TAKE_1("Account_Take_1"),
         ACCOUNT_TAKE_2("Account_Take_2"),
         ACCOUNT_TAKE_3("Account_Take_3"),
@@ -324,18 +299,10 @@ public class CharacterRoles {
         private RolesAtOtherEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RolesAtOtherEnum fromString(String str) {
-            for (RolesAtOtherEnum self : RolesAtOtherEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

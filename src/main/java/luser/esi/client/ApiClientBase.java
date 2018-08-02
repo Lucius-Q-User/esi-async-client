@@ -70,7 +70,9 @@ abstract class ApiClientBase implements AutoCloseable {
     protected void finalize() throws Throwable {
         close();
     }
-    static final ObjectMapper GLOBAL_OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
+    static final ObjectMapper GLOBAL_OBJECT_MAPPER = new ObjectMapper()
+            .registerModule(new JavaTimeModule())
+            .registerModule(new EnumDeserModule());
     public synchronized String getClientId() {
         return clientId;
     }

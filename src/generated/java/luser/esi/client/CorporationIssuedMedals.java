@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationIssuedMedals {
@@ -90,25 +89,17 @@ public class CorporationIssuedMedals {
     public StatusEnum getStatus() {
         return status;
     }
-    public static enum StatusEnum {
+    public static enum StatusEnum implements StringyEnum{
         PRIVATE("private"),
         PUBLIC("public");
         private final String stringValue;
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static StatusEnum fromString(String str) {
-            for (StatusEnum self : StatusEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

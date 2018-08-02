@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StructureSerivec {
@@ -33,7 +32,7 @@ public class StructureSerivec {
     public StateEnum getState() {
         return state;
     }
-    public static enum StateEnum {
+    public static enum StateEnum implements StringyEnum{
         ONLINE("online"),
         OFFLINE("offline"),
         CLEANUP("cleanup");
@@ -41,18 +40,10 @@ public class StructureSerivec {
         private StateEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static StateEnum fromString(String str) {
-            for (StateEnum self : StateEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

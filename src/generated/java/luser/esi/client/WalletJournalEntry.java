@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class WalletJournalEntry {
@@ -188,7 +187,7 @@ public class WalletJournalEntry {
     public Integer getTaxReceiverId() {
         return taxReceiverId;
     }
-    public static enum ContextIdTypeEnum {
+    public static enum ContextIdTypeEnum implements StringyEnum{
         STRUCTURE_ID("structure_id"),
         STATION_ID("station_id"),
         MARKET_TRANSACTION_ID("market_transaction_id"),
@@ -205,21 +204,13 @@ public class WalletJournalEntry {
         private ContextIdTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static ContextIdTypeEnum fromString(String str) {
-            for (ContextIdTypeEnum self : ContextIdTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum RefTypeEnum {
+    public static enum RefTypeEnum implements StringyEnum{
         ACCELERATION_GATE_FEE("acceleration_gate_fee"),
         ADVERTISEMENT_LISTING_FEE("advertisement_listing_fee"),
         AGENT_DONATION("agent_donation"),
@@ -341,18 +332,10 @@ public class WalletJournalEntry {
         private RefTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RefTypeEnum fromString(String str) {
-            for (RefTypeEnum self : RefTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

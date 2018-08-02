@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationMarketOwner {
@@ -216,7 +215,7 @@ public class CorporationMarketOwner {
     public int getWalletDivision() {
         return walletDivision;
     }
-    public static enum RangeEnum {
+    public static enum RangeEnum implements StringyEnum{
         _1("1"),
         _10("10"),
         _2("2"),
@@ -233,18 +232,10 @@ public class CorporationMarketOwner {
         private RangeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RangeEnum fromString(String str) {
-            for (RangeEnum self : RangeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

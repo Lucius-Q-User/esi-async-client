@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationPOSInfo {
@@ -202,7 +201,7 @@ public class CorporationPOSInfo {
     public boolean getUseAllianceStandings() {
         return useAllianceStandings;
     }
-    public static enum AnchorEnum {
+    public static enum AnchorEnum implements StringyEnum{
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
@@ -211,21 +210,13 @@ public class CorporationPOSInfo {
         private AnchorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static AnchorEnum fromString(String str) {
-            for (AnchorEnum self : AnchorEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum FuelBayTakeEnum {
+    public static enum FuelBayTakeEnum implements StringyEnum{
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
@@ -234,21 +225,13 @@ public class CorporationPOSInfo {
         private FuelBayTakeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static FuelBayTakeEnum fromString(String str) {
-            for (FuelBayTakeEnum self : FuelBayTakeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum FuelBayViewEnum {
+    public static enum FuelBayViewEnum implements StringyEnum{
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
@@ -257,21 +240,13 @@ public class CorporationPOSInfo {
         private FuelBayViewEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static FuelBayViewEnum fromString(String str) {
-            for (FuelBayViewEnum self : FuelBayViewEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum OfflineEnum {
+    public static enum OfflineEnum implements StringyEnum{
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
@@ -280,21 +255,13 @@ public class CorporationPOSInfo {
         private OfflineEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static OfflineEnum fromString(String str) {
-            for (OfflineEnum self : OfflineEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum OnlineEnum {
+    public static enum OnlineEnum implements StringyEnum{
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
@@ -303,21 +270,13 @@ public class CorporationPOSInfo {
         private OnlineEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static OnlineEnum fromString(String str) {
-            for (OnlineEnum self : OnlineEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum UnanchorEnum {
+    public static enum UnanchorEnum implements StringyEnum{
         ALLIANCE_MEMBER("alliance_member"),
         CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
         CORPORATION_MEMBER("corporation_member"),
@@ -326,18 +285,10 @@ public class CorporationPOSInfo {
         private UnanchorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static UnanchorEnum fromString(String str) {
-            for (UnanchorEnum self : UnanchorEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

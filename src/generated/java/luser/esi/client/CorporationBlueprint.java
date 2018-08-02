@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationBlueprint {
@@ -117,7 +116,7 @@ public class CorporationBlueprint {
     public int getTypeId() {
         return typeId;
     }
-    public static enum LocationFlagEnum {
+    public static enum LocationFlagEnum implements StringyEnum{
         ASSETSAFETY("AssetSafety"),
         AUTOFIT("AutoFit"),
         BONUS("Bonus"),
@@ -237,18 +236,10 @@ public class CorporationBlueprint {
         private LocationFlagEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static LocationFlagEnum fromString(String str) {
-            for (LocationFlagEnum self : LocationFlagEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

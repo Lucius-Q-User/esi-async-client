@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class FwSystemsList {
@@ -89,7 +88,7 @@ public class FwSystemsList {
     public int getVictoryPointsThreshold() {
         return victoryPointsThreshold;
     }
-    public static enum ContestedEnum {
+    public static enum ContestedEnum implements StringyEnum{
         CAPTURED("captured"),
         CONTESTED("contested"),
         UNCONTESTED("uncontested"),
@@ -98,18 +97,10 @@ public class FwSystemsList {
         private ContestedEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ContestedEnum fromString(String str) {
-            for (ContestedEnum self : ContestedEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

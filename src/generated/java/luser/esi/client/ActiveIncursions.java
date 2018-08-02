@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ActiveIncursions {
@@ -118,7 +117,7 @@ public class ActiveIncursions {
     public String getType() {
         return type;
     }
-    public static enum StateEnum {
+    public static enum StateEnum implements StringyEnum{
         WITHDRAWING("withdrawing"),
         MOBILIZING("mobilizing"),
         ESTABLISHED("established");
@@ -126,18 +125,10 @@ public class ActiveIncursions {
         private StateEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static StateEnum fromString(String str) {
-            for (StateEnum self : StateEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CharacterAssetsEntry {
@@ -117,7 +116,7 @@ public class CharacterAssetsEntry {
     public int getTypeId() {
         return typeId;
     }
-    public static enum LocationFlagEnum {
+    public static enum LocationFlagEnum implements StringyEnum{
         ASSETSAFETY("AssetSafety"),
         AUTOFIT("AutoFit"),
         BOOSTERBAY("BoosterBay"),
@@ -201,21 +200,13 @@ public class CharacterAssetsEntry {
         private LocationFlagEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static LocationFlagEnum fromString(String str) {
-            for (LocationFlagEnum self : LocationFlagEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum LocationTypeEnum {
+    public static enum LocationTypeEnum implements StringyEnum{
         STATION("station"),
         SOLAR_SYSTEM("solar_system"),
         OTHER("other");
@@ -223,18 +214,10 @@ public class CharacterAssetsEntry {
         private LocationTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static LocationTypeEnum fromString(String str) {
-            for (LocationTypeEnum self : LocationTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StationInfo {
@@ -174,7 +173,7 @@ public class StationInfo {
     public int getTypeId() {
         return typeId;
     }
-    public static enum ServicesEnum {
+    public static enum ServicesEnum implements StringyEnum{
         BOUNTY_MISSIONS("bounty-missions"),
         ASSASINATION_MISSIONS("assasination-missions"),
         COURIER_MISSIONS("courier-missions"),
@@ -206,18 +205,10 @@ public class StationInfo {
         private ServicesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ServicesEnum fromString(String str) {
-            for (ServicesEnum self : ServicesEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

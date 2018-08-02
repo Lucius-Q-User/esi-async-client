@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ContractInfo {
@@ -314,7 +313,7 @@ public class ContractInfo {
     public Double getVolume() {
         return volume;
     }
-    public static enum AvailabilityEnum {
+    public static enum AvailabilityEnum implements StringyEnum{
         PUBLIC("public"),
         PERSONAL("personal"),
         CORPORATION("corporation"),
@@ -323,21 +322,13 @@ public class ContractInfo {
         private AvailabilityEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static AvailabilityEnum fromString(String str) {
-            for (AvailabilityEnum self : AvailabilityEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum StatusEnum {
+    public static enum StatusEnum implements StringyEnum{
         OUTSTANDING("outstanding"),
         IN_PROGRESS("in_progress"),
         FINISHED_ISSUER("finished_issuer"),
@@ -352,21 +343,13 @@ public class ContractInfo {
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static StatusEnum fromString(String str) {
-            for (StatusEnum self : StatusEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum TypeEnum {
+    public static enum TypeEnum implements StringyEnum{
         UNKNOWN("unknown"),
         ITEM_EXCHANGE("item_exchange"),
         AUCTION("auction"),
@@ -376,18 +359,10 @@ public class ContractInfo {
         private TypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static TypeEnum fromString(String str) {
-            for (TypeEnum self : TypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

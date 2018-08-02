@@ -1,9 +1,8 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ${enumTag} {
+public enum ${enumTag} implements StringyEnum {
     %for case in enumCases:
     ${case.upper().replace("-", "_")}("${case}")\
     %if not loop.last:
@@ -16,20 +15,9 @@ public enum ${enumTag} {
     private ${enumTag}(String stringValue) {
        this.stringValue = stringValue;
     }
+    @Override
     @JsonValue
     public String getStringValue() {
         return stringValue;
-    }
-    @JsonCreator
-    public static ${enumTag} fromString(String str) {
-        if (str == null) {
-            return null;
-        }
-        for (${enumTag} self : ${enumTag}.values()) {
-            if (self.stringValue.equals(str)) {
-                return self;
-            }
-        }
-        throw new IllegalArgumentException();
     }
 }

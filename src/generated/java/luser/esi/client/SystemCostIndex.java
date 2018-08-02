@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class SystemCostIndex {
@@ -33,7 +32,7 @@ public class SystemCostIndex {
     public float getCostIndex() {
         return costIndex;
     }
-    public static enum ActivityEnum {
+    public static enum ActivityEnum implements StringyEnum{
         COPYING("copying"),
         DUPLICATING("duplicating"),
         INVENTION("invention"),
@@ -48,18 +47,10 @@ public class SystemCostIndex {
         private ActivityEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ActivityEnum fromString(String str) {
-            for (ActivityEnum self : ActivityEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

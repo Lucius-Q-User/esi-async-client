@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class NotificationInfo {
@@ -104,7 +103,7 @@ public class NotificationInfo {
     public TypeEnum getType() {
         return type;
     }
-    public static enum SenderTypeEnum {
+    public static enum SenderTypeEnum implements StringyEnum{
         CHARACTER("character"),
         CORPORATION("corporation"),
         ALLIANCE("alliance"),
@@ -114,21 +113,13 @@ public class NotificationInfo {
         private SenderTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static SenderTypeEnum fromString(String str) {
-            for (SenderTypeEnum self : SenderTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum TypeEnum {
+    public static enum TypeEnum implements StringyEnum{
         ACCEPTEDALLY("AcceptedAlly"),
         ACCEPTEDSURRENDER("AcceptedSurrender"),
         ALLANCHORINGMSG("AllAnchoringMsg"),
@@ -313,18 +304,10 @@ public class NotificationInfo {
         private TypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static TypeEnum fromString(String str) {
-            for (TypeEnum self : TypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import com.carrotsearch.hppc.LongArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationContact {
@@ -76,7 +75,7 @@ public class CorporationContact {
     public float getStanding() {
         return standing;
     }
-    public static enum ContactTypeEnum {
+    public static enum ContactTypeEnum implements StringyEnum{
         CHARACTER("character"),
         CORPORATION("corporation"),
         ALLIANCE("alliance"),
@@ -85,18 +84,10 @@ public class CorporationContact {
         private ContactTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ContactTypeEnum fromString(String str) {
-            for (ContactTypeEnum self : ContactTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationCustomsOffice {
@@ -201,7 +200,7 @@ public class CorporationCustomsOffice {
     public Float getTerribleStandingTaxRate() {
         return terribleStandingTaxRate;
     }
-    public static enum StandingLevelEnum {
+    public static enum StandingLevelEnum implements StringyEnum{
         BAD("bad"),
         EXCELLENT("excellent"),
         GOOD("good"),
@@ -211,18 +210,10 @@ public class CorporationCustomsOffice {
         private StandingLevelEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static StandingLevelEnum fromString(String str) {
-            for (StandingLevelEnum self : StandingLevelEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

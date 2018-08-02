@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class FleetMemberList {
@@ -146,7 +145,7 @@ public class FleetMemberList {
     public long getWingId() {
         return wingId;
     }
-    public static enum RoleEnum {
+    public static enum RoleEnum implements StringyEnum{
         FLEET_COMMANDER("fleet_commander"),
         WING_COMMANDER("wing_commander"),
         SQUAD_COMMANDER("squad_commander"),
@@ -155,18 +154,10 @@ public class FleetMemberList {
         private RoleEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RoleEnum fromString(String str) {
-            for (RoleEnum self : RoleEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

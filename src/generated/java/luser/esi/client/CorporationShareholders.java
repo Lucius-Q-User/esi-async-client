@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationShareholders {
@@ -47,25 +46,17 @@ public class CorporationShareholders {
     public ShareholderTypeEnum getShareholderType() {
         return shareholderType;
     }
-    public static enum ShareholderTypeEnum {
+    public static enum ShareholderTypeEnum implements StringyEnum{
         CHARACTER("character"),
         CORPORATION("corporation");
         private final String stringValue;
         private ShareholderTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ShareholderTypeEnum fromString(String str) {
-            for (ShareholderTypeEnum self : ShareholderTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

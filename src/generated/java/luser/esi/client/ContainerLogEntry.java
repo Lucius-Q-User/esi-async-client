@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ContainerLogEntry {
@@ -174,7 +173,7 @@ public class ContainerLogEntry {
     public Integer getTypeId() {
         return typeId;
     }
-    public static enum ActionEnum {
+    public static enum ActionEnum implements StringyEnum{
         ADD("add"),
         ASSEMBLE("assemble"),
         CONFIGURE("configure"),
@@ -189,21 +188,13 @@ public class ContainerLogEntry {
         private ActionEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static ActionEnum fromString(String str) {
-            for (ActionEnum self : ActionEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum LocationFlagEnum {
+    public static enum LocationFlagEnum implements StringyEnum{
         ASSETSAFETY("AssetSafety"),
         AUTOFIT("AutoFit"),
         BONUS("Bonus"),
@@ -323,39 +314,23 @@ public class ContainerLogEntry {
         private LocationFlagEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static LocationFlagEnum fromString(String str) {
-            for (LocationFlagEnum self : LocationFlagEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum PasswordTypeEnum {
+    public static enum PasswordTypeEnum implements StringyEnum{
         CONFIG("config"),
         GENERAL("general");
         private final String stringValue;
         private PasswordTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static PasswordTypeEnum fromString(String str) {
-            for (PasswordTypeEnum self : PasswordTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

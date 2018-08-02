@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CharacterInfo {
@@ -160,25 +159,17 @@ public class CharacterInfo {
     public Float getSecurityStatus() {
         return securityStatus;
     }
-    public static enum GenderEnum {
+    public static enum GenderEnum implements StringyEnum{
         FEMALE("female"),
         MALE("male");
         private final String stringValue;
         private GenderEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static GenderEnum fromString(String str) {
-            for (GenderEnum self : GenderEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

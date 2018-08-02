@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class MailRecipient {
@@ -33,7 +32,7 @@ public class MailRecipient {
     public RecipientTypeEnum getRecipientType() {
         return recipientType;
     }
-    public static enum RecipientTypeEnum {
+    public static enum RecipientTypeEnum implements StringyEnum{
         ALLIANCE("alliance"),
         CHARACTER("character"),
         CORPORATION("corporation"),
@@ -42,18 +41,10 @@ public class MailRecipient {
         private RecipientTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RecipientTypeEnum fromString(String str) {
-            for (RecipientTypeEnum self : RecipientTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

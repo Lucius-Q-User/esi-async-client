@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class PlanetInfo {
@@ -104,7 +103,7 @@ public class PlanetInfo {
     public int getUpgradeLevel() {
         return upgradeLevel;
     }
-    public static enum PlanetTypeEnum {
+    public static enum PlanetTypeEnum implements StringyEnum{
         TEMPERATE("temperate"),
         BARREN("barren"),
         OCEANIC("oceanic"),
@@ -117,18 +116,10 @@ public class PlanetInfo {
         private PlanetTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static PlanetTypeEnum fromString(String str) {
-            for (PlanetTypeEnum self : PlanetTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

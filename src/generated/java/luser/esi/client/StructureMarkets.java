@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StructureMarkets {
@@ -160,7 +159,7 @@ public class StructureMarkets {
     public int getVolumeTotal() {
         return volumeTotal;
     }
-    public static enum RangeEnum {
+    public static enum RangeEnum implements StringyEnum{
         STATION("station"),
         REGION("region"),
         SOLARSYSTEM("solarsystem"),
@@ -177,18 +176,10 @@ public class StructureMarkets {
         private RangeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RangeEnum fromString(String str) {
-            for (RangeEnum self : RangeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

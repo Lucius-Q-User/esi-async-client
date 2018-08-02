@@ -1,9 +1,8 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AcceptLanguageEnum {
+public enum AcceptLanguageEnum implements StringyEnum {
     DE("de"),
     EN_US("en-us"),
     FR("fr"),
@@ -14,20 +13,9 @@ public enum AcceptLanguageEnum {
     private AcceptLanguageEnum(String stringValue) {
        this.stringValue = stringValue;
     }
+    @Override
     @JsonValue
     public String getStringValue() {
         return stringValue;
-    }
-    @JsonCreator
-    public static AcceptLanguageEnum fromString(String str) {
-        if (str == null) {
-            return null;
-        }
-        for (AcceptLanguageEnum self : AcceptLanguageEnum.values()) {
-            if (self.stringValue.equals(str)) {
-                return self;
-            }
-        }
-        throw new IllegalArgumentException();
     }
 }

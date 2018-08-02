@@ -28,7 +28,7 @@ public class TokenExchangeResponse {
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
     }
-    @JsonProperty("access_token")
+    @JsonProperty("expires_in")
     public int getExpiresIn() {
         return expiresIn;
     }

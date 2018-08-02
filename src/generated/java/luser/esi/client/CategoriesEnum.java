@@ -1,9 +1,8 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CategoriesEnum {
+public enum CategoriesEnum implements StringyEnum {
     AGENT("agent"),
     ALLIANCE("alliance"),
     CHARACTER("character"),
@@ -18,20 +17,9 @@ public enum CategoriesEnum {
     private CategoriesEnum(String stringValue) {
        this.stringValue = stringValue;
     }
+    @Override
     @JsonValue
     public String getStringValue() {
         return stringValue;
-    }
-    @JsonCreator
-    public static CategoriesEnum fromString(String str) {
-        if (str == null) {
-            return null;
-        }
-        for (CategoriesEnum self : CategoriesEnum.values()) {
-            if (self.stringValue.equals(str)) {
-                return self;
-            }
-        }
-        throw new IllegalArgumentException();
     }
 }

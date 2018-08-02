@@ -3,7 +3,6 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationRolesHistoryEntry {
@@ -91,7 +90,7 @@ public class CorporationRolesHistoryEntry {
     public RoleTypeEnum getRoleType() {
         return roleType;
     }
-    public static enum NewRolesEnum {
+    public static enum NewRolesEnum implements StringyEnum{
         ACCOUNT_TAKE_1("Account_Take_1"),
         ACCOUNT_TAKE_2("Account_Take_2"),
         ACCOUNT_TAKE_3("Account_Take_3"),
@@ -146,21 +145,13 @@ public class CorporationRolesHistoryEntry {
         private NewRolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static NewRolesEnum fromString(String str) {
-            for (NewRolesEnum self : NewRolesEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum OldRolesEnum {
+    public static enum OldRolesEnum implements StringyEnum{
         ACCOUNT_TAKE_1("Account_Take_1"),
         ACCOUNT_TAKE_2("Account_Take_2"),
         ACCOUNT_TAKE_3("Account_Take_3"),
@@ -215,21 +206,13 @@ public class CorporationRolesHistoryEntry {
         private OldRolesEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
         }
-        @JsonCreator
-        public static OldRolesEnum fromString(String str) {
-            for (OldRolesEnum self : OldRolesEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
-        }
     }
-    public static enum RoleTypeEnum {
+    public static enum RoleTypeEnum implements StringyEnum{
         GRANTABLE_ROLES("grantable_roles"),
         GRANTABLE_ROLES_AT_BASE("grantable_roles_at_base"),
         GRANTABLE_ROLES_AT_HQ("grantable_roles_at_hq"),
@@ -242,18 +225,10 @@ public class CorporationRolesHistoryEntry {
         private RoleTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static RoleTypeEnum fromString(String str) {
-            for (RoleTypeEnum self : RoleTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

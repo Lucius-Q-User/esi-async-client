@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CalendarEvent {
@@ -146,7 +145,7 @@ public class CalendarEvent {
     public String getTitle() {
         return title;
     }
-    public static enum OwnerTypeEnum {
+    public static enum OwnerTypeEnum implements StringyEnum{
         EVE_SERVER("eve_server"),
         CORPORATION("corporation"),
         FACTION("faction"),
@@ -156,18 +155,10 @@ public class CalendarEvent {
         private OwnerTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static OwnerTypeEnum fromString(String str) {
-            for (OwnerTypeEnum self : OwnerTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

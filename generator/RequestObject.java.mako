@@ -14,6 +14,7 @@ public class ${title} {
             typeTag = "String"
         elif ptype["type"] == "string" and "enum" in ptype:
             typeTag = toUcaseJava(pname) + "Enum"
+            print(ptype)
             enumsToGenerate[typeTag] = ptype["enum"]
         elif ptype["type"] == "integer":
             if "format" not in ptype or  ptype["format"] == "int32":
@@ -56,6 +57,7 @@ public class ${title} {
                 typeTag = "List<" + tag + ">"
             elif items["type"] == "string" and "enum" in items:
                 tag = toUcaseJava(pname) + "Enum"
+                print(ptype)
                 enumsToGenerate[tag] = items["enum"]
                 typeTag = "List<" + tag + ">"
             else:
@@ -86,7 +88,7 @@ public class ${title} {
     }
     %endfor
     %for tag, members in enumsToGenerate.items():
-    public static enum ${tag} {
+    public static enum ${tag} implements StringyEnum{
         %for member in members:
 <%
         memberTag = member
@@ -105,18 +107,10 @@ public class ${title} {
         private ${tag}(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ${tag} fromString(String str) {
-            for (${tag} self : ${tag}.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
     %endfor

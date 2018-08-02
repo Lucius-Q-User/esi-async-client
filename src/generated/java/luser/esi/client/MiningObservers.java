@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class MiningObservers {
@@ -49,24 +48,16 @@ public class MiningObservers {
     public ObserverTypeEnum getObserverType() {
         return observerType;
     }
-    public static enum ObserverTypeEnum {
+    public static enum ObserverTypeEnum implements StringyEnum{
         STRUCTURE("structure");
         private final String stringValue;
         private ObserverTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ObserverTypeEnum fromString(String str) {
-            for (ObserverTypeEnum self : ObserverTypeEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

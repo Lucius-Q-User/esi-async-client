@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CalendarInfo {
@@ -76,7 +75,7 @@ public class CalendarInfo {
     public String getTitle() {
         return title;
     }
-    public static enum EventResponseEnum {
+    public static enum EventResponseEnum implements StringyEnum{
         DECLINED("declined"),
         NOT_RESPONDED("not_responded"),
         ACCEPTED("accepted"),
@@ -85,18 +84,10 @@ public class CalendarInfo {
         private EventResponseEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static EventResponseEnum fromString(String str) {
-            for (EventResponseEnum self : EventResponseEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

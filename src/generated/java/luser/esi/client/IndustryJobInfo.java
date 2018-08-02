@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class IndustryJobInfo {
@@ -314,7 +313,7 @@ public class IndustryJobInfo {
     public Integer getSuccessfulRuns() {
         return successfulRuns;
     }
-    public static enum StatusEnum {
+    public static enum StatusEnum implements StringyEnum{
         ACTIVE("active"),
         CANCELLED("cancelled"),
         DELIVERED("delivered"),
@@ -325,18 +324,10 @@ public class IndustryJobInfo {
         private StatusEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static StatusEnum fromString(String str) {
-            for (StatusEnum self : StatusEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class EventResponse {
@@ -19,7 +18,7 @@ public class EventResponse {
     public ResponseEnum getResponse() {
         return response;
     }
-    public static enum ResponseEnum {
+    public static enum ResponseEnum implements StringyEnum{
         ACCEPTED("accepted"),
         DECLINED("declined"),
         TENTATIVE("tentative");
@@ -27,18 +26,10 @@ public class EventResponse {
         private ResponseEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ResponseEnum fromString(String str) {
-            for (ResponseEnum self : ResponseEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

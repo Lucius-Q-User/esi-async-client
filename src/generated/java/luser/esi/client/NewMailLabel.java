@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class NewMailLabel {
@@ -33,7 +32,7 @@ public class NewMailLabel {
     public String getName() {
         return name;
     }
-    public static enum ColorEnum {
+    public static enum ColorEnum implements StringyEnum{
         _0000FE("#0000fe"),
         _006634("#006634"),
         _0099FF("#0099ff"),
@@ -56,18 +55,10 @@ public class NewMailLabel {
         private ColorEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static ColorEnum fromString(String str) {
-            for (ColorEnum self : ColorEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }

@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StarInfo {
@@ -117,7 +116,7 @@ public class StarInfo {
     public int getTypeId() {
         return typeId;
     }
-    public static enum SpectralClassEnum {
+    public static enum SpectralClassEnum implements StringyEnum{
         K2_V("K2 V"),
         K4_V("K4 V"),
         G2_V("G2 V"),
@@ -211,18 +210,10 @@ public class StarInfo {
         private SpectralClassEnum(String stringValue) {
             this.stringValue = stringValue;
         }
+        @Override
         @JsonValue
         public String getStringValue() {
             return stringValue;
-        }
-        @JsonCreator
-        public static SpectralClassEnum fromString(String str) {
-            for (SpectralClassEnum self : SpectralClassEnum.values()) {
-                if (self.stringValue.equals(str)) {
-                    return self;
-                }
-            }
-            throw new IllegalArgumentException();
         }
     }
 }
