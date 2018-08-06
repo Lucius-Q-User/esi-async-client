@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationPOSInfo {
     private boolean allowAllianceMembers;
@@ -33,18 +32,18 @@ public class CorporationPOSInfo {
     public boolean getAllowCorporationMembers() {
         return allowCorporationMembers;
     }
-    private AnchorEnum anchor;
+    private PostManagementAccessEnum anchor;
     /**
      * Who can anchor starbase (POS) and its structures
      */
-    public void setAnchor(AnchorEnum val) {
+    public void setAnchor(PostManagementAccessEnum val) {
         anchor = val;
     }
     /**
      * Who can anchor starbase (POS) and its structures
      */
     @JsonProperty("anchor")
-    public AnchorEnum getAnchor() {
+    public PostManagementAccessEnum getAnchor() {
         return anchor;
     }
     private boolean attackIfAtWar;
@@ -103,32 +102,32 @@ public class CorporationPOSInfo {
     public Float getAttackStandingThreshold() {
         return attackStandingThreshold;
     }
-    private FuelBayTakeEnum fuelBayTake;
+    private PostManagementAccessEnum fuelBayTake;
     /**
      * Who can take fuel blocks out of the starbase (POS)'s fuel bay
      */
-    public void setFuelBayTake(FuelBayTakeEnum val) {
+    public void setFuelBayTake(PostManagementAccessEnum val) {
         fuelBayTake = val;
     }
     /**
      * Who can take fuel blocks out of the starbase (POS)'s fuel bay
      */
     @JsonProperty("fuel_bay_take")
-    public FuelBayTakeEnum getFuelBayTake() {
+    public PostManagementAccessEnum getFuelBayTake() {
         return fuelBayTake;
     }
-    private FuelBayViewEnum fuelBayView;
+    private PostManagementAccessEnum fuelBayView;
     /**
      * Who can view the starbase (POS)'s fule bay. Characters either need to have required role or belong to the starbase (POS) owner's corporation or alliance, as described by the enum, all other access settings follows the same scheme
      */
-    public void setFuelBayView(FuelBayViewEnum val) {
+    public void setFuelBayView(PostManagementAccessEnum val) {
         fuelBayView = val;
     }
     /**
      * Who can view the starbase (POS)'s fule bay. Characters either need to have required role or belong to the starbase (POS) owner's corporation or alliance, as described by the enum, all other access settings follows the same scheme
      */
     @JsonProperty("fuel_bay_view")
-    public FuelBayViewEnum getFuelBayView() {
+    public PostManagementAccessEnum getFuelBayView() {
         return fuelBayView;
     }
     private List<StarbaseFuel> fuels;
@@ -145,46 +144,46 @@ public class CorporationPOSInfo {
     public List<StarbaseFuel> getFuels() {
         return fuels;
     }
-    private OfflineEnum offline;
+    private PostManagementAccessEnum offline;
     /**
      * Who can offline starbase (POS) and its structures
      */
-    public void setOffline(OfflineEnum val) {
+    public void setOffline(PostManagementAccessEnum val) {
         offline = val;
     }
     /**
      * Who can offline starbase (POS) and its structures
      */
     @JsonProperty("offline")
-    public OfflineEnum getOffline() {
+    public PostManagementAccessEnum getOffline() {
         return offline;
     }
-    private OnlineEnum online;
+    private PostManagementAccessEnum online;
     /**
      * Who can online starbase (POS) and its structures
      */
-    public void setOnline(OnlineEnum val) {
+    public void setOnline(PostManagementAccessEnum val) {
         online = val;
     }
     /**
      * Who can online starbase (POS) and its structures
      */
     @JsonProperty("online")
-    public OnlineEnum getOnline() {
+    public PostManagementAccessEnum getOnline() {
         return online;
     }
-    private UnanchorEnum unanchor;
+    private PostManagementAccessEnum unanchor;
     /**
      * Who can unanchor starbase (POS) and its structures
      */
-    public void setUnanchor(UnanchorEnum val) {
+    public void setUnanchor(PostManagementAccessEnum val) {
         unanchor = val;
     }
     /**
      * Who can unanchor starbase (POS) and its structures
      */
     @JsonProperty("unanchor")
-    public UnanchorEnum getUnanchor() {
+    public PostManagementAccessEnum getUnanchor() {
         return unanchor;
     }
     private boolean useAllianceStandings;
@@ -200,95 +199,5 @@ public class CorporationPOSInfo {
     @JsonProperty("use_alliance_standings")
     public boolean getUseAllianceStandings() {
         return useAllianceStandings;
-    }
-    public static enum AnchorEnum implements StringyEnum{
-        ALLIANCE_MEMBER("alliance_member"),
-        CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
-        CORPORATION_MEMBER("corporation_member"),
-        STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        private final String stringValue;
-        private AnchorEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum FuelBayTakeEnum implements StringyEnum{
-        ALLIANCE_MEMBER("alliance_member"),
-        CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
-        CORPORATION_MEMBER("corporation_member"),
-        STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        private final String stringValue;
-        private FuelBayTakeEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum FuelBayViewEnum implements StringyEnum{
-        ALLIANCE_MEMBER("alliance_member"),
-        CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
-        CORPORATION_MEMBER("corporation_member"),
-        STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        private final String stringValue;
-        private FuelBayViewEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum OfflineEnum implements StringyEnum{
-        ALLIANCE_MEMBER("alliance_member"),
-        CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
-        CORPORATION_MEMBER("corporation_member"),
-        STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        private final String stringValue;
-        private OfflineEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum OnlineEnum implements StringyEnum{
-        ALLIANCE_MEMBER("alliance_member"),
-        CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
-        CORPORATION_MEMBER("corporation_member"),
-        STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        private final String stringValue;
-        private OnlineEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum UnanchorEnum implements StringyEnum{
-        ALLIANCE_MEMBER("alliance_member"),
-        CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
-        CORPORATION_MEMBER("corporation_member"),
-        STARBASE_FUEL_TECHNICIAN_ROLE("starbase_fuel_technician_role");
-        private final String stringValue;
-        private UnanchorEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }

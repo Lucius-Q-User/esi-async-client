@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StructureMarkets {
     private int duration;
@@ -103,18 +102,18 @@ public class StructureMarkets {
     public double getPrice() {
         return price;
     }
-    private RangeEnum range;
+    private OrderRangeEnum range;
     /**
      * range string
      */
-    public void setRange(RangeEnum val) {
+    public void setRange(OrderRangeEnum val) {
         range = val;
     }
     /**
      * range string
      */
     @JsonProperty("range")
-    public RangeEnum getRange() {
+    public OrderRangeEnum getRange() {
         return range;
     }
     private int typeId;
@@ -158,28 +157,5 @@ public class StructureMarkets {
     @JsonProperty("volume_total")
     public int getVolumeTotal() {
         return volumeTotal;
-    }
-    public static enum RangeEnum implements StringyEnum{
-        STATION("station"),
-        REGION("region"),
-        SOLARSYSTEM("solarsystem"),
-        _1("1"),
-        _2("2"),
-        _3("3"),
-        _4("4"),
-        _5("5"),
-        _10("10"),
-        _20("20"),
-        _30("30"),
-        _40("40");
-        private final String stringValue;
-        private RangeEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }

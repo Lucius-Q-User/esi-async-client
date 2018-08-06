@@ -3,7 +3,6 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CharacterMedal {
     private int corporationId;
@@ -104,18 +103,18 @@ public class CharacterMedal {
     public String getReason() {
         return reason;
     }
-    private StatusEnum status;
+    private MedalStatusEnum status;
     /**
      * status string
      */
-    public void setStatus(StatusEnum val) {
+    public void setStatus(MedalStatusEnum val) {
         status = val;
     }
     /**
      * status string
      */
     @JsonProperty("status")
-    public StatusEnum getStatus() {
+    public MedalStatusEnum getStatus() {
         return status;
     }
     private String title;
@@ -131,18 +130,5 @@ public class CharacterMedal {
     @JsonProperty("title")
     public String getTitle() {
         return title;
-    }
-    public static enum StatusEnum implements StringyEnum{
-        PUBLIC("public"),
-        PRIVATE("private");
-        private final String stringValue;
-        private StatusEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }

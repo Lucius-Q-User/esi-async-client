@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CloneHomeLocation {
     private Long locationId;
@@ -18,31 +17,18 @@ public class CloneHomeLocation {
     public Long getLocationId() {
         return locationId;
     }
-    private LocationTypeEnum locationType;
+    private CloneLocationTypeEnum locationType;
     /**
      * location_type string
      */
-    public void setLocationType(LocationTypeEnum val) {
+    public void setLocationType(CloneLocationTypeEnum val) {
         locationType = val;
     }
     /**
      * location_type string
      */
     @JsonProperty("location_type")
-    public LocationTypeEnum getLocationType() {
+    public CloneLocationTypeEnum getLocationType() {
         return locationType;
-    }
-    public static enum LocationTypeEnum implements StringyEnum{
-        STATION("station"),
-        STRUCTURE("structure");
-        private final String stringValue;
-        private LocationTypeEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }

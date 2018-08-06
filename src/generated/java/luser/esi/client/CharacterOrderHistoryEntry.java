@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CharacterOrderHistoryEntry {
     private int duration;
@@ -131,18 +130,18 @@ public class CharacterOrderHistoryEntry {
     public double getPrice() {
         return price;
     }
-    private RangeEnum range;
+    private OrderRangeEnum range;
     /**
      * Valid order range, numbers are ranges in jumps
      */
-    public void setRange(RangeEnum val) {
+    public void setRange(OrderRangeEnum val) {
         range = val;
     }
     /**
      * Valid order range, numbers are ranges in jumps
      */
     @JsonProperty("range")
-    public RangeEnum getRange() {
+    public OrderRangeEnum getRange() {
         return range;
     }
     private int regionId;
@@ -159,18 +158,18 @@ public class CharacterOrderHistoryEntry {
     public int getRegionId() {
         return regionId;
     }
-    private StateEnum state;
+    private HistoricOrderStateEnum state;
     /**
      * Current order state
      */
-    public void setState(StateEnum val) {
+    public void setState(HistoricOrderStateEnum val) {
         state = val;
     }
     /**
      * Current order state
      */
     @JsonProperty("state")
-    public StateEnum getState() {
+    public HistoricOrderStateEnum getState() {
         return state;
     }
     private int typeId;
@@ -214,41 +213,5 @@ public class CharacterOrderHistoryEntry {
     @JsonProperty("volume_total")
     public int getVolumeTotal() {
         return volumeTotal;
-    }
-    public static enum RangeEnum implements StringyEnum{
-        _1("1"),
-        _10("10"),
-        _2("2"),
-        _20("20"),
-        _3("3"),
-        _30("30"),
-        _4("4"),
-        _40("40"),
-        _5("5"),
-        REGION("region"),
-        SOLARSYSTEM("solarsystem"),
-        STATION("station");
-        private final String stringValue;
-        private RangeEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum StateEnum implements StringyEnum{
-        CANCELLED("cancelled"),
-        EXPIRED("expired");
-        private final String stringValue;
-        private StateEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }

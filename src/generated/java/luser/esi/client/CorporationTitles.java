@@ -2,63 +2,62 @@ package luser.esi.client;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationTitles {
-    private List<GrantableRolesEnum> grantableRoles;
+    private List<CorporationRolesEnum> grantableRoles;
     /**
      * grantable_roles array
      */
-    public void setGrantableRoles(List<GrantableRolesEnum> val) {
+    public void setGrantableRoles(List<CorporationRolesEnum> val) {
         grantableRoles = val;
     }
     /**
      * grantable_roles array
      */
     @JsonProperty("grantable_roles")
-    public List<GrantableRolesEnum> getGrantableRoles() {
+    public List<CorporationRolesEnum> getGrantableRoles() {
         return grantableRoles;
     }
-    private List<GrantableRolesAtBaseEnum> grantableRolesAtBase;
+    private List<CorporationRolesEnum> grantableRolesAtBase;
     /**
      * grantable_roles_at_base array
      */
-    public void setGrantableRolesAtBase(List<GrantableRolesAtBaseEnum> val) {
+    public void setGrantableRolesAtBase(List<CorporationRolesEnum> val) {
         grantableRolesAtBase = val;
     }
     /**
      * grantable_roles_at_base array
      */
     @JsonProperty("grantable_roles_at_base")
-    public List<GrantableRolesAtBaseEnum> getGrantableRolesAtBase() {
+    public List<CorporationRolesEnum> getGrantableRolesAtBase() {
         return grantableRolesAtBase;
     }
-    private List<GrantableRolesAtHqEnum> grantableRolesAtHq;
+    private List<CorporationRolesEnum> grantableRolesAtHq;
     /**
      * grantable_roles_at_hq array
      */
-    public void setGrantableRolesAtHq(List<GrantableRolesAtHqEnum> val) {
+    public void setGrantableRolesAtHq(List<CorporationRolesEnum> val) {
         grantableRolesAtHq = val;
     }
     /**
      * grantable_roles_at_hq array
      */
     @JsonProperty("grantable_roles_at_hq")
-    public List<GrantableRolesAtHqEnum> getGrantableRolesAtHq() {
+    public List<CorporationRolesEnum> getGrantableRolesAtHq() {
         return grantableRolesAtHq;
     }
-    private List<GrantableRolesAtOtherEnum> grantableRolesAtOther;
+    private List<CorporationRolesEnum> grantableRolesAtOther;
     /**
      * grantable_roles_at_other array
      */
-    public void setGrantableRolesAtOther(List<GrantableRolesAtOtherEnum> val) {
+    public void setGrantableRolesAtOther(List<CorporationRolesEnum> val) {
         grantableRolesAtOther = val;
     }
     /**
      * grantable_roles_at_other array
      */
     @JsonProperty("grantable_roles_at_other")
-    public List<GrantableRolesAtOtherEnum> getGrantableRolesAtOther() {
+    public List<CorporationRolesEnum> getGrantableRolesAtOther() {
         return grantableRolesAtOther;
     }
     private String name;
@@ -75,60 +74,60 @@ public class CorporationTitles {
     public String getName() {
         return name;
     }
-    private List<RolesEnum> roles;
+    private List<CorporationRolesEnum> roles;
     /**
      * roles array
      */
-    public void setRoles(List<RolesEnum> val) {
+    public void setRoles(List<CorporationRolesEnum> val) {
         roles = val;
     }
     /**
      * roles array
      */
     @JsonProperty("roles")
-    public List<RolesEnum> getRoles() {
+    public List<CorporationRolesEnum> getRoles() {
         return roles;
     }
-    private List<RolesAtBaseEnum> rolesAtBase;
+    private List<CorporationRolesEnum> rolesAtBase;
     /**
      * roles_at_base array
      */
-    public void setRolesAtBase(List<RolesAtBaseEnum> val) {
+    public void setRolesAtBase(List<CorporationRolesEnum> val) {
         rolesAtBase = val;
     }
     /**
      * roles_at_base array
      */
     @JsonProperty("roles_at_base")
-    public List<RolesAtBaseEnum> getRolesAtBase() {
+    public List<CorporationRolesEnum> getRolesAtBase() {
         return rolesAtBase;
     }
-    private List<RolesAtHqEnum> rolesAtHq;
+    private List<CorporationRolesEnum> rolesAtHq;
     /**
      * roles_at_hq array
      */
-    public void setRolesAtHq(List<RolesAtHqEnum> val) {
+    public void setRolesAtHq(List<CorporationRolesEnum> val) {
         rolesAtHq = val;
     }
     /**
      * roles_at_hq array
      */
     @JsonProperty("roles_at_hq")
-    public List<RolesAtHqEnum> getRolesAtHq() {
+    public List<CorporationRolesEnum> getRolesAtHq() {
         return rolesAtHq;
     }
-    private List<RolesAtOtherEnum> rolesAtOther;
+    private List<CorporationRolesEnum> rolesAtOther;
     /**
      * roles_at_other array
      */
-    public void setRolesAtOther(List<RolesAtOtherEnum> val) {
+    public void setRolesAtOther(List<CorporationRolesEnum> val) {
         rolesAtOther = val;
     }
     /**
      * roles_at_other array
      */
     @JsonProperty("roles_at_other")
-    public List<RolesAtOtherEnum> getRolesAtOther() {
+    public List<CorporationRolesEnum> getRolesAtOther() {
         return rolesAtOther;
     }
     private Integer titleId;
@@ -144,493 +143,5 @@ public class CorporationTitles {
     @JsonProperty("title_id")
     public Integer getTitleId() {
         return titleId;
-    }
-    public static enum GrantableRolesEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private GrantableRolesEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum GrantableRolesAtBaseEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private GrantableRolesAtBaseEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum GrantableRolesAtHqEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private GrantableRolesAtHqEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum GrantableRolesAtOtherEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private GrantableRolesAtOtherEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum RolesEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private RolesEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum RolesAtBaseEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private RolesAtBaseEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum RolesAtHqEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private RolesAtHqEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum RolesAtOtherEnum implements StringyEnum{
-        ACCOUNT_TAKE_1("Account_Take_1"),
-        ACCOUNT_TAKE_2("Account_Take_2"),
-        ACCOUNT_TAKE_3("Account_Take_3"),
-        ACCOUNT_TAKE_4("Account_Take_4"),
-        ACCOUNT_TAKE_5("Account_Take_5"),
-        ACCOUNT_TAKE_6("Account_Take_6"),
-        ACCOUNT_TAKE_7("Account_Take_7"),
-        ACCOUNTANT("Accountant"),
-        AUDITOR("Auditor"),
-        COMMUNICATIONS_OFFICER("Communications_Officer"),
-        CONFIG_EQUIPMENT("Config_Equipment"),
-        CONFIG_STARBASE_EQUIPMENT("Config_Starbase_Equipment"),
-        CONTAINER_TAKE_1("Container_Take_1"),
-        CONTAINER_TAKE_2("Container_Take_2"),
-        CONTAINER_TAKE_3("Container_Take_3"),
-        CONTAINER_TAKE_4("Container_Take_4"),
-        CONTAINER_TAKE_5("Container_Take_5"),
-        CONTAINER_TAKE_6("Container_Take_6"),
-        CONTAINER_TAKE_7("Container_Take_7"),
-        CONTRACT_MANAGER("Contract_Manager"),
-        DIPLOMAT("Diplomat"),
-        DIRECTOR("Director"),
-        FACTORY_MANAGER("Factory_Manager"),
-        FITTING_MANAGER("Fitting_Manager"),
-        HANGAR_QUERY_1("Hangar_Query_1"),
-        HANGAR_QUERY_2("Hangar_Query_2"),
-        HANGAR_QUERY_3("Hangar_Query_3"),
-        HANGAR_QUERY_4("Hangar_Query_4"),
-        HANGAR_QUERY_5("Hangar_Query_5"),
-        HANGAR_QUERY_6("Hangar_Query_6"),
-        HANGAR_QUERY_7("Hangar_Query_7"),
-        HANGAR_TAKE_1("Hangar_Take_1"),
-        HANGAR_TAKE_2("Hangar_Take_2"),
-        HANGAR_TAKE_3("Hangar_Take_3"),
-        HANGAR_TAKE_4("Hangar_Take_4"),
-        HANGAR_TAKE_5("Hangar_Take_5"),
-        HANGAR_TAKE_6("Hangar_Take_6"),
-        HANGAR_TAKE_7("Hangar_Take_7"),
-        JUNIOR_ACCOUNTANT("Junior_Accountant"),
-        PERSONNEL_MANAGER("Personnel_Manager"),
-        RENT_FACTORY_FACILITY("Rent_Factory_Facility"),
-        RENT_OFFICE("Rent_Office"),
-        RENT_RESEARCH_FACILITY("Rent_Research_Facility"),
-        SECURITY_OFFICER("Security_Officer"),
-        STARBASE_DEFENSE_OPERATOR("Starbase_Defense_Operator"),
-        STARBASE_FUEL_TECHNICIAN("Starbase_Fuel_Technician"),
-        STATION_MANAGER("Station_Manager"),
-        TERRESTRIAL_COMBAT_OFFICER("Terrestrial_Combat_Officer"),
-        TERRESTRIAL_LOGISTICS_OFFICER("Terrestrial_Logistics_Officer"),
-        TRADER("Trader");
-        private final String stringValue;
-        private RolesAtOtherEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }

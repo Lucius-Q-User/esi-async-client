@@ -26,6 +26,7 @@ import com.carrotsearch.hppc.cursors.LongCursor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hppc.HppcModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import io.netty.handler.codec.http.HttpHeaders;
@@ -45,7 +46,7 @@ abstract class ApiClientBase implements AutoCloseable {
     public ApiClientBase() {
         synchronized (LOCK) {
             if (activeClients == 0) {
-                asyncHttpClient = Dsl.asyncHttpClient(Dsl.config().setUserAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko"));
+                asyncHttpClient = Dsl.asyncHttpClient(Dsl.config().setUserAgent(null));
             }
             activeClients++;
         }
@@ -72,11 +73,18 @@ abstract class ApiClientBase implements AutoCloseable {
     }
     static final ObjectMapper GLOBAL_OBJECT_MAPPER = new ObjectMapper()
             .registerModule(new JavaTimeModule())
-            .registerModule(new EnumDeserModule());
+            .registerModule(new EnumDeserModule())
+            .registerModule(new HppcModule());
     public synchronized String getClientId() {
         return clientId;
     }
-
+    private String userAgent;
+    public synchronized void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+    public synchronized String getUserAgent() {
+        return userAgent;
+    }
     public synchronized void setClientId(String clientId) {
         this.clientId = clientId;
         authTokenExpiry = Instant.MIN;
@@ -130,35 +138,31 @@ abstract class ApiClientBase implements AutoCloseable {
         if (authTokenExpiry.isAfter(Instant.now())) {
             return CompletableFuture.completedFuture(authToken);
         }
-        try {
-            String authVal = getAuthorizationString();
-            TokenRequest authBody = TokenRequest.forRefToken(refreshToken);
-            RequestBuilder builder = Dsl.post("https://login.eveonline.com/oauth/token")
-                    .addHeader("Authorization", authVal)
-                    .addHeader("Content-Type", "application/json")
-                    .setBody(GLOBAL_OBJECT_MAPPER.writeValueAsString(authBody));
-            inflightRefresh = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
-                try {
-                    TokenExchangeResponse js = GLOBAL_OBJECT_MAPPER.readValue(resp.getResponseBody(), TokenExchangeResponse.class);
-                    synchronized (this) {
-                        inflightRefresh = null;
-                        authToken = js.getAccessToken();
-                        authTokenExpiry = Instant.now().plus(js.getExpiresIn(), ChronoUnit.SECONDS);
-                    }
-                    return CompletableFuture.completedFuture(authToken);
-                } catch (IOException e) {
-                    CompletableFuture<String> err = new CompletableFuture<>();
-                    err.completeExceptionally(e);
-                    return err;
-                }
-            });
-            return inflightRefresh;
-        } catch (JsonProcessingException e) {
-            throw new Error(e);
-        }
+        String authVal = getAuthorizationString();
+        String url = "https://login.eveonline.com/oauth/token";
+        String method = "POST";
+        Map<String, String> parametersInHeaders = new HashMap<>(2);
+        parametersInHeaders.put("Authorization", authVal);
+        parametersInHeaders.put("Content-Type", "application/json");
+        String body = renderToBody(TokenRequest.forRefToken(refreshToken));
+        TypeReference<TokenExchangeResponse> responseTypeRef = new TypeReference<TokenExchangeResponse>() {};
+        inflightRefresh = invokeApi(url, parametersInHeaders, null, null, body, method, false, responseTypeRef).thenCompose((wr) -> {
+            TokenExchangeResponse js = wr.get();
+            synchronized (this) {
+                inflightRefresh = null;
+                authToken = js.getAccessToken();
+                authTokenExpiry = Instant.now().plus(js.getExpiresIn(), ChronoUnit.SECONDS);
+            }
+            return CompletableFuture.completedFuture(authToken);
+        });
+        return inflightRefresh;
     }
 
     private <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, TypeReference<T> responseTypeRef) {
+        String userAgent = getUserAgent();
+        if (userAgent != null) {
+            builder.addHeader("User-Agent", userAgent);
+        }
         CompletableFuture<EsiResponseWrapper<T>> ftr = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
             int statusCode = resp.getStatusCode();
             String resultBody = resp.getResponseBody();

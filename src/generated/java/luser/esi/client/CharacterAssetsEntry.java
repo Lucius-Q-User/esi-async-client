@@ -74,18 +74,18 @@ public class CharacterAssetsEntry {
     public long getLocationId() {
         return locationId;
     }
-    private LocationTypeEnum locationType;
+    private AssetLocationTypeEnum locationType;
     /**
      * location_type string
      */
-    public void setLocationType(LocationTypeEnum val) {
+    public void setLocationType(AssetLocationTypeEnum val) {
         locationType = val;
     }
     /**
      * location_type string
      */
     @JsonProperty("location_type")
-    public LocationTypeEnum getLocationType() {
+    public AssetLocationTypeEnum getLocationType() {
         return locationType;
     }
     private int quantity;
@@ -198,20 +198,6 @@ public class CharacterAssetsEntry {
         WARDROBE("Wardrobe");
         private final String stringValue;
         private LocationFlagEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
-    }
-    public static enum LocationTypeEnum implements StringyEnum{
-        STATION("station"),
-        SOLAR_SYSTEM("solar_system"),
-        OTHER("other");
-        private final String stringValue;
-        private LocationTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
         @Override

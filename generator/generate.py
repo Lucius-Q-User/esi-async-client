@@ -115,10 +115,71 @@ def getReturnDocstring(path, method):
       if code // 100 != 2:
          continue
       return swg["paths"][path][method]["responses"][str(code)]["description"]
-
+def generateOOLEnum(enumTag, par, static):
+   with open(enumTag + ".java", "w") as enm:
+      enm.write(stringEnumTemplate.render(enumTag=enumTag, enumCases=par["enum"], static=static))
 generatedEnums = set()
 
 specialSnowflakes = ["FittingItem", "MailRecipient"]
+
+renameEnums = {
+   "get_characters_character_id_orders_history_range": "OrderRangeEnum",
+   "get_markets_structures_structure_id_range": "OrderRangeEnum",
+   "get_markets_region_id_orders_range": "OrderRangeEnum",
+   "get_characters_character_id_orders_range": "OrderRangeEnum",
+   "get_corporations_corporation_id_orders_history_range": "OrderRangeEnum",
+   "get_corporations_corporation_id_orders_range": "OrderRangeEnum",
+   "get_corporations_corporation_id_roles_grantable_role": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_grantable_roles_at_base_grantable_roles_at_base": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_grantable_roles_at_hq_grantable_roles_at_hq": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_grantable_roles_at_other_grantable_roles_at_other": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_role": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_roles_at_base_roles_at_base": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_roles_at_hq_roles_at_hq": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_roles_at_other_roles_at_other": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_history_new_role": "CorporationRolesEnum",
+   "get_corporations_corporation_id_roles_history_old_role": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_grantable_role": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_grantable_roles_at_base_grantable_roles_at_base": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_grantable_roles_at_hq_grantable_roles_at_hq": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_grantable_roles_at_other_grantable_roles_at_other": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_role": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_roles_at_base_roles_at_base": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_roles_at_hq_roles_at_hq": "CorporationRolesEnum",
+   "get_corporations_corporation_id_titles_roles_at_other_roles_at_other": "CorporationRolesEnum",
+   "get_characters_character_id_roles_role": "CorporationRolesEnum",
+   "get_characters_character_id_roles_roles_at_base_roles_at_base": "CorporationRolesEnum",
+   "get_characters_character_id_roles_roles_at_hq_roles_at_hq": "CorporationRolesEnum",
+   "get_characters_character_id_roles_roles_at_other_roles_at_other": "CorporationRolesEnum",
+   "get_characters_character_id_fleet_role": "FleetRoleEnum",
+   "get_fleets_fleet_id_members_role": "FleetRoleEnum",
+   "post_fleets_fleet_id_members_role": "FleetRoleEnum",
+   "put_fleets_fleet_id_members_member_id_role": "FleetRoleEnum",
+   "get_corporations_corporation_id_blueprints_location_flag": "LocationFlagEnum",
+   "get_corporations_corporation_id_containers_logs_location_flag": "LocationFlagEnum",
+   "get_corporations_corporation_id_assets_location_flag": "LocationFlagEnum",
+   "post_characters_character_id_mail_labels_color": "MailLabelColorEnum",
+   "get_characters_character_id_mail_labels_color": "MailLabelColorEnum",
+   "get_corporations_corporation_id_starbases_starbase_id_anchor": "PostManagementAccessEnum",
+   "get_corporations_corporation_id_starbases_starbase_id_fuel_bay_take": "PostManagementAccessEnum",
+   "get_corporations_corporation_id_starbases_starbase_id_fuel_bay_view": "PostManagementAccessEnum",
+   "get_corporations_corporation_id_starbases_starbase_id_offline": "PostManagementAccessEnum",
+   "get_corporations_corporation_id_starbases_starbase_id_online": "PostManagementAccessEnum",
+   "get_corporations_corporation_id_starbases_starbase_id_unanchor": "PostManagementAccessEnum",
+   "get_characters_character_id_calendar_event_response": "CalendarEventResponseEnum",
+   "get_characters_character_id_calendar_event_id_attendees_event_response": "CalendarEventResponseEnum",
+   "get_alliances_alliance_id_contacts_contact_type": "ContactTypeEnum",
+   "get_characters_character_id_contacts_contact_type": "ContactTypeEnum",
+   "get_corporations_corporation_id_contacts_contact_type": "ContactTypeEnum",
+   "get_characters_character_id_orders_history_state": "HistoricOrderStateEnum",
+   "get_corporations_corporation_id_orders_history_state": "HistoricOrderStateEnum",
+   "get_characters_character_id_assets_location_type": "AssetLocationTypeEnum",
+   "get_corporations_corporation_id_assets_location_type": "AssetLocationTypeEnum",
+   "get_characters_character_id_medals_status": "MedalStatusEnum",
+   "get_corporations_corporation_id_medals_issued_status": "MedalStatusEnum",
+   "get_characters_character_id_clones_location_type": "CloneLocationTypeEnum",
+   "get_characters_character_id_clones_jump_clone_location_type": "CloneLocationTypeEnum",
+}
 
 renameObjects  = {
    "PostCorporationsCorporationIdAssetsLocationsPosition": "Coordinate",
@@ -636,7 +697,8 @@ def generateParameterObject(title, properties, required, isRequest):
                                                  toLcaseJava=toLcaseJava,
                                                  toUcaseJava=toUcaseJava,
                                                  generateParameterObject=generateParameterObject,
-                                                 isRequest=isRequest, specialSnowflakes=specialSnowflakes)
+                                                 isRequest=isRequest, specialSnowflakes=specialSnowflakes,
+                                                 renameEnums=renameEnums, generateOOLEnum=generateOOLEnum)
          ipt = [];
          for k, v in imports.items():
             if re.search("\W" + k + "\W", render):
@@ -677,10 +739,10 @@ def getTypeTag(par, topLevel, nameOverride=None):
       type = "String"
    elif par["type"] == "string" and "enum" in par:
       enumTag = toUcaseJava(par["name"] if nameOverride == None else nameOverride) + "Enum"
+      if "title" in par and  par["title"] in renameEnums:
+         enumTag = renameEnums[par["title"]]
       if enumTag not in generatedEnums:
-         with open(enumTag + ".java", "w") as enm:
-            print(par)
-            enm.write(stringEnumTemplate.render(enumTag=enumTag, enumCases=par["enum"]))
+         generateOOLEnum(enumTag, par, False)
          generatedEnums.add(enumTag)
       type = enumTag
    elif par["type"] == "array":

@@ -14,8 +14,11 @@ public class ${title} {
             typeTag = "String"
         elif ptype["type"] == "string" and "enum" in ptype:
             typeTag = toUcaseJava(pname) + "Enum"
-            print(ptype)
-            enumsToGenerate[typeTag] = ptype["enum"]
+            if ptype["title"] in renameEnums:
+                typeTag = renameEnums[ptype["title"]]
+                generateOOLEnum(typeTag, ptype, True)
+            else:
+                enumsToGenerate[typeTag] = ptype["enum"]
         elif ptype["type"] == "integer":
             if "format" not in ptype or  ptype["format"] == "int32":
                 if pname in required:
@@ -56,10 +59,13 @@ public class ${title} {
                 tag = generateParameterObject(tag, items["properties"], items["required"] if "required" in items else [], isRequest)
                 typeTag = "List<" + tag + ">"
             elif items["type"] == "string" and "enum" in items:
-                tag = toUcaseJava(pname) + "Enum"
-                print(ptype)
-                enumsToGenerate[tag] = items["enum"]
-                typeTag = "List<" + tag + ">"
+                typeTag = toUcaseJava(pname) + "Enum"
+                if items["title"] in renameEnums:
+                    typeTag = renameEnums[items["title"]]
+                    generateOOLEnum(typeTag, items, True)
+                else:
+                    enumsToGenerate[typeTag] = items["enum"]
+                typeTag = "List<" + typeTag + ">"
             else:
                 print(par)
                 typeTag = "BLANK"

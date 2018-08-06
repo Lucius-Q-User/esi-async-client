@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ActiveFleetInfo {
     private long fleetId;
@@ -18,18 +17,18 @@ public class ActiveFleetInfo {
     public long getFleetId() {
         return fleetId;
     }
-    private RoleEnum role;
+    private FleetRoleEnum role;
     /**
      * Member’s role in fleet
      */
-    public void setRole(RoleEnum val) {
+    public void setRole(FleetRoleEnum val) {
         role = val;
     }
     /**
      * Member’s role in fleet
      */
     @JsonProperty("role")
-    public RoleEnum getRole() {
+    public FleetRoleEnum getRole() {
         return role;
     }
     private long squadId;
@@ -59,20 +58,5 @@ public class ActiveFleetInfo {
     @JsonProperty("wing_id")
     public long getWingId() {
         return wingId;
-    }
-    public static enum RoleEnum implements StringyEnum{
-        FLEET_COMMANDER("fleet_commander"),
-        SQUAD_COMMANDER("squad_commander"),
-        SQUAD_MEMBER("squad_member"),
-        WING_COMMANDER("wing_commander");
-        private final String stringValue;
-        private RoleEnum(String stringValue) {
-            this.stringValue = stringValue;
-        }
-        @Override
-        @JsonValue
-        public String getStringValue() {
-            return stringValue;
-        }
     }
 }
