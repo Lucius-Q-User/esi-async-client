@@ -20,7 +20,7 @@ public interface SearchApi {
      * @return A list of search results
      */
     
-    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict);
+    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, String ifNoneMatch, String search, Boolean strict);
     /**
      * Search for entities that match a given sub-string.
      * 
@@ -37,5 +37,5 @@ public interface SearchApi {
      * @return A list of search results
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict);
+    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, String ifNoneMatch, String search, Boolean strict);
 }

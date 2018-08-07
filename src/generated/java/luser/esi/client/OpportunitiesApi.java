@@ -18,7 +18,7 @@ public interface OpportunitiesApi {
      * @return A list of opportunities task ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, String ifNoneMatch);
     /**
      * Return a list of opportunities groups
      * 
@@ -30,7 +30,7 @@ public interface OpportunitiesApi {
      * @return A list of opportunities group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(String ifNoneMatch);
     /**
      * Return information of an opportunities group
      * 
@@ -44,7 +44,7 @@ public interface OpportunitiesApi {
      * @return Details of an opportunities group
      */
     
-    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch);
     /**
      * Return a list of opportunities tasks
      * 
@@ -56,7 +56,7 @@ public interface OpportunitiesApi {
      * @return A list of opportunities task ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(String ifNoneMatch);
     /**
      * Return information of an opportunities task
      * 
@@ -69,5 +69,5 @@ public interface OpportunitiesApi {
      * @return Details of an opportunities task
      */
     
-    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(DatasourceEnum datasource, String ifNoneMatch, int taskId);
+    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(String ifNoneMatch, int taskId);
 }

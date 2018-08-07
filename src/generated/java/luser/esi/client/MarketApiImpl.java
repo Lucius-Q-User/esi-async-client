@@ -18,7 +18,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharacterOrderHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharacterOrderHistory(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/orders/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -26,12 +26,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -48,7 +43,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketGroups(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketGroups(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -56,12 +51,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -72,7 +62,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int marketGroupId) {
+    public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketGroupInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int marketGroupId) {
         String url = "https://esi.evetech.net/v1/markets/groups/{market_group_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -84,12 +74,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("market_group_id", String.valueOf(marketGroupId));
@@ -101,7 +86,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketPrices(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketPrices(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/markets/prices/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -109,12 +94,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -125,7 +105,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getStructureMarket(DatasourceEnum datasource, String ifNoneMatch, Integer page, long structureId) {
+    public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getStructureMarket(String ifNoneMatch, Integer page, long structureId) {
         String url = "https://esi.evetech.net/v1/markets/structures/{structure_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -133,12 +113,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -155,7 +130,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketHistory(DatasourceEnum datasource, String ifNoneMatch, int regionId, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketHistory(String ifNoneMatch, int regionId, int typeId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -163,12 +138,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         {
             String val = String.valueOf(typeId);
@@ -185,7 +155,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketOrders(DatasourceEnum datasource, String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId) {
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketOrders(String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/orders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -193,12 +163,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(4);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         if (orderType != null) {
             String val = orderType.stringValue;
@@ -225,7 +190,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketTypes(String ifNoneMatch, Integer page, int regionId) {
         String url = "https://esi.evetech.net/v1/markets/{region_id}/types/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -233,12 +198,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -255,7 +215,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getOrders(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getOrders(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/orders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -263,12 +223,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -280,7 +235,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationOrderHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationOrderHistory(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/orders/history/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -288,12 +243,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -310,7 +260,7 @@ class MarketApiImpl implements MarketApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getOrders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getOrders(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/orders/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -318,12 +268,7 @@ class MarketApiImpl implements MarketApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);

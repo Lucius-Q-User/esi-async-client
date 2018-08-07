@@ -16,20 +16,15 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId, DatasourceEnum datasource) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/contract/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(2);
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         {
             String val = String.valueOf(contractId);
             parametersInQuery.put("contract_id", val);
-        }
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
         }
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
@@ -41,16 +36,11 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(DatasourceEnum datasource, int targetId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(int targetId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/information/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         {
             String val = String.valueOf(targetId);
@@ -66,16 +56,11 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(DatasourceEnum datasource, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(int typeId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/marketdetails/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         {
             String val = String.valueOf(typeId);
@@ -91,16 +76,11 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(DatasourceEnum datasource, NewMailOpenWindow newMail) {
+    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(NewMailOpenWindow newMail) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/newmail/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -112,11 +92,11 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, DatasourceEnum datasource, long destinationId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, long destinationId) {
         String url = "https://esi.evetech.net/v2/ui/autopilot/waypoint/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(4);
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         {
             String val = String.valueOf(addToBeginning);
@@ -126,11 +106,6 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
         {
             String val = String.valueOf(clearOtherWaypoints);
             parametersInQuery.put("clear_other_waypoints", val);
-        }
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
         }
         
         {

@@ -17,7 +17,7 @@ public interface CharacterApi {
      * @return Character corporation, alliance and faction IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedCharacterAffiliation>>> resolveCharacterAffiliations(IntArrayList characters, DatasourceEnum datasource);
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedCharacterAffiliation>>> resolveCharacterAffiliations(IntArrayList characters);
     /**
      * Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)
      * 
@@ -30,7 +30,7 @@ public interface CharacterApi {
      * @return A list of agents research information
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResearchAgentInfo>>> getAgentsResearch(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ResearchAgentInfo>>> getAgentsResearch(int characterId, String ifNoneMatch);
     /**
      * Get a list of all the corporations a character has been a member of
      * 
@@ -43,7 +43,7 @@ public interface CharacterApi {
      * @return Corporation history for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationHistoryEntry>>> getCorpHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationHistoryEntry>>> getCorpHistory(int characterId, String ifNoneMatch);
     /**
      * Return a character's jump activation and fatigue information
      * 
@@ -56,7 +56,7 @@ public interface CharacterApi {
      * @return Jump activation and fatigue information
      */
     
-    public CompletableFuture<EsiResponseWrapper<JumpAidsInfo>> getJumpAids(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<JumpAidsInfo>> getJumpAids(int characterId, String ifNoneMatch);
     /**
      * Return a list of medals the character has
      * 
@@ -69,7 +69,7 @@ public interface CharacterApi {
      * @return A list of medals
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMedal>>> getMedals(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMedal>>> getMedals(int characterId, String ifNoneMatch);
     /**
      * Return notifications about having been added to someone's contact list
      * 
@@ -82,7 +82,7 @@ public interface CharacterApi {
      * @return A list of contact notifications
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<NewContactNotification>>> getContactNotifications(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<NewContactNotification>>> getContactNotifications(int characterId, String ifNoneMatch);
     /**
      * Return character standings from agents, NPC corporations, and factions
      * 
@@ -95,7 +95,7 @@ public interface CharacterApi {
      * @return A list of standings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int characterId, String ifNoneMatch);
     /**
      * Returns a character's titles
      * 
@@ -108,7 +108,7 @@ public interface CharacterApi {
      * @return A list of titles
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterTitles>>> getTitles(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterTitles>>> getTitles(int characterId, String ifNoneMatch);
     /**
      * Return a list of blueprints the character owns
      * 
@@ -122,7 +122,7 @@ public interface CharacterApi {
      * @return A list of blueprints
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterBlueprint>>> getBlueprints(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterBlueprint>>> getBlueprints(int characterId, String ifNoneMatch, Integer page);
     /**
      * Return character notifications
      * 
@@ -135,7 +135,7 @@ public interface CharacterApi {
      * @return Returns your recent notifications
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<NotificationInfo>>> getNotifications(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<NotificationInfo>>> getNotifications(int characterId, String ifNoneMatch);
     /**
      * Get portrait urls for a character
      * 
@@ -148,7 +148,7 @@ public interface CharacterApi {
      * @return Public data for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterPortrait>> getPortrait(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CharacterPortrait>> getPortrait(int characterId, String ifNoneMatch);
     /**
      * Returns a character's corporation roles
      * 
@@ -161,7 +161,7 @@ public interface CharacterApi {
      * @return The character's roles in thier corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterRoles>> getRoles(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CharacterRoles>> getRoles(int characterId, String ifNoneMatch);
     /**
      * Returns aggregate yearly stats for a character
      * 
@@ -174,7 +174,7 @@ public interface CharacterApi {
      * @return Character stats
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterStats>>> getStats(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterStats>>> getStats(int characterId, String ifNoneMatch);
     /**
      * Public information about a character
      * 
@@ -187,7 +187,7 @@ public interface CharacterApi {
      * @return Public data for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterInfo>> getCharacterInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CharacterInfo>> getCharacterInfo(int characterId, String ifNoneMatch);
     /**
      * Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost
      * 
@@ -199,5 +199,5 @@ public interface CharacterApi {
      * @return Aggregate cost of sending a mail from the source character to the target characters, in ISK
      */
     
-    public CompletableFuture<EsiResponseWrapper<Float>> resolveCSPACost(int characterId, IntArrayList characters, DatasourceEnum datasource);
+    public CompletableFuture<EsiResponseWrapper<Float>> resolveCSPACost(int characterId, IntArrayList characters);
 }

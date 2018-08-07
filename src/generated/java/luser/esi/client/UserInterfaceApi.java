@@ -15,7 +15,7 @@ public interface UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId, DatasourceEnum datasource);
+    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId);
     /**
      * Open the information window for a character, corporation or alliance inside the client
      * 
@@ -26,7 +26,7 @@ public interface UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(DatasourceEnum datasource, int targetId);
+    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(int targetId);
     /**
      * Open the market details window for a specific typeID inside the client
      * 
@@ -37,7 +37,7 @@ public interface UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(DatasourceEnum datasource, int typeId);
+    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(int typeId);
     /**
      * Open the New Mail window, according to settings from the request if applicable
      * 
@@ -48,7 +48,7 @@ public interface UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(DatasourceEnum datasource, NewMailOpenWindow newMail);
+    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(NewMailOpenWindow newMail);
     /**
      * Set a solar system as autopilot waypoint
      * 
@@ -61,5 +61,5 @@ public interface UserInterfaceApi {
      * @return Open window request received
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, DatasourceEnum datasource, long destinationId);
+    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, long destinationId);
 }

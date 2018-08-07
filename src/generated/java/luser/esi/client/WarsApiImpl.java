@@ -18,7 +18,7 @@ class WarsApiImpl implements WarsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(DatasourceEnum datasource, String ifNoneMatch, Integer maxWarId) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(String ifNoneMatch, Integer maxWarId) {
         String url = "https://esi.evetech.net/v1/wars/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -26,12 +26,7 @@ class WarsApiImpl implements WarsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (maxWarId != null) {
             String val = String.valueOf(maxWarId);
@@ -47,7 +42,7 @@ class WarsApiImpl implements WarsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(DatasourceEnum datasource, String ifNoneMatch, int warId) {
+    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(String ifNoneMatch, int warId) {
         String url = "https://esi.evetech.net/v1/wars/{war_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -55,12 +50,7 @@ class WarsApiImpl implements WarsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("war_id", String.valueOf(warId));
@@ -72,7 +62,7 @@ class WarsApiImpl implements WarsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId) {
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(String ifNoneMatch, Integer page, int warId) {
         String url = "https://esi.evetech.net/v1/wars/{war_id}/killmails/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -80,12 +70,7 @@ class WarsApiImpl implements WarsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);

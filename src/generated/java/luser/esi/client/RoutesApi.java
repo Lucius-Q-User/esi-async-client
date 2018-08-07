@@ -22,5 +22,5 @@ public interface RoutesApi {
      * @return Solar systems in route from origin to destination
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, int destination, FlagEnum flag, String ifNoneMatch, int origin);
 }

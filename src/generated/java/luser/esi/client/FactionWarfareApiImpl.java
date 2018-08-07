@@ -17,7 +17,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fw/stats/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -42,7 +37,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/fw/stats/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -50,12 +45,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
@@ -67,7 +57,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -75,12 +65,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -91,7 +76,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/characters/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -99,12 +84,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -115,7 +95,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/corporations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -123,12 +103,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -139,7 +114,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/stats/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -147,12 +122,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -163,7 +133,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/wars/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -171,12 +141,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -187,7 +152,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/fw/systems/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -195,12 +160,7 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;

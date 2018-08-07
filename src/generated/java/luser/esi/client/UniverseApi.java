@@ -19,7 +19,7 @@ public interface UniverseApi {
      * @return A list of ancestries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AncestryInfo>>> getAncestries(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<AncestryInfo>>> getAncestries(AcceptLanguageEnum acceptLanguage, String ifNoneMatch);
     /**
      * Get information on an asteroid belt
      * 
@@ -32,7 +32,7 @@ public interface UniverseApi {
      * @return Information about an asteroid belt
      */
     
-    public CompletableFuture<EsiResponseWrapper<AsteroidBeltInfo>> getAsteroidBeltInfo(int asteroidBeltId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<AsteroidBeltInfo>> getAsteroidBeltInfo(int asteroidBeltId, String ifNoneMatch);
     /**
      * Get a list of bloodlines
      * 
@@ -45,7 +45,7 @@ public interface UniverseApi {
      * @return A list of bloodlines
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<BloodlineInfo>>> getBloodlines(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<BloodlineInfo>>> getBloodlines(AcceptLanguageEnum acceptLanguage, String ifNoneMatch);
     /**
      * Get a list of item categories
      * 
@@ -57,7 +57,7 @@ public interface UniverseApi {
      * @return A list of item category ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCategories(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCategories(String ifNoneMatch);
     /**
      * Get information of an item category
      * 
@@ -71,7 +71,7 @@ public interface UniverseApi {
      * @return Information about an item category
      */
     
-    public CompletableFuture<EsiResponseWrapper<ItemCategoryInfo>> getCategoryInfo(AcceptLanguageEnum acceptLanguage, int categoryId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<ItemCategoryInfo>> getCategoryInfo(AcceptLanguageEnum acceptLanguage, int categoryId, String ifNoneMatch);
     /**
      * Get a list of constellations
      * 
@@ -83,7 +83,7 @@ public interface UniverseApi {
      * @return A list of constellation ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getConstellations(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getConstellations(String ifNoneMatch);
     /**
      * Get information on a constellation
      * 
@@ -97,7 +97,7 @@ public interface UniverseApi {
      * @return Information about a constellation
      */
     
-    public CompletableFuture<EsiResponseWrapper<ConstellationInfo>> getConstellationInfo(AcceptLanguageEnum acceptLanguage, int constellationId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<ConstellationInfo>> getConstellationInfo(AcceptLanguageEnum acceptLanguage, int constellationId, String ifNoneMatch);
     /**
      * Get a list of graphics
      * 
@@ -109,7 +109,7 @@ public interface UniverseApi {
      * @return A list of graphic ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGraphics(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGraphics(String ifNoneMatch);
     /**
      * Get information on a graphic
      * 
@@ -122,7 +122,7 @@ public interface UniverseApi {
      * @return Information about a graphic
      */
     
-    public CompletableFuture<EsiResponseWrapper<GhaphicInfo>> getGraphicInfo(DatasourceEnum datasource, int graphicId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<GhaphicInfo>> getGraphicInfo(int graphicId, String ifNoneMatch);
     /**
      * Get a list of item groups
      * 
@@ -135,7 +135,7 @@ public interface UniverseApi {
      * @return A list of item group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGroups(DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGroups(String ifNoneMatch, Integer page);
     /**
      * Get information on an item group
      * 
@@ -149,7 +149,7 @@ public interface UniverseApi {
      * @return Information about an item group
      */
     
-    public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch);
     /**
      * Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours.
      * 
@@ -161,7 +161,7 @@ public interface UniverseApi {
      * @return List of id/name associations for a set of names divided by category. Any name passed in that did not have a match will be ommitted.
      */
     
-    public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> resolveIds(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, List<String> names);
+    public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> resolveIds(AcceptLanguageEnum acceptLanguage, List<String> names);
     /**
      * Get information on a moon
      * 
@@ -174,7 +174,7 @@ public interface UniverseApi {
      * @return Information about a moon
      */
     
-    public CompletableFuture<EsiResponseWrapper<MoonInfo>> getMoonInfo(DatasourceEnum datasource, String ifNoneMatch, int moonId);
+    public CompletableFuture<EsiResponseWrapper<MoonInfo>> getMoonInfo(String ifNoneMatch, int moonId);
     /**
      * Get information on a planet
      * 
@@ -187,7 +187,7 @@ public interface UniverseApi {
      * @return Information about a planet
      */
     
-    public CompletableFuture<EsiResponseWrapper<UniversePlanetInfo>> getPlanetInfo(DatasourceEnum datasource, String ifNoneMatch, int planetId);
+    public CompletableFuture<EsiResponseWrapper<UniversePlanetInfo>> getPlanetInfo(String ifNoneMatch, int planetId);
     /**
      * Get a list of character races
      * 
@@ -200,7 +200,7 @@ public interface UniverseApi {
      * @return A list of character races
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<RaceInfo>>> getRaces(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<RaceInfo>>> getRaces(AcceptLanguageEnum acceptLanguage, String ifNoneMatch);
     /**
      * Get a list of regions
      * 
@@ -212,7 +212,7 @@ public interface UniverseApi {
      * @return A list of region ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRegions(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRegions(String ifNoneMatch);
     /**
      * Get information on a region
      * 
@@ -226,7 +226,7 @@ public interface UniverseApi {
      * @return Information about a region
      */
     
-    public CompletableFuture<EsiResponseWrapper<RegionInfo>> getRegionInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int regionId);
+    public CompletableFuture<EsiResponseWrapper<RegionInfo>> getRegionInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int regionId);
     /**
      * Get information on a stargate
      * 
@@ -239,7 +239,7 @@ public interface UniverseApi {
      * @return Information about a stargate
      */
     
-    public CompletableFuture<EsiResponseWrapper<StargateInfo>> getStargateInfo(DatasourceEnum datasource, String ifNoneMatch, int stargateId);
+    public CompletableFuture<EsiResponseWrapper<StargateInfo>> getStargateInfo(String ifNoneMatch, int stargateId);
     /**
      * Get information on a star
      * 
@@ -252,7 +252,7 @@ public interface UniverseApi {
      * @return Information about a star
      */
     
-    public CompletableFuture<EsiResponseWrapper<StarInfo>> getStarInfo(DatasourceEnum datasource, String ifNoneMatch, int starId);
+    public CompletableFuture<EsiResponseWrapper<StarInfo>> getStarInfo(String ifNoneMatch, int starId);
     /**
      * List all public structures
      * 
@@ -264,7 +264,7 @@ public interface UniverseApi {
      * @return List of public structure IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getStructures(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getStructures(String ifNoneMatch);
     /**
      * Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed
      * 
@@ -276,7 +276,7 @@ public interface UniverseApi {
      * @return A list of systems and number of jumps
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getSystemJumps(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getSystemJumps(String ifNoneMatch);
     /**
      * Get a list of solar systems
      * 
@@ -288,7 +288,7 @@ public interface UniverseApi {
      * @return A list of solar system ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getSystems(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getSystems(String ifNoneMatch);
     /**
      * Get a list of type ids
      * 
@@ -301,7 +301,7 @@ public interface UniverseApi {
      * @return A list of type ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getTypes(String ifNoneMatch, Integer page);
     /**
      * Get a list of factions
      * 
@@ -314,7 +314,7 @@ public interface UniverseApi {
      * @return A list of factions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getFactions(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getFactions(AcceptLanguageEnum acceptLanguage, String ifNoneMatch);
     /**
      * Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.
      * 
@@ -325,7 +325,7 @@ public interface UniverseApi {
      * @return List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned.
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> resolveNames(DatasourceEnum datasource, IntArrayList ids);
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> resolveNames(IntArrayList ids);
     /**
      * Get information on a station
      * 
@@ -338,7 +338,7 @@ public interface UniverseApi {
      * @return Information about a station
      */
     
-    public CompletableFuture<EsiResponseWrapper<StationInfo>> getStationInfo(DatasourceEnum datasource, String ifNoneMatch, int stationId);
+    public CompletableFuture<EsiResponseWrapper<StationInfo>> getStationInfo(String ifNoneMatch, int stationId);
     /**
      * Returns information on requested structure if you are on the ACL. Otherwise, returns "Forbidden" for all inputs.
      * 
@@ -351,7 +351,7 @@ public interface UniverseApi {
      * @return Data about a structure
      */
     
-    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getStructureInfo(DatasourceEnum datasource, String ifNoneMatch, long structureId);
+    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getStructureInfo(String ifNoneMatch, long structureId);
     /**
      * Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed
      * 
@@ -363,7 +363,7 @@ public interface UniverseApi {
      * @return A list of systems and number of ship, pod and NPC kills
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getSystemKills(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getSystemKills(String ifNoneMatch);
     /**
      * Get information on a type
      * 
@@ -377,7 +377,7 @@ public interface UniverseApi {
      * @return Information about a type
      */
     
-    public CompletableFuture<EsiResponseWrapper<TypeInfo>> getTypeInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int typeId);
+    public CompletableFuture<EsiResponseWrapper<TypeInfo>> getTypeInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int typeId);
     /**
      * Get information on a solar system.
      * 
@@ -391,5 +391,5 @@ public interface UniverseApi {
      * @return Information about a solar system
      */
     
-    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getSystemInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int systemId);
+    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getSystemInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int systemId);
 }

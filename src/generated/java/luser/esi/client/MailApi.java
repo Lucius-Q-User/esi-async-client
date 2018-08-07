@@ -20,7 +20,7 @@ public interface MailApi {
      * @return The requested mail
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, DatasourceEnum datasource, String ifNoneMatch, IntArrayList labels, Integer lastMailId);
+    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, String ifNoneMatch, IntArrayList labels, Integer lastMailId);
     /**
      * Create and send a new mail
      * 
@@ -32,7 +32,7 @@ public interface MailApi {
      * @return Mail created
      */
     
-    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, DatasourceEnum datasource, NewMail mail);
+    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, NewMail mail);
     /**
      * Delete a mail label
      * 
@@ -44,7 +44,7 @@ public interface MailApi {
      * @return Label deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, DatasourceEnum datasource, int labelId);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, int labelId);
     /**
      * Return all mailing lists that the character is subscribed to
      * 
@@ -57,7 +57,7 @@ public interface MailApi {
      * @return Mailing lists
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, String ifNoneMatch);
     /**
      * Delete a mail
      * 
@@ -69,7 +69,7 @@ public interface MailApi {
      * @return Mail deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, DatasourceEnum datasource, int mailId);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, int mailId);
     /**
      * Return the contents of an EVE mail
      * 
@@ -83,7 +83,7 @@ public interface MailApi {
      * @return Contents of a mail
      */
     
-    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, DatasourceEnum datasource, String ifNoneMatch, int mailId);
+    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, String ifNoneMatch, int mailId);
     /**
      * Update metadata about a mail
      * 
@@ -96,7 +96,7 @@ public interface MailApi {
      * @return Mail updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, DatasourceEnum datasource, int mailId);
+    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, int mailId);
     /**
      * Create a mail label
      * 
@@ -108,7 +108,7 @@ public interface MailApi {
      * @return Label created
      */
     
-    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, DatasourceEnum datasource, NewMailLabel label);
+    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, NewMailLabel label);
     /**
      * Return a list of the users mail labels, unread counts for each label and a total unread count.
      * 
@@ -121,5 +121,5 @@ public interface MailApi {
      * @return A list of mail labels and unread counts
      */
     
-    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, String ifNoneMatch);
 }

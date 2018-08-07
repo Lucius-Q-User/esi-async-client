@@ -17,7 +17,7 @@ public interface ClonesApi {
      * @return A list of implant type ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getImplants(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getImplants(int characterId, String ifNoneMatch);
     /**
      * A list of the character's clones
      * 
@@ -30,5 +30,5 @@ public interface ClonesApi {
      * @return Clone information for the given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CloneInfo>> getClones(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CloneInfo>> getClones(int characterId, String ifNoneMatch);
 }

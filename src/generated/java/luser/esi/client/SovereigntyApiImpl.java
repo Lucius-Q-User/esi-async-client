@@ -17,7 +17,7 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/campaigns/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class SovereigntyApiImpl implements SovereigntyApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -41,7 +36,7 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/map/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -49,12 +44,7 @@ class SovereigntyApiImpl implements SovereigntyApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -65,7 +55,7 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/structures/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -73,12 +63,7 @@ class SovereigntyApiImpl implements SovereigntyApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;

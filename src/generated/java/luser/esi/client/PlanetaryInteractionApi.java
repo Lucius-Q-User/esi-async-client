@@ -17,7 +17,7 @@ public interface PlanetaryInteractionApi {
      * @return List of colonies
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, String ifNoneMatch);
     /**
      * List customs offices owned by a corporation
      * 
@@ -34,7 +34,7 @@ public interface PlanetaryInteractionApi {
      * @return A list of customs offices and their settings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, String ifNoneMatch, Integer page);
     /**
      * Get information on a planetary factory schematic
      * 
@@ -47,7 +47,7 @@ public interface PlanetaryInteractionApi {
      * @return Public data about a schematic
      */
     
-    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(DatasourceEnum datasource, String ifNoneMatch, int schematicId);
+    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(String ifNoneMatch, int schematicId);
     /**
      * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.
      * 
@@ -61,5 +61,5 @@ public interface PlanetaryInteractionApi {
      * @return Colony layout
      */
     
-    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId);
+    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId);
 }

@@ -16,7 +16,7 @@ public interface AllianceApi {
      * @return List of Alliance IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(String ifNoneMatch);
     /**
      * List all current member corporations of an alliance
      * 
@@ -29,7 +29,7 @@ public interface AllianceApi {
      * @return List of corporation IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, String ifNoneMatch);
     /**
      * Get the icon urls for a alliance
      * 
@@ -42,7 +42,7 @@ public interface AllianceApi {
      * @return Icon URLs for the given alliance id and server
      */
     
-    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, String ifNoneMatch);
     /**
      * Public information about an alliance
      * 
@@ -55,5 +55,5 @@ public interface AllianceApi {
      * @return Public data about an alliance
      */
     
-    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, String ifNoneMatch);
 }

@@ -18,7 +18,7 @@ public interface CalendarApi {
      * @return A collection of event summaries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, Integer fromEvent, String ifNoneMatch);
     /**
      * Get all invited attendees for a given event
      * 
@@ -32,7 +32,7 @@ public interface CalendarApi {
      * @return List of attendees
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, int eventId, String ifNoneMatch);
     /**
      * Get all the information for a specific event
      * 
@@ -46,7 +46,7 @@ public interface CalendarApi {
      * @return Full details of a specific event
      */
     
-    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, int eventId, String ifNoneMatch);
     /**
      * Set your response status to an event
      * 
@@ -59,5 +59,5 @@ public interface CalendarApi {
      * @return Event updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, DatasourceEnum datasource, int eventId, EventResponse response);
+    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, int eventId, EventResponse response);
 }

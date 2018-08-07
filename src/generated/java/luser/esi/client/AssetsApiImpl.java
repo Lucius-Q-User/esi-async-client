@@ -18,16 +18,11 @@ class AssetsApiImpl implements AssetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCharacterAssetNames(int characterId, DatasourceEnum datasource, LongArrayList itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCharacterAssetNames(int characterId, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/assets/names/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -40,16 +35,11 @@ class AssetsApiImpl implements AssetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCorporationAssetNames(int corporationId, DatasourceEnum datasource, LongArrayList itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCorporationAssetNames(int corporationId, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/assets/names/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
@@ -62,16 +52,11 @@ class AssetsApiImpl implements AssetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCharacterAssetLocations(int characterId, DatasourceEnum datasource, LongArrayList itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCharacterAssetLocations(int characterId, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/assets/locations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -84,16 +69,11 @@ class AssetsApiImpl implements AssetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCorporationAssetLocations(int corporationId, DatasourceEnum datasource, LongArrayList itemIds) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCorporationAssetLocations(int corporationId, LongArrayList itemIds) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/assets/locations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
@@ -106,7 +86,7 @@ class AssetsApiImpl implements AssetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharacterAssets(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharacterAssets(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/assets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -114,12 +94,7 @@ class AssetsApiImpl implements AssetsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -136,7 +111,7 @@ class AssetsApiImpl implements AssetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationAssets(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationAssets(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/assets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -144,12 +119,7 @@ class AssetsApiImpl implements AssetsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);

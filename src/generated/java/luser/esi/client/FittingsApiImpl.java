@@ -17,7 +17,7 @@ class FittingsApiImpl implements FittingsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class FittingsApiImpl implements FittingsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -42,16 +37,11 @@ class FittingsApiImpl implements FittingsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, DatasourceEnum datasource, NewStoredFitting fitting) {
+    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, NewStoredFitting fitting) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -64,16 +54,11 @@ class FittingsApiImpl implements FittingsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, DatasourceEnum datasource, int fittingId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, int fittingId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fittings/{fitting_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));

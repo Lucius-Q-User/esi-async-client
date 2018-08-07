@@ -18,7 +18,7 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, DatasourceEnum datasource, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {
+    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -26,12 +26,7 @@ class MailApiImpl implements MailApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(3);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(2);
         
         if (labels != null) {
             String val = ApiClientBase.renderArrayToQuery(labels, null);
@@ -53,16 +48,11 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, DatasourceEnum datasource, NewMail mail) {
+    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, NewMail mail) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -75,16 +65,11 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, DatasourceEnum datasource, int labelId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, int labelId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/labels/{label_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -97,7 +82,7 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/lists/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -105,12 +90,7 @@ class MailApiImpl implements MailApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -122,16 +102,11 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, DatasourceEnum datasource, int mailId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -144,7 +119,7 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, DatasourceEnum datasource, String ifNoneMatch, int mailId) {
+    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, String ifNoneMatch, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -152,12 +127,7 @@ class MailApiImpl implements MailApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -170,16 +140,11 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, DatasourceEnum datasource, int mailId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -193,16 +158,11 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, DatasourceEnum datasource, NewMailLabel label) {
+    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, NewMailLabel label) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/mail/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -215,7 +175,7 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/mail/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -223,12 +183,7 @@ class MailApiImpl implements MailApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));

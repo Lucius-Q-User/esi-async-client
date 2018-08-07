@@ -18,7 +18,7 @@ public interface BookmarksApi {
      * @return List of corporation owned bookmarks
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCorporationBookmarks(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCorporationBookmarks(int corporationId, String ifNoneMatch, Integer page);
     /**
      * A list of your corporation's bookmark folders
      * 
@@ -32,7 +32,7 @@ public interface BookmarksApi {
      * @return List of corporation owned bookmark folders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationBookmarkFolder>>> getCorporationBookmarkFolders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationBookmarkFolder>>> getCorporationBookmarkFolders(int corporationId, String ifNoneMatch, Integer page);
     /**
      * A list of your character's personal bookmarks
      * 
@@ -46,7 +46,7 @@ public interface BookmarksApi {
      * @return A list of bookmarks
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCharacterBookmarks(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCharacterBookmarks(int characterId, String ifNoneMatch, Integer page);
     /**
      * A list of your character's personal bookmark folders
      * 
@@ -60,5 +60,5 @@ public interface BookmarksApi {
      * @return List of bookmark folders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharacterBookmarkFolders(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharacterBookmarkFolders(int characterId, String ifNoneMatch, Integer page);
 }

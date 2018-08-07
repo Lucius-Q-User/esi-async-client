@@ -17,7 +17,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/planets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -42,7 +37,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/customs_offices/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -50,12 +45,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -72,7 +62,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(DatasourceEnum datasource, String ifNoneMatch, int schematicId) {
+    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(String ifNoneMatch, int schematicId) {
         String url = "https://esi.evetech.net/v1/universe/schematics/{schematic_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -80,12 +70,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("schematic_id", String.valueOf(schematicId));
@@ -97,7 +82,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId) {
+    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/planets/{planet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -105,12 +90,7 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));

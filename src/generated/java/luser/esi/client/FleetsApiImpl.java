@@ -17,7 +17,7 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/fleet/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class FleetsApiImpl implements FleetsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -42,7 +37,7 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(long fleetId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -50,12 +45,7 @@ class FleetsApiImpl implements FleetsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -67,16 +57,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(DatasourceEnum datasource, long fleetId, NewFleetSettings newSettings) {
+    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(long fleetId, NewFleetSettings newSettings) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -89,7 +74,7 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -101,12 +86,7 @@ class FleetsApiImpl implements FleetsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -118,16 +98,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(DatasourceEnum datasource, long fleetId, FleetInvitation invitation) {
+    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(long fleetId, FleetInvitation invitation) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -140,16 +115,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(DatasourceEnum datasource, long fleetId, int memberId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(long fleetId, int memberId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/{member_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -162,16 +132,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(DatasourceEnum datasource, long fleetId, int memberId, FleetMovementRequest movement) {
+    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(long fleetId, int memberId, FleetMovementRequest movement) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/{member_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -185,16 +150,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(DatasourceEnum datasource, long fleetId, long squadId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(long fleetId, long squadId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/squads/{squad_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -207,16 +167,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long squadId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(long fleetId, FleetUnitName naming, long squadId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/squads/{squad_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -230,7 +185,7 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -242,12 +197,7 @@ class FleetsApiImpl implements FleetsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -259,16 +209,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(DatasourceEnum datasource, long fleetId) {
+    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(long fleetId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -280,16 +225,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(DatasourceEnum datasource, long fleetId, long wingId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(long fleetId, long wingId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -302,16 +242,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long wingId) {
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(long fleetId, FleetUnitName naming, long wingId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));
@@ -325,16 +260,11 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(DatasourceEnum datasource, long fleetId, long wingId) {
+    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(long fleetId, long wingId) {
         String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/squads/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("fleet_id", String.valueOf(fleetId));

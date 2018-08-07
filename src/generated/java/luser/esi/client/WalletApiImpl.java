@@ -17,7 +17,7 @@ class WalletApiImpl implements WalletApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Double>> getWallet(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<Double>> getWallet(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/wallet/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class WalletApiImpl implements WalletApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -42,7 +37,7 @@ class WalletApiImpl implements WalletApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletTransactions(int characterId, DatasourceEnum datasource, Long fromId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletTransactions(int characterId, Long fromId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/wallet/transactions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -50,12 +45,7 @@ class WalletApiImpl implements WalletApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (fromId != null) {
             String val = String.valueOf(fromId);
@@ -72,7 +62,7 @@ class WalletApiImpl implements WalletApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getWallets(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getWallets(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/wallets/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -80,12 +70,7 @@ class WalletApiImpl implements WalletApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
@@ -97,7 +82,7 @@ class WalletApiImpl implements WalletApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletDivisionTransactions(int corporationId, DatasourceEnum datasource, int division, Long fromId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletDivisionTransactions(int corporationId, int division, Long fromId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/wallets/{division}/transactions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -105,12 +90,7 @@ class WalletApiImpl implements WalletApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (fromId != null) {
             String val = String.valueOf(fromId);
@@ -128,7 +108,7 @@ class WalletApiImpl implements WalletApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletDivisionJournal(int corporationId, DatasourceEnum datasource, int division, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletDivisionJournal(int corporationId, int division, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v3/corporations/{corporation_id}/wallets/{division}/journal/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -136,12 +116,7 @@ class WalletApiImpl implements WalletApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -159,7 +134,7 @@ class WalletApiImpl implements WalletApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletJournal(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletJournal(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/wallet/journal/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -167,12 +142,7 @@ class WalletApiImpl implements WalletApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);

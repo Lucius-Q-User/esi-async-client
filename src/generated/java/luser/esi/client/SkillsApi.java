@@ -17,7 +17,7 @@ public interface SkillsApi {
      * @return Attributes of a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, String ifNoneMatch);
     /**
      * List the configured skill queue for the given character
      * 
@@ -30,7 +30,7 @@ public interface SkillsApi {
      * @return The current skill queue, sorted ascending by finishing time
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, String ifNoneMatch);
     /**
      * List all trained skills for the given character
      * 
@@ -43,5 +43,5 @@ public interface SkillsApi {
      * @return Known skills for the character
      */
     
-    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, String ifNoneMatch);
 }

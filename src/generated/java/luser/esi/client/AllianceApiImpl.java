@@ -17,7 +17,7 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class AllianceApiImpl implements AllianceApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -41,7 +36,7 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/corporations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -49,12 +44,7 @@ class AllianceApiImpl implements AllianceApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
@@ -66,7 +56,7 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/icons/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -74,12 +64,7 @@ class AllianceApiImpl implements AllianceApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
@@ -91,7 +76,7 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/alliances/{alliance_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -99,12 +84,7 @@ class AllianceApiImpl implements AllianceApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));

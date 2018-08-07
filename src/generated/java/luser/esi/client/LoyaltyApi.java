@@ -17,7 +17,7 @@ public interface LoyaltyApi {
      * @return A list of loyalty points
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, String ifNoneMatch);
     /**
      * Return a list of offers from a specific corporation's loyalty store
      * 
@@ -30,5 +30,5 @@ public interface LoyaltyApi {
      * @return A list of offers
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, String ifNoneMatch);
 }

@@ -16,7 +16,7 @@ class LocationApiImpl implements LocationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/location/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -24,12 +24,7 @@ class LocationApiImpl implements LocationApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -41,7 +36,7 @@ class LocationApiImpl implements LocationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/ship/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -49,12 +44,7 @@ class LocationApiImpl implements LocationApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -66,7 +56,7 @@ class LocationApiImpl implements LocationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/online/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -74,12 +64,7 @@ class LocationApiImpl implements LocationApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));

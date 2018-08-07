@@ -16,7 +16,7 @@ public interface SovereigntyApi {
      * @return A list of sovereignty campaigns
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(String ifNoneMatch);
     /**
      * Shows sovereignty information for solar systems
      * 
@@ -28,7 +28,7 @@ public interface SovereigntyApi {
      * @return A list of sovereignty information for solar systems in New Eden
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(String ifNoneMatch);
     /**
      * Shows sovereignty data for structures.
      * 
@@ -40,5 +40,5 @@ public interface SovereigntyApi {
      * @return A list of sovereignty structures
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(String ifNoneMatch);
 }

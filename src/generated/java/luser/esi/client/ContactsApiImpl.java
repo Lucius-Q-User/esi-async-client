@@ -19,7 +19,7 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/contacts/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -27,12 +27,7 @@ class ContactsApiImpl implements ContactsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("alliance_id", String.valueOf(allianceId));
@@ -44,7 +39,7 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/contacts/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -52,12 +47,7 @@ class ContactsApiImpl implements ContactsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -69,7 +59,7 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/contacts/labels/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -77,12 +67,7 @@ class ContactsApiImpl implements ContactsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("corporation_id", String.valueOf(corporationId));
@@ -94,7 +79,7 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/alliances/{alliance_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -102,12 +87,7 @@ class ContactsApiImpl implements ContactsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -124,20 +104,15 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource) {
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(2);
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (contactIds != null) {
             String val = ApiClientBase.renderArrayToQuery(contactIds, null);
             parametersInQuery.put("contact_ids", val);
-        }
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
         }
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
@@ -150,7 +125,7 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -158,12 +133,7 @@ class ContactsApiImpl implements ContactsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -180,16 +150,11 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource, LongArrayList labelIds, double standing, Boolean watched) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(4);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         if (labelIds != null) {
             String val = ApiClientBase.renderArrayToQuery(labelIds, null);
@@ -217,16 +182,11 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource, LongArrayList labelIds, double standing, Boolean watched) {
+    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(4);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         if (labelIds != null) {
             String val = ApiClientBase.renderArrayToQuery(labelIds, null);
@@ -254,7 +214,7 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/{corporation_id}/contacts/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -262,12 +222,7 @@ class ContactsApiImpl implements ContactsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);

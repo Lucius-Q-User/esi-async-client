@@ -17,7 +17,7 @@ public interface FittingsApi {
      * @return A list of fittings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, String ifNoneMatch);
     /**
      * Save a new fitting for a character
      * 
@@ -29,7 +29,7 @@ public interface FittingsApi {
      * @return A list of fittings
      */
     
-    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, DatasourceEnum datasource, NewStoredFitting fitting);
+    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, NewStoredFitting fitting);
     /**
      * Delete a fitting from a character
      * 
@@ -41,5 +41,5 @@ public interface FittingsApi {
      * @return Fitting deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, DatasourceEnum datasource, int fittingId);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, int fittingId);
 }

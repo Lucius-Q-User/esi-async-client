@@ -17,7 +17,7 @@ public interface LocationApi {
      * @return Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
      */
     
-    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, String ifNoneMatch);
     /**
      * Get the current ship type, name and id
      * 
@@ -30,7 +30,7 @@ public interface LocationApi {
      * @return Get the current ship type, name and id
      */
     
-    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, String ifNoneMatch);
     /**
      * Checks if the character is currently online
      * 
@@ -43,5 +43,5 @@ public interface LocationApi {
      * @return Object describing the character's online status
      */
     
-    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, String ifNoneMatch);
 }

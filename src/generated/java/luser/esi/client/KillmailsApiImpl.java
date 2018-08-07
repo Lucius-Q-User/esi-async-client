@@ -17,7 +17,7 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/killmails/recent/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class KillmailsApiImpl implements KillmailsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -47,7 +42,7 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/killmails/recent/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -55,12 +50,7 @@ class KillmailsApiImpl implements KillmailsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -77,7 +67,7 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(DatasourceEnum datasource, String ifNoneMatch, String killmailHash, int killmailId) {
+    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId) {
         String url = "https://esi.evetech.net/v1/killmails/{killmail_id}/{killmail_hash}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -85,12 +75,7 @@ class KillmailsApiImpl implements KillmailsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("killmail_hash", String.valueOf(killmailHash));

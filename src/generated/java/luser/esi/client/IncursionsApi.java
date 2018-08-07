@@ -16,5 +16,5 @@ public interface IncursionsApi {
      * @return A list of incursions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ActiveIncursions>>> getIncursions(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ActiveIncursions>>> getIncursions(String ifNoneMatch);
 }

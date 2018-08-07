@@ -17,7 +17,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, String ifNoneMatch, Boolean includeCompleted) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/industry/jobs/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (includeCompleted != null) {
             String val = String.valueOf(includeCompleted);
@@ -47,7 +42,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/mining/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -55,12 +50,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -77,7 +67,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/extractions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -85,12 +75,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -107,7 +92,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -115,12 +100,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -137,7 +117,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long observerId, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, String ifNoneMatch, long observerId, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/{observer_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -145,12 +125,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -168,7 +143,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, String ifNoneMatch, Boolean includeCompleted, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/industry/jobs/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -176,12 +151,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(3);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(2);
         
         if (includeCompleted != null) {
             String val = String.valueOf(includeCompleted);
@@ -203,7 +173,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/industry/facilities/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -211,12 +181,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -227,7 +192,7 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/industry/systems/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -235,12 +200,7 @@ class IndustryApiImpl implements IndustryApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;

@@ -18,7 +18,7 @@ public interface ContractsApi {
      * @return A list of contracts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCharacterContracts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCharacterContracts(int characterId, String ifNoneMatch, Integer page);
     /**
      * Lists bids on a particular auction contract
      * 
@@ -32,7 +32,7 @@ public interface ContractsApi {
      * @return A list of bids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getCharacterContractBids(int characterId, int contractId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getCharacterContractBids(int characterId, int contractId, String ifNoneMatch);
     /**
      * Lists items of a particular contract
      * 
@@ -46,7 +46,7 @@ public interface ContractsApi {
      * @return A list of items in this contract
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCharacterContractItems(int characterId, int contractId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCharacterContractItems(int characterId, int contractId, String ifNoneMatch);
     /**
      * Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress".
      * 
@@ -60,7 +60,7 @@ public interface ContractsApi {
      * @return A list of contracts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCorporationContracts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getCorporationContracts(int corporationId, String ifNoneMatch, Integer page);
     /**
      * Lists bids on a particular auction contract
      * 
@@ -75,7 +75,7 @@ public interface ContractsApi {
      * @return A list of bids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getContractBids(int contractId, int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getContractBids(int contractId, int corporationId, String ifNoneMatch, Integer page);
     /**
      * Lists items of a particular contract
      * 
@@ -89,5 +89,5 @@ public interface ContractsApi {
      * @return A list of items in this contract
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCorporationContractItems(int contractId, int corporationId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getCorporationContractItems(int contractId, int corporationId, String ifNoneMatch);
 }

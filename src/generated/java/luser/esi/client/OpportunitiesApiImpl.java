@@ -18,7 +18,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/opportunities/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -26,12 +26,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -43,7 +38,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -51,12 +46,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -67,7 +57,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/{group_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -79,12 +69,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("group_id", String.valueOf(groupId));
@@ -96,7 +81,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -104,12 +89,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -120,7 +100,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(DatasourceEnum datasource, String ifNoneMatch, int taskId) {
+    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(String ifNoneMatch, int taskId) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/{task_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -128,12 +108,7 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("task_id", String.valueOf(taskId));

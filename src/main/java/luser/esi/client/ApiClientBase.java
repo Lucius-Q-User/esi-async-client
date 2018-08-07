@@ -43,6 +43,8 @@ abstract class ApiClientBase implements AutoCloseable {
     private static long activeClients = 0;
     private static final Object LOCK = new Object();
     private boolean disposed = false;
+    private DatasourceEnum datasource;
+    private String userAgent;
     public ApiClientBase() {
         synchronized (LOCK) {
             if (activeClients == 0) {
@@ -78,7 +80,6 @@ abstract class ApiClientBase implements AutoCloseable {
     public synchronized String getClientId() {
         return clientId;
     }
-    private String userAgent;
     public synchronized void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
     }
@@ -109,6 +110,12 @@ abstract class ApiClientBase implements AutoCloseable {
         this.authToken = authToken;
         authTokenExpiry = Instant.MAX;
         inflightRefresh = null;
+    }
+    public DatasourceEnum getDatasource() {
+        return datasource;
+    }
+    public void setDatasource(DatasourceEnum datasource) {
+        this.datasource = datasource;
     }
 
     public synchronized String getRefreshToken() {
@@ -149,9 +156,11 @@ abstract class ApiClientBase implements AutoCloseable {
         inflightRefresh = invokeApi(url, parametersInHeaders, null, null, body, method, false, responseTypeRef).thenCompose((wr) -> {
             TokenExchangeResponse js = wr.get();
             synchronized (this) {
-                inflightRefresh = null;
-                authToken = js.getAccessToken();
-                authTokenExpiry = Instant.now().plus(js.getExpiresIn(), ChronoUnit.SECONDS);
+                if (inflightRefresh != null) {
+                    inflightRefresh = null;
+                    authToken = js.getAccessToken();
+                    authTokenExpiry = Instant.now().plus(js.getExpiresIn(), ChronoUnit.SECONDS);
+                }
             }
             return CompletableFuture.completedFuture(authToken);
         });
@@ -162,6 +171,9 @@ abstract class ApiClientBase implements AutoCloseable {
         String userAgent = getUserAgent();
         if (userAgent != null) {
             builder.addHeader("User-Agent", userAgent);
+        }
+        if (datasource != null) {
+            builder.addQueryParam("datasource", datasource.stringValue);
         }
         CompletableFuture<EsiResponseWrapper<T>> ftr = asyncHttpClient.executeRequest(builder).toCompletableFuture().thenCompose((resp) -> {
             int statusCode = resp.getStatusCode();

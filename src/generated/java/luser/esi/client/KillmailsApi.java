@@ -18,7 +18,7 @@ public interface KillmailsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, String ifNoneMatch, Integer page);
     /**
      * Get a list of a corporation's kills and losses going back 90 days
      * 
@@ -35,7 +35,7 @@ public interface KillmailsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, String ifNoneMatch, Integer page);
     /**
      * Return a single killmail from its ID and hash
      * 
@@ -49,5 +49,5 @@ public interface KillmailsApi {
      * @return A killmail
      */
     
-    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(DatasourceEnum datasource, String ifNoneMatch, String killmailHash, int killmailId);
+    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId);
 }

@@ -17,7 +17,7 @@ class SkillsApiImpl implements SkillsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/attributes/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class SkillsApiImpl implements SkillsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -42,7 +37,7 @@ class SkillsApiImpl implements SkillsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/{character_id}/skillqueue/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -50,12 +45,7 @@ class SkillsApiImpl implements SkillsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -67,7 +57,7 @@ class SkillsApiImpl implements SkillsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/characters/{character_id}/skills/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -75,12 +65,7 @@ class SkillsApiImpl implements SkillsApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("character_id", String.valueOf(characterId));

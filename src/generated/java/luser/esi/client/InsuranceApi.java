@@ -17,5 +17,5 @@ public interface InsuranceApi {
      * @return A list of insurance levels for all ship types
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<InsurancePrices>>> getInsurancePrices(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<InsurancePrices>>> getInsurancePrices(AcceptLanguageEnum acceptLanguage, String ifNoneMatch);
 }

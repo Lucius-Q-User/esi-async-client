@@ -17,7 +17,7 @@ class DogmaApiImpl implements DogmaApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAttributes(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAttributes(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/attributes/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class DogmaApiImpl implements DogmaApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -41,7 +36,7 @@ class DogmaApiImpl implements DogmaApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<DogmaAttributeInfo>> getAttributeInfo(int attributeId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<DogmaAttributeInfo>> getAttributeInfo(int attributeId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/attributes/{attribute_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -49,12 +44,7 @@ class DogmaApiImpl implements DogmaApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("attribute_id", String.valueOf(attributeId));
@@ -66,7 +56,7 @@ class DogmaApiImpl implements DogmaApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<DogmaDynamicItemInfo>> getDynamicItemStats(DatasourceEnum datasource, String ifNoneMatch, long itemId, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<DogmaDynamicItemInfo>> getDynamicItemStats(String ifNoneMatch, long itemId, int typeId) {
         String url = "https://esi.evetech.net/v1/dogma/dynamic/items/{type_id}/{item_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -74,12 +64,7 @@ class DogmaApiImpl implements DogmaApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("item_id", String.valueOf(itemId));
@@ -92,7 +77,7 @@ class DogmaApiImpl implements DogmaApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getEffects(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getEffects(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/dogma/effects/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -100,12 +85,7 @@ class DogmaApiImpl implements DogmaApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -116,7 +96,7 @@ class DogmaApiImpl implements DogmaApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<DogmaEffectIfno>> getEffectInfo(DatasourceEnum datasource, int effectId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<DogmaEffectIfno>> getEffectInfo(int effectId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/dogma/effects/{effect_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -124,12 +104,7 @@ class DogmaApiImpl implements DogmaApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("effect_id", String.valueOf(effectId));

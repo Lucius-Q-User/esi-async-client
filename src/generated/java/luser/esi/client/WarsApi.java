@@ -18,7 +18,7 @@ public interface WarsApi {
      * @return A list of war IDs, in decending order by war_id.
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(DatasourceEnum datasource, String ifNoneMatch, Integer maxWarId);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(String ifNoneMatch, Integer maxWarId);
     /**
      * Return details about a war
      * 
@@ -31,7 +31,7 @@ public interface WarsApi {
      * @return Details about a war
      */
     
-    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(DatasourceEnum datasource, String ifNoneMatch, int warId);
+    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(String ifNoneMatch, int warId);
     /**
      * Return a list of kills related to a war
      * 
@@ -45,5 +45,5 @@ public interface WarsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId);
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(String ifNoneMatch, Integer page, int warId);
 }

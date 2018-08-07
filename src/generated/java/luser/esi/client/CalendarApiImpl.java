@@ -17,7 +17,7 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, Integer fromEvent, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -25,12 +25,7 @@ class CalendarApiImpl implements CalendarApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (fromEvent != null) {
             String val = String.valueOf(fromEvent);
@@ -47,7 +42,7 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/{event_id}/attendees/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -55,12 +50,7 @@ class CalendarApiImpl implements CalendarApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -73,7 +63,7 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -81,12 +71,7 @@ class CalendarApiImpl implements CalendarApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));
@@ -99,16 +84,11 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, DatasourceEnum datasource, int eventId, EventResponse response) {
+    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, int eventId, EventResponse response) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(2);
         parametersInUrl.put("character_id", String.valueOf(characterId));

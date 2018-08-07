@@ -17,7 +17,7 @@ class SearchApiImpl implements SearchApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
+    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v2/search/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -29,16 +29,11 @@ class SearchApiImpl implements SearchApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(4);
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         if (categories != null) {
             String val = ApiClientBase.renderArrayToQuery(categories, null);
             parametersInQuery.put("categories", val);
-        }
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
         }
         
         if (search != null) {
@@ -60,7 +55,7 @@ class SearchApiImpl implements SearchApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, DatasourceEnum datasource, String ifNoneMatch, String search, Boolean strict) {
+    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v3/characters/{character_id}/search/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -72,16 +67,11 @@ class SearchApiImpl implements SearchApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(4);
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         if (categories != null) {
             String val = ApiClientBase.renderArrayToQuery(categories, null);
             parametersInQuery.put("categories", val);
-        }
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
         }
         
         if (search != null) {

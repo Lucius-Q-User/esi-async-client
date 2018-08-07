@@ -18,7 +18,7 @@ class RoutesApiImpl implements RoutesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, DatasourceEnum datasource, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
         String url = "https://esi.evetech.net/v1/route/{origin}/{destination}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -26,7 +26,7 @@ class RoutesApiImpl implements RoutesApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(4);
+        Map<String, String> parametersInQuery = new HashMap<>(3);
         
         if (avoid != null) {
             String val = ApiClientBase.renderArrayToQuery(avoid, null);
@@ -36,11 +36,6 @@ class RoutesApiImpl implements RoutesApi {
         if (connections != null) {
             String val = ApiClientBase.renderArrayToQuery(connections, null);
             parametersInQuery.put("connections", val);
-        }
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
         }
         
         if (flag != null) {

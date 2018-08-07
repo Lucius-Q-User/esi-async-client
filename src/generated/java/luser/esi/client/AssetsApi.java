@@ -17,7 +17,7 @@ public interface AssetsApi {
      * @return List of asset names
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCharacterAssetNames(int characterId, DatasourceEnum datasource, LongArrayList itemIds);
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCharacterAssetNames(int characterId, LongArrayList itemIds);
     /**
      * Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships.
      * 
@@ -30,7 +30,7 @@ public interface AssetsApi {
      * @return List of asset names
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCorporationAssetNames(int corporationId, DatasourceEnum datasource, LongArrayList itemIds);
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedAssetName>>> resolveCorporationAssetNames(int corporationId, LongArrayList itemIds);
     /**
      * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)
      * 
@@ -42,7 +42,7 @@ public interface AssetsApi {
      * @return List of asset locations
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCharacterAssetLocations(int characterId, DatasourceEnum datasource, LongArrayList itemIds);
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCharacterAssetLocations(int characterId, LongArrayList itemIds);
     /**
      * Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)
      * 
@@ -55,7 +55,7 @@ public interface AssetsApi {
      * @return List of asset locations
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCorporationAssetLocations(int corporationId, DatasourceEnum datasource, LongArrayList itemIds);
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemLocation>>> resolveCorporationAssetLocations(int corporationId, LongArrayList itemIds);
     /**
      * Return a list of the characters assets
      * 
@@ -69,7 +69,7 @@ public interface AssetsApi {
      * @return A flat list of the users assets
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharacterAssets(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterAssetsEntry>>> getCharacterAssets(int characterId, String ifNoneMatch, Integer page);
     /**
      * Return a list of the corporation assets
      * 
@@ -86,5 +86,5 @@ public interface AssetsApi {
      * @return A list of assets
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationAssets(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationAssets(int corporationId, String ifNoneMatch, Integer page);
 }

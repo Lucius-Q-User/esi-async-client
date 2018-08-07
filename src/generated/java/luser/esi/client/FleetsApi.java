@@ -17,7 +17,7 @@ public interface FleetsApi {
      * @return Details about the character's fleet
      */
     
-    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, String ifNoneMatch);
     /**
      * Return details about a fleet
      * 
@@ -30,7 +30,7 @@ public interface FleetsApi {
      * @return Details about a fleet
      */
     
-    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(DatasourceEnum datasource, long fleetId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(long fleetId, String ifNoneMatch);
     /**
      * Update settings about a fleet
      * 
@@ -42,7 +42,7 @@ public interface FleetsApi {
      * @return Fleet updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(DatasourceEnum datasource, long fleetId, NewFleetSettings newSettings);
+    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(long fleetId, NewFleetSettings newSettings);
     /**
      * Return information about fleet members
      * 
@@ -56,7 +56,7 @@ public interface FleetsApi {
      * @return A list of fleet members
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch);
     /**
      * Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI
      * 
@@ -68,7 +68,7 @@ public interface FleetsApi {
      * @return Fleet invitation sent
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(DatasourceEnum datasource, long fleetId, FleetInvitation invitation);
+    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(long fleetId, FleetInvitation invitation);
     /**
      * Kick a fleet member
      * 
@@ -80,7 +80,7 @@ public interface FleetsApi {
      * @return Fleet member kicked
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(DatasourceEnum datasource, long fleetId, int memberId);
+    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(long fleetId, int memberId);
     /**
      * Move a fleet member around
      * 
@@ -93,7 +93,7 @@ public interface FleetsApi {
      * @return Fleet invitation sent
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(DatasourceEnum datasource, long fleetId, int memberId, FleetMovementRequest movement);
+    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(long fleetId, int memberId, FleetMovementRequest movement);
     /**
      * Delete a fleet squad, only empty squads can be deleted
      * 
@@ -105,7 +105,7 @@ public interface FleetsApi {
      * @return Squad deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(DatasourceEnum datasource, long fleetId, long squadId);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(long fleetId, long squadId);
     /**
      * Rename a fleet squad
      * 
@@ -118,7 +118,7 @@ public interface FleetsApi {
      * @return Squad renamed
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long squadId);
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(long fleetId, FleetUnitName naming, long squadId);
     /**
      * Return information about wings in a fleet
      * 
@@ -132,7 +132,7 @@ public interface FleetsApi {
      * @return A list of fleet wings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, long fleetId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch);
     /**
      * Create a new wing in a fleet
      * 
@@ -143,7 +143,7 @@ public interface FleetsApi {
      * @return Wing created
      */
     
-    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(DatasourceEnum datasource, long fleetId);
+    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(long fleetId);
     /**
      * Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty
      * 
@@ -155,7 +155,7 @@ public interface FleetsApi {
      * @return Wing deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(DatasourceEnum datasource, long fleetId, long wingId);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(long fleetId, long wingId);
     /**
      * Rename a fleet wing
      * 
@@ -168,7 +168,7 @@ public interface FleetsApi {
      * @return Wing renamed
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(DatasourceEnum datasource, long fleetId, FleetUnitName naming, long wingId);
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(long fleetId, FleetUnitName naming, long wingId);
     /**
      * Create a new squad in a fleet
      * 
@@ -180,5 +180,5 @@ public interface FleetsApi {
      * @return Squad created
      */
     
-    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(DatasourceEnum datasource, long fleetId, long wingId);
+    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(long fleetId, long wingId);
 }

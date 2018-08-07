@@ -19,7 +19,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<AncestryInfo>>> getAncestries(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<AncestryInfo>>> getAncestries(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/ancestries/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -31,12 +31,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -47,7 +42,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<AsteroidBeltInfo>> getAsteroidBeltInfo(int asteroidBeltId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<AsteroidBeltInfo>> getAsteroidBeltInfo(int asteroidBeltId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/asteroid_belts/{asteroid_belt_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -55,12 +50,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("asteroid_belt_id", String.valueOf(asteroidBeltId));
@@ -72,7 +62,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<BloodlineInfo>>> getBloodlines(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<BloodlineInfo>>> getBloodlines(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/bloodlines/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -84,12 +74,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -100,7 +85,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCategories(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCategories(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/categories/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -108,12 +93,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -124,7 +104,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ItemCategoryInfo>> getCategoryInfo(AcceptLanguageEnum acceptLanguage, int categoryId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ItemCategoryInfo>> getCategoryInfo(AcceptLanguageEnum acceptLanguage, int categoryId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/categories/{category_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -136,12 +116,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("category_id", String.valueOf(categoryId));
@@ -153,7 +128,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getConstellations(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getConstellations(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/constellations/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -161,12 +136,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -177,7 +147,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ConstellationInfo>> getConstellationInfo(AcceptLanguageEnum acceptLanguage, int constellationId, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ConstellationInfo>> getConstellationInfo(AcceptLanguageEnum acceptLanguage, int constellationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/constellations/{constellation_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -189,12 +159,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("constellation_id", String.valueOf(constellationId));
@@ -206,7 +171,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGraphics(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGraphics(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/graphics/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -214,12 +179,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -230,7 +190,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<GhaphicInfo>> getGraphicInfo(DatasourceEnum datasource, int graphicId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<GhaphicInfo>> getGraphicInfo(int graphicId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/graphics/{graphic_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -238,12 +198,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("graphic_id", String.valueOf(graphicId));
@@ -255,7 +210,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGroups(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getGroups(String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/universe/groups/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -263,12 +218,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -284,7 +234,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, int groupId, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/groups/{group_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -296,12 +246,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("group_id", String.valueOf(groupId));
@@ -313,7 +258,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> resolveIds(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, List<String> names) {
+    public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> resolveIds(AcceptLanguageEnum acceptLanguage, List<String> names) {
         String url = "https://esi.evetech.net/v1/universe/ids/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -321,12 +266,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = acceptLanguage.stringValue;
             parametersInHeaders.put("Accept-Language", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -338,7 +278,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MoonInfo>> getMoonInfo(DatasourceEnum datasource, String ifNoneMatch, int moonId) {
+    public CompletableFuture<EsiResponseWrapper<MoonInfo>> getMoonInfo(String ifNoneMatch, int moonId) {
         String url = "https://esi.evetech.net/v1/universe/moons/{moon_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -346,12 +286,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("moon_id", String.valueOf(moonId));
@@ -363,7 +298,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<UniversePlanetInfo>> getPlanetInfo(DatasourceEnum datasource, String ifNoneMatch, int planetId) {
+    public CompletableFuture<EsiResponseWrapper<UniversePlanetInfo>> getPlanetInfo(String ifNoneMatch, int planetId) {
         String url = "https://esi.evetech.net/v1/universe/planets/{planet_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -371,12 +306,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("planet_id", String.valueOf(planetId));
@@ -388,7 +318,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<RaceInfo>>> getRaces(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<RaceInfo>>> getRaces(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/races/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -400,12 +330,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -416,7 +341,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRegions(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRegions(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/regions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -424,12 +349,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -440,7 +360,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<RegionInfo>> getRegionInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int regionId) {
+    public CompletableFuture<EsiResponseWrapper<RegionInfo>> getRegionInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int regionId) {
         String url = "https://esi.evetech.net/v1/universe/regions/{region_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -452,12 +372,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("region_id", String.valueOf(regionId));
@@ -469,7 +384,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<StargateInfo>> getStargateInfo(DatasourceEnum datasource, String ifNoneMatch, int stargateId) {
+    public CompletableFuture<EsiResponseWrapper<StargateInfo>> getStargateInfo(String ifNoneMatch, int stargateId) {
         String url = "https://esi.evetech.net/v1/universe/stargates/{stargate_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -477,12 +392,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("stargate_id", String.valueOf(stargateId));
@@ -494,7 +404,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<StarInfo>> getStarInfo(DatasourceEnum datasource, String ifNoneMatch, int starId) {
+    public CompletableFuture<EsiResponseWrapper<StarInfo>> getStarInfo(String ifNoneMatch, int starId) {
         String url = "https://esi.evetech.net/v1/universe/stars/{star_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -502,12 +412,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("star_id", String.valueOf(starId));
@@ -519,7 +424,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getStructures(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<LongArrayList>> getStructures(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/structures/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -527,12 +432,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -543,7 +443,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getSystemJumps(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SystemJumps>>> getSystemJumps(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/system_jumps/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -551,12 +451,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -567,7 +462,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getSystems(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getSystems(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/universe/systems/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -575,12 +470,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -591,7 +481,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getTypes(String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/universe/types/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -599,12 +489,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
@@ -620,7 +505,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getFactions(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getFactions(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/universe/factions/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -632,12 +517,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -648,16 +528,11 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> resolveNames(DatasourceEnum datasource, IntArrayList ids) {
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> resolveNames(IntArrayList ids) {
         String url = "https://esi.evetech.net/v2/universe/names/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -669,7 +544,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<StationInfo>> getStationInfo(DatasourceEnum datasource, String ifNoneMatch, int stationId) {
+    public CompletableFuture<EsiResponseWrapper<StationInfo>> getStationInfo(String ifNoneMatch, int stationId) {
         String url = "https://esi.evetech.net/v2/universe/stations/{station_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -677,12 +552,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("station_id", String.valueOf(stationId));
@@ -694,7 +564,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getStructureInfo(DatasourceEnum datasource, String ifNoneMatch, long structureId) {
+    public CompletableFuture<EsiResponseWrapper<StructureInfo>> getStructureInfo(String ifNoneMatch, long structureId) {
         String url = "https://esi.evetech.net/v2/universe/structures/{structure_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -702,12 +572,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("structure_id", String.valueOf(structureId));
@@ -719,7 +584,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getSystemKills(DatasourceEnum datasource, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SystemKills>>> getSystemKills(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/universe/system_kills/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(1);
@@ -727,12 +592,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(0);
         String body = null;
@@ -743,7 +603,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<TypeInfo>> getTypeInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int typeId) {
+    public CompletableFuture<EsiResponseWrapper<TypeInfo>> getTypeInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int typeId) {
         String url = "https://esi.evetech.net/v3/universe/types/{type_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -755,12 +615,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("type_id", String.valueOf(typeId));
@@ -772,7 +627,7 @@ class UniverseApiImpl implements UniverseApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getSystemInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int systemId) {
+    public CompletableFuture<EsiResponseWrapper<SystemInfo>> getSystemInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int systemId) {
         String url = "https://esi.evetech.net/v4/universe/systems/{system_id}/";
         
         Map<String, String> parametersInHeaders = new HashMap<>(2);
@@ -784,12 +639,7 @@ class UniverseApiImpl implements UniverseApi {
             String val = ifNoneMatch;
             parametersInHeaders.put("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
+        Map<String, String> parametersInQuery = new HashMap<>(0);
 
         Map<String, String> parametersInUrl = new HashMap<>(1);
         parametersInUrl.put("system_id", String.valueOf(systemId));

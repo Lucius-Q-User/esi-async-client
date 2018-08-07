@@ -17,7 +17,7 @@ public interface WalletApi {
      * @return Wallet balance
      */
     
-    public CompletableFuture<EsiResponseWrapper<Double>> getWallet(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<Double>> getWallet(int characterId, String ifNoneMatch);
     /**
      * Get wallet transactions of a character
      * 
@@ -31,7 +31,7 @@ public interface WalletApi {
      * @return Wallet transactions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletTransactions(int characterId, DatasourceEnum datasource, Long fromId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletTransactions(int characterId, Long fromId, String ifNoneMatch);
     /**
      * Get a corporation's wallets
      * 
@@ -47,7 +47,7 @@ public interface WalletApi {
      * @return List of corporation wallets
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getWallets(int corporationId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationWallets>>> getWallets(int corporationId, String ifNoneMatch);
     /**
      * Get wallet transactions of a corporation
      * 
@@ -65,7 +65,7 @@ public interface WalletApi {
      * @return Wallet transactions
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletDivisionTransactions(int corporationId, DatasourceEnum datasource, int division, Long fromId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<WalletTransaction>>> getWalletDivisionTransactions(int corporationId, int division, Long fromId, String ifNoneMatch);
     /**
      * Retrieve the given corporation's wallet journal for the given division going 30 days back
      * 
@@ -83,7 +83,7 @@ public interface WalletApi {
      * @return Journal entries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletDivisionJournal(int corporationId, DatasourceEnum datasource, int division, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletDivisionJournal(int corporationId, int division, String ifNoneMatch, Integer page);
     /**
      * Retrieve the given character's wallet journal going 30 days back
      * 
@@ -97,5 +97,5 @@ public interface WalletApi {
      * @return Journal entries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletJournal(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletJournal(int characterId, String ifNoneMatch, Integer page);
 }

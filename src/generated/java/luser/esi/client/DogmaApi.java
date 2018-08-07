@@ -16,7 +16,7 @@ public interface DogmaApi {
      * @return A list of dogma attribute ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAttributes(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAttributes(String ifNoneMatch);
     /**
      * Get information on a dogma attribute
      * 
@@ -29,7 +29,7 @@ public interface DogmaApi {
      * @return Information about a dogma attribute
      */
     
-    public CompletableFuture<EsiResponseWrapper<DogmaAttributeInfo>> getAttributeInfo(int attributeId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<DogmaAttributeInfo>> getAttributeInfo(int attributeId, String ifNoneMatch);
     /**
      * Returns info about a dynamic item resulting from mutation with a mutaplasmid.
      * 
@@ -43,7 +43,7 @@ public interface DogmaApi {
      * @return Details about a dynamic item
      */
     
-    public CompletableFuture<EsiResponseWrapper<DogmaDynamicItemInfo>> getDynamicItemStats(DatasourceEnum datasource, String ifNoneMatch, long itemId, int typeId);
+    public CompletableFuture<EsiResponseWrapper<DogmaDynamicItemInfo>> getDynamicItemStats(String ifNoneMatch, long itemId, int typeId);
     /**
      * Get a list of dogma effect ids
      * 
@@ -55,7 +55,7 @@ public interface DogmaApi {
      * @return A list of dogma effect ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getEffects(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getEffects(String ifNoneMatch);
     /**
      * Get information on a dogma effect
      * 
@@ -68,5 +68,5 @@ public interface DogmaApi {
      * @return Information about a dogma effect
      */
     
-    public CompletableFuture<EsiResponseWrapper<DogmaEffectIfno>> getEffectInfo(DatasourceEnum datasource, int effectId, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<DogmaEffectIfno>> getEffectInfo(int effectId, String ifNoneMatch);
 }

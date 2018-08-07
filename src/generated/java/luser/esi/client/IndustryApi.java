@@ -18,7 +18,7 @@ public interface IndustryApi {
      * @return Industry jobs placed by a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted);
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, String ifNoneMatch, Boolean includeCompleted);
     /**
      * Paginated record of all mining done by a character for the past 30 days
      * 
@@ -32,7 +32,7 @@ public interface IndustryApi {
      * @return Mining ledger of a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, String ifNoneMatch, Integer page);
     /**
      * Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.
      * 
@@ -49,7 +49,7 @@ public interface IndustryApi {
      * @return A list of chunk timers
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, String ifNoneMatch, Integer page);
     /**
      * Paginated list of all entities capable of observing and recording mining for a corporation
      * 
@@ -66,7 +66,7 @@ public interface IndustryApi {
      * @return Observer list of a corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, String ifNoneMatch, Integer page);
     /**
      * Paginated record of all mining seen by an observer
      * 
@@ -84,7 +84,7 @@ public interface IndustryApi {
      * @return Mining ledger of an observer
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, DatasourceEnum datasource, String ifNoneMatch, long observerId, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, String ifNoneMatch, long observerId, Integer page);
     /**
      * List industry jobs run by a corporation
      * 
@@ -102,7 +102,7 @@ public interface IndustryApi {
      * @return A list of corporation industry jobs
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Boolean includeCompleted, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, String ifNoneMatch, Boolean includeCompleted, Integer page);
     /**
      * Return a list of industry facilities
      * 
@@ -114,7 +114,7 @@ public interface IndustryApi {
      * @return A list of facilities
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(String ifNoneMatch);
     /**
      * Return cost indices for solar systems
      * 
@@ -126,5 +126,5 @@ public interface IndustryApi {
      * @return A list of cost indicies
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch);
 }

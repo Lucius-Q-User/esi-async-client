@@ -19,7 +19,7 @@ public interface ContactsApi {
      * @return A list of alliance contact labels
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, String ifNoneMatch);
     /**
      * Return custom labels for a character's contacts
      * 
@@ -32,7 +32,7 @@ public interface ContactsApi {
      * @return A list of contact labels
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, String ifNoneMatch);
     /**
      * Return custom labels for a corporation's contacts
      * 
@@ -45,7 +45,7 @@ public interface ContactsApi {
      * @return A list of corporation contact labels
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, String ifNoneMatch);
     /**
      * Return contacts of an alliance
      * 
@@ -59,7 +59,7 @@ public interface ContactsApi {
      * @return A list of contacts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, String ifNoneMatch, Integer page);
     /**
      * Bulk delete contacts
      * 
@@ -71,7 +71,7 @@ public interface ContactsApi {
      * @return Contacts deleted
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds);
     /**
      * Return contacts of a character
      * 
@@ -85,7 +85,7 @@ public interface ContactsApi {
      * @return A list of contacts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, String ifNoneMatch, Integer page);
     /**
      * Bulk add contacts with same settings
      * 
@@ -100,7 +100,7 @@ public interface ContactsApi {
      * @return A list of contact ids that successfully created
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource, LongArrayList labelIds, double standing, Boolean watched);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched);
     /**
      * Bulk edit contacts with same settings
      * 
@@ -115,7 +115,7 @@ public interface ContactsApi {
      * @return Contacts updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, DatasourceEnum datasource, LongArrayList labelIds, double standing, Boolean watched);
+    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched);
     /**
      * Return contacts of a corporation
      * 
@@ -129,5 +129,5 @@ public interface ContactsApi {
      * @return A list of contacts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, String ifNoneMatch, Integer page);
 }

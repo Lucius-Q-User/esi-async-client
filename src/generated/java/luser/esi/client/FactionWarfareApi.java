@@ -17,7 +17,7 @@ public interface FactionWarfareApi {
      * @return Faction warfare statistics for a given character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, String ifNoneMatch);
     /**
      * Statistics about a corporation involved in faction warfare
      * 
@@ -30,7 +30,7 @@ public interface FactionWarfareApi {
      * @return Faction warfare statistics for a given corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, String ifNoneMatch);
     /**
      * Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday.
      * 
@@ -42,7 +42,7 @@ public interface FactionWarfareApi {
      * @return Corporation leaderboard of kills and victory points within faction warfare.
      */
     
-    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(String ifNoneMatch);
     /**
      * Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday.
      * 
@@ -54,7 +54,7 @@ public interface FactionWarfareApi {
      * @return Character leaderboard of kills and victory points within faction warfare.
      */
     
-    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(String ifNoneMatch);
     /**
      * Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday.
      * 
@@ -66,7 +66,7 @@ public interface FactionWarfareApi {
      * @return Corporation leaderboard of kills and victory points within faction warfare.
      */
     
-    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(String ifNoneMatch);
     /**
      * Statistical overviews of factions involved in faction warfare
      * 
@@ -78,7 +78,7 @@ public interface FactionWarfareApi {
      * @return Per faction breakdown of faction warfare statistics
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(String ifNoneMatch);
     /**
      * Data about which NPC factions are at war
      * 
@@ -90,7 +90,7 @@ public interface FactionWarfareApi {
      * @return A list of NPC factions at war
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(String ifNoneMatch);
     /**
      * An overview of the current ownership of faction warfare solar systems
      * 
@@ -102,5 +102,5 @@ public interface FactionWarfareApi {
      * @return All faction warfare solar systems
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(String ifNoneMatch);
 }

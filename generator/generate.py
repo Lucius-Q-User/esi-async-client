@@ -786,6 +786,8 @@ def getArgNames(path, method):
       if "$ref" in par:
          if par["$ref"] == "#/parameters/token":
             continue
+         if par["$ref"] == "#/parameters/datasource":
+            continue
          par = parameterRefs[par["$ref"]]
       if par["name"] == "language":
          continue

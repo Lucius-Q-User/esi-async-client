@@ -19,7 +19,7 @@ public interface MarketApi {
      * @return Expired and cancelled market orders placed by a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharacterOrderHistory(int characterId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterOrderHistoryEntry>>> getCharacterOrderHistory(int characterId, String ifNoneMatch, Integer page);
     /**
      * Get a list of item groups
      * 
@@ -31,7 +31,7 @@ public interface MarketApi {
      * @return A list of item group ids
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketGroups(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketGroups(String ifNoneMatch);
     /**
      * Get information on an item group
      * 
@@ -45,7 +45,7 @@ public interface MarketApi {
      * @return Information about an item group
      */
     
-    public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketGroupInfo(AcceptLanguageEnum acceptLanguage, DatasourceEnum datasource, String ifNoneMatch, int marketGroupId);
+    public CompletableFuture<EsiResponseWrapper<MarketGroup>> getMarketGroupInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int marketGroupId);
     /**
      * Return a list of prices
      * 
@@ -57,7 +57,7 @@ public interface MarketApi {
      * @return A list of prices
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketPrices(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<MarketPrices>>> getMarketPrices(String ifNoneMatch);
     /**
      * Return all orders in a structure
      * 
@@ -71,7 +71,7 @@ public interface MarketApi {
      * @return A list of orders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getStructureMarket(DatasourceEnum datasource, String ifNoneMatch, Integer page, long structureId);
+    public CompletableFuture<EsiResponseWrapper<List<StructureMarkets>>> getStructureMarket(String ifNoneMatch, Integer page, long structureId);
     /**
      * Return a list of historical market statistics for the specified type in a region
      * 
@@ -85,7 +85,7 @@ public interface MarketApi {
      * @return A list of historical market statistics
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketHistory(DatasourceEnum datasource, String ifNoneMatch, int regionId, int typeId);
+    public CompletableFuture<EsiResponseWrapper<List<MarketHistory>>> getMarketHistory(String ifNoneMatch, int regionId, int typeId);
     /**
      * Return a list of orders in a region
      * 
@@ -101,7 +101,7 @@ public interface MarketApi {
      * @return A list of orders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketOrders(DatasourceEnum datasource, String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId);
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMarketOrder>>> getMarketOrders(String ifNoneMatch, OrderTypeEnum orderType, Integer page, int regionId, Integer typeId);
     /**
      * Return a list of type IDs that have active orders in the region, for efficient market indexing.
      * 
@@ -115,7 +115,7 @@ public interface MarketApi {
      * @return A list of type IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketTypes(DatasourceEnum datasource, String ifNoneMatch, Integer page, int regionId);
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMarketTypes(String ifNoneMatch, Integer page, int regionId);
     /**
      * List open market orders placed by a character
      * 
@@ -128,7 +128,7 @@ public interface MarketApi {
      * @return Open market orders placed by a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getOrders(int characterId, DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMarketOrder>>> getOrders(int characterId, String ifNoneMatch);
     /**
      * List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.
      * 
@@ -145,7 +145,7 @@ public interface MarketApi {
      * @return Expired and cancelled market orders placed on behalf of a corporation
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationOrderHistory(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOrderHistoryEntry>>> getCorporationOrderHistory(int corporationId, String ifNoneMatch, Integer page);
     /**
      * List open market orders placed on behalf of a corporation
      * 
@@ -162,5 +162,5 @@ public interface MarketApi {
      * @return A list of open market orders
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getOrders(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getOrders(int corporationId, String ifNoneMatch, Integer page);
 }

@@ -16,5 +16,5 @@ public interface StatusApi {
      * @return Server status
      */
     
-    public CompletableFuture<EsiResponseWrapper<ServerStatus>> getStatus(DatasourceEnum datasource, String ifNoneMatch);
+    public CompletableFuture<EsiResponseWrapper<ServerStatus>> getStatus(String ifNoneMatch);
 }
