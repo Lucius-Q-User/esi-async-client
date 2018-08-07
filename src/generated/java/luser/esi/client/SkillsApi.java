@@ -1,19 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class SkillsApi {
-    private ApiClient apiClient;
-    SkillsApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface SkillsApi {
+    public ApiClient getApiClient();
     /**
      * Return attributes of a character
      * 
@@ -26,29 +17,7 @@ public class SkillsApi {
      * @return Attributes of a character
      */
     
-    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/attributes/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<CharacterAttributes> responseTypeRef = new TypeReference<CharacterAttributes>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * List the configured skill queue for the given character
      * 
@@ -61,29 +30,7 @@ public class SkillsApi {
      * @return The current skill queue, sorted ascending by finishing time
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v2/characters/{character_id}/skillqueue/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<List<SkillQueueEntry>> responseTypeRef = new TypeReference<List<SkillQueueEntry>>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * List all trained skills for the given character
      * 
@@ -96,27 +43,5 @@ public class SkillsApi {
      * @return Known skills for the character
      */
     
-    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v4/characters/{character_id}/skills/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<TrainedSkillsInfo> responseTypeRef = new TypeReference<TrainedSkillsInfo>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, DatasourceEnum datasource, String ifNoneMatch);
 }

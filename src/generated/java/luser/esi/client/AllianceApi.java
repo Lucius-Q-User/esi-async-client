@@ -1,19 +1,10 @@
 package luser.esi.client;
 
-import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class AllianceApi {
-    private ApiClient apiClient;
-    AllianceApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface AllianceApi {
+    public ApiClient getApiClient();
     /**
      * List all active player alliances
      * 
@@ -25,28 +16,7 @@ public class AllianceApi {
      * @return List of Alliance IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/alliances/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
-        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(DatasourceEnum datasource, String ifNoneMatch);
     /**
      * List all current member corporations of an alliance
      * 
@@ -59,29 +29,7 @@ public class AllianceApi {
      * @return List of corporation IDs
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/corporations/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("alliance_id", String.valueOf(allianceId));
-        String body = null;
-        String method = "GET";
-        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * Get the icon urls for a alliance
      * 
@@ -94,29 +42,7 @@ public class AllianceApi {
      * @return Icon URLs for the given alliance id and server
      */
     
-    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/alliances/{alliance_id}/icons/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("alliance_id", String.valueOf(allianceId));
-        String body = null;
-        String method = "GET";
-        TypeReference<AllianceIcons> responseTypeRef = new TypeReference<AllianceIcons>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * Public information about an alliance
      * 
@@ -129,27 +55,5 @@ public class AllianceApi {
      * @return Public data about an alliance
      */
     
-    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v3/alliances/{alliance_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("alliance_id", String.valueOf(allianceId));
-        String body = null;
-        String method = "GET";
-        TypeReference<AllianceInfo> responseTypeRef = new TypeReference<AllianceInfo>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, DatasourceEnum datasource, String ifNoneMatch);
 }

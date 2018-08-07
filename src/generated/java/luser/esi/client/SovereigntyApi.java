@@ -1,19 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class SovereigntyApi {
-    private ApiClient apiClient;
-    SovereigntyApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface SovereigntyApi {
+    public ApiClient getApiClient();
     /**
      * Shows sovereignty data for campaigns.
      * 
@@ -25,28 +16,7 @@ public class SovereigntyApi {
      * @return A list of sovereignty campaigns
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/sovereignty/campaigns/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
-        TypeReference<List<SovereigntyCampaign>> responseTypeRef = new TypeReference<List<SovereigntyCampaign>>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(DatasourceEnum datasource, String ifNoneMatch);
     /**
      * Shows sovereignty information for solar systems
      * 
@@ -58,28 +28,7 @@ public class SovereigntyApi {
      * @return A list of sovereignty information for solar systems in New Eden
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/sovereignty/map/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
-        TypeReference<List<SovMap>> responseTypeRef = new TypeReference<List<SovMap>>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(DatasourceEnum datasource, String ifNoneMatch);
     /**
      * Shows sovereignty data for structures.
      * 
@@ -91,26 +40,5 @@ public class SovereigntyApi {
      * @return A list of sovereignty structures
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/sovereignty/structures/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
-        TypeReference<List<SovStructures>> responseTypeRef = new TypeReference<List<SovStructures>>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(DatasourceEnum datasource, String ifNoneMatch);
 }

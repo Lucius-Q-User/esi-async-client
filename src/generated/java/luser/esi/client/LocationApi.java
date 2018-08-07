@@ -1,18 +1,10 @@
 package luser.esi.client;
 
-import java.util.Map;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
+
 import java.util.concurrent.CompletableFuture;
 
-public class LocationApi {
-    private ApiClient apiClient;
-    LocationApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface LocationApi {
+    public ApiClient getApiClient();
     /**
      * Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
      * 
@@ -25,29 +17,7 @@ public class LocationApi {
      * @return Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
      */
     
-    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/location/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<CurrentLocation> responseTypeRef = new TypeReference<CurrentLocation>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * Get the current ship type, name and id
      * 
@@ -60,29 +30,7 @@ public class LocationApi {
      * @return Get the current ship type, name and id
      */
     
-    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/ship/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<ActiveShip> responseTypeRef = new TypeReference<ActiveShip>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<ActiveShip>> getShip(int characterId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * Checks if the character is currently online
      * 
@@ -95,27 +43,5 @@ public class LocationApi {
      * @return Object describing the character's online status
      */
     
-    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v2/characters/{character_id}/online/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<OnlineInfo> responseTypeRef = new TypeReference<OnlineInfo>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<OnlineInfo>> getOnline(int characterId, DatasourceEnum datasource, String ifNoneMatch);
 }

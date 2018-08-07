@@ -32,6 +32,7 @@ except:
 apiClientTemplate = Template(filename=os.path.join(myDir, "ApiClient.java.mako"))
 swg = json.loads(open(os.path.join(myDir, "swagger.json")).read())
 apiObjectTemplate = Template(filename=os.path.join(myDir, "ApiObject.java.mako"))
+apiObjectItfTemplate = Template(filename=os.path.join(myDir, "ApiObjectItf.java.mako"))
 stringEnumTemplate = Template(filename=os.path.join(myDir, "StringEnumTemplate.java.mako"))
 parameterObjectTemplate = Template(filename=os.path.join(myDir, "RequestObject.java.mako"))
 parameterRefs = {}
@@ -809,11 +810,21 @@ with open("ApiClient.java", "w") as acl:
 
 for tag, paths in tags.items():
    with open(tag + "Api.java", "w") as apf:
+      render = apiObjectItfTemplate.render(tag=tag, paths=paths,
+                                           getReturnTypeName=getReturnTypeName, getFunctionName=getFunctionName,
+                                           getArgNames=getArgNames, swg=swg, parameterRefs=parameterRefs, retTypeKind=retTypeKind,
+                                           toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower,
+                                           getArgDocstring=getArgDocstring, getReturnDocstring=getReturnDocstring)
+      ipt = [];
+      for k, v in imports.items():
+         if re.search(r'^[^*]*\W(' + k + r')\W', render, re.M):
+            ipt.append("import " + v + "." + k + ";")
+      apf.write(render.replace("{{PUT_IMPORTS_HERE}}", "\n".join(ipt)))
+   with open(tag + "ApiImpl.java", "w") as apf:
       render = apiObjectTemplate.render(tag=tag, paths=paths,
                                         getReturnTypeName=getReturnTypeName, getFunctionName=getFunctionName,
                                         getArgNames=getArgNames, swg=swg, parameterRefs=parameterRefs, retTypeKind=retTypeKind,
-                                        toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower,
-                                        getArgDocstring=getArgDocstring, getReturnDocstring=getReturnDocstring)
+                                        toLcaseJava=toLcaseJava, toUcaseJava=toUcaseJava, first_lower=first_lower)
       ipt = [];
       for k, v in imports.items():
          if re.search(r'^[^*]*\W(' + k + r')\W', render, re.M):

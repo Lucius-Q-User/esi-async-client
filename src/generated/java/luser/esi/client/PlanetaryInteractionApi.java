@@ -1,19 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class PlanetaryInteractionApi {
-    private ApiClient apiClient;
-    PlanetaryInteractionApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface PlanetaryInteractionApi {
+    public ApiClient getApiClient();
     /**
      * Returns a list of all planetary colonies owned by a character.
      * 
@@ -26,29 +17,7 @@ public class PlanetaryInteractionApi {
      * @return List of colonies
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/planets/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<List<PlanetInfo>> responseTypeRef = new TypeReference<List<PlanetInfo>>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, DatasourceEnum datasource, String ifNoneMatch);
     /**
      * List customs offices owned by a corporation
      * 
@@ -65,34 +34,7 @@ public class PlanetaryInteractionApi {
      * @return A list of customs offices and their settings
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/customs_offices/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-        
-        if (page != null) {
-            String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
-        TypeReference<List<CorporationCustomsOffice>> responseTypeRef = new TypeReference<List<CorporationCustomsOffice>>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, DatasourceEnum datasource, String ifNoneMatch, Integer page);
     /**
      * Get information on a planetary factory schematic
      * 
@@ -105,29 +47,7 @@ public class PlanetaryInteractionApi {
      * @return Public data about a schematic
      */
     
-    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(DatasourceEnum datasource, String ifNoneMatch, int schematicId) {
-        String url = "https://esi.evetech.net/v1/universe/schematics/{schematic_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("schematic_id", String.valueOf(schematicId));
-        String body = null;
-        String method = "GET";
-        TypeReference<SchematicInfo> responseTypeRef = new TypeReference<SchematicInfo>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(DatasourceEnum datasource, String ifNoneMatch, int schematicId);
     /**
      * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.
      * 
@@ -141,28 +61,5 @@ public class PlanetaryInteractionApi {
      * @return Colony layout
      */
     
-    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId) {
-        String url = "https://esi.evetech.net/v3/characters/{character_id}/planets/{planet_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("planet_id", String.valueOf(planetId));
-        String body = null;
-        String method = "GET";
-        TypeReference<PlanetContents> responseTypeRef = new TypeReference<PlanetContents>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, DatasourceEnum datasource, String ifNoneMatch, int planetId);
 }

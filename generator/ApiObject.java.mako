@@ -4,24 +4,19 @@ package luser.esi.client;
 import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class ${tag}Api {
+class ${tag}ApiImpl implements ${tag}Api {
     private ApiClient apiClient;
-    ${tag}Api(ApiClient apiClient) {
+    ${tag}ApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
+    @Override
     public ApiClient getApiClient() {
         return apiClient;
     }
     % for path in paths:
     % for method in swg["paths"][path]:
-    /**
-     * ${swg["paths"][path][method]["description"].replace("\n", "\n     * ")}
-%for doc, var in getArgDocstring(path, method):
-     * @param ${var} ${doc}
-%endfor
-     * @return ${getReturnDocstring(path, method)}
-     */
     <% returnType = getReturnTypeName(path, method) %>
+    @Override
     public CompletableFuture<EsiResponseWrapper<${returnType}>> \
 ${getFunctionName(path, method)}(\
         % for argty, argname in getArgNames(path, method):

@@ -1,131 +1,131 @@
 package luser.esi.client;
 
 public class ApiClient extends ApiClientBase {
-    private AllianceApi allianceApi = new AllianceApi(this);
+    private AllianceApi allianceApi = new AllianceApiImpl(this);
     public AllianceApi getAllianceApi() {
         return allianceApi;
     }
-    private ContactsApi contactsApi = new ContactsApi(this);
+    private ContactsApi contactsApi = new ContactsApiImpl(this);
     public ContactsApi getContactsApi() {
         return contactsApi;
     }
-    private CharacterApi characterApi = new CharacterApi(this);
+    private CharacterApi characterApi = new CharacterApiImpl(this);
     public CharacterApi getCharacterApi() {
         return characterApi;
     }
-    private AssetsApi assetsApi = new AssetsApi(this);
+    private AssetsApi assetsApi = new AssetsApiImpl(this);
     public AssetsApi getAssetsApi() {
         return assetsApi;
     }
-    private SkillsApi skillsApi = new SkillsApi(this);
+    private SkillsApi skillsApi = new SkillsApiImpl(this);
     public SkillsApi getSkillsApi() {
         return skillsApi;
     }
-    private CalendarApi calendarApi = new CalendarApi(this);
+    private CalendarApi calendarApi = new CalendarApiImpl(this);
     public CalendarApi getCalendarApi() {
         return calendarApi;
     }
-    private ContractsApi contractsApi = new ContractsApi(this);
+    private ContractsApi contractsApi = new ContractsApiImpl(this);
     public ContractsApi getContractsApi() {
         return contractsApi;
     }
-    private FittingsApi fittingsApi = new FittingsApi(this);
+    private FittingsApi fittingsApi = new FittingsApiImpl(this);
     public FittingsApi getFittingsApi() {
         return fittingsApi;
     }
-    private FleetsApi fleetsApi = new FleetsApi(this);
+    private FleetsApi fleetsApi = new FleetsApiImpl(this);
     public FleetsApi getFleetsApi() {
         return fleetsApi;
     }
-    private FactionWarfareApi factionWarfareApi = new FactionWarfareApi(this);
+    private FactionWarfareApi factionWarfareApi = new FactionWarfareApiImpl(this);
     public FactionWarfareApi getFactionWarfareApi() {
         return factionWarfareApi;
     }
-    private ClonesApi clonesApi = new ClonesApi(this);
+    private ClonesApi clonesApi = new ClonesApiImpl(this);
     public ClonesApi getClonesApi() {
         return clonesApi;
     }
-    private IndustryApi industryApi = new IndustryApi(this);
+    private IndustryApi industryApi = new IndustryApiImpl(this);
     public IndustryApi getIndustryApi() {
         return industryApi;
     }
-    private KillmailsApi killmailsApi = new KillmailsApi(this);
+    private KillmailsApi killmailsApi = new KillmailsApiImpl(this);
     public KillmailsApi getKillmailsApi() {
         return killmailsApi;
     }
-    private LocationApi locationApi = new LocationApi(this);
+    private LocationApi locationApi = new LocationApiImpl(this);
     public LocationApi getLocationApi() {
         return locationApi;
     }
-    private LoyaltyApi loyaltyApi = new LoyaltyApi(this);
+    private LoyaltyApi loyaltyApi = new LoyaltyApiImpl(this);
     public LoyaltyApi getLoyaltyApi() {
         return loyaltyApi;
     }
-    private MailApi mailApi = new MailApi(this);
+    private MailApi mailApi = new MailApiImpl(this);
     public MailApi getMailApi() {
         return mailApi;
     }
-    private OpportunitiesApi opportunitiesApi = new OpportunitiesApi(this);
+    private OpportunitiesApi opportunitiesApi = new OpportunitiesApiImpl(this);
     public OpportunitiesApi getOpportunitiesApi() {
         return opportunitiesApi;
     }
-    private MarketApi marketApi = new MarketApi(this);
+    private MarketApi marketApi = new MarketApiImpl(this);
     public MarketApi getMarketApi() {
         return marketApi;
     }
-    private PlanetaryInteractionApi planetaryInteractionApi = new PlanetaryInteractionApi(this);
+    private PlanetaryInteractionApi planetaryInteractionApi = new PlanetaryInteractionApiImpl(this);
     public PlanetaryInteractionApi getPlanetaryInteractionApi() {
         return planetaryInteractionApi;
     }
-    private WalletApi walletApi = new WalletApi(this);
+    private WalletApi walletApi = new WalletApiImpl(this);
     public WalletApi getWalletApi() {
         return walletApi;
     }
-    private CorporationApi corporationApi = new CorporationApi(this);
+    private CorporationApi corporationApi = new CorporationApiImpl(this);
     public CorporationApi getCorporationApi() {
         return corporationApi;
     }
-    private BookmarksApi bookmarksApi = new BookmarksApi(this);
+    private BookmarksApi bookmarksApi = new BookmarksApiImpl(this);
     public BookmarksApi getBookmarksApi() {
         return bookmarksApi;
     }
-    private DogmaApi dogmaApi = new DogmaApi(this);
+    private DogmaApi dogmaApi = new DogmaApiImpl(this);
     public DogmaApi getDogmaApi() {
         return dogmaApi;
     }
-    private IncursionsApi incursionsApi = new IncursionsApi(this);
+    private IncursionsApi incursionsApi = new IncursionsApiImpl(this);
     public IncursionsApi getIncursionsApi() {
         return incursionsApi;
     }
-    private InsuranceApi insuranceApi = new InsuranceApi(this);
+    private InsuranceApi insuranceApi = new InsuranceApiImpl(this);
     public InsuranceApi getInsuranceApi() {
         return insuranceApi;
     }
-    private RoutesApi routesApi = new RoutesApi(this);
+    private RoutesApi routesApi = new RoutesApiImpl(this);
     public RoutesApi getRoutesApi() {
         return routesApi;
     }
-    private SovereigntyApi sovereigntyApi = new SovereigntyApi(this);
+    private SovereigntyApi sovereigntyApi = new SovereigntyApiImpl(this);
     public SovereigntyApi getSovereigntyApi() {
         return sovereigntyApi;
     }
-    private StatusApi statusApi = new StatusApi(this);
+    private StatusApi statusApi = new StatusApiImpl(this);
     public StatusApi getStatusApi() {
         return statusApi;
     }
-    private UserInterfaceApi userInterfaceApi = new UserInterfaceApi(this);
+    private UserInterfaceApi userInterfaceApi = new UserInterfaceApiImpl(this);
     public UserInterfaceApi getUserInterfaceApi() {
         return userInterfaceApi;
     }
-    private UniverseApi universeApi = new UniverseApi(this);
+    private UniverseApi universeApi = new UniverseApiImpl(this);
     public UniverseApi getUniverseApi() {
         return universeApi;
     }
-    private WarsApi warsApi = new WarsApi(this);
+    private WarsApi warsApi = new WarsApiImpl(this);
     public WarsApi getWarsApi() {
         return warsApi;
     }
-    private SearchApi searchApi = new SearchApi(this);
+    private SearchApi searchApi = new SearchApiImpl(this);
     public SearchApi getSearchApi() {
         return searchApi;
     }

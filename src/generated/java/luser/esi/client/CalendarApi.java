@@ -1,19 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class CalendarApi {
-    private ApiClient apiClient;
-    CalendarApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface CalendarApi {
+    public ApiClient getApiClient();
     /**
      * Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event.
      * 
@@ -27,34 +18,7 @@ public class CalendarApi {
      * @return A collection of event summaries
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-        
-        if (fromEvent != null) {
-            String val = String.valueOf(fromEvent);
-            parametersInQuery.put("from_event", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
-        TypeReference<List<CalendarInfo>> responseTypeRef = new TypeReference<List<CalendarInfo>>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, DatasourceEnum datasource, Integer fromEvent, String ifNoneMatch);
     /**
      * Get all invited attendees for a given event
      * 
@@ -68,30 +32,7 @@ public class CalendarApi {
      * @return List of attendees
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/calendar/{event_id}/attendees/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("event_id", String.valueOf(eventId));
-        String body = null;
-        String method = "GET";
-        TypeReference<List<EventAttendee>> responseTypeRef = new TypeReference<List<EventAttendee>>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch);
     /**
      * Get all the information for a specific event
      * 
@@ -105,30 +46,7 @@ public class CalendarApi {
      * @return Full details of a specific event
      */
     
-    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("event_id", String.valueOf(eventId));
-        String body = null;
-        String method = "GET";
-        TypeReference<CalendarEvent> responseTypeRef = new TypeReference<CalendarEvent>() {};
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, DatasourceEnum datasource, int eventId, String ifNoneMatch);
     /**
      * Set your response status to an event
      * 
@@ -141,25 +59,5 @@ public class CalendarApi {
      * @return Event updated
      */
     
-    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, DatasourceEnum datasource, int eventId, EventResponse response) {
-        String url = "https://esi.evetech.net/v3/characters/{character_id}/calendar/{event_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("event_id", String.valueOf(eventId));
-        String body = null;
-        body = ApiClientBase.renderToBody(response);
-        String method = "PUT";
-        TypeReference<Void> responseTypeRef = null;
-        boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, DatasourceEnum datasource, int eventId, EventResponse response);
 }

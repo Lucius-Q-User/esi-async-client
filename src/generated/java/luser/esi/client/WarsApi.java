@@ -1,20 +1,11 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-public class WarsApi {
-    private ApiClient apiClient;
-    WarsApi(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
-    public ApiClient getApiClient() {
-        return apiClient;
-    }
+public interface WarsApi {
+    public ApiClient getApiClient();
     /**
      * Return a list of wars
      * 
@@ -27,33 +18,7 @@ public class WarsApi {
      * @return A list of war IDs, in decending order by war_id.
      */
     
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(DatasourceEnum datasource, String ifNoneMatch, Integer maxWarId) {
-        String url = "https://esi.evetech.net/v1/wars/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-        
-        if (maxWarId != null) {
-            String val = String.valueOf(maxWarId);
-            parametersInQuery.put("max_war_id", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
-        TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(DatasourceEnum datasource, String ifNoneMatch, Integer maxWarId);
     /**
      * Return details about a war
      * 
@@ -66,29 +31,7 @@ public class WarsApi {
      * @return Details about a war
      */
     
-    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(DatasourceEnum datasource, String ifNoneMatch, int warId) {
-        String url = "https://esi.evetech.net/v1/wars/{war_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("war_id", String.valueOf(warId));
-        String body = null;
-        String method = "GET";
-        TypeReference<WarInfo> responseTypeRef = new TypeReference<WarInfo>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(DatasourceEnum datasource, String ifNoneMatch, int warId);
     /**
      * Return a list of kills related to a war
      * 
@@ -102,32 +45,5 @@ public class WarsApi {
      * @return A list of killmail IDs and hashes
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId) {
-        String url = "https://esi.evetech.net/v1/wars/{war_id}/killmails/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
-        if (ifNoneMatch != null) {
-            String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
-        }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
-        
-        if (datasource != null) {
-            String val = datasource.stringValue;
-            parametersInQuery.put("datasource", val);
-        }
-        
-        if (page != null) {
-            String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
-        }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("war_id", String.valueOf(warId));
-        String body = null;
-        String method = "GET";
-        TypeReference<List<KillmailRef>> responseTypeRef = new TypeReference<List<KillmailRef>>() {};
-        boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
-    }
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(DatasourceEnum datasource, String ifNoneMatch, Integer page, int warId);
 }
