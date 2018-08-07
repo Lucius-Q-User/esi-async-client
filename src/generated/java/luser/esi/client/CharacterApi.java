@@ -13,7 +13,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned.
-     * @param datasource The server name you would like data from
      * @return Character corporation, alliance and faction IDs
      */
     
@@ -25,7 +24,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of agents research information
      */
@@ -38,7 +36,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Corporation history for the given character
      */
@@ -51,7 +48,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Jump activation and fatigue information
      */
@@ -64,7 +60,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of medals
      */
@@ -77,7 +72,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of contact notifications
      */
@@ -90,7 +84,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of standings
      */
@@ -103,7 +96,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of titles
      */
@@ -116,7 +108,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of blueprints
@@ -130,7 +121,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Returns your recent notifications
      */
@@ -143,7 +133,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Public data for the given character
      */
@@ -156,7 +145,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return The character's roles in thier corporation
      */
@@ -169,7 +157,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 86400 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Character stats
      */
@@ -182,7 +169,6 @@ public interface CharacterApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Public data for the given character
      */
@@ -195,7 +181,6 @@ public interface CharacterApi {
      * 
      * @param characterId An EVE character ID
      * @param characters The target characters to calculate the charge for
-     * @param datasource The server name you would like data from
      * @return Aggregate cost of sending a mail from the source character to the target characters, in ISK
      */
     

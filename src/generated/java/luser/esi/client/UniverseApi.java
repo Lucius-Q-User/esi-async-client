@@ -14,7 +14,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of ancestries
      */
@@ -27,7 +26,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param asteroidBeltId asteroid_belt_id integer
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about an asteroid belt
      */
@@ -40,7 +38,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of bloodlines
      */
@@ -52,7 +49,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of item category ids
      */
@@ -66,7 +62,6 @@ public interface UniverseApi {
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
      * @param categoryId An Eve item category ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about an item category
      */
@@ -78,7 +73,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of constellation ids
      */
@@ -92,7 +86,6 @@ public interface UniverseApi {
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
      * @param constellationId constellation_id integer
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about a constellation
      */
@@ -104,7 +97,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of graphic ids
      */
@@ -116,7 +108,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param graphicId graphic_id integer
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about a graphic
@@ -129,7 +120,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of item group ids
@@ -143,7 +133,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param groupId An Eve item group ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about an item group
@@ -156,7 +145,6 @@ public interface UniverseApi {
      * ---
      * 
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param names The names to resolve
      * @return List of id/name associations for a set of names divided by category. Any name passed in that did not have a match will be ommitted.
      */
@@ -168,7 +156,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param moonId moon_id integer
      * @return Information about a moon
@@ -181,7 +168,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param planetId planet_id integer
      * @return Information about a planet
@@ -195,7 +181,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of character races
      */
@@ -207,7 +192,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of region ids
      */
@@ -220,7 +204,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param regionId region_id integer
      * @return Information about a region
@@ -233,7 +216,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param stargateId stargate_id integer
      * @return Information about a stargate
@@ -246,7 +228,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param starId star_id integer
      * @return Information about a star
@@ -259,7 +240,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of public structure IDs
      */
@@ -271,7 +251,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of systems and number of jumps
      */
@@ -283,7 +262,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of solar system ids
      */
@@ -295,7 +273,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of type ids
@@ -309,7 +286,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of factions
      */
@@ -320,7 +296,6 @@ public interface UniverseApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param ids The ids to resolve
      * @return List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned.
      */
@@ -332,7 +307,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param stationId station_id integer
      * @return Information about a station
@@ -345,7 +319,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param structureId An Eve structure ID
      * @return Data about a structure
@@ -358,7 +331,6 @@ public interface UniverseApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of systems and number of ship, pod and NPC kills
      */
@@ -371,7 +343,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param typeId An Eve item type ID
      * @return Information about a type
@@ -385,7 +356,6 @@ public interface UniverseApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param systemId system_id integer
      * @return Information about a solar system

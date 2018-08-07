@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     private ApiClient apiClient;
@@ -17,88 +17,63 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/planets/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/planets/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<PlanetInfo>> responseTypeRef = new TypeReference<List<PlanetInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/customs_offices/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/customs_offices/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<CorporationCustomsOffice>> responseTypeRef = new TypeReference<List<CorporationCustomsOffice>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(String ifNoneMatch, int schematicId) {
-        String url = "https://esi.evetech.net/v1/universe/schematics/{schematic_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(String ifNoneMatch, int schematicId) {         
+        String url = "https://esi.evetech.net/v1/universe/schematics/" + schematicId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("schematic_id", String.valueOf(schematicId));
-        String body = null;
-        String method = "GET";
         TypeReference<SchematicInfo> responseTypeRef = new TypeReference<SchematicInfo>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId) {
-        String url = "https://esi.evetech.net/v3/characters/{character_id}/planets/{planet_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId) {         
+        String url = "https://esi.evetech.net/v3/characters/" + characterId + "/planets/" + planetId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("planet_id", String.valueOf(planetId));
-        String body = null;
-        String method = "GET";
         TypeReference<PlanetContents> responseTypeRef = new TypeReference<PlanetContents>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

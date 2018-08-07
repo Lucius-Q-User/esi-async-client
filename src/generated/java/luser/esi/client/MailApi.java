@@ -13,7 +13,6 @@ public interface MailApi {
      * 
      * This route is cached for up to 30 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param labels Fetch only mails that match one or more of the given labels
      * @param lastMailId List only mail with an ID lower than the given ID, if present
@@ -27,7 +26,6 @@ public interface MailApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param mail The mail to send
      * @return Mail created
      */
@@ -39,7 +37,6 @@ public interface MailApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param labelId An EVE label id
      * @return Label deleted
      */
@@ -52,7 +49,6 @@ public interface MailApi {
      * 
      * This route is cached for up to 120 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Mailing lists
      */
@@ -64,7 +60,6 @@ public interface MailApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param mailId An EVE mail ID
      * @return Mail deleted
      */
@@ -77,7 +72,6 @@ public interface MailApi {
      * 
      * This route is cached for up to 30 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param mailId An EVE mail ID
      * @return Contents of a mail
@@ -91,7 +85,6 @@ public interface MailApi {
      * 
      * @param characterId An EVE character ID
      * @param contents Data used to update the mail
-     * @param datasource The server name you would like data from
      * @param mailId An EVE mail ID
      * @return Mail updated
      */
@@ -103,7 +96,6 @@ public interface MailApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param label Label to create
      * @return Label created
      */
@@ -116,7 +108,6 @@ public interface MailApi {
      * 
      * This route is cached for up to 30 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of mail labels and unread counts
      */

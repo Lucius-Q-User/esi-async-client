@@ -11,7 +11,6 @@ public interface AllianceApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of Alliance IDs
      */
@@ -24,7 +23,6 @@ public interface AllianceApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param allianceId An EVE alliance ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of corporation IDs
      */
@@ -37,7 +35,6 @@ public interface AllianceApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param allianceId An EVE alliance ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Icon URLs for the given alliance id and server
      */
@@ -50,7 +47,6 @@ public interface AllianceApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param allianceId An EVE alliance ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Public data about an alliance
      */

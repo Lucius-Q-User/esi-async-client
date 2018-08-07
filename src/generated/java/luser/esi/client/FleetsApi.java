@@ -12,7 +12,6 @@ public interface FleetsApi {
      * 
      * This route is cached for up to 60 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Details about the character's fleet
      */
@@ -24,7 +23,6 @@ public interface FleetsApi {
      * ---
      * 
      * This route is cached for up to 5 seconds
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Details about a fleet
@@ -36,7 +34,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param newSettings What to update for this fleet
      * @return Fleet updated
@@ -50,7 +47,6 @@ public interface FleetsApi {
      * 
      * This route is cached for up to 5 seconds
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of fleet members
@@ -62,7 +58,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param invitation Details of the invitation
      * @return Fleet invitation sent
@@ -74,7 +69,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param memberId The character ID of a member in this fleet
      * @return Fleet member kicked
@@ -86,7 +80,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param memberId The character ID of a member in this fleet
      * @param movement Details of the invitation
@@ -99,7 +92,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param squadId The squad to delete
      * @return Squad deleted
@@ -111,7 +103,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param naming New name of the squad
      * @param squadId The squad to rename
@@ -126,7 +117,6 @@ public interface FleetsApi {
      * 
      * This route is cached for up to 5 seconds
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of fleet wings
@@ -138,7 +128,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @return Wing created
      */
@@ -149,7 +138,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param wingId The wing to delete
      * @return Wing deleted
@@ -161,7 +149,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param naming New name of the wing
      * @param wingId The wing to rename
@@ -174,7 +161,6 @@ public interface FleetsApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param fleetId ID for a fleet
      * @param wingId The wing_id to create squad in
      * @return Squad created

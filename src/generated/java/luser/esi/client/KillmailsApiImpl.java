@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class KillmailsApiImpl implements KillmailsApi {
     private ApiClient apiClient;
@@ -17,73 +17,54 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/killmails/recent/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/killmails/recent/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<KillmailRef>> responseTypeRef = new TypeReference<List<KillmailRef>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/killmails/recent/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/killmails/recent/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<KillmailRef>> responseTypeRef = new TypeReference<List<KillmailRef>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId) {
-        String url = "https://esi.evetech.net/v1/killmails/{killmail_id}/{killmail_hash}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId) {         
+        String url = "https://esi.evetech.net/v1/killmails/" + killmailId + "/" + killmailHash + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("killmail_hash", String.valueOf(killmailHash));
-        parametersInUrl.put("killmail_id", String.valueOf(killmailId));
-        String body = null;
-        String method = "GET";
         TypeReference<KillmailData> responseTypeRef = new TypeReference<KillmailData>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

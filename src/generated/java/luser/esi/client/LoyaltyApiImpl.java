@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class LoyaltyApiImpl implements LoyaltyApi {
     private ApiClient apiClient;
@@ -17,42 +17,30 @@ class LoyaltyApiImpl implements LoyaltyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/loyalty/points/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/loyalty/points/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<LoyaltyPointsInfo>> responseTypeRef = new TypeReference<List<LoyaltyPointsInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/loyalty/stores/{corporation_id}/offers/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/loyalty/stores/" + corporationId + "/offers/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<LoyaltyStoreOffer>> responseTypeRef = new TypeReference<List<LoyaltyStoreOffer>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

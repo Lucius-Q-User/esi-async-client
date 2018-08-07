@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class InsuranceApiImpl implements InsuranceApi {
     private ApiClient apiClient;
@@ -17,25 +17,20 @@ class InsuranceApiImpl implements InsuranceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<InsurancePrices>>> getInsurancePrices(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<InsurancePrices>>> getInsurancePrices(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/insurance/prices/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
+        RequestBuilder builder = Dsl.get(url);
+
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
-            parametersInHeaders.put("Accept-Language", val);
+            builder.addHeader("Accept-Language", val);
         }
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<List<InsurancePrices>> responseTypeRef = new TypeReference<List<InsurancePrices>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

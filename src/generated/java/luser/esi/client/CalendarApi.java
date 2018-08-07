@@ -12,7 +12,6 @@ public interface CalendarApi {
      * 
      * This route is cached for up to 5 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param fromEvent The event ID to retrieve events from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A collection of event summaries
@@ -26,7 +25,6 @@ public interface CalendarApi {
      * 
      * This route is cached for up to 600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param eventId The id of the event requested
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of attendees
@@ -40,7 +38,6 @@ public interface CalendarApi {
      * 
      * This route is cached for up to 5 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param eventId The id of the event requested
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Full details of a specific event
@@ -53,7 +50,6 @@ public interface CalendarApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param eventId The ID of the event requested
      * @param response The response value to set, overriding current value.
      * @return Event updated

@@ -14,7 +14,6 @@ public interface ContactsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param allianceId An EVE alliance ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of alliance contact labels
      */
@@ -27,7 +26,6 @@ public interface ContactsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of contact labels
      */
@@ -40,7 +38,6 @@ public interface ContactsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of corporation contact labels
      */
@@ -53,7 +50,6 @@ public interface ContactsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param allianceId An EVE alliance ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of contacts
@@ -67,7 +63,6 @@ public interface ContactsApi {
      * 
      * @param characterId An EVE character ID
      * @param contactIds A list of contacts to delete
-     * @param datasource The server name you would like data from
      * @return Contacts deleted
      */
     
@@ -79,7 +74,6 @@ public interface ContactsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of contacts
@@ -93,7 +87,6 @@ public interface ContactsApi {
      * 
      * @param characterId An EVE character ID
      * @param contactIds A list of contacts
-     * @param datasource The server name you would like data from
      * @param labelIds Add custom labels to the new contact
      * @param standing Standing for the contact
      * @param watched Whether the contact should be watched, note this is only effective on characters
@@ -108,7 +101,6 @@ public interface ContactsApi {
      * 
      * @param characterId An EVE character ID
      * @param contactIds A list of contacts
-     * @param datasource The server name you would like data from
      * @param labelIds Add custom labels to the contact
      * @param standing Standing for the contact
      * @param watched Whether the contact should be watched, note this is only effective on characters
@@ -123,7 +115,6 @@ public interface ContactsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of contacts

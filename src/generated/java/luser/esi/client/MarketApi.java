@@ -13,7 +13,6 @@ public interface MarketApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return Expired and cancelled market orders placed by a character
@@ -26,7 +25,6 @@ public interface MarketApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of item group ids
      */
@@ -39,7 +37,6 @@ public interface MarketApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param marketGroupId An Eve item group ID
      * @return Information about an item group
@@ -52,7 +49,6 @@ public interface MarketApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of prices
      */
@@ -64,7 +60,6 @@ public interface MarketApi {
      * ---
      * 
      * This route is cached for up to 300 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @param structureId Return orders in this structure
@@ -78,7 +73,6 @@ public interface MarketApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param regionId Return statistics in this region
      * @param typeId Return statistics for this type
@@ -92,7 +86,6 @@ public interface MarketApi {
      * ---
      * 
      * This route is cached for up to 300 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param orderType Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.
      * @param page Which page of results to return
@@ -108,7 +101,6 @@ public interface MarketApi {
      * ---
      * 
      * This route is cached for up to 600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @param regionId Return statistics in this region
@@ -123,7 +115,6 @@ public interface MarketApi {
      * 
      * This route is cached for up to 1200 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Open market orders placed by a character
      */
@@ -139,7 +130,6 @@ public interface MarketApi {
      * ---
      * Requires one of the following EVE corporation role(s): Accountant, Trader
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return Expired and cancelled market orders placed on behalf of a corporation
@@ -156,7 +146,6 @@ public interface MarketApi {
      * ---
      * Requires one of the following EVE corporation role(s): Accountant, Trader
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of open market orders

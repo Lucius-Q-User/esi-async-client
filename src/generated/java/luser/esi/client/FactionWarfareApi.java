@@ -12,7 +12,6 @@ public interface FactionWarfareApi {
      * 
      * This route expires daily at 11:05
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Faction warfare statistics for a given character
      */
@@ -25,7 +24,6 @@ public interface FactionWarfareApi {
      * 
      * This route expires daily at 11:05
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Faction warfare statistics for a given corporation
      */
@@ -37,7 +35,6 @@ public interface FactionWarfareApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Corporation leaderboard of kills and victory points within faction warfare.
      */
@@ -49,7 +46,6 @@ public interface FactionWarfareApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Character leaderboard of kills and victory points within faction warfare.
      */
@@ -61,7 +57,6 @@ public interface FactionWarfareApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Corporation leaderboard of kills and victory points within faction warfare.
      */
@@ -73,7 +68,6 @@ public interface FactionWarfareApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Per faction breakdown of faction warfare statistics
      */
@@ -85,7 +79,6 @@ public interface FactionWarfareApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of NPC factions at war
      */
@@ -97,7 +90,6 @@ public interface FactionWarfareApi {
      * ---
      * 
      * This route is cached for up to 1800 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return All faction warfare solar systems
      */

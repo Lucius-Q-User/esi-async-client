@@ -146,14 +146,12 @@ abstract class ApiClientBase implements AutoCloseable {
             return CompletableFuture.completedFuture(authToken);
         }
         String authVal = getAuthorizationString();
-        String url = "https://login.eveonline.com/oauth/token";
-        String method = "POST";
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
-        parametersInHeaders.put("Authorization", authVal);
-        parametersInHeaders.put("Content-Type", "application/json");
-        String body = renderToBody(TokenRequest.forRefToken(refreshToken));
+        RequestBuilder builder = Dsl.post("https://login.eveonline.com/oauth/token");
+        builder.addHeader("Authorization", authVal);
+        builder.addHeader("Content-Type", "application/json");
+        builder.setBody(renderToBody(TokenRequest.forRefToken(refreshToken)));
         TypeReference<TokenExchangeResponse> responseTypeRef = new TypeReference<TokenExchangeResponse>() {};
-        inflightRefresh = invokeApi(url, parametersInHeaders, null, null, body, method, false, responseTypeRef).thenCompose((wr) -> {
+        inflightRefresh = invokeApi(builder, false, responseTypeRef).thenCompose((wr) -> {
             TokenExchangeResponse js = wr.get();
             synchronized (this) {
                 if (inflightRefresh != null) {
@@ -204,35 +202,13 @@ abstract class ApiClientBase implements AutoCloseable {
     }
 
 
-    <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(String url, Map<String, String> parametersInHeaders, Map<String, String> parametersInUrl, Map<String, String> parametersInQuery, String body, String method,
-            boolean needsAuth, TypeReference<T> responseTypeRef) {
-        if (parametersInUrl != null) {
-            for (Entry<String, String> e : parametersInUrl.entrySet()) {
-                url = url.replace("{" + e.getKey() + "}", e.getValue());
-            }
-        }
-        RequestBuilder builder = Dsl.request(method, url);
-        if (parametersInQuery != null) {
-            for (Entry<String, String> e : parametersInQuery.entrySet()) {
-                builder = builder.addQueryParam(e.getKey(), e.getValue());
-            }
-        }
-        if (parametersInHeaders != null) {
-            for (Entry<String, String> e : parametersInHeaders.entrySet()) {
-                builder = builder.addHeader(e.getKey(), e.getValue());
-            }
-        }
-        if (body != null) {
-            builder = builder.setBody(body);
-        }
-        //fixing the "local var must be effectively final"
-        RequestBuilder builder0 = builder;
+    <T> CompletableFuture<EsiResponseWrapper<T>> invokeApi(RequestBuilder builder, boolean needsAuth, TypeReference<T> responseTypeRef) {
         if (!needsAuth) {
-            return invokeApi(builder0, responseTypeRef);
+            return invokeApi(builder, responseTypeRef);
         }
         return getAuth().thenCompose((authToken) -> {
-            builder0.addHeader("Authorization", "Bearer " + authToken);
-            return invokeApi(builder0, responseTypeRef);
+            builder.addHeader("Authorization", "Bearer " + authToken);
+            return invokeApi(builder, responseTypeRef);
         });
     }
 

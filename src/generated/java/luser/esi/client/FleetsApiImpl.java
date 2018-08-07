@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class FleetsApiImpl implements FleetsApi {
     private ApiClient apiClient;
@@ -17,262 +17,171 @@ class FleetsApiImpl implements FleetsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/fleet/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<ActiveFleetInfo>> getFleet(int characterId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/fleet/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<ActiveFleetInfo> responseTypeRef = new TypeReference<ActiveFleetInfo>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(long fleetId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<FleetInfo>> getFleetInfo(long fleetId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        String body = null;
-        String method = "GET";
         TypeReference<FleetInfo> responseTypeRef = new TypeReference<FleetInfo>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(long fleetId, NewFleetSettings newSettings) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> updateFleet(long fleetId, NewFleetSettings newSettings) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/";
+        RequestBuilder builder = Dsl.put(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        String body = null;
-        body = ApiClientBase.renderToBody(newSettings);
-        String method = "PUT";
+        builder.setBody(ApiClientBase.renderToBody(newSettings));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
+    public CompletableFuture<EsiResponseWrapper<List<FleetMemberList>>> getMembers(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/members/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
-            parametersInHeaders.put("Accept-Language", val);
+            builder.addHeader("Accept-Language", val);
         }
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<FleetMemberList>> responseTypeRef = new TypeReference<List<FleetMemberList>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(long fleetId, FleetInvitation invitation) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> inviteFleetMember(long fleetId, FleetInvitation invitation) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/members/";
+        RequestBuilder builder = Dsl.post(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        String body = null;
-        body = ApiClientBase.renderToBody(invitation);
-        String method = "POST";
+        builder.setBody(ApiClientBase.renderToBody(invitation));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(long fleetId, int memberId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/{member_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> kickFleetMember(long fleetId, int memberId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/members/" + memberId + "/";
+        RequestBuilder builder = Dsl.delete(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("member_id", String.valueOf(memberId));
-        String body = null;
-        String method = "DELETE";
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(long fleetId, int memberId, FleetMovementRequest movement) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/members/{member_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> moveFleetMember(long fleetId, int memberId, FleetMovementRequest movement) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/members/" + memberId + "/";
+        RequestBuilder builder = Dsl.put(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("member_id", String.valueOf(memberId));
-        String body = null;
-        body = ApiClientBase.renderToBody(movement);
-        String method = "PUT";
+        builder.setBody(ApiClientBase.renderToBody(movement));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(long fleetId, long squadId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/squads/{squad_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetSquad(long fleetId, long squadId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/squads/" + squadId + "/";
+        RequestBuilder builder = Dsl.delete(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("squad_id", String.valueOf(squadId));
-        String body = null;
-        String method = "DELETE";
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(long fleetId, FleetUnitName naming, long squadId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/squads/{squad_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetSquad(long fleetId, FleetUnitName naming, long squadId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/squads/" + squadId + "/";
+        RequestBuilder builder = Dsl.put(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("squad_id", String.valueOf(squadId));
-        String body = null;
-        body = ApiClientBase.renderToBody(naming);
-        String method = "PUT";
+        builder.setBody(ApiClientBase.renderToBody(naming));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
+    public CompletableFuture<EsiResponseWrapper<List<FleetWings>>> getWings(AcceptLanguageEnum acceptLanguage, long fleetId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/wings/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
-            parametersInHeaders.put("Accept-Language", val);
+            builder.addHeader("Accept-Language", val);
         }
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<FleetWings>> responseTypeRef = new TypeReference<List<FleetWings>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(long fleetId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<CreatedWingResponse>> createFleetWing(long fleetId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/wings/";
+        RequestBuilder builder = Dsl.post(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        String body = null;
-        String method = "POST";
         TypeReference<CreatedWingResponse> responseTypeRef = new TypeReference<CreatedWingResponse>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(long fleetId, long wingId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFleetWing(long fleetId, long wingId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/wings/" + wingId + "/";
+        RequestBuilder builder = Dsl.delete(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("wing_id", String.valueOf(wingId));
-        String body = null;
-        String method = "DELETE";
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(long fleetId, FleetUnitName naming, long wingId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> renameFleetWing(long fleetId, FleetUnitName naming, long wingId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/wings/" + wingId + "/";
+        RequestBuilder builder = Dsl.put(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("wing_id", String.valueOf(wingId));
-        String body = null;
-        body = ApiClientBase.renderToBody(naming);
-        String method = "PUT";
+        builder.setBody(ApiClientBase.renderToBody(naming));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(long fleetId, long wingId) {
-        String url = "https://esi.evetech.net/v1/fleets/{fleet_id}/wings/{wing_id}/squads/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<CreatedSquadResponse>> createFleetSquad(long fleetId, long wingId) {         
+        String url = "https://esi.evetech.net/v1/fleets/" + fleetId + "/wings/" + wingId + "/squads/";
+        RequestBuilder builder = Dsl.post(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("fleet_id", String.valueOf(fleetId));
-        parametersInUrl.put("wing_id", String.valueOf(wingId));
-        String body = null;
-        String method = "POST";
         TypeReference<CreatedSquadResponse> responseTypeRef = new TypeReference<CreatedSquadResponse>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

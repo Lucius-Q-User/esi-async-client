@@ -12,7 +12,6 @@ public interface KillmailsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of killmail IDs and hashes
@@ -29,7 +28,6 @@ public interface KillmailsApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of killmail IDs and hashes
@@ -42,7 +40,6 @@ public interface KillmailsApi {
      * ---
      * 
      * This route is cached for up to 1209600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param killmailHash The killmail hash for verification
      * @param killmailId The killmail ID to be queried

@@ -12,7 +12,6 @@ public interface CorporationApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of npc corporation ids
      */
@@ -28,7 +27,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of corporation division names
      */
@@ -44,7 +42,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Factory_Manager
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of corporation facilities
      */
@@ -57,7 +54,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Urls for icons for the given corporation id and server
      */
@@ -70,7 +66,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of medals
@@ -87,7 +82,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of issued medals
@@ -104,7 +98,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return The corporation's member limit
      */
@@ -120,7 +113,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of members and theirs titles
      */
@@ -136,7 +128,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of member character IDs
      */
@@ -149,7 +140,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of member character ID's and roles
      */
@@ -165,7 +155,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of role changes
@@ -182,7 +171,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of shareholders
@@ -196,7 +184,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of standings
@@ -213,7 +200,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of starbases (POSes)
@@ -230,7 +216,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param starbaseId An EVE starbase (POS) ID
      * @param systemId The solar system this starbase (POS) is located in,
@@ -248,7 +233,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of titles
      */
@@ -261,7 +245,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Alliance history for the given corporation
      */
@@ -277,7 +260,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of corporation blueprints
@@ -294,7 +276,6 @@ public interface CorporationApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of corporation ALSC logs
@@ -312,7 +293,6 @@ public interface CorporationApi {
      * Requires one of the following EVE corporation role(s): StationManager
      * @param acceptLanguage Language to use in the response
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of corporation structures' information
@@ -326,7 +306,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of member character IDs
      */
@@ -339,7 +318,6 @@ public interface CorporationApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Public information about a corporation
      */

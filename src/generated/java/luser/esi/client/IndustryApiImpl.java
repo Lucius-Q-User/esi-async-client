@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class IndustryApiImpl implements IndustryApi {
     private ApiClient apiClient;
@@ -17,196 +17,149 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, String ifNoneMatch, Boolean includeCompleted) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/industry/jobs/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, String ifNoneMatch, Boolean includeCompleted) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/industry/jobs/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (includeCompleted != null) {
             String val = String.valueOf(includeCompleted);
-            parametersInQuery.put("include_completed", val);
+            builder.addQueryParam("include_completed", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<IndustryJobInfo>> responseTypeRef = new TypeReference<List<IndustryJobInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mining/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mining/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<CharacterMiningLedgerEntry>> responseTypeRef = new TypeReference<List<CharacterMiningLedgerEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/extractions/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporation/" + corporationId + "/mining/extractions/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<ActiveMoonExtraction>> responseTypeRef = new TypeReference<List<ActiveMoonExtraction>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporation/" + corporationId + "/mining/observers/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<MiningObservers>> responseTypeRef = new TypeReference<List<MiningObservers>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, String ifNoneMatch, long observerId, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporation/{corporation_id}/mining/observers/{observer_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, String ifNoneMatch, long observerId, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporation/" + corporationId + "/mining/observers/" + observerId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        parametersInUrl.put("observer_id", String.valueOf(observerId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<MiningObserverInfo>> responseTypeRef = new TypeReference<List<MiningObserverInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, String ifNoneMatch, Boolean includeCompleted, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/industry/jobs/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, String ifNoneMatch, Boolean includeCompleted, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/industry/jobs/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
         
         if (includeCompleted != null) {
             String val = String.valueOf(includeCompleted);
-            parametersInQuery.put("include_completed", val);
+            builder.addQueryParam("include_completed", val);
         }
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<IndustryJobInfo>> responseTypeRef = new TypeReference<List<IndustryJobInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/industry/facilities/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<List<IndustryFacilities>> responseTypeRef = new TypeReference<List<IndustryFacilities>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/industry/systems/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<List<IndustrySystems>> responseTypeRef = new TypeReference<List<IndustrySystems>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

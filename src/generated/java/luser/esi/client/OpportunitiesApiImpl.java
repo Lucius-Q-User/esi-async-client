@@ -1,11 +1,11 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class OpportunitiesApiImpl implements OpportunitiesApi {
     private ApiClient apiClient;
@@ -18,104 +18,76 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/opportunities/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/opportunities/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<OpportunityInfo>> responseTypeRef = new TypeReference<List<OpportunityInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/opportunities/groups/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/opportunities/groups/{group_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
+    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/opportunities/groups/" + groupId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
-            parametersInHeaders.put("Accept-Language", val);
+            builder.addHeader("Accept-Language", val);
         }
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("group_id", String.valueOf(groupId));
-        String body = null;
-        String method = "GET";
         TypeReference<OpportunityGroup> responseTypeRef = new TypeReference<OpportunityGroup>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/opportunities/tasks/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<IntArrayList> responseTypeRef = new TypeReference<IntArrayList>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(String ifNoneMatch, int taskId) {
-        String url = "https://esi.evetech.net/v1/opportunities/tasks/{task_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(String ifNoneMatch, int taskId) {         
+        String url = "https://esi.evetech.net/v1/opportunities/tasks/" + taskId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("task_id", String.valueOf(taskId));
-        String body = null;
-        String method = "GET";
         TypeReference<OpportunityTaks> responseTypeRef = new TypeReference<OpportunityTaks>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

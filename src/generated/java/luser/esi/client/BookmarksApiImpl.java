@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class BookmarksApiImpl implements BookmarksApi {
     private ApiClient apiClient;
@@ -17,102 +17,78 @@ class BookmarksApiImpl implements BookmarksApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCorporationBookmarks(int corporationId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/bookmarks/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCorporationBookmarks(int corporationId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/bookmarks/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<BookmarkInfo>> responseTypeRef = new TypeReference<List<BookmarkInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationBookmarkFolder>>> getCorporationBookmarkFolders(int corporationId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v1/corporations/{corporation_id}/bookmarks/folders/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<CorporationBookmarkFolder>>> getCorporationBookmarkFolders(int corporationId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/bookmarks/folders/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("corporation_id", String.valueOf(corporationId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<CorporationBookmarkFolder>> responseTypeRef = new TypeReference<List<CorporationBookmarkFolder>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCharacterBookmarks(int characterId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v2/characters/{character_id}/bookmarks/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<BookmarkInfo>>> getCharacterBookmarks(int characterId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v2/characters/" + characterId + "/bookmarks/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<BookmarkInfo>> responseTypeRef = new TypeReference<List<BookmarkInfo>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharacterBookmarkFolders(int characterId, String ifNoneMatch, Integer page) {
-        String url = "https://esi.evetech.net/v2/characters/{character_id}/bookmarks/folders/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharacterBookmarkFolders(int characterId, String ifNoneMatch, Integer page) {         
+        String url = "https://esi.evetech.net/v2/characters/" + characterId + "/bookmarks/folders/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(1);
         
         if (page != null) {
             String val = String.valueOf(page);
-            parametersInQuery.put("page", val);
+            builder.addQueryParam("page", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<CharacterBookmarksFolder>> responseTypeRef = new TypeReference<List<CharacterBookmarksFolder>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

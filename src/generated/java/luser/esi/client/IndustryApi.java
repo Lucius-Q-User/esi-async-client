@@ -12,7 +12,6 @@ public interface IndustryApi {
      * 
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param includeCompleted Whether retrieve completed character industry jobs as well
      * @return Industry jobs placed by a character
@@ -26,7 +25,6 @@ public interface IndustryApi {
      * 
      * This route is cached for up to 600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return Mining ledger of a character
@@ -43,7 +41,6 @@ public interface IndustryApi {
      * ---
      * Requires one of the following EVE corporation role(s): Structure_manager
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of chunk timers
@@ -60,7 +57,6 @@ public interface IndustryApi {
      * ---
      * Requires one of the following EVE corporation role(s): Accountant
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return Observer list of a corporation
@@ -77,7 +73,6 @@ public interface IndustryApi {
      * ---
      * Requires one of the following EVE corporation role(s): Accountant
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param observerId A mining observer id
      * @param page Which page of results to return
@@ -95,7 +90,6 @@ public interface IndustryApi {
      * ---
      * Requires one of the following EVE corporation role(s): FactoryManager
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param includeCompleted Whether retrieve completed industry jobs as well
      * @param page Which page of results to return
@@ -109,7 +103,6 @@ public interface IndustryApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of facilities
      */
@@ -121,7 +114,6 @@ public interface IndustryApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of cost indicies
      */

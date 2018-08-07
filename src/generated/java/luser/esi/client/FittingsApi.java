@@ -12,7 +12,6 @@ public interface FittingsApi {
      * 
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of fittings
      */
@@ -24,7 +23,6 @@ public interface FittingsApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param fitting Details about the new fitting
      * @return A list of fittings
      */
@@ -36,7 +34,6 @@ public interface FittingsApi {
      * ---
      * 
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param fittingId ID for a fitting of this character
      * @return Fitting deleted
      */

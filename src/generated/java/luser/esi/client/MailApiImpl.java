@@ -1,11 +1,11 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class MailApiImpl implements MailApi {
     private ApiClient apiClient;
@@ -18,179 +18,121 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(2);
         
         if (labels != null) {
             String val = ApiClientBase.renderArrayToQuery(labels, null);
-            parametersInQuery.put("labels", val);
+            builder.addQueryParam("labels", val);
         }
         
         if (lastMailId != null) {
             String val = String.valueOf(lastMailId);
-            parametersInQuery.put("last_mail_id", val);
+            builder.addQueryParam("last_mail_id", val);
         }
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<MailboxEntry>> responseTypeRef = new TypeReference<List<MailboxEntry>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, NewMail mail) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, NewMail mail) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/";
+        RequestBuilder builder = Dsl.post(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        body = ApiClientBase.renderToBody(mail);
-        String method = "POST";
+        builder.setBody(ApiClientBase.renderToBody(mail));
         TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, int labelId) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/labels/{label_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, int labelId) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/labels/" + labelId + "/";
+        RequestBuilder builder = Dsl.delete(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("label_id", String.valueOf(labelId));
-        String body = null;
-        String method = "DELETE";
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/lists/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/lists/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<List<MailingList>> responseTypeRef = new TypeReference<List<MailingList>>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, int mailId) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, int mailId) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/" + mailId + "/";
+        RequestBuilder builder = Dsl.delete(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("mail_id", String.valueOf(mailId));
-        String body = null;
-        String method = "DELETE";
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, String ifNoneMatch, int mailId) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, String ifNoneMatch, int mailId) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/" + mailId + "/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("mail_id", String.valueOf(mailId));
-        String body = null;
-        String method = "GET";
         TypeReference<MailContents> responseTypeRef = new TypeReference<MailContents>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, int mailId) {
-        String url = "https://esi.evetech.net/v1/characters/{character_id}/mail/{mail_id}/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, int mailId) {         
+        String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/" + mailId + "/";
+        RequestBuilder builder = Dsl.put(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(2);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        parametersInUrl.put("mail_id", String.valueOf(mailId));
-        String body = null;
-        body = ApiClientBase.renderToBody(contents);
-        String method = "PUT";
+        builder.setBody(ApiClientBase.renderToBody(contents));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, NewMailLabel label) {
-        String url = "https://esi.evetech.net/v2/characters/{character_id}/mail/labels/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, NewMailLabel label) {         
+        String url = "https://esi.evetech.net/v2/characters/" + characterId + "/mail/labels/";
+        RequestBuilder builder = Dsl.post(url);
 
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        body = ApiClientBase.renderToBody(label);
-        String method = "POST";
+        builder.setBody(ApiClientBase.renderToBody(label));
         TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, String ifNoneMatch) {
-        String url = "https://esi.evetech.net/v3/characters/{character_id}/mail/labels/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, String ifNoneMatch) {         
+        String url = "https://esi.evetech.net/v3/characters/" + characterId + "/mail/labels/";
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(1);
-        parametersInUrl.put("character_id", String.valueOf(characterId));
-        String body = null;
-        String method = "GET";
         TypeReference<MailLabels> responseTypeRef = new TypeReference<MailLabels>() {};
         boolean needsAuth = true;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

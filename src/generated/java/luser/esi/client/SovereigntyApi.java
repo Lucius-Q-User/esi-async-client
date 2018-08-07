@@ -11,7 +11,6 @@ public interface SovereigntyApi {
      * ---
      * 
      * This route is cached for up to 5 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of sovereignty campaigns
      */
@@ -23,7 +22,6 @@ public interface SovereigntyApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of sovereignty information for solar systems in New Eden
      */
@@ -35,7 +33,6 @@ public interface SovereigntyApi {
      * ---
      * 
      * This route is cached for up to 120 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of sovereignty structures
      */

@@ -12,7 +12,6 @@ public interface BookmarksApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of corporation owned bookmarks
@@ -26,7 +25,6 @@ public interface BookmarksApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of corporation owned bookmark folders
@@ -40,7 +38,6 @@ public interface BookmarksApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of bookmarks
@@ -54,7 +51,6 @@ public interface BookmarksApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return List of bookmark folders

@@ -11,7 +11,6 @@ public interface DogmaApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of dogma attribute ids
      */
@@ -24,7 +23,6 @@ public interface DogmaApi {
      * 
      * This route expires daily at 11:05
      * @param attributeId A dogma attribute ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about a dogma attribute
      */
@@ -36,7 +34,6 @@ public interface DogmaApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param itemId item_id integer
      * @param typeId type_id integer
@@ -50,7 +47,6 @@ public interface DogmaApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of dogma effect ids
      */
@@ -62,7 +58,6 @@ public interface DogmaApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param effectId A dogma effect ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Information about a dogma effect

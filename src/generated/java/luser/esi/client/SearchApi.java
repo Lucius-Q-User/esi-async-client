@@ -13,7 +13,6 @@ public interface SearchApi {
      * This route is cached for up to 3600 seconds
      * @param acceptLanguage Language to use in the response
      * @param categories Type of entities to search for
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param search The string to search on
      * @param strict Whether the search should be a strict match
@@ -30,7 +29,6 @@ public interface SearchApi {
      * @param acceptLanguage Language to use in the response
      * @param categories Type of entities to search for
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param search The string to search on
      * @param strict Whether the search should be a strict match

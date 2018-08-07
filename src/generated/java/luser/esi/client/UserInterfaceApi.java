@@ -11,7 +11,6 @@ public interface UserInterfaceApi {
      * ---
      * 
      * @param contractId The contract to open
-     * @param datasource The server name you would like data from
      * @return Open window request received
      */
     
@@ -21,7 +20,6 @@ public interface UserInterfaceApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param targetId The target to open
      * @return Open window request received
      */
@@ -32,7 +30,6 @@ public interface UserInterfaceApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param typeId The item type to open in market window
      * @return Open window request received
      */
@@ -43,7 +40,6 @@ public interface UserInterfaceApi {
      * 
      * ---
      * 
-     * @param datasource The server name you would like data from
      * @param newMail The details of mail to create
      * @return Open window request received
      */
@@ -56,7 +52,6 @@ public interface UserInterfaceApi {
      * 
      * @param addToBeginning Whether this solar system should be added to the beginning of all waypoints
      * @param clearOtherWaypoints Whether clean other waypoints beforing adding this one
-     * @param datasource The server name you would like data from
      * @param destinationId The destination to travel to, can be solar system, station or structure's id
      * @return Open window request received
      */

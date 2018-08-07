@@ -1,8 +1,9 @@
 package luser.esi.client;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -14,30 +15,21 @@ public class SsoApi {
     }
 
     public CompletableFuture<EsiResponseWrapper<TokenExchangeResponse>> finishFlowWithCode(String code) {
-        String url = "https://login.eveonline.com/oauth/token";
-        Map<String, String> parametersInHeaders = new HashMap<>(2);
+        RequestBuilder builder = Dsl.post("https://login.eveonline.com/oauth/token");
         String authVal = apiClient.getAuthorizationString();
-        parametersInHeaders.put("Authorization", authVal);
-        parametersInHeaders.put("Content-Type", "application/json");
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
+        builder.addHeader("Authorization", authVal);
+        builder.addHeader("Content-Type", "application/json");
         TokenRequest authBody = TokenRequest.forCode(code);
-        String body = ApiClientBase.renderToBody(authBody);
-        String method = "POST";
+        builder.setBody(ApiClientBase.renderToBody(authBody));
         boolean needsAuth = false;
         TypeReference<TokenExchangeResponse> respTypRef = new TypeReference<TokenExchangeResponse>() {};
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, respTypRef);
+        return apiClient.invokeApi(builder, needsAuth, respTypRef);
     }
 
     public CompletableFuture<EsiResponseWrapper<TokenVerifyResponse>> verifyToken() {
-        String url = "https://login.eveonline.com/oauth/verify";
-        Map<String, String> parametersInHeaders = new HashMap<>(0);
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-        String method = "GET";
+        RequestBuilder builder = Dsl.get("https://login.eveonline.com/oauth/token");
         boolean needsAuth = true;
-        String body = null;
         TypeReference<TokenVerifyResponse> respTypRef = new TypeReference<TokenVerifyResponse>() {};
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, respTypRef);
+        return apiClient.invokeApi(builder, needsAuth, respTypRef);
     }
 }

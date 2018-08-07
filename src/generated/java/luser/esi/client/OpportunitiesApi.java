@@ -13,7 +13,6 @@ public interface OpportunitiesApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of opportunities task ids
      */
@@ -25,7 +24,6 @@ public interface OpportunitiesApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of opportunities group ids
      */
@@ -38,7 +36,6 @@ public interface OpportunitiesApi {
      * 
      * This route expires daily at 11:05
      * @param acceptLanguage Language to use in the response
-     * @param datasource The server name you would like data from
      * @param groupId ID of an opportunities group
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Details of an opportunities group
@@ -51,7 +48,6 @@ public interface OpportunitiesApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of opportunities task ids
      */
@@ -63,7 +59,6 @@ public interface OpportunitiesApi {
      * ---
      * 
      * This route expires daily at 11:05
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param taskId ID of an opportunities task
      * @return Details of an opportunities task

@@ -12,7 +12,6 @@ public interface SkillsApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Attributes of a character
      */
@@ -25,7 +24,6 @@ public interface SkillsApi {
      * 
      * This route is cached for up to 120 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return The current skill queue, sorted ascending by finishing time
      */
@@ -38,7 +36,6 @@ public interface SkillsApi {
      * 
      * This route is cached for up to 120 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Known skills for the character
      */

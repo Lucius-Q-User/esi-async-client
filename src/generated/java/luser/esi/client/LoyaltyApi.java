@@ -12,7 +12,6 @@ public interface LoyaltyApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of loyalty points
      */
@@ -25,7 +24,6 @@ public interface LoyaltyApi {
      * 
      * This route expires daily at 11:05
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return A list of offers
      */

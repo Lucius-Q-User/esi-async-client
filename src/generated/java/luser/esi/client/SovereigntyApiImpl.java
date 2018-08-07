@@ -1,10 +1,10 @@
 package luser.esi.client;
 
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
+import org.asynchttpclient.Dsl;
+import org.asynchttpclient.RequestBuilder;
 
 class SovereigntyApiImpl implements SovereigntyApi {
     private ApiClient apiClient;
@@ -17,59 +17,44 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/sovereignty/campaigns/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<List<SovereigntyCampaign>> responseTypeRef = new TypeReference<List<SovereigntyCampaign>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/sovereignty/map/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<List<SovMap>> responseTypeRef = new TypeReference<List<SovMap>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(String ifNoneMatch) {
+    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(String ifNoneMatch) {         
         String url = "https://esi.evetech.net/v1/sovereignty/structures/";
-        
-        Map<String, String> parametersInHeaders = new HashMap<>(1);
+        RequestBuilder builder = Dsl.get(url);
+
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
-            parametersInHeaders.put("If-None-Match", val);
+            builder.addHeader("If-None-Match", val);
         }
-        Map<String, String> parametersInQuery = new HashMap<>(0);
-
-        Map<String, String> parametersInUrl = new HashMap<>(0);
-        String body = null;
-        String method = "GET";
         TypeReference<List<SovStructures>> responseTypeRef = new TypeReference<List<SovStructures>>() {};
         boolean needsAuth = false;
-        return apiClient.invokeApi(url, parametersInHeaders, parametersInUrl, parametersInQuery, body, method, needsAuth, responseTypeRef);
+        return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
 }

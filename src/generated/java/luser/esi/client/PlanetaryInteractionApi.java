@@ -12,7 +12,6 @@ public interface PlanetaryInteractionApi {
      * 
      * This route is cached for up to 600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return List of colonies
      */
@@ -28,7 +27,6 @@ public interface PlanetaryInteractionApi {
      * ---
      * Requires one of the following EVE corporation role(s): Director
      * @param corporationId An EVE corporation ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
      * @return A list of customs offices and their settings
@@ -41,7 +39,6 @@ public interface PlanetaryInteractionApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param schematicId A PI schematic ID
      * @return Public data about a schematic
@@ -55,7 +52,6 @@ public interface PlanetaryInteractionApi {
      * 
      * This route is cached for up to 600 seconds
      * @param characterId An EVE character ID
-     * @param datasource The server name you would like data from
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param planetId Planet id of the target planet
      * @return Colony layout
