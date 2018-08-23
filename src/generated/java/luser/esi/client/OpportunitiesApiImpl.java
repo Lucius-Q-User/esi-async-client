@@ -8,6 +8,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class OpportunitiesApiImpl implements OpportunitiesApi {
+    
     private ApiClient apiClient;
     OpportunitiesApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -18,10 +19,9 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<OpportunityInfo>>> getOpportunities(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/opportunities/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -32,10 +32,9 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityGroups(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -46,10 +45,9 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<OpportunityGroup>> getOpportunityGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/groups/" + groupId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
             builder.addHeader("Accept-Language", val);
@@ -64,10 +62,9 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getOpportunityTasks(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -78,10 +75,9 @@ class OpportunitiesApiImpl implements OpportunitiesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(String ifNoneMatch, int taskId) {         
+    public CompletableFuture<EsiResponseWrapper<OpportunityTaks>> getOpportunityTaskInfo(String ifNoneMatch, int taskId) {
         String url = "https://esi.evetech.net/v1/opportunities/tasks/" + taskId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

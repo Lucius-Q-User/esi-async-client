@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface OpportunitiesApi {
     public ApiClient getApiClient();
+    
     /**
      * Return a list of tasks finished by a character
      * 

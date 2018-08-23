@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationPOS {
     private Integer moonId;
@@ -117,7 +116,7 @@ public class CorporationPOS {
     public Instant getUnanchorAt() {
         return unanchorAt;
     }
-    public static enum StateEnum implements StringyEnum{
+    public static enum StateEnum {
         OFFLINE("offline"),
         ONLINE("online"),
         ONLINING("onlining"),
@@ -128,8 +127,7 @@ public class CorporationPOS {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface SkillsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return attributes of a character
      * 

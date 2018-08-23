@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface MailApi {
     public ApiClient getApiClient();
+    
     /**
      * Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards.
      * 

@@ -8,6 +8,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class CorporationApiImpl implements CorporationApi {
+    
     private ApiClient apiClient;
     CorporationApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -18,10 +19,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getsNpccorps(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getsNpccorps(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/npccorps/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -32,10 +32,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CorporationDivision>> getDivisions(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CorporationDivision>> getDivisions(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/divisions/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -46,10 +45,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationFacility>>> getFacilities(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationFacility>>> getFacilities(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/facilities/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -60,10 +58,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CorporationIcons>> getIcons(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CorporationIcons>> getIcons(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/icons/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -74,10 +71,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMedals>>> getMedals(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMedals>>> getMedals(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/medals/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -93,10 +89,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationIssuedMedals>>> getIssuedMedals(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationIssuedMedals>>> getIssuedMedals(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/medals/issued/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -112,10 +107,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> getMemberLimit(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<Integer>> getMemberLimit(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/members/limit/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -126,10 +120,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationMemberTitle>>> getMemberTitles(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationMemberTitle>>> getMemberTitles(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/members/titles/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -140,10 +133,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MemberTrackingInfo>>> getMembertracking(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<MemberTrackingInfo>>> getMembertracking(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/membertracking/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -154,10 +146,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationRoles>>> getRoles(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationRoles>>> getRoles(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/roles/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -168,10 +159,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationRolesHistoryEntry>>> getRolesHistory(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationRolesHistoryEntry>>> getRolesHistory(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/roles/history/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -187,10 +177,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationShareholders>>> getShareholders(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationShareholders>>> getShareholders(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/shareholders/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -206,10 +195,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/standings/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -225,10 +213,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationPOS>>> getStarbases(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationPOS>>> getStarbases(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/starbases/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -244,10 +231,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CorporationPOSInfo>> getStarbaseInfo(int corporationId, String ifNoneMatch, long starbaseId, int systemId) {         
+    public CompletableFuture<EsiResponseWrapper<CorporationPOSInfo>> getStarbaseInfo(int corporationId, String ifNoneMatch, long starbaseId, int systemId) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/starbases/" + starbaseId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -263,10 +249,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationTitles>>> getTitles(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationTitles>>> getTitles(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/titles/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -277,10 +262,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<AllianceHistoryEntry>>> getAlliancehistory(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<AllianceHistoryEntry>>> getAlliancehistory(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/corporations/" + corporationId + "/alliancehistory/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -291,10 +275,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationBlueprint>>> getBlueprints(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationBlueprint>>> getBlueprints(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/" + corporationId + "/blueprints/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -310,10 +293,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContainerLogEntry>>> getContainerLogs(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<ContainerLogEntry>>> getContainerLogs(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/" + corporationId + "/containers/logs/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -329,10 +311,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationStructures>>> getStructures(AcceptLanguageEnum acceptLanguage, int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationStructures>>> getStructures(AcceptLanguageEnum acceptLanguage, int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/" + corporationId + "/structures/";
         RequestBuilder builder = Dsl.get(url);
-
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
             builder.addHeader("Accept-Language", val);
@@ -352,10 +333,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMembers(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getMembers(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/corporations/" + corporationId + "/members/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -366,10 +346,9 @@ class CorporationApiImpl implements CorporationApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CorporationInfo>> getCorporationInfo(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CorporationInfo>> getCorporationInfo(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/corporations/" + corporationId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -377,5 +356,50 @@ class CorporationApiImpl implements CorporationApi {
         TypeReference<CorporationInfo> responseTypeRef = new TypeReference<CorporationInfo>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationMedals>> getMedalsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getMedals(corporationId, null, page), (List<CorporationMedals>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationIssuedMedals>> getIssuedMedalsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getIssuedMedals(corporationId, null, page), (List<CorporationIssuedMedals>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationRolesHistoryEntry>> getRolesHistoryAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getRolesHistory(corporationId, null, page), (List<CorporationRolesHistoryEntry>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationShareholders>> getShareholdersAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getShareholders(corporationId, null, page), (List<CorporationShareholders>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<StandingsEntry>> getStandingsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getStandings(corporationId, null, page), (List<StandingsEntry>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationPOS>> getStarbasesAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getStarbases(corporationId, null, page), (List<CorporationPOS>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationBlueprint>> getBlueprintsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getBlueprints(corporationId, null, page), (List<CorporationBlueprint>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<ContainerLogEntry>> getContainerLogsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getContainerLogs(corporationId, null, page), (List<ContainerLogEntry>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationStructures>> getStructuresAllPages(AcceptLanguageEnum acceptLanguage, int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getStructures(acceptLanguage, corporationId, null, page), (List<CorporationStructures>)null);
     }
 }

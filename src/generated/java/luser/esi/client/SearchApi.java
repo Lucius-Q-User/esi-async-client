@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface SearchApi {
     public ApiClient getApiClient();
+    
     /**
      * Search for entities that match a given sub-string.
      * 

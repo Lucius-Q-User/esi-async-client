@@ -6,6 +6,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class ${tag}ApiImpl implements ${tag}Api {
+    <% paginated = [] %>
     private ApiClient apiClient;
     ${tag}ApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -16,18 +17,15 @@ class ${tag}ApiImpl implements ${tag}Api {
     }
     % for path in paths:
     % for method in swg["paths"][path]:
-    <% returnType = getReturnTypeName(path, method) %>
+    <%
+        returnType = getReturnTypeName(path, method)
+        pgn, descriptor = getArgNames(path, method)
+        if pgn:
+            paginated.append((path, method))
+    %>
     @Override
-    public CompletableFuture<EsiResponseWrapper<${returnType}>> \
-${getFunctionName(path, method)}(\
-        % for argty, argname in getArgNames(path, method):
-${argty} ${argname}\
-        %if not loop.last:
-, \
-        %endif
-        %endfor
-) { \
-        <%
+    public CompletableFuture<EsiResponseWrapper<${returnType}>> ${getFunctionName(path, method)}(${descriptor}) {
+<%
             headerParDef = []
             queryParDef = []
             bodyPar = None
@@ -51,10 +49,9 @@ ${argty} ${argname}\
                     bodyPar = par
                 elif par["in"] == "path":
                     decompPath = decompPath.replace("{" + par["name"] + "}", "\" + " + toLcaseJava(par["name"]) + " + \"")
-        %>
+        %>\
         String url = "https://esi.evetech.net${decompPath}";
         RequestBuilder builder = Dsl.${method}(url);
-
         % for par in headerParDef:
         if (${toLcaseJava(par["name"])} != null) {
             String val = ${toLcaseJava(par["name"])}${".stringValue" if "enum" in par else ""};
@@ -92,4 +89,32 @@ new TypeReference<${returnType}>() {};
     }
     %endfor
     %endfor
+    % for (path, method) in paginated:
+    <%
+        returnType = getReturnTypeName(path, method)
+        pgn, descriptor = getArgNames(path, method, True)
+    %>
+    @Override
+    public CompletableFuture<${returnType}> ${getFunctionName(path, method)}AllPages(${descriptor}) {
+<%
+        parDefs = swg["paths"][path][method]["parameters"]
+        pd = []
+        for par in parDefs:
+            if "$ref" in par:
+                if par["$ref"] == "#/parameters/token":
+                    continue
+                if par["$ref"] == "#/parameters/datasource":
+                    continue
+                if par["$ref"] == "#/parameters/language":
+                    continue
+                if par["$ref"] == "#/parameters/If-None-Match":
+                    pd.append("null")
+                    continue
+                par = parameterRefs[par["$ref"]]                
+            pd.append(toLcaseJava(par["name"]))
+        pd = ", ".join(pd)
+        %>\
+        return ApiClientBase.pagingHelper((page) -> ${getFunctionName(path, method)}(${pd}), (${returnType})null);
+    }
+    % endfor
 }

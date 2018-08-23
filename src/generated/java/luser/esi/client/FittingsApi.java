@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface FittingsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return fittings of a character
      * 

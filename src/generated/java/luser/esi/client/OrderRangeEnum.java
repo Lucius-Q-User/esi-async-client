@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum OrderRangeEnum implements StringyEnum {
+public enum OrderRangeEnum {
     _1("1"),
     _10("10"),
     _2("2"),
@@ -20,8 +18,7 @@ public enum OrderRangeEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

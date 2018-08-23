@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface LocationApi {
     public ApiClient getApiClient();
+    
     /**
      * Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
      * 

@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface UserInterfaceApi {
     public ApiClient getApiClient();
+    
     /**
      * Open the contract window inside the client
      * 

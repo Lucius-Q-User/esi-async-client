@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class InsuranceApiImpl implements InsuranceApi {
+    
     private ApiClient apiClient;
     InsuranceApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class InsuranceApiImpl implements InsuranceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<InsurancePrices>>> getInsurancePrices(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<InsurancePrices>>> getInsurancePrices(AcceptLanguageEnum acceptLanguage, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/insurance/prices/";
         RequestBuilder builder = Dsl.get(url);
-
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
             builder.addHeader("Accept-Language", val);

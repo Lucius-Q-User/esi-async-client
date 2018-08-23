@@ -3,7 +3,6 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationRolesHistoryEntry {
     private Instant changedAt;
@@ -90,7 +89,7 @@ public class CorporationRolesHistoryEntry {
     public RoleTypeEnum getRoleType() {
         return roleType;
     }
-    public static enum RoleTypeEnum implements StringyEnum{
+    public static enum RoleTypeEnum {
         GRANTABLE_ROLES("grantable_roles"),
         GRANTABLE_ROLES_AT_BASE("grantable_roles_at_base"),
         GRANTABLE_ROLES_AT_HQ("grantable_roles_at_hq"),
@@ -104,8 +103,7 @@ public class CorporationRolesHistoryEntry {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CharacterInfo {
     private Integer allianceId;
@@ -159,7 +158,7 @@ public class CharacterInfo {
     public Float getSecurityStatus() {
         return securityStatus;
     }
-    public static enum GenderEnum implements StringyEnum{
+    public static enum GenderEnum {
         FEMALE("female"),
         MALE("male");
         private final String stringValue;
@@ -167,8 +166,7 @@ public class CharacterInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

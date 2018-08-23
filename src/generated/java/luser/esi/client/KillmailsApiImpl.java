@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class KillmailsApiImpl implements KillmailsApi {
+    
     private ApiClient apiClient;
     KillmailsApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCharacterRecentKillmails(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/killmails/recent/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -36,10 +36,9 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getCorporationRecentKillmails(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/killmails/recent/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -55,10 +54,9 @@ class KillmailsApiImpl implements KillmailsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId) {         
+    public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId) {
         String url = "https://esi.evetech.net/v1/killmails/" + killmailId + "/" + killmailHash + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -66,5 +64,15 @@ class KillmailsApiImpl implements KillmailsApi {
         TypeReference<KillmailData> responseTypeRef = new TypeReference<KillmailData>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<KillmailRef>> getCharacterRecentKillmailsAllPages(int characterId) {
+        return ApiClientBase.pagingHelper((page) -> getCharacterRecentKillmails(characterId, null, page), (List<KillmailRef>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<KillmailRef>> getCorporationRecentKillmailsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getCorporationRecentKillmails(corporationId, null, page), (List<KillmailRef>)null);
     }
 }

@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum LocationFlagEnum implements StringyEnum {
+public enum LocationFlagEnum {
     ASSETSAFETY("AssetSafety"),
     AUTOFIT("AutoFit"),
     BONUS("Bonus"),
@@ -123,8 +121,7 @@ public enum LocationFlagEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

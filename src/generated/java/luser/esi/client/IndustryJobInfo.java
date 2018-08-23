@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class IndustryJobInfo {
     private int activityId;
@@ -313,7 +312,7 @@ public class IndustryJobInfo {
     public Integer getSuccessfulRuns() {
         return successfulRuns;
     }
-    public static enum StatusEnum implements StringyEnum{
+    public static enum StatusEnum {
         ACTIVE("active"),
         CANCELLED("cancelled"),
         DELIVERED("delivered"),
@@ -325,8 +324,7 @@ public class IndustryJobInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum MailLabelColorEnum implements StringyEnum {
+public enum MailLabelColorEnum {
     _0000FE("#0000fe"),
     _006634("#006634"),
     _0099FF("#0099ff"),
@@ -26,8 +24,7 @@ public enum MailLabelColorEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

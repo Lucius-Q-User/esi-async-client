@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class PlanetInfo {
     private Instant lastUpdate;
@@ -103,7 +102,7 @@ public class PlanetInfo {
     public int getUpgradeLevel() {
         return upgradeLevel;
     }
-    public static enum PlanetTypeEnum implements StringyEnum{
+    public static enum PlanetTypeEnum {
         TEMPERATE("temperate"),
         BARREN("barren"),
         OCEANIC("oceanic"),
@@ -117,8 +116,7 @@ public class PlanetInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

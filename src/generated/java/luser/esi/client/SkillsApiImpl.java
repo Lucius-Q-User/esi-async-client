@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class SkillsApiImpl implements SkillsApi {
+    
     private ApiClient apiClient;
     SkillsApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class SkillsApiImpl implements SkillsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CharacterAttributes>> getAttributes(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/attributes/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class SkillsApiImpl implements SkillsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<SkillQueueEntry>>> getSkillqueue(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/skillqueue/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -45,10 +44,9 @@ class SkillsApiImpl implements SkillsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<TrainedSkillsInfo>> getSkills(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/characters/" + characterId + "/skills/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

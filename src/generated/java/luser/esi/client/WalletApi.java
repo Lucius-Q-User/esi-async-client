@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface WalletApi {
     public ApiClient getApiClient();
+    
     /**
      * Returns a character's wallet balance
      * 
@@ -92,4 +93,8 @@ public interface WalletApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<WalletJournalEntry>>> getWalletJournal(int characterId, String ifNoneMatch, Integer page);
+    
+    public CompletableFuture<List<WalletJournalEntry>> getWalletDivisionJournalAllPages(int corporationId, int division);
+    
+    public CompletableFuture<List<WalletJournalEntry>> getWalletJournalAllPages(int characterId);
 }

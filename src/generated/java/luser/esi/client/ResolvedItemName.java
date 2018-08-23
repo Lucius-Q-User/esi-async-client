@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ResolvedItemName {
     private CategoryEnum category;
@@ -46,7 +45,7 @@ public class ResolvedItemName {
     public String getName() {
         return name;
     }
-    public static enum CategoryEnum implements StringyEnum{
+    public static enum CategoryEnum {
         ALLIANCE("alliance"),
         CHARACTER("character"),
         CONSTELLATION("constellation"),
@@ -60,8 +59,7 @@ public class ResolvedItemName {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

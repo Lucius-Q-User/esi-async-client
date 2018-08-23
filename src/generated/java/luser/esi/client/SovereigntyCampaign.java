@@ -3,7 +3,6 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class SovereigntyCampaign {
     private Float attackersScore;
@@ -164,7 +163,7 @@ public class SovereigntyCampaign {
     public long getStructureId() {
         return structureId;
     }
-    public static enum EventTypeEnum implements StringyEnum{
+    public static enum EventTypeEnum {
         TCU_DEFENSE("tcu_defense"),
         IHUB_DEFENSE("ihub_defense"),
         STATION_DEFENSE("station_defense"),
@@ -174,8 +173,7 @@ public class SovereigntyCampaign {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

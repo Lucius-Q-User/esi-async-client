@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface BookmarksApi {
     public ApiClient getApiClient();
+    
     /**
      * A list of your corporation's bookmarks
      * 
@@ -57,4 +58,12 @@ public interface BookmarksApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<CharacterBookmarksFolder>>> getCharacterBookmarkFolders(int characterId, String ifNoneMatch, Integer page);
+    
+    public CompletableFuture<List<BookmarkInfo>> getCorporationBookmarksAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationBookmarkFolder>> getCorporationBookmarkFoldersAllPages(int corporationId);
+    
+    public CompletableFuture<List<BookmarkInfo>> getCharacterBookmarksAllPages(int characterId);
+    
+    public CompletableFuture<List<CharacterBookmarksFolder>> getCharacterBookmarkFoldersAllPages(int characterId);
 }

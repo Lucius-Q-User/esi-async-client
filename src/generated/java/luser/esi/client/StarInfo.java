@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StarInfo {
     private long age;
@@ -116,7 +115,7 @@ public class StarInfo {
     public int getTypeId() {
         return typeId;
     }
-    public static enum SpectralClassEnum implements StringyEnum{
+    public static enum SpectralClassEnum {
         K2_V("K2 V"),
         K4_V("K4 V"),
         G2_V("G2 V"),
@@ -211,8 +210,7 @@ public class StarInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

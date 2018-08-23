@@ -6,6 +6,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class UserInterfaceApiImpl implements UserInterfaceApi {
+    
     private ApiClient apiClient;
     UserInterfaceApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -16,10 +17,9 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> openContract(int contractId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/contract/";
         RequestBuilder builder = Dsl.post(url);
-
         
         {
             String val = String.valueOf(contractId);
@@ -31,10 +31,9 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(int targetId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> openInfoWindow(int targetId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/information/";
         RequestBuilder builder = Dsl.post(url);
-
         
         {
             String val = String.valueOf(targetId);
@@ -46,10 +45,9 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(int typeId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> openMarketWindow(int typeId) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/marketdetails/";
         RequestBuilder builder = Dsl.post(url);
-
         
         {
             String val = String.valueOf(typeId);
@@ -61,10 +59,9 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(NewMailOpenWindow newMail) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> openMailCompose(NewMailOpenWindow newMail) {
         String url = "https://esi.evetech.net/v1/ui/openwindow/newmail/";
         RequestBuilder builder = Dsl.post(url);
-
         builder.setBody(ApiClientBase.renderToBody(newMail));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
@@ -72,10 +69,9 @@ class UserInterfaceApiImpl implements UserInterfaceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, long destinationId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> addWaypoint(boolean addToBeginning, boolean clearOtherWaypoints, long destinationId) {
         String url = "https://esi.evetech.net/v2/ui/autopilot/waypoint/";
         RequestBuilder builder = Dsl.post(url);
-
         
         {
             String val = String.valueOf(addToBeginning);

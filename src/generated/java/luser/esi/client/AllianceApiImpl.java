@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class AllianceApiImpl implements AllianceApi {
+    
     private ApiClient apiClient;
     AllianceApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getAlliances(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getCorporations(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/" + allianceId + "/corporations/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -45,10 +44,9 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<AllianceIcons>> getIcons(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/" + allianceId + "/icons/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -59,10 +57,9 @@ class AllianceApiImpl implements AllianceApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<AllianceInfo>> getAllianceInfo(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/alliances/" + allianceId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

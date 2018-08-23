@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface AssetsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.
      * 
@@ -81,4 +82,8 @@ public interface AssetsApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationAssetsEntry>>> getCorporationAssets(int corporationId, String ifNoneMatch, Integer page);
+    
+    public CompletableFuture<List<CharacterAssetsEntry>> getCharacterAssetsAllPages(int characterId);
+    
+    public CompletableFuture<List<CorporationAssetsEntry>> getCorporationAssetsAllPages(int corporationId);
 }

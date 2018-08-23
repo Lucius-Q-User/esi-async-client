@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface WarsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return a list of wars
      * 
@@ -43,4 +44,6 @@ public interface WarsApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(String ifNoneMatch, Integer page, int warId);
+    
+    public CompletableFuture<List<KillmailRef>> getWarKillmailsAllPages(int warId);
 }

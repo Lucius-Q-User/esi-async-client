@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum PostManagementAccessEnum implements StringyEnum {
+public enum PostManagementAccessEnum {
     ALLIANCE_MEMBER("alliance_member"),
     CONFIG_STARBASE_EQUIPMENT_ROLE("config_starbase_equipment_role"),
     CORPORATION_MEMBER("corporation_member"),
@@ -12,8 +10,7 @@ public enum PostManagementAccessEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

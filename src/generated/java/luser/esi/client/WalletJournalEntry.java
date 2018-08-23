@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class WalletJournalEntry {
     private Double amount;
@@ -187,7 +186,7 @@ public class WalletJournalEntry {
     public Integer getTaxReceiverId() {
         return taxReceiverId;
     }
-    public static enum ContextIdTypeEnum implements StringyEnum{
+    public static enum ContextIdTypeEnum {
         STRUCTURE_ID("structure_id"),
         STATION_ID("station_id"),
         MARKET_TRANSACTION_ID("market_transaction_id"),
@@ -205,12 +204,11 @@ public class WalletJournalEntry {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }
-    public static enum RefTypeEnum implements StringyEnum{
+    public static enum RefTypeEnum {
         ACCELERATION_GATE_FEE("acceleration_gate_fee"),
         ADVERTISEMENT_LISTING_FEE("advertisement_listing_fee"),
         AGENT_DONATION("agent_donation"),
@@ -333,8 +331,7 @@ public class WalletJournalEntry {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

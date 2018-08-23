@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface MarketApi {
     public ApiClient getApiClient();
+    
     /**
      * List cancelled and expired market orders placed by a character up to 90 days in the past.
      * 
@@ -152,4 +153,16 @@ public interface MarketApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationMarketOwner>>> getOrders(int corporationId, String ifNoneMatch, Integer page);
+    
+    public CompletableFuture<List<CharacterOrderHistoryEntry>> getCharacterOrderHistoryAllPages(int characterId);
+    
+    public CompletableFuture<List<StructureMarkets>> getStructureMarketAllPages(long structureId);
+    
+    public CompletableFuture<List<ActiveMarketOrder>> getMarketOrdersAllPages(OrderTypeEnum orderType, int regionId, Integer typeId);
+    
+    public CompletableFuture<IntArrayList> getMarketTypesAllPages(int regionId);
+    
+    public CompletableFuture<List<CorporationMarketOrderHistoryEntry>> getCorporationOrderHistoryAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationMarketOwner>> getOrdersAllPages(int corporationId);
 }

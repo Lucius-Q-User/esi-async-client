@@ -9,6 +9,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class ContactsApiImpl implements ContactsApi {
+    
     private ApiClient apiClient;
     ContactsApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -19,10 +20,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getAllianceContactLabels(int allianceId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/alliances/" + allianceId + "/contacts/labels/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -33,10 +33,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCharacterContactLabels(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/contacts/labels/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -47,10 +46,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<ContactLabel>>> getCorporationContactLabels(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/contacts/labels/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -61,10 +59,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<AllianceContact>>> getAllianceContacts(int allianceId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/alliances/" + allianceId + "/contacts/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -80,10 +77,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteCharacterContacts(int characterId, IntArrayList contactIds) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/contacts/";
         RequestBuilder builder = Dsl.delete(url);
-
         
         if (contactIds != null) {
             String val = ApiClientBase.renderArrayToQuery(contactIds, null);
@@ -95,10 +91,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CharacterContact>>> getCharacterIdContacts(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/contacts/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -114,10 +109,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> createContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/contacts/";
         RequestBuilder builder = Dsl.post(url);
-
         
         if (labelIds != null) {
             String val = ApiClientBase.renderArrayToQuery(labelIds, null);
@@ -140,10 +134,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> editContacts(int characterId, IntArrayList contactIds, LongArrayList labelIds, double standing, Boolean watched) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/contacts/";
         RequestBuilder builder = Dsl.put(url);
-
         
         if (labelIds != null) {
             String val = ApiClientBase.renderArrayToQuery(labelIds, null);
@@ -166,10 +159,9 @@ class ContactsApiImpl implements ContactsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/corporations/" + corporationId + "/contacts/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -182,5 +174,20 @@ class ContactsApiImpl implements ContactsApi {
         TypeReference<List<CorporationContact>> responseTypeRef = new TypeReference<List<CorporationContact>>() {};
         boolean needsAuth = true;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<AllianceContact>> getAllianceContactsAllPages(int allianceId) {
+        return ApiClientBase.pagingHelper((page) -> getAllianceContacts(allianceId, null, page), (List<AllianceContact>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CharacterContact>> getCharacterIdContactsAllPages(int characterId) {
+        return ApiClientBase.pagingHelper((page) -> getCharacterIdContacts(characterId, null, page), (List<CharacterContact>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationContact>> getCorporationContactsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getCorporationContacts(corporationId, null, page), (List<CorporationContact>)null);
     }
 }

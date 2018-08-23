@@ -6,6 +6,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class StatusApiImpl implements StatusApi {
+    
     private ApiClient apiClient;
     StatusApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -16,10 +17,9 @@ class StatusApiImpl implements StatusApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<ServerStatus>> getStatus(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<ServerStatus>> getStatus(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/status/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

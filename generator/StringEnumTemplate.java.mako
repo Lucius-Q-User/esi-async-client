@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum ${enumTag} implements StringyEnum {
+public enum ${enumTag} {
     %for member in enumCases:
 <%
     memberTag = member
@@ -22,8 +20,7 @@ public enum ${enumTag} implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

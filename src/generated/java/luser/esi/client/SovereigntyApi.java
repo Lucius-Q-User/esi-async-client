@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface SovereigntyApi {
     public ApiClient getApiClient();
+    
     /**
      * Shows sovereignty data for campaigns.
      * 

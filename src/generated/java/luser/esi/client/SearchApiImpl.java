@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class SearchApiImpl implements SearchApi {
+    
     private ApiClient apiClient;
     SearchApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class SearchApiImpl implements SearchApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, String ifNoneMatch, String search, Boolean strict) {         
+    public CompletableFuture<EsiResponseWrapper<SearchResult>> searchUnauthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v2/search/";
         RequestBuilder builder = Dsl.get(url);
-
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
             builder.addHeader("Accept-Language", val);
@@ -50,10 +50,9 @@ class SearchApiImpl implements SearchApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, String ifNoneMatch, String search, Boolean strict) {         
+    public CompletableFuture<EsiResponseWrapper<CharacterSearchResult>> searchAuthed(AcceptLanguageEnum acceptLanguage, List<CategoriesEnum> categories, int characterId, String ifNoneMatch, String search, Boolean strict) {
         String url = "https://esi.evetech.net/v3/characters/" + characterId + "/search/";
         RequestBuilder builder = Dsl.get(url);
-
         if (acceptLanguage != null) {
             String val = acceptLanguage.stringValue;
             builder.addHeader("Accept-Language", val);

@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum FleetRoleEnum implements StringyEnum {
+public enum FleetRoleEnum {
     FLEET_COMMANDER("fleet_commander"),
     WING_COMMANDER("wing_commander"),
     SQUAD_COMMANDER("squad_commander"),
@@ -12,8 +10,7 @@ public enum FleetRoleEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

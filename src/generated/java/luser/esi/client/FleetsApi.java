@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface FleetsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return the fleet ID the character is in, if any.
      * 

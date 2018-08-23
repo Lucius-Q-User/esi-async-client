@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum HistoricOrderStateEnum implements StringyEnum {
+public enum HistoricOrderStateEnum {
     CANCELLED("cancelled"),
     EXPIRED("expired");
     public final String stringValue;
@@ -10,8 +8,7 @@ public enum HistoricOrderStateEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum CalendarEventResponseEnum implements StringyEnum {
+public enum CalendarEventResponseEnum {
     DECLINED("declined"),
     NOT_RESPONDED("not_responded"),
     ACCEPTED("accepted"),
@@ -12,8 +10,7 @@ public enum CalendarEventResponseEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class NotificationInfo {
     private Boolean isRead;
@@ -103,7 +102,7 @@ public class NotificationInfo {
     public TypeEnum getType() {
         return type;
     }
-    public static enum SenderTypeEnum implements StringyEnum{
+    public static enum SenderTypeEnum {
         CHARACTER("character"),
         CORPORATION("corporation"),
         ALLIANCE("alliance"),
@@ -114,12 +113,11 @@ public class NotificationInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }
-    public static enum TypeEnum implements StringyEnum{
+    public static enum TypeEnum {
         ACCEPTEDALLY("AcceptedAlly"),
         ACCEPTEDSURRENDER("AcceptedSurrender"),
         ALLANCHORINGMSG("AllAnchoringMsg"),
@@ -305,8 +303,7 @@ public class NotificationInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

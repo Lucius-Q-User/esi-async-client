@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ContractInfo {
     private int acceptorId;
@@ -313,7 +312,7 @@ public class ContractInfo {
     public Double getVolume() {
         return volume;
     }
-    public static enum AvailabilityEnum implements StringyEnum{
+    public static enum AvailabilityEnum {
         PUBLIC("public"),
         PERSONAL("personal"),
         CORPORATION("corporation"),
@@ -323,12 +322,11 @@ public class ContractInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }
-    public static enum StatusEnum implements StringyEnum{
+    public static enum StatusEnum {
         OUTSTANDING("outstanding"),
         IN_PROGRESS("in_progress"),
         FINISHED_ISSUER("finished_issuer"),
@@ -344,12 +342,11 @@ public class ContractInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }
-    public static enum TypeEnum implements StringyEnum{
+    public static enum TypeEnum {
         UNKNOWN("unknown"),
         ITEM_EXCHANGE("item_exchange"),
         AUCTION("auction"),
@@ -360,8 +357,7 @@ public class ContractInfo {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

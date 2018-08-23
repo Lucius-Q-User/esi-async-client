@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface DogmaApi {
     public ApiClient getApiClient();
+    
     /**
      * Get a list of dogma attribute ids
      * 

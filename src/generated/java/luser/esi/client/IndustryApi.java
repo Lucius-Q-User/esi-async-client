@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface IndustryApi {
     public ApiClient getApiClient();
+    
     /**
      * List industry jobs placed by a character
      * 
@@ -13,7 +14,7 @@ public interface IndustryApi {
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param includeCompleted Whether retrieve completed character industry jobs as well
+     * @param includeCompleted Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days.
      * @return Industry jobs placed by a character
      */
     
@@ -91,7 +92,7 @@ public interface IndustryApi {
      * Requires one of the following EVE corporation role(s): FactoryManager
      * @param corporationId An EVE corporation ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param includeCompleted Whether retrieve completed industry jobs as well
+     * @param includeCompleted Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days.
      * @param page Which page of results to return
      * @return A list of corporation industry jobs
      */
@@ -119,4 +120,14 @@ public interface IndustryApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch);
+    
+    public CompletableFuture<List<CharacterMiningLedgerEntry>> getMiningAllPages(int characterId);
+    
+    public CompletableFuture<List<ActiveMoonExtraction>> getMiningExtractionsAllPages(int corporationId);
+    
+    public CompletableFuture<List<MiningObservers>> getMiningObserversAllPages(int corporationId);
+    
+    public CompletableFuture<List<MiningObserverInfo>> getMiningObserverInfoAllPages(int corporationId, long observerId);
+    
+    public CompletableFuture<List<IndustryJobInfo>> getIndustryJobsAllPages(int corporationId, Boolean includeCompleted);
 }

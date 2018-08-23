@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface LoyaltyApi {
     public ApiClient getApiClient();
+    
     /**
      * Return a list of loyalty points for all corporations the character has worked for
      * 

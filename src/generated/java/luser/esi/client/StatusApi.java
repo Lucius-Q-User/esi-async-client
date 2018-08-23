@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface StatusApi {
     public ApiClient getApiClient();
+    
     /**
      * EVE Server status
      * 

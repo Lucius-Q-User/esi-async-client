@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface CharacterApi {
     public ApiClient getApiClient();
+    
     /**
      * Bulk lookup of character IDs to corporation, alliance and faction
      * 
@@ -120,6 +121,12 @@ public interface CharacterApi {
      * ---
      * 
      * This route is cached for up to 600 seconds
+     * 
+     * ---
+     * Warning: This route has an upgrade available.
+     * 
+     * ---
+     * [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/characters/{character_id}/notifications/)
      * @param characterId An EVE character ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @return Returns your recent notifications
@@ -185,4 +192,6 @@ public interface CharacterApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<Float>> resolveCSPACost(int characterId, IntArrayList characters);
+    
+    public CompletableFuture<List<CharacterBlueprint>> getBlueprintsAllPages(int characterId);
 }

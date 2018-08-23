@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface CalendarApi {
     public ApiClient getApiClient();
+    
     /**
      * Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event.
      * 

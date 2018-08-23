@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface KillmailsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return a list of a character's kills and losses going back 90 days
      * 
@@ -47,4 +48,8 @@ public interface KillmailsApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<KillmailData>> getKillmail(String ifNoneMatch, String killmailHash, int killmailId);
+    
+    public CompletableFuture<List<KillmailRef>> getCharacterRecentKillmailsAllPages(int characterId);
+    
+    public CompletableFuture<List<KillmailRef>> getCorporationRecentKillmailsAllPages(int corporationId);
 }

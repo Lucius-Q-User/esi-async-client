@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StructureSerivec {
     private String name;
@@ -32,7 +31,7 @@ public class StructureSerivec {
     public StateEnum getState() {
         return state;
     }
-    public static enum StateEnum implements StringyEnum{
+    public static enum StateEnum {
         ONLINE("online"),
         OFFLINE("offline"),
         CLEANUP("cleanup");
@@ -41,8 +40,7 @@ public class StructureSerivec {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class SystemCostIndex {
     private ActivityEnum activity;
@@ -32,7 +31,7 @@ public class SystemCostIndex {
     public float getCostIndex() {
         return costIndex;
     }
-    public static enum ActivityEnum implements StringyEnum{
+    public static enum ActivityEnum {
         COPYING("copying"),
         DUPLICATING("duplicating"),
         INVENTION("invention"),
@@ -48,8 +47,7 @@ public class SystemCostIndex {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

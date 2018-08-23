@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationShareholders {
     private long shareCount;
@@ -46,7 +45,7 @@ public class CorporationShareholders {
     public ShareholderTypeEnum getShareholderType() {
         return shareholderType;
     }
-    public static enum ShareholderTypeEnum implements StringyEnum{
+    public static enum ShareholderTypeEnum {
         CHARACTER("character"),
         CORPORATION("corporation");
         private final String stringValue;
@@ -54,8 +53,7 @@ public class CorporationShareholders {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

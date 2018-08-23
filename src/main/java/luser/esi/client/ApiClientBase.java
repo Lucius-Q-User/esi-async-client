@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 import java.util.stream.StreamSupport;
 
 import org.asynchttpclient.AsyncHttpClient;
@@ -25,7 +27,9 @@ import com.carrotsearch.hppc.cursors.IntCursor;
 import com.carrotsearch.hppc.cursors.LongCursor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.hppc.HppcModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -39,33 +43,22 @@ abstract class ApiClientBase implements AutoCloseable {
     private String refreshToken;
     private Instant authTokenExpiry;
     private CompletableFuture<String> inflightRefresh;
-    private static AsyncHttpClient asyncHttpClient = null;
-    private static long activeClients = 0;
-    private static final Object LOCK = new Object();
+    private AsyncHttpClient asyncHttpClient;
+
     private boolean disposed = false;
     private DatasourceEnum datasource;
     private String userAgent;
     public ApiClientBase() {
-        synchronized (LOCK) {
-            if (activeClients == 0) {
-                asyncHttpClient = Dsl.asyncHttpClient(Dsl.config().setUserAgent(null));
-            }
-            activeClients++;
-        }
+        asyncHttpClient = Dsl.asyncHttpClient(Dsl.config().setUserAgent(null).setConnectTimeout(Integer.MAX_VALUE));
     }
     @Override
     public synchronized void close() {
         if (!disposed) {
             disposed = true;
-            synchronized (LOCK) {
-                activeClients--;
-                if (activeClients == 0) {
-                    try {
-                        asyncHttpClient.close();
-                    } catch (Exception e) {
-                        throw new Error(e);
-                    }
-                }
+            try {
+                asyncHttpClient.close();
+            } catch (Exception e) {
+                throw new Error(e);
             }
         }
     }
@@ -75,8 +68,9 @@ abstract class ApiClientBase implements AutoCloseable {
     }
     static final ObjectMapper GLOBAL_OBJECT_MAPPER = new ObjectMapper()
             .registerModule(new JavaTimeModule())
-            .registerModule(new EnumDeserModule())
-            .registerModule(new HppcModule());
+            .registerModule(new HppcModule())
+            .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
+            .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
     public synchronized String getClientId() {
         return clientId;
     }
@@ -244,7 +238,7 @@ abstract class ApiClientBase implements AutoCloseable {
     }
 
     static String renderArrayToQuery(Iterable<CategoriesEnum> categories, CategoriesEnum typeTrace) {
-        Iterable<String> it = StreamSupport.stream(categories.spliterator(), false).map(CategoriesEnum::getStringValue)::iterator;
+        Iterable<String> it = StreamSupport.stream(categories.spliterator(), false).map(CategoriesEnum::toString)::iterator;
         return String.join(",", it);
     }
 
@@ -261,6 +255,61 @@ abstract class ApiClientBase implements AutoCloseable {
         } catch (JsonProcessingException e) {
             throw new Error(e);
         }
+
+    }
+    static <T> CompletableFuture<List<T>> pagingHelper(Function<Integer, CompletableFuture<EsiResponseWrapper<List<T>>>> fn, List<T> typeTrace) {
+        CompletableFuture<EsiResponseWrapper<List<T>>> page1 = fn.apply(null);
+        return page1.thenCompose((wr) -> {
+            List<T> ret = new ArrayList<>();
+            ret.addAll(wr.get());
+            List<CompletableFuture<EsiResponseWrapper<List<T>>>> ift = new ArrayList<>();
+            for (int i = 2; i <= wr.getXPages(); i++) {
+                ift.add(fn.apply(i));
+            }
+            return CompletableFuture.allOf(ift.toArray(new CompletableFuture[0])).thenCompose((v) -> {
+                for (CompletableFuture<EsiResponseWrapper<List<T>>> ft: ift) {
+                    try {
+                        List<T> ts = ft.get().get();
+                        ret.addAll(ts);
+                    } catch (ExecutionException e) {
+                        CompletableFuture<List<T>> eft = new CompletableFuture<>();
+                        eft.completeExceptionally(e.getCause());
+                        return eft;
+                    } catch (InterruptedException e) {
+                        // TODO: handle exception
+                    }
+                }
+                return CompletableFuture.completedFuture(ret);
+            });
+        });
+
+    }
+    static CompletableFuture<IntArrayList> pagingHelper(Function<Integer, CompletableFuture<EsiResponseWrapper<IntArrayList>>> fn, IntArrayList typeTrace) {
+        CompletableFuture<EsiResponseWrapper<IntArrayList>> page1 = fn.apply(null);
+        return page1.thenCompose((wr) -> {
+            IntArrayList ret = new IntArrayList();
+            ret.addAll(wr.get());
+            List<CompletableFuture<EsiResponseWrapper<IntArrayList>>> ift = new ArrayList<>();
+            for (int i = 2; i <= wr.getXPages(); i++) {
+                ift.add(fn.apply(i));
+            }
+            return CompletableFuture.allOf(ift.toArray(new CompletableFuture[0])).thenCompose((v) -> {
+                for (CompletableFuture<EsiResponseWrapper<IntArrayList>> ft: ift) {
+                    try {
+                        IntArrayList ts = ft.get().get();
+                        ret.addAll(ts);
+                    } catch (ExecutionException e) {
+                        CompletableFuture<IntArrayList> eft = new CompletableFuture<>();
+                        eft.completeExceptionally(e.getCause());
+                        return eft;
+                    } catch (InterruptedException e) {
+                        // TODO: handle exception
+                    }
+                }
+                return CompletableFuture.completedFuture(ret);
+            });
+        });
+
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface CorporationApi {
     public ApiClient getApiClient();
+    
     /**
      * Get a list of npc corporations
      * 
@@ -323,4 +324,22 @@ public interface CorporationApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<CorporationInfo>> getCorporationInfo(int corporationId, String ifNoneMatch);
+    
+    public CompletableFuture<List<CorporationMedals>> getMedalsAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationIssuedMedals>> getIssuedMedalsAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationRolesHistoryEntry>> getRolesHistoryAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationShareholders>> getShareholdersAllPages(int corporationId);
+    
+    public CompletableFuture<List<StandingsEntry>> getStandingsAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationPOS>> getStarbasesAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationBlueprint>> getBlueprintsAllPages(int corporationId);
+    
+    public CompletableFuture<List<ContainerLogEntry>> getContainerLogsAllPages(int corporationId);
+    
+    public CompletableFuture<List<CorporationStructures>> getStructuresAllPages(AcceptLanguageEnum acceptLanguage, int corporationId);
 }

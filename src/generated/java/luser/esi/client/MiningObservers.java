@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class MiningObservers {
     private String lastUpdated;
@@ -48,15 +47,14 @@ public class MiningObservers {
     public ObserverTypeEnum getObserverType() {
         return observerType;
     }
-    public static enum ObserverTypeEnum implements StringyEnum{
+    public static enum ObserverTypeEnum {
         STRUCTURE("structure");
         private final String stringValue;
         private ObserverTypeEnum(String stringValue) {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

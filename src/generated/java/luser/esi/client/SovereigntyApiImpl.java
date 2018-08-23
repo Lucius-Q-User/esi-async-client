@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class SovereigntyApiImpl implements SovereigntyApi {
+    
     private ApiClient apiClient;
     SovereigntyApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<SovereigntyCampaign>>> getSovereigntyCampaigns(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/campaigns/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<SovMap>>> getSovereigntyMap(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/map/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -45,10 +44,9 @@ class SovereigntyApiImpl implements SovereigntyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<SovStructures>>> getSovereigntyStructures(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/sovereignty/structures/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

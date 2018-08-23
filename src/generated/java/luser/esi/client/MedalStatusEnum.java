@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum MedalStatusEnum implements StringyEnum {
+public enum MedalStatusEnum {
     PRIVATE("private"),
     PUBLIC("public");
     public final String stringValue;
@@ -10,8 +8,7 @@ public enum MedalStatusEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

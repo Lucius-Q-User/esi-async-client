@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum CloneLocationTypeEnum implements StringyEnum {
+public enum CloneLocationTypeEnum {
     STATION("station"),
     STRUCTURE("structure");
     public final String stringValue;
@@ -10,8 +8,7 @@ public enum CloneLocationTypeEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

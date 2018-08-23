@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class StandingsEntry {
     private int fromId;
@@ -46,7 +45,7 @@ public class StandingsEntry {
     public float getStanding() {
         return standing;
     }
-    public static enum FromTypeEnum implements StringyEnum{
+    public static enum FromTypeEnum {
         AGENT("agent"),
         NPC_CORP("npc_corp"),
         FACTION("faction");
@@ -55,8 +54,7 @@ public class StandingsEntry {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

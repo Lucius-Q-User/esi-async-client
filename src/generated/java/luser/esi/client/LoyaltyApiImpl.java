@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class LoyaltyApiImpl implements LoyaltyApi {
+    
     private ApiClient apiClient;
     LoyaltyApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class LoyaltyApiImpl implements LoyaltyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyPointsInfo>>> getLoyaltyPoints(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/loyalty/points/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class LoyaltyApiImpl implements LoyaltyApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<LoyaltyStoreOffer>>> getLoyaltyStoreOffers(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/loyalty/stores/" + corporationId + "/offers/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

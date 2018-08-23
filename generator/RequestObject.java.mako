@@ -94,7 +94,7 @@ public class ${title} {
     }
     %endfor
     %for tag, members in enumsToGenerate.items():
-    public static enum ${tag} implements StringyEnum{
+    public static enum ${tag} {
         %for member in members:
 <%
         memberTag = member
@@ -114,8 +114,7 @@ public class ${title} {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

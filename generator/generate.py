@@ -215,6 +215,7 @@ renameObjects  = {
    "PostCharactersCharacterIdMailRecipient": "MailRecipient",
    "GetCharactersCharacterIdContractsOk": "ContractInfo",
    "GetCorporationsCorporationIdContractsOk": "ContractInfo",
+   "GetContractsPublicRegionIdOk": "ContractInfo",
    "GetFwLeaderboardsCorporationsActiveTotalActiveTotal": "FwCorporationLeaderboardEntry",
    "GetFwLeaderboardsCorporationsLastWeekLastWeek": "FwCorporationLeaderboardEntry",
    "GetFwLeaderboardsCorporationsYesterdayYesterday": "FwCorporationLeaderboardEntry",
@@ -243,6 +244,7 @@ renameObjects  = {
    "GetCorporationsCorporationIdWalletsDivisionJournalOk": "WalletJournalEntry",
    "GetCharactersCharacterIdWalletJournalOk": "WalletJournalEntry",
    "GetCharactersCharacterIdContractsContractIdBidsOk": "AuctionBid",
+   "GetContractsPublicBidsContractIdOk": "AuctionBid",
    "GetCorporationsCorporationIdContractsContractIdBidsOk": "AuctionBid",
    "GetCharactersCharacterIdBookmarksOk": "BookmarkInfo",
    "GetCorporationsCorporationIdBookmarksOk": "BookmarkInfo",
@@ -271,6 +273,7 @@ renameObjects  = {
    "GetCharactersCharacterIdStandingsOk": "StandingsEntry",
    "GetCorporationsCorporationIdStandingsOk": "StandingsEntry",
    "GetCharactersCharacterIdContractsContractIdItemsOk": "ContractedItem",
+   "GetContractsPublicItemsContractIdOk": "ContractedItem",
    "GetCorporationsCorporationIdContractsContractIdItemsOk": "ContractedItem",
    "GetCharactersCharacterIdBookmarksItem": "BookmarkedItem",
    "GetCorporationsCorporationIdBookmarksItem": "BookmarkedItem",
@@ -500,6 +503,9 @@ renameFunctions = {
    "getCharactersCharacterIdContracts": "getCharacterContracts",
    "getCharactersCharacterIdContractsContractIdBids": "getCharacterContractBids",
    "getCharactersCharacterIdContractsContractIdItems": "getCharacterContractItems",
+   "getContractsPublicRegionId": "getPublicContracts",
+   "getContractsPublicBidsContractId": "getPublicContractBids",
+   "getContractsPublicItemsContractId": "getPublicContractItems",
    "getCharactersCharacterIdFittings": "getFittings",
    "getCharactersCharacterIdFleet": "getFleet",
    "getCharactersCharacterIdFwStats": "getFwStats",
@@ -781,14 +787,21 @@ def getArgDocstring(path, method):
       ret.append((doc, name))
    return ret
 
-def getArgNames(path, method):
+def getArgNames(path, method, for_paginated=False):
    parDefs = swg["paths"][path][method]["parameters"]
    ret = []
+   paginated = False
    for par in parDefs:
       if "$ref" in par:
          if par["$ref"] == "#/parameters/token":
             continue
          if par["$ref"] == "#/parameters/datasource":
+            continue
+         if par["$ref"] == "#/parameters/page":
+            paginated = True
+            if for_paginated:
+               continue
+         if par["$ref"] == "#/parameters/If-None-Match" and for_paginated:
             continue
          par = parameterRefs[par["$ref"]]
       if par["name"] == "language":
@@ -797,7 +810,7 @@ def getArgNames(path, method):
       type = getTypeTag(par, True)
 
       ret.append((type, name))
-   return ret
+   return (paginated, ", ".join(type + " " + name for (type, name) in ret))
 
 
 def getFunctionName(path, method):

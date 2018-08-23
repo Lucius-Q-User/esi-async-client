@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class IncursionsApiImpl implements IncursionsApi {
+    
     private ApiClient apiClient;
     IncursionsApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class IncursionsApiImpl implements IncursionsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ActiveIncursions>>> getIncursions(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<ActiveIncursions>>> getIncursions(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/incursions/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

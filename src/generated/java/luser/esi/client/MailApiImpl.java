@@ -8,6 +8,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class MailApiImpl implements MailApi {
+    
     private ApiClient apiClient;
     MailApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -18,10 +19,9 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {         
+    public CompletableFuture<EsiResponseWrapper<List<MailboxEntry>>> getMailbox(int characterId, String ifNoneMatch, IntArrayList labels, Integer lastMailId) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -42,10 +42,9 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, NewMail mail) {         
+    public CompletableFuture<EsiResponseWrapper<Integer>> sendMail(int characterId, NewMail mail) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/";
         RequestBuilder builder = Dsl.post(url);
-
         builder.setBody(ApiClientBase.renderToBody(mail));
         TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
@@ -53,20 +52,18 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, int labelId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMailLabel(int characterId, int labelId) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/labels/" + labelId + "/";
         RequestBuilder builder = Dsl.delete(url);
-
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<MailingList>>> getMailLists(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/lists/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -77,20 +74,18 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, int mailId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteMail(int characterId, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/" + mailId + "/";
         RequestBuilder builder = Dsl.delete(url);
-
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, String ifNoneMatch, int mailId) {         
+    public CompletableFuture<EsiResponseWrapper<MailContents>> getMailContents(int characterId, String ifNoneMatch, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/" + mailId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -101,10 +96,9 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, int mailId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> updateMailMetadata(int characterId, NewMailContents contents, int mailId) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mail/" + mailId + "/";
         RequestBuilder builder = Dsl.put(url);
-
         builder.setBody(ApiClientBase.renderToBody(contents));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
@@ -112,10 +106,9 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, NewMailLabel label) {         
+    public CompletableFuture<EsiResponseWrapper<Integer>> createMailLabel(int characterId, NewMailLabel label) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/mail/labels/";
         RequestBuilder builder = Dsl.post(url);
-
         builder.setBody(ApiClientBase.renderToBody(label));
         TypeReference<Integer> responseTypeRef = new TypeReference<Integer>() {};
         boolean needsAuth = true;
@@ -123,10 +116,9 @@ class MailApiImpl implements MailApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<MailLabels>> getMailLabels(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/" + characterId + "/mail/labels/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

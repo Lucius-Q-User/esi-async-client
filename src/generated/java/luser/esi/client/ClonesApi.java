@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface ClonesApi {
     public ApiClient getApiClient();
+    
     /**
      * Return implants on the active clone of a character
      * 

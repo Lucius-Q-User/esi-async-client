@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ContainerLogEntry {
     private ActionEnum action;
@@ -173,7 +172,7 @@ public class ContainerLogEntry {
     public Integer getTypeId() {
         return typeId;
     }
-    public static enum ActionEnum implements StringyEnum{
+    public static enum ActionEnum {
         ADD("add"),
         ASSEMBLE("assemble"),
         CONFIGURE("configure"),
@@ -189,12 +188,11 @@ public class ContainerLogEntry {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }
-    public static enum PasswordTypeEnum implements StringyEnum{
+    public static enum PasswordTypeEnum {
         CONFIG("config"),
         GENERAL("general");
         private final String stringValue;
@@ -202,8 +200,7 @@ public class ContainerLogEntry {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

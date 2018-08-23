@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum CorporationRolesEnum implements StringyEnum {
+public enum CorporationRolesEnum {
     ACCOUNT_TAKE_1("Account_Take_1"),
     ACCOUNT_TAKE_2("Account_Take_2"),
     ACCOUNT_TAKE_3("Account_Take_3"),
@@ -58,8 +56,7 @@ public enum CorporationRolesEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

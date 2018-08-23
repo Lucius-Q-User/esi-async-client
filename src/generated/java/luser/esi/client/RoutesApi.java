@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface RoutesApi {
     public ApiClient getApiClient();
+    
     /**
      * Get the systems between origin and destination
      * 

@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum AssetLocationTypeEnum implements StringyEnum {
+public enum AssetLocationTypeEnum {
     STATION("station"),
     SOLAR_SYSTEM("solar_system"),
     OTHER("other");
@@ -11,8 +9,7 @@ public enum AssetLocationTypeEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

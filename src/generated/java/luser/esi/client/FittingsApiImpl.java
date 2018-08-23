@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class FittingsApiImpl implements FittingsApi {
+    
     private ApiClient apiClient;
     FittingsApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class FittingsApiImpl implements FittingsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<SavedFitting>>> getFittings(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/fittings/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class FittingsApiImpl implements FittingsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, NewStoredFitting fitting) {         
+    public CompletableFuture<EsiResponseWrapper<FittingCreatedResponse>> createFitting(int characterId, NewStoredFitting fitting) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/fittings/";
         RequestBuilder builder = Dsl.post(url);
-
         builder.setBody(ApiClientBase.renderToBody(fitting));
         TypeReference<FittingCreatedResponse> responseTypeRef = new TypeReference<FittingCreatedResponse>() {};
         boolean needsAuth = true;
@@ -42,10 +41,9 @@ class FittingsApiImpl implements FittingsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, int fittingId) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> deleteFitting(int characterId, int fittingId) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/fittings/" + fittingId + "/";
         RequestBuilder builder = Dsl.delete(url);
-
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);

@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface UniverseApi {
     public ApiClient getApiClient();
+    
     /**
      * Get all character ancestries
      * 
@@ -362,4 +363,8 @@ public interface UniverseApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<SystemInfo>> getSystemInfo(AcceptLanguageEnum acceptLanguage, String ifNoneMatch, int systemId);
+    
+    public CompletableFuture<IntArrayList> getGroupsAllPages();
+    
+    public CompletableFuture<IntArrayList> getTypesAllPages();
 }

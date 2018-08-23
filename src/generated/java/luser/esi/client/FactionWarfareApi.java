@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface FactionWarfareApi {
     public ApiClient getApiClient();
+    
     /**
      * Statistical overview of a character involved in faction warfare
      * 

@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum CategoriesEnum implements StringyEnum {
+public enum CategoriesEnum {
     AGENT("agent"),
     ALLIANCE("alliance"),
     CHARACTER("character"),
@@ -18,8 +16,7 @@ public enum CategoriesEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

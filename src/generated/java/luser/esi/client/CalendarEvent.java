@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import java.time.Instant;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CalendarEvent {
     private Instant date;
@@ -145,7 +144,7 @@ public class CalendarEvent {
     public String getTitle() {
         return title;
     }
-    public static enum OwnerTypeEnum implements StringyEnum{
+    public static enum OwnerTypeEnum {
         EVE_SERVER("eve_server"),
         CORPORATION("corporation"),
         FACTION("faction"),
@@ -156,8 +155,7 @@ public class CalendarEvent {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

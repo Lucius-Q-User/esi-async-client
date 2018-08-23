@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class CalendarApiImpl implements CalendarApi {
+    
     private ApiClient apiClient;
     CalendarApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, Integer fromEvent, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CalendarInfo>>> getCalendar(int characterId, Integer fromEvent, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/calendar/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -36,10 +36,9 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, int eventId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<EventAttendee>>> getCalendarEventAttendees(int characterId, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/calendar/" + eventId + "/attendees/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -50,10 +49,9 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, int eventId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CalendarEvent>> getCalendarEventInfo(int characterId, int eventId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v3/characters/" + characterId + "/calendar/" + eventId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -64,10 +62,9 @@ class CalendarApiImpl implements CalendarApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, int eventId, EventResponse response) {         
+    public CompletableFuture<EsiResponseWrapper<Void>> respondToCalendarEvent(int characterId, int eventId, EventResponse response) {
         String url = "https://esi.evetech.net/v3/characters/" + characterId + "/calendar/" + eventId + "/";
         RequestBuilder builder = Dsl.put(url);
-
         builder.setBody(ApiClientBase.renderToBody(response));
         TypeReference<Void> responseTypeRef = null;
         boolean needsAuth = true;

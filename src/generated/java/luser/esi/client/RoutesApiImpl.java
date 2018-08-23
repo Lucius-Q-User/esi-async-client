@@ -8,6 +8,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class RoutesApiImpl implements RoutesApi {
+    
     private ApiClient apiClient;
     RoutesApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -18,10 +19,9 @@ class RoutesApiImpl implements RoutesApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, int destination, FlagEnum flag, String ifNoneMatch, int origin) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getRoute(IntArrayList avoid, List<IntArrayList> connections, int destination, FlagEnum flag, String ifNoneMatch, int origin) {
         String url = "https://esi.evetech.net/v1/route/" + origin + "/" + destination + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

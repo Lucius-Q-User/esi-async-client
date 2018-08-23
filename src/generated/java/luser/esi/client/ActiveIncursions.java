@@ -2,7 +2,6 @@ package luser.esi.client;
 
 import com.carrotsearch.hppc.IntArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class ActiveIncursions {
     private int constellationId;
@@ -117,7 +116,7 @@ public class ActiveIncursions {
     public String getType() {
         return type;
     }
-    public static enum StateEnum implements StringyEnum{
+    public static enum StateEnum {
         WITHDRAWING("withdrawing"),
         MOBILIZING("mobilizing"),
         ESTABLISHED("established");
@@ -126,8 +125,7 @@ public class ActiveIncursions {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

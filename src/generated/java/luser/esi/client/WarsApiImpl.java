@@ -8,6 +8,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class WarsApiImpl implements WarsApi {
+    
     private ApiClient apiClient;
     WarsApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -18,10 +19,9 @@ class WarsApiImpl implements WarsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(String ifNoneMatch, Integer maxWarId) {         
+    public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(String ifNoneMatch, Integer maxWarId) {
         String url = "https://esi.evetech.net/v1/wars/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -37,10 +37,9 @@ class WarsApiImpl implements WarsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(String ifNoneMatch, int warId) {         
+    public CompletableFuture<EsiResponseWrapper<WarInfo>> getWarInfo(String ifNoneMatch, int warId) {
         String url = "https://esi.evetech.net/v1/wars/" + warId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -51,10 +50,9 @@ class WarsApiImpl implements WarsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(String ifNoneMatch, Integer page, int warId) {         
+    public CompletableFuture<EsiResponseWrapper<List<KillmailRef>>> getWarKillmails(String ifNoneMatch, Integer page, int warId) {
         String url = "https://esi.evetech.net/v1/wars/" + warId + "/killmails/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -67,5 +65,10 @@ class WarsApiImpl implements WarsApi {
         TypeReference<List<KillmailRef>> responseTypeRef = new TypeReference<List<KillmailRef>>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<KillmailRef>> getWarKillmailsAllPages(int warId) {
+        return ApiClientBase.pagingHelper((page) -> getWarKillmails(null, page, warId), (List<KillmailRef>)null);
     }
 }

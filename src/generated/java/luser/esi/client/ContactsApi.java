@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface ContactsApi {
     public ApiClient getApiClient();
+    
     /**
      * Return custom labels for an alliance's contacts
      * 
@@ -121,4 +122,10 @@ public interface ContactsApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<List<CorporationContact>>> getCorporationContacts(int corporationId, String ifNoneMatch, Integer page);
+    
+    public CompletableFuture<List<AllianceContact>> getAllianceContactsAllPages(int allianceId);
+    
+    public CompletableFuture<List<CharacterContact>> getCharacterIdContactsAllPages(int characterId);
+    
+    public CompletableFuture<List<CorporationContact>> getCorporationContactsAllPages(int corporationId);
 }

@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
+    
     private ApiClient apiClient;
     PlanetaryInteractionApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<PlanetInfo>>> getPlanets(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/planets/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationCustomsOffice>>> getCustomsOffices(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/customs_offices/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -50,10 +49,9 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(String ifNoneMatch, int schematicId) {         
+    public CompletableFuture<EsiResponseWrapper<SchematicInfo>> getSchematicInfo(String ifNoneMatch, int schematicId) {
         String url = "https://esi.evetech.net/v1/universe/schematics/" + schematicId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -64,10 +62,9 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId) {         
+    public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId) {
         String url = "https://esi.evetech.net/v3/characters/" + characterId + "/planets/" + planetId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -75,5 +72,10 @@ class PlanetaryInteractionApiImpl implements PlanetaryInteractionApi {
         TypeReference<PlanetContents> responseTypeRef = new TypeReference<PlanetContents>() {};
         boolean needsAuth = true;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<CorporationCustomsOffice>> getCustomsOfficesAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getCustomsOffices(corporationId, null, page), (List<CorporationCustomsOffice>)null);
     }
 }

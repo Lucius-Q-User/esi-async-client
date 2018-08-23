@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class IndustryApiImpl implements IndustryApi {
+    
     private ApiClient apiClient;
     IndustryApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, String ifNoneMatch, Boolean includeCompleted) {         
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int characterId, String ifNoneMatch, Boolean includeCompleted) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/industry/jobs/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -36,10 +36,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMiningLedgerEntry>>> getMining(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/mining/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -55,10 +54,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<ActiveMoonExtraction>>> getMiningExtractions(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/" + corporationId + "/mining/extractions/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -74,10 +72,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<MiningObservers>>> getMiningObservers(int corporationId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/" + corporationId + "/mining/observers/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -93,10 +90,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, String ifNoneMatch, long observerId, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<MiningObserverInfo>>> getMiningObserverInfo(int corporationId, String ifNoneMatch, long observerId, Integer page) {
         String url = "https://esi.evetech.net/v1/corporation/" + corporationId + "/mining/observers/" + observerId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -112,10 +108,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, String ifNoneMatch, Boolean includeCompleted, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<IndustryJobInfo>>> getIndustryJobs(int corporationId, String ifNoneMatch, Boolean includeCompleted, Integer page) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/industry/jobs/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -136,10 +131,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<IndustryFacilities>>> getIndustryFacilities(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/industry/facilities/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -150,10 +144,9 @@ class IndustryApiImpl implements IndustryApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<IndustrySystems>>> getIndustrySystems(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/industry/systems/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -161,5 +154,30 @@ class IndustryApiImpl implements IndustryApi {
         TypeReference<List<IndustrySystems>> responseTypeRef = new TypeReference<List<IndustrySystems>>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<CharacterMiningLedgerEntry>> getMiningAllPages(int characterId) {
+        return ApiClientBase.pagingHelper((page) -> getMining(characterId, null, page), (List<CharacterMiningLedgerEntry>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<ActiveMoonExtraction>> getMiningExtractionsAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getMiningExtractions(corporationId, null, page), (List<ActiveMoonExtraction>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<MiningObservers>> getMiningObserversAllPages(int corporationId) {
+        return ApiClientBase.pagingHelper((page) -> getMiningObservers(corporationId, null, page), (List<MiningObservers>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<MiningObserverInfo>> getMiningObserverInfoAllPages(int corporationId, long observerId) {
+        return ApiClientBase.pagingHelper((page) -> getMiningObserverInfo(corporationId, null, observerId, page), (List<MiningObserverInfo>)null);
+    }
+    
+    @Override
+    public CompletableFuture<List<IndustryJobInfo>> getIndustryJobsAllPages(int corporationId, Boolean includeCompleted) {
+        return ApiClientBase.pagingHelper((page) -> getIndustryJobs(corporationId, null, includeCompleted, page), (List<IndustryJobInfo>)null);
     }
 }

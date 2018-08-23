@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface InsuranceApi {
     public ApiClient getApiClient();
+    
     /**
      * Return available insurance levels for all ship types
      * 

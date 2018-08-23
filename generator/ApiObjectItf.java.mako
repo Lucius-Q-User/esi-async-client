@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface ${tag}Api {
     public ApiClient getApiClient();
+    <% paginated = [] %>
     % for path in paths:
     % for method in swg["paths"][path]:
     /**
@@ -14,16 +15,20 @@ public interface ${tag}Api {
 %endfor
      * @return ${getReturnDocstring(path, method)}
      */
-    <% returnType = getReturnTypeName(path, method) %>
-    public CompletableFuture<EsiResponseWrapper<${returnType}>> \
-${getFunctionName(path, method)}(\
-        % for argty, argname in getArgNames(path, method):
-${argty} ${argname}\
-        %if not loop.last:
-, \
-        %endif
-        %endfor
-);
+    <%
+        returnType = getReturnTypeName(path, method)
+        pgn, descriptor = getArgNames(path, method)
+        if pgn:
+            paginated.append((path, method))
+    %>
+    public CompletableFuture<EsiResponseWrapper<${returnType}>> ${getFunctionName(path, method)}(${descriptor});
     %endfor
     %endfor
+    % for path, method in paginated:
+    <%
+        returnType = getReturnTypeName(path, method)
+        _, descriptor = getArgNames(path, method, True)
+    %>
+    public CompletableFuture<${returnType}> ${getFunctionName(path, method)}AllPages(${descriptor});
+    % endfor
 }

@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface AllianceApi {
     public ApiClient getApiClient();
+    
     /**
      * List all active player alliances
      * 

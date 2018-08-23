@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 public interface PlanetaryInteractionApi {
     public ApiClient getApiClient();
+    
     /**
      * Returns a list of all planetary colonies owned by a character.
      * 
@@ -58,4 +59,6 @@ public interface PlanetaryInteractionApi {
      */
     
     public CompletableFuture<EsiResponseWrapper<PlanetContents>> getPlanetInfo(int characterId, String ifNoneMatch, int planetId);
+    
+    public CompletableFuture<List<CorporationCustomsOffice>> getCustomsOfficesAllPages(int corporationId);
 }

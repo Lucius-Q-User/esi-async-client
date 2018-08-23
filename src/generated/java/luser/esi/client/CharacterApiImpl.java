@@ -8,6 +8,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class CharacterApiImpl implements CharacterApi {
+    
     private ApiClient apiClient;
     CharacterApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -18,10 +19,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResolvedCharacterAffiliation>>> resolveCharacterAffiliations(IntArrayList characters) {         
+    public CompletableFuture<EsiResponseWrapper<List<ResolvedCharacterAffiliation>>> resolveCharacterAffiliations(IntArrayList characters) {
         String url = "https://esi.evetech.net/v1/characters/affiliation/";
         RequestBuilder builder = Dsl.post(url);
-
         builder.setBody(ApiClientBase.renderToBody(characters));
         TypeReference<List<ResolvedCharacterAffiliation>> responseTypeRef = new TypeReference<List<ResolvedCharacterAffiliation>>() {};
         boolean needsAuth = false;
@@ -29,10 +29,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ResearchAgentInfo>>> getAgentsResearch(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<ResearchAgentInfo>>> getAgentsResearch(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/agents_research/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -43,10 +42,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CorporationHistoryEntry>>> getCorpHistory(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CorporationHistoryEntry>>> getCorpHistory(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/corporationhistory/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -57,10 +55,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<JumpAidsInfo>> getJumpAids(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<JumpAidsInfo>> getJumpAids(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/fatigue/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -71,10 +68,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterMedal>>> getMedals(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CharacterMedal>>> getMedals(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/medals/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -85,10 +81,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<NewContactNotification>>> getContactNotifications(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<NewContactNotification>>> getContactNotifications(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/notifications/contacts/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -99,10 +94,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<StandingsEntry>>> getStandings(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/standings/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -113,10 +107,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterTitles>>> getTitles(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CharacterTitles>>> getTitles(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/titles/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -127,10 +120,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterBlueprint>>> getBlueprints(int characterId, String ifNoneMatch, Integer page) {         
+    public CompletableFuture<EsiResponseWrapper<List<CharacterBlueprint>>> getBlueprints(int characterId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/blueprints/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -146,10 +138,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<NotificationInfo>>> getNotifications(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<NotificationInfo>>> getNotifications(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/notifications/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -160,10 +151,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterPortrait>> getPortrait(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CharacterPortrait>> getPortrait(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/portrait/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -174,10 +164,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterRoles>> getRoles(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CharacterRoles>> getRoles(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/roles/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -188,10 +177,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<CharacterStats>>> getStats(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<CharacterStats>>> getStats(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/characters/" + characterId + "/stats/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -202,10 +190,9 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterInfo>> getCharacterInfo(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CharacterInfo>> getCharacterInfo(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v4/characters/" + characterId + "/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -216,13 +203,17 @@ class CharacterApiImpl implements CharacterApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<Float>> resolveCSPACost(int characterId, IntArrayList characters) {         
+    public CompletableFuture<EsiResponseWrapper<Float>> resolveCSPACost(int characterId, IntArrayList characters) {
         String url = "https://esi.evetech.net/v4/characters/" + characterId + "/cspa/";
         RequestBuilder builder = Dsl.post(url);
-
         builder.setBody(ApiClientBase.renderToBody(characters));
         TypeReference<Float> responseTypeRef = new TypeReference<Float>() {};
         boolean needsAuth = true;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
+    }
+    
+    @Override
+    public CompletableFuture<List<CharacterBlueprint>> getBlueprintsAllPages(int characterId) {
+        return ApiClientBase.pagingHelper((page) -> getBlueprints(characterId, null, page), (List<CharacterBlueprint>)null);
     }
 }

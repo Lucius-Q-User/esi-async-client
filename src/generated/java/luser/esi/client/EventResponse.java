@@ -1,7 +1,6 @@
 package luser.esi.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class EventResponse {
     private ResponseEnum response;
@@ -18,7 +17,7 @@ public class EventResponse {
     public ResponseEnum getResponse() {
         return response;
     }
-    public static enum ResponseEnum implements StringyEnum{
+    public static enum ResponseEnum {
         ACCEPTED("accepted"),
         DECLINED("declined"),
         TENTATIVE("tentative");
@@ -27,8 +26,7 @@ public class EventResponse {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }

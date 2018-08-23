@@ -7,6 +7,7 @@ import org.asynchttpclient.Dsl;
 import org.asynchttpclient.RequestBuilder;
 
 class FactionWarfareApiImpl implements FactionWarfareApi {
+    
     private ApiClient apiClient;
     FactionWarfareApiImpl(ApiClient apiClient) {
         this.apiClient = apiClient;
@@ -17,10 +18,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CharacterFwStats>> getFwStats(int characterId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/characters/" + characterId + "/fw/stats/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -31,10 +31,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/corporations/" + corporationId + "/fw/stats/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -45,10 +44,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -59,10 +57,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/characters/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -73,10 +70,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/leaderboards/corporations/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -87,10 +83,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<GlobalFwStats>>> getFwStats(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/stats/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -101,10 +96,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<FwActiveWars>>> getFwWars(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v1/fw/wars/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);
@@ -115,10 +109,9 @@ class FactionWarfareApiImpl implements FactionWarfareApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(String ifNoneMatch) {         
+    public CompletableFuture<EsiResponseWrapper<List<FwSystemsList>>> getFwSystems(String ifNoneMatch) {
         String url = "https://esi.evetech.net/v2/fw/systems/";
         RequestBuilder builder = Dsl.get(url);
-
         if (ifNoneMatch != null) {
             String val = ifNoneMatch;
             builder.addHeader("If-None-Match", val);

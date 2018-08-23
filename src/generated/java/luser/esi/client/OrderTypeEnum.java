@@ -1,8 +1,6 @@
 package luser.esi.client;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
-public enum OrderTypeEnum implements StringyEnum {
+public enum OrderTypeEnum {
     BUY("buy"),
     SELL("sell"),
     ALL("all");
@@ -11,8 +9,7 @@ public enum OrderTypeEnum implements StringyEnum {
        this.stringValue = stringValue;
     }
     @Override
-    @JsonValue
-    public String getStringValue() {
+    public String toString() {
         return stringValue;
     }
 }

@@ -3,7 +3,6 @@ package luser.esi.client;
 import java.time.Instant;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class CorporationStructures {
     private int corporationId;
@@ -230,7 +229,7 @@ public class CorporationStructures {
     public Instant getUnanchorsAt() {
         return unanchorsAt;
     }
-    public static enum StateEnum implements StringyEnum{
+    public static enum StateEnum {
         ANCHOR_VULNERABLE("anchor_vulnerable"),
         ANCHORING("anchoring"),
         ARMOR_REINFORCE("armor_reinforce"),
@@ -248,8 +247,7 @@ public class CorporationStructures {
             this.stringValue = stringValue;
         }
         @Override
-        @JsonValue
-        public String getStringValue() {
+        public String toString() {
             return stringValue;
         }
     }
