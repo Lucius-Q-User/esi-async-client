@@ -80,7 +80,7 @@ class ContractsApiImpl implements ContractsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getPublicContractItems(int contractId, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<ContractedItemEx>>> getPublicContractItems(int contractId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/contracts/public/items/" + contractId + "/";
         RequestBuilder builder = Dsl.get(url);
         if (ifNoneMatch != null) {
@@ -92,13 +92,13 @@ class ContractsApiImpl implements ContractsApi {
             String val = String.valueOf(page);
             builder.addQueryParam("page", val);
         }
-        TypeReference<List<ContractedItem>> responseTypeRef = new TypeReference<List<ContractedItem>>() {};
+        TypeReference<List<ContractedItemEx>> responseTypeRef = new TypeReference<List<ContractedItemEx>>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getPublicContracts(String ifNoneMatch, Integer page, int regionId) {
+    public CompletableFuture<EsiResponseWrapper<List<PublicContractInfo>>> getPublicContracts(String ifNoneMatch, Integer page, int regionId) {
         String url = "https://esi.evetech.net/v1/contracts/public/" + regionId + "/";
         RequestBuilder builder = Dsl.get(url);
         if (ifNoneMatch != null) {
@@ -110,7 +110,7 @@ class ContractsApiImpl implements ContractsApi {
             String val = String.valueOf(page);
             builder.addQueryParam("page", val);
         }
-        TypeReference<List<ContractInfo>> responseTypeRef = new TypeReference<List<ContractInfo>>() {};
+        TypeReference<List<PublicContractInfo>> responseTypeRef = new TypeReference<List<PublicContractInfo>>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
@@ -175,13 +175,13 @@ class ContractsApiImpl implements ContractsApi {
     }
     
     @Override
-    public CompletableFuture<List<ContractedItem>> getPublicContractItemsAllPages(int contractId) {
-        return ApiClientBase.pagingHelper((page) -> getPublicContractItems(contractId, null, page), (List<ContractedItem>)null);
+    public CompletableFuture<List<ContractedItemEx>> getPublicContractItemsAllPages(int contractId) {
+        return ApiClientBase.pagingHelper((page) -> getPublicContractItems(contractId, null, page), (List<ContractedItemEx>)null);
     }
     
     @Override
-    public CompletableFuture<List<ContractInfo>> getPublicContractsAllPages(int regionId) {
-        return ApiClientBase.pagingHelper((page) -> getPublicContracts(null, page, regionId), (List<ContractInfo>)null);
+    public CompletableFuture<List<PublicContractInfo>> getPublicContractsAllPages(int regionId) {
+        return ApiClientBase.pagingHelper((page) -> getPublicContracts(null, page, regionId), (List<PublicContractInfo>)null);
     }
     
     @Override

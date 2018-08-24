@@ -70,7 +70,7 @@ public interface ContractsApi {
      * @return A list of items in this contract
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractedItem>>> getPublicContractItems(int contractId, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<ContractedItemEx>>> getPublicContractItems(int contractId, String ifNoneMatch, Integer page);
     /**
      * Returns a paginated list of all public contracts in the given region
      * 
@@ -83,7 +83,7 @@ public interface ContractsApi {
      * @return A list of contracts
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<ContractInfo>>> getPublicContracts(String ifNoneMatch, Integer page, int regionId);
+    public CompletableFuture<EsiResponseWrapper<List<PublicContractInfo>>> getPublicContracts(String ifNoneMatch, Integer page, int regionId);
     /**
      * Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is "in_progress".
      * 
@@ -129,9 +129,9 @@ public interface ContractsApi {
     
     public CompletableFuture<List<AuctionBid>> getPublicContractBidsAllPages(int contractId);
     
-    public CompletableFuture<List<ContractedItem>> getPublicContractItemsAllPages(int contractId);
+    public CompletableFuture<List<ContractedItemEx>> getPublicContractItemsAllPages(int contractId);
     
-    public CompletableFuture<List<ContractInfo>> getPublicContractsAllPages(int regionId);
+    public CompletableFuture<List<PublicContractInfo>> getPublicContractsAllPages(int regionId);
     
     public CompletableFuture<List<ContractInfo>> getCorporationContractsAllPages(int corporationId);
     
