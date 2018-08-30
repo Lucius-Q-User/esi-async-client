@@ -7,14 +7,14 @@ public interface LocationApi {
     public ApiClient getApiClient();
     
     /**
-     * Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
+     * Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable
      * 
      * ---
      * 
      * This route is cached for up to 5 seconds
      * @param characterId An EVE character ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @return Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable.
+     * @return Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable
      */
     
     public CompletableFuture<EsiResponseWrapper<CurrentLocation>> getLocation(int characterId, String ifNoneMatch);

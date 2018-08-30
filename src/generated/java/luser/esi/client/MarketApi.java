@@ -88,7 +88,7 @@ public interface MarketApi {
      * 
      * This route is cached for up to 300 seconds
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param orderType Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders.
+     * @param orderType Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders
      * @param page Which page of results to return
      * @param regionId Return orders in this region
      * @param typeId Return orders only for this type

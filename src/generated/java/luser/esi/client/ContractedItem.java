@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ContractedItem {
     private boolean isIncluded;
     /**
-     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract.
+     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract
      */
     public void setIsIncluded(boolean val) {
         isIncluded = val;
     }
     /**
-     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract.
+     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract
      */
     @JsonProperty("is_included")
     public boolean getIsIncluded() {

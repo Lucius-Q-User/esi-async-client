@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FwCorporationLeaderboard {
     private List<FwCorporationLeaderboardEntry> activeTotal;
     /**
-     * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days.
+     * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days
      */
     public void setActiveTotal(List<FwCorporationLeaderboardEntry> val) {
         activeTotal = val;
     }
     /**
-     * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days.
+     * Top 10 ranking of corporations active in faction warfare by total kills. A corporation is considered "active" if they have participated in faction warfare in the past 14 days
      */
     @JsonProperty("active_total")
     public List<FwCorporationLeaderboardEntry> getActiveTotal() {

@@ -35,13 +35,13 @@ public class CorporationStructures {
     }
     private Instant nextReinforceApply;
     /**
-     * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect.
+     * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect
      */
     public void setNextReinforceApply(Instant val) {
         nextReinforceApply = val;
     }
     /**
-     * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect.
+     * The date and time when the structure's newly requested reinforcement times (e.g. next_reinforce_hour and next_reinforce_day) will take effect
      */
     @JsonProperty("next_reinforce_apply")
     public Instant getNextReinforceApply() {
@@ -49,13 +49,13 @@ public class CorporationStructures {
     }
     private Integer nextReinforceHour;
     /**
-     * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply.
+     * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply
      */
     public void setNextReinforceHour(Integer val) {
         nextReinforceHour = val;
     }
     /**
-     * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply.
+     * The requested change to reinforce_hour that will take effect at the time shown by next_reinforce_apply
      */
     @JsonProperty("next_reinforce_hour")
     public Integer getNextReinforceHour() {
@@ -63,13 +63,13 @@ public class CorporationStructures {
     }
     private Integer nextReinforceWeekday;
     /**
-     * The requested change to reinforce_weekday that will take effect at the time shown by next_reinforce_apply.
+     * The requested change to reinforce_weekday that will take effect at the time shown by next_reinforce_apply
      */
     public void setNextReinforceWeekday(Integer val) {
         nextReinforceWeekday = val;
     }
     /**
-     * The requested change to reinforce_weekday that will take effect at the time shown by next_reinforce_apply.
+     * The requested change to reinforce_weekday that will take effect at the time shown by next_reinforce_apply
      */
     @JsonProperty("next_reinforce_weekday")
     public Integer getNextReinforceWeekday() {
@@ -91,13 +91,13 @@ public class CorporationStructures {
     }
     private int reinforceHour;
     /**
-     * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property.
+     * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property
      */
     public void setReinforceHour(int val) {
         reinforceHour = val;
     }
     /**
-     * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property.
+     * The hour of day that determines the four hour window when the structure will randomly exit its reinforcement periods and become vulnerable to attack against its armor and/or hull. The structure will become vulnerable at a random time that is +/- 2 hours centered on the value of this property
      */
     @JsonProperty("reinforce_hour")
     public int getReinforceHour() {
@@ -105,13 +105,13 @@ public class CorporationStructures {
     }
     private int reinforceWeekday;
     /**
-     * The day of the week when the structure exits its final reinforcement period and becomes vulnerable to attack against its hull. Monday is 0 and Sunday is 6.
+     * The day of the week when the structure exits its final reinforcement period and becomes vulnerable to attack against its hull. Monday is 0 and Sunday is 6
      */
     public void setReinforceWeekday(int val) {
         reinforceWeekday = val;
     }
     /**
-     * The day of the week when the structure exits its final reinforcement period and becomes vulnerable to attack against its hull. Monday is 0 and Sunday is 6.
+     * The day of the week when the structure exits its final reinforcement period and becomes vulnerable to attack against its hull. Monday is 0 and Sunday is 6
      */
     @JsonProperty("reinforce_weekday")
     public int getReinforceWeekday() {

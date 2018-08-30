@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FwCharacterLeaderboards {
     private FwCharacterLeaderboard kills;
     /**
-     * Top 100 rankings of pilots by number of kills from yesterday, last week and in total.
+     * Top 100 rankings of pilots by number of kills from yesterday, last week and in total
      */
     public void setKills(FwCharacterLeaderboard val) {
         kills = val;
     }
     /**
-     * Top 100 rankings of pilots by number of kills from yesterday, last week and in total.
+     * Top 100 rankings of pilots by number of kills from yesterday, last week and in total
      */
     @JsonProperty("kills")
     public FwCharacterLeaderboard getKills() {

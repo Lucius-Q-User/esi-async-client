@@ -19,13 +19,13 @@ public class ContractedItemEx {
     }
     private boolean isIncluded;
     /**
-     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract.
+     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract
      */
     public void setIsIncluded(boolean val) {
         isIncluded = val;
     }
     /**
-     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract.
+     * true if the contract issuer has submitted this item with the contract, false if the isser is asking for this item in the contract
      */
     @JsonProperty("is_included")
     public boolean getIsIncluded() {
@@ -33,13 +33,13 @@ public class ContractedItemEx {
     }
     private Long itemId;
     /**
-     * Unique ID for the item being sold. Not present if item is being requested by contract rather than sold with contract.
+     * Unique ID for the item being sold. Not present if item is being requested by contract rather than sold with contract
      */
     public void setItemId(Long val) {
         itemId = val;
     }
     /**
-     * Unique ID for the item being sold. Not present if item is being requested by contract rather than sold with contract.
+     * Unique ID for the item being sold. Not present if item is being requested by contract rather than sold with contract
      */
     @JsonProperty("item_id")
     public Long getItemId() {
@@ -47,13 +47,13 @@ public class ContractedItemEx {
     }
     private Integer materialEfficiency;
     /**
-     * Material Efficiency Level of the blueprint.
+     * Material Efficiency Level of the blueprint
      */
     public void setMaterialEfficiency(Integer val) {
         materialEfficiency = val;
     }
     /**
-     * Material Efficiency Level of the blueprint.
+     * Material Efficiency Level of the blueprint
      */
     @JsonProperty("material_efficiency")
     public Integer getMaterialEfficiency() {
@@ -89,13 +89,13 @@ public class ContractedItemEx {
     }
     private Integer runs;
     /**
-     * Number of runs remaining if the blueprint is a copy, -1 if it is an original.
+     * Number of runs remaining if the blueprint is a copy, -1 if it is an original
      */
     public void setRuns(Integer val) {
         runs = val;
     }
     /**
-     * Number of runs remaining if the blueprint is a copy, -1 if it is an original.
+     * Number of runs remaining if the blueprint is a copy, -1 if it is an original
      */
     @JsonProperty("runs")
     public Integer getRuns() {
@@ -103,13 +103,13 @@ public class ContractedItemEx {
     }
     private Integer timeEfficiency;
     /**
-     * Time Efficiency Level of the blueprint.
+     * Time Efficiency Level of the blueprint
      */
     public void setTimeEfficiency(Integer val) {
         timeEfficiency = val;
     }
     /**
-     * Time Efficiency Level of the blueprint.
+     * Time Efficiency Level of the blueprint
      */
     @JsonProperty("time_efficiency")
     public Integer getTimeEfficiency() {

@@ -13,7 +13,7 @@ public interface CharacterApi {
      * ---
      * 
      * This route is cached for up to 3600 seconds
-     * @param characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned.
+     * @param characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
      * @return Character corporation, alliance and faction IDs
      */
     
@@ -123,7 +123,7 @@ public interface CharacterApi {
      * This route is cached for up to 600 seconds
      * 
      * ---
-     * Warning: This route has an upgrade available.
+     * Warning: This route has an upgrade available
      * 
      * ---
      * [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/characters/{character_id}/notifications/)

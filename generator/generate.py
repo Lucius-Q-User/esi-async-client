@@ -244,7 +244,7 @@ renameObjects  = {
    "GetCorporationsCorporationIdWalletsDivisionJournalOk": "WalletJournalEntry",
    "GetCharactersCharacterIdWalletJournalOk": "WalletJournalEntry",
    "GetCharactersCharacterIdContractsContractIdBidsOk": "AuctionBid",
-   "GetContractsPublicBidsContractIdOk": "AuctionBid",
+   "GetContractsPublicBidsContractIdOk": "AuctionBidPublic",
    "GetCorporationsCorporationIdContractsContractIdBidsOk": "AuctionBid",
    "GetCharactersCharacterIdBookmarksOk": "BookmarkInfo",
    "GetCorporationsCorporationIdBookmarksOk": "BookmarkInfo",

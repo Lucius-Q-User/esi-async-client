@@ -291,7 +291,7 @@ public interface CorporationApi {
      * This route is cached for up to 3600 seconds
      * 
      * ---
-     * Requires one of the following EVE corporation role(s): StationManager
+     * Requires one of the following EVE corporation role(s): Station_Manager
      * @param acceptLanguage Language to use in the response
      * @param corporationId An EVE corporation ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag

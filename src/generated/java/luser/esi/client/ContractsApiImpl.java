@@ -62,7 +62,7 @@ class ContractsApiImpl implements ContractsApi {
     }
     
     @Override
-    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getPublicContractBids(int contractId, String ifNoneMatch, Integer page) {
+    public CompletableFuture<EsiResponseWrapper<List<AuctionBidPublic>>> getPublicContractBids(int contractId, String ifNoneMatch, Integer page) {
         String url = "https://esi.evetech.net/v1/contracts/public/bids/" + contractId + "/";
         RequestBuilder builder = Dsl.get(url);
         if (ifNoneMatch != null) {
@@ -74,7 +74,7 @@ class ContractsApiImpl implements ContractsApi {
             String val = String.valueOf(page);
             builder.addQueryParam("page", val);
         }
-        TypeReference<List<AuctionBid>> responseTypeRef = new TypeReference<List<AuctionBid>>() {};
+        TypeReference<List<AuctionBidPublic>> responseTypeRef = new TypeReference<List<AuctionBidPublic>>() {};
         boolean needsAuth = false;
         return apiClient.invokeApi(builder, needsAuth, responseTypeRef);
     }
@@ -170,8 +170,8 @@ class ContractsApiImpl implements ContractsApi {
     }
     
     @Override
-    public CompletableFuture<List<AuctionBid>> getPublicContractBidsAllPages(int contractId) {
-        return ApiClientBase.pagingHelper((page) -> getPublicContractBids(contractId, null, page), (List<AuctionBid>)null);
+    public CompletableFuture<List<AuctionBidPublic>> getPublicContractBidsAllPages(int contractId) {
+        return ApiClientBase.pagingHelper((page) -> getPublicContractBids(contractId, null, page), (List<AuctionBidPublic>)null);
     }
     
     @Override

@@ -31,35 +31,35 @@ public interface FactionWarfareApi {
     
     public CompletableFuture<EsiResponseWrapper<CorporationFwStatsResponse>> getCorporationFwStats(int corporationId, String ifNoneMatch);
     /**
-     * Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday.
+     * Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday
      * 
      * ---
      * 
      * This route expires daily at 11:05
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @return Corporation leaderboard of kills and victory points within faction warfare.
+     * @return Corporation leaderboard of kills and victory points within faction warfare
      */
     
     public CompletableFuture<EsiResponseWrapper<FwFactionLeaderboards>> getFwFactionLeaderboards(String ifNoneMatch);
     /**
-     * Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday.
+     * Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday
      * 
      * ---
      * 
      * This route expires daily at 11:05
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @return Character leaderboard of kills and victory points within faction warfare.
+     * @return Character leaderboard of kills and victory points within faction warfare
      */
     
     public CompletableFuture<EsiResponseWrapper<FwCharacterLeaderboards>> getFwCharacterLeaderboards(String ifNoneMatch);
     /**
-     * Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday.
+     * Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday
      * 
      * ---
      * 
      * This route expires daily at 11:05
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @return Corporation leaderboard of kills and victory points within faction warfare.
+     * @return Corporation leaderboard of kills and victory points within faction warfare
      */
     
     public CompletableFuture<EsiResponseWrapper<FWCorporationLeaderboards>> getFwCorporationLeaderboards(String ifNoneMatch);

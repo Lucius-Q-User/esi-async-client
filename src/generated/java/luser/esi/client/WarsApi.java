@@ -14,8 +14,8 @@ public interface WarsApi {
      * 
      * This route is cached for up to 3600 seconds
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param maxWarId Only return wars with ID smaller than this.
-     * @return A list of war IDs, in decending order by war_id.
+     * @param maxWarId Only return wars with ID smaller than this
+     * @return A list of war IDs, in descending order by war_id
      */
     
     public CompletableFuture<EsiResponseWrapper<IntArrayList>> getWars(String ifNoneMatch, Integer maxWarId);

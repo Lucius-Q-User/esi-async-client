@@ -14,7 +14,7 @@ public interface IndustryApi {
      * This route is cached for up to 300 seconds
      * @param characterId An EVE character ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param includeCompleted Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days.
+     * @param includeCompleted Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days
      * @return Industry jobs placed by a character
      */
     
@@ -40,7 +40,7 @@ public interface IndustryApi {
      * This route is cached for up to 1800 seconds
      * 
      * ---
-     * Requires one of the following EVE corporation role(s): Structure_manager
+     * Requires one of the following EVE corporation role(s): Station_Manager
      * @param corporationId An EVE corporation ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param page Which page of results to return
@@ -89,10 +89,10 @@ public interface IndustryApi {
      * This route is cached for up to 300 seconds
      * 
      * ---
-     * Requires one of the following EVE corporation role(s): FactoryManager
+     * Requires one of the following EVE corporation role(s): Factory_Manager
      * @param corporationId An EVE corporation ID
      * @param ifNoneMatch ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param includeCompleted Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days.
+     * @param includeCompleted Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days
      * @param page Which page of results to return
      * @return A list of corporation industry jobs
      */

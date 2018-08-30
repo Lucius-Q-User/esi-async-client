@@ -7,7 +7,7 @@ public interface CalendarApi {
     public ApiClient getApiClient();
     
     /**
-     * Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event.
+     * Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event
      * 
      * ---
      * 
@@ -52,7 +52,7 @@ public interface CalendarApi {
      * 
      * @param characterId An EVE character ID
      * @param eventId The ID of the event requested
-     * @param response The response value to set, overriding current value.
+     * @param response The response value to set, overriding current value
      * @return Event updated
      */
     

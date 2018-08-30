@@ -141,13 +141,13 @@ public interface UniverseApi {
     
     public CompletableFuture<EsiResponseWrapper<ItemGroupInfo>> getGroupInfo(AcceptLanguageEnum acceptLanguage, int groupId, String ifNoneMatch);
     /**
-     * Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours.
+     * Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours
      * 
      * ---
      * 
      * @param acceptLanguage Language to use in the response
      * @param names The names to resolve
-     * @return List of id/name associations for a set of names divided by category. Any name passed in that did not have a match will be ommitted.
+     * @return List of id/name associations for a set of names divided by category. Any name passed in that did not have a match will be ommitted
      */
     
     public CompletableFuture<EsiResponseWrapper<ResolvedItemId>> resolveIds(AcceptLanguageEnum acceptLanguage, List<String> names);
@@ -293,12 +293,12 @@ public interface UniverseApi {
     
     public CompletableFuture<EsiResponseWrapper<List<UniverseFaction>>> getFactions(AcceptLanguageEnum acceptLanguage, String ifNoneMatch);
     /**
-     * Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types.
+     * Resolve a set of IDs to names and categories. Supported ID's for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types
      * 
      * ---
      * 
      * @param ids The ids to resolve
-     * @return List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned.
+     * @return List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned
      */
     
     public CompletableFuture<EsiResponseWrapper<List<ResolvedItemName>>> resolveNames(IntArrayList ids);

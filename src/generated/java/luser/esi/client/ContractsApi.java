@@ -57,7 +57,7 @@ public interface ContractsApi {
      * @return A list of bids
      */
     
-    public CompletableFuture<EsiResponseWrapper<List<AuctionBid>>> getPublicContractBids(int contractId, String ifNoneMatch, Integer page);
+    public CompletableFuture<EsiResponseWrapper<List<AuctionBidPublic>>> getPublicContractBids(int contractId, String ifNoneMatch, Integer page);
     /**
      * Lists items of a public contract
      * 
@@ -127,7 +127,7 @@ public interface ContractsApi {
     
     public CompletableFuture<List<ContractInfo>> getCharacterContractsAllPages(int characterId);
     
-    public CompletableFuture<List<AuctionBid>> getPublicContractBidsAllPages(int contractId);
+    public CompletableFuture<List<AuctionBidPublic>> getPublicContractBidsAllPages(int contractId);
     
     public CompletableFuture<List<ContractedItemEx>> getPublicContractItemsAllPages(int contractId);
     
